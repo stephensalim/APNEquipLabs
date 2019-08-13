@@ -3,12 +3,29 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>http://example.org/ec2-lab/create-new-key-pair/</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.org/ec2-lab/launch-ec2-web-server/</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.org/ec2-lab/browse-your-web-server/</loc>
+  </url>
+  
+  <url>
     <loc>http://example.org/</loc>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://example.org/categories/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://example.org/ec2-lab/</loc>
     <priority>0</priority>
   </url>
   

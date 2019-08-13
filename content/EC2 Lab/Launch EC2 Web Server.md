@@ -1,7 +1,7 @@
 ---
 title: "Launch EC2 Web Server"
 weight: 2
-draft: true
+draft: false
 ---
 
 In this example we will launch an Amazon Linux 2 instance, bootstrap

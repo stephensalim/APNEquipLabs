@@ -9,7 +9,7 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>Tags :: APN Equip Labs</title>
+    <title>Launch EC2 Web Server :: APN Equip Labs</title>
 
     
     <link href="/css/nucleus.css?1565702744" rel="stylesheet">
@@ -33,7 +33,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/tags/">
+  <body class="" data-url="/ec2-lab/launch-ec2-web-server/">
     <nav id="sidebar" class="">
 
 
@@ -92,8 +92,8 @@
   
     
     <li data-nav-id="/ec2-lab/" title="EC2 Labs" class="dd-item 
+        parent
         
-        active
         
         ">
       <a href="/ec2-lab/">
@@ -135,7 +135,7 @@
  
   
     
-      <li data-nav-id="/ec2-lab/launch-ec2-web-server/" title="Launch EC2 Web Server" class="dd-item ">
+      <li data-nav-id="/ec2-lab/launch-ec2-web-server/" title="Launch EC2 Web Server" class="dd-item active">
         <a href="/ec2-lab/launch-ec2-web-server/">
         Launch EC2 Web Server
         
@@ -215,7 +215,19 @@
                     
           
           
-            Tags
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='/'>APN Equip Labs</a> > <a href='/ec2-lab/'>EC2 Labs</a> > Launch EC2 Web Server
+          
+         
+          
+         
           
         
                  
@@ -240,7 +252,7 @@
           
             <h1>
               
-              Tags
+              Launch EC2 Web Server
             </h1>
           
 
@@ -248,17 +260,93 @@
 
 
 
+<p>In this example we will launch an Amazon Linux 2 instance, bootstrap
+Apache/PHP, and install a basic web page that will display information
+about our instance.</p>
 
+<p>Sign into your AWS Management Console and choose EC2 from the Services
+menu. [ ]{.underline}</p>
 
+<ol>
+<li><p>Click on Launch Instance</p>
 
-<ul>
-	
-</ul>
+<p><img src="/EC2 Lab/images/image7.png" alt="" /></p></li>
+
+<li><p>In the <strong>Quick Start</strong> section, select the first Amazon Linux 2 AMI
+and click <strong>Select.</strong></p>
+
+<p><img src="/EC2 Lab/images/image8.png" alt="" /></p></li>
+
+<li><p>In the Choose Instance Type tab, select the t2.micro instance size
+and click <strong>Next</strong>.</p></li>
+
+<li><p>On the <strong>Configure Instance Details</strong> page, expand the <strong>Advanced
+Details</strong> section, copy/paste the script below into the <strong>User
+Data</strong> field (this shell script will install Apache &amp; PHP, start the
+web service, and deploy a simple web page). Click <strong>Next.</strong></p>
+
+<pre><code>#!/bin/sh
+sudo su
+yum -y install httpd php mysql php-mysql
+chkconfig httpd on
+/etc/init.d/httpd -T
+cd /tmp
+wget
+http://us-east-1-aws-training.s3.amazonaws.com/self-paced-lab-4/examplefiles-as.zip
+unzip examplefiles-as.zip
+mv examplefiles-as/\* /var/www/html
+ls
+</code></pre></li>
+
+<li><p>On this page you have the ability to modify or add storage and disk
+drives to the instance. For this lab, we will simply accept the
+storage defaults and click <strong>Next.</strong></p></li>
+
+<li><p>Here, we choose a &ldquo;friendly name&rdquo; for your instance by choosing
+&lsquo;click to add a Name tag&rsquo;. This name, more correctly known as a
+<strong>tag</strong>, will appear in the console once the instance launches. It
+makes it easy to keep track of running machines in a complex
+environment. Name yours as: &ldquo;[Your Name] Web Server&rdquo;, and then
+click <strong>Next</strong>.</p></li>
+
+<li><p>You will be prompted to create a new security group, which will be
+your firewall rules. On the assumption that we are building out a
+Web server, name your new security group &ldquo;[Your Name] Web Tier&rdquo;,
+and confirm an existing SSH rule exists which allows TCP port 22
+from Anywhere. Click <strong>Add Rule.</strong>:</p></li>
+
+<li><p>Select HTTP from the &lsquo;Type&rsquo; dropdown menu, and confirm TCP port 80
+is allowed from Anywhere <em>(you&rsquo;ll notice, that &ldquo;Anywhere is the same
+as &lsquo;0.0.0.0/0&rsquo;)</em>. Click <strong>Add Rule</strong>.</p>
+
+<p><img src="/EC2 Lab/images/image9.png" alt="" /></p></li>
+
+<li><p>Click the <strong>Review and Launch</strong> button after configuring the
+security group.</p></li>
+
+<li><p>Review your cofiguration and choices, and then click <strong>Launch</strong>.</p></li>
+
+<li><p>Select the key pair that you created in the beginning of this lab
+from the drop-down and check the \&ldquo;I acknowledge\&rdquo; checkbox. Then
+click the <strong>Launch Instances</strong> button.</p></li>
+
+<li><p>Click the <strong>View Instances</strong> button in the lower righthand portion
+of the screen to view the list of EC2 instances. Once your instance
+has launched, you will see your Web Server as well as the
+Availability Zone the instance is in, and the publicly routable DNS
+name.</p></li>
+
+<li><p>Click the checkbox next to your web server to view details about
+this EC2 instance.</p>
+
+<p><img src="/EC2 Lab/images/image10.png" alt="" /></p></li>
+</ol>
 
 
 <footer class=" footline" >
 	
 </footer>
+
 
         
         </div> 
@@ -291,8 +379,6 @@
             
                 
                     
-                        
-                        
                     
                 
                 
@@ -306,6 +392,9 @@
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -323,6 +412,7 @@
             
                 
                     
+                    
                 
                 
 
@@ -338,6 +428,9 @@
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -362,8 +455,10 @@
 	 
 	 
 		
+			<a class="nav nav-prev" href="/ec2-lab/create-new-key-pair/" title="Create New Key Pair"> <i class="fa fa-chevron-left"></i></a>
 		
-			<a class="nav nav-next" href="/ec2-lab/" title="EC2 Labs" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+			<a class="nav nav-next" href="/ec2-lab/browse-your-web-server/" title="Browse your Web Server" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -393,3 +488,4 @@
 
   </body>
 </html>
+

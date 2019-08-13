@@ -1,7 +1,7 @@
 ---
 title: "Create New Key Pair"
 weight: 1
-draft: true
+draft: false
 ---
 
 In this lab, you will need to create an EC2 instance using an SSH

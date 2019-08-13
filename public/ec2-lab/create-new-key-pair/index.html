@@ -9,7 +9,7 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>Tags :: APN Equip Labs</title>
+    <title>Create New Key Pair :: APN Equip Labs</title>
 
     
     <link href="/css/nucleus.css?1565702744" rel="stylesheet">
@@ -33,7 +33,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/tags/">
+  <body class="" data-url="/ec2-lab/create-new-key-pair/">
     <nav id="sidebar" class="">
 
 
@@ -92,8 +92,8 @@
   
     
     <li data-nav-id="/ec2-lab/" title="EC2 Labs" class="dd-item 
+        parent
         
-        active
         
         ">
       <a href="/ec2-lab/">
@@ -116,7 +116,7 @@
  
   
     
-      <li data-nav-id="/ec2-lab/create-new-key-pair/" title="Create New Key Pair" class="dd-item ">
+      <li data-nav-id="/ec2-lab/create-new-key-pair/" title="Create New Key Pair" class="dd-item active">
         <a href="/ec2-lab/create-new-key-pair/">
         Create New Key Pair
         
@@ -215,7 +215,19 @@
                     
           
           
-            Tags
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='/'>APN Equip Labs</a> > <a href='/ec2-lab/'>EC2 Labs</a> > Create New Key Pair
+          
+         
+          
+         
           
         
                  
@@ -240,7 +252,7 @@
           
             <h1>
               
-              Tags
+              Create New Key Pair
             </h1>
           
 
@@ -248,17 +260,46 @@
 
 
 
+<p>In this lab, you will need to create an EC2 instance using an SSH
+keypair. The following steps outline creating a unique SSH keypair for
+you to use in this lab.</p>
 
+<ol>
+<li><p>Sign into the AWS Management Console and open the Amazon EC2 console
+at <a href="https://console.aws.amazon.com/ec2">https://console.aws.amazon.com/ec2</a>.</p></li>
 
+<li><p>In the upper-right corner of the AWS Management Console, confirm you
+are in the desired AWS region (e.g., Sydney).</p></li>
 
-<ul>
-	
-</ul>
+<li><p>Click on <strong>Key Pairs</strong> in the NETWORK &amp; SECURITY section near the
+bottom of the leftmost menu. This will display a page to manage your
+SSH key pairs.</p>
+
+<p><img src="/EC2 Lab/images/image2.png" alt="Image" /></p></li>
+
+<li><p>To create a new SSH key pair, click the <strong>Create Key Pair</strong> button
+at the top of the browser window.</p>
+
+<p><img src="/EC2 Lab/images/image3.png" alt="" /></p></li>
+
+<li><p>In the resulting pop up window, type <em>[First Name]-[Last
+Name]-ImmersionDay</em> into the <strong>Key Pair Name:</strong> text box and click
+<strong>Create.</strong></p>
+
+<p><img src="/EC2 Lab/images/image4.png" alt="" /></p></li>
+
+<li><p>The page will download the file &ldquo;*[Your-Name]-*ImmersionDay.pem&rdquo;
+to the local drive. Follow the browser instructions to save the file
+to the default download location.</p></li>
+
+<li><p>Remember the full path to the file .pem file you just downloaded.</p></li>
+</ol>
 
 
 <footer class=" footline" >
 	
 </footer>
+
 
         
         </div> 
@@ -291,8 +332,6 @@
             
                 
                     
-                        
-                        
                     
                 
                 
@@ -306,6 +345,7 @@
             
             
                 
+                    
                     
                 
                 
@@ -322,6 +362,9 @@
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -362,8 +405,10 @@
 	 
 	 
 		
+			<a class="nav nav-prev" href="/ec2-lab/" title="EC2 Labs"> <i class="fa fa-chevron-left"></i></a>
 		
-			<a class="nav nav-next" href="/ec2-lab/" title="EC2 Labs" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+			<a class="nav nav-next" href="/ec2-lab/launch-ec2-web-server/" title="Launch EC2 Web Server" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -393,3 +438,4 @@
 
   </body>
 </html>
+

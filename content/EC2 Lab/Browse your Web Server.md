@@ -1,7 +1,7 @@
 ---
 title: "Browse your Web Server"
 weight: 3
-draft: true
+draft: false
 ---
 
 1.  Wait for the instance to pass the Status Checks to finish
