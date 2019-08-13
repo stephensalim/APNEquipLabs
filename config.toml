@@ -1,0 +1,4 @@
+baseURL = "http://example.org/"
+languageCode = "en-us"
+title = "APN Equip Labs"
+theme = "hugo-theme-learn"
