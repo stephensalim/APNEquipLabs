@@ -32,27 +32,26 @@ draft: true
 
    
 	```
-	#!/bin/sh
-	
-	# THIS COMMAND WILL INSTALL UPDATES ON OS
-	yum -y update
-	
-	# THIS COMMAND WILL INSTALL STRESS TESTER APP
-	yum -y install stress
+    #!/bin/sh
 
-	# THIS COMMAND WILL INSTALL AWSLOGS TOOL
-	yum install -y awslogs
-	sed -i -e 's/region = us-east-1/region = <REPLACE WITH YOUR REGION>/g' /etc/awslogs/awscli.conf
-	sudo service awslogs start
-	
-	# THIS COMMAND WILL RUN THE STRESS APP
-	stress -c 1 --backoff 300000000 -t 30m
+    # THIS COMMAND WILL INSTALL UPDATES ON OS
+    yum -y update
+
+    # THIS COMMAND WILL INSTALL AWSLOGS TOOL
+    yum install -y awslogs
+    sed -i -e 's/region = us-east-1/region = <REPLACE WITH YOUR REGION>/g' /etc/awslogs/awscli.conf
+
+    # THIS COMMAND WILL CONFIGURE AWSLOGS TO LOG SECURE
+    sed -i -e 's/messages/secure/g' /etc/awslogs/awslogs.conf
+
+    sudo service awslogs start
+
 
 	```
 
 7. For the Network select either your "default VPC" or the vpc you created in 	the previous lab.
 
-8. Select any subnet in the VPC (The subnet must be public facing, which means it has 	direct connection to the Internet Gateway).
+8. Select any subnet in the VPC (The subnet must be public facing, which means it has direct connection to the Internet Gateway).
 
 9. 	Confirm "Auto-assign Public IP" is **Enabled** 
 

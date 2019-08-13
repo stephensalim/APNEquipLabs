@@ -10,11 +10,11 @@ In this section, we will explore CloudWatch to view EC2 System Logs
 
 2. On the left hand side of the menu, click on **Logs**.
 
-3. Type in **/var/log/messages** in the filter field.
+3. Type in **/var/log/secure** in the filter field.
 
 	![](/Monitoring Lab/images/image25.png)
 
-4. Click on the **/var/log/messages** log group, and locate your EC2 instance ID, then 	click on it.
+4. Click on the **/var/log/secure** log group, and locate your EC2 instance ID, then 	click on it.
 	
 	![](/Monitoring Lab/images/image26.png)
 
