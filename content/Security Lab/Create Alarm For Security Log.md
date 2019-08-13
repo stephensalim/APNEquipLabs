@@ -1,6 +1,6 @@
 ---
-title: "Monitor EC2 Security Log"
-weight: 6
+title: "Create Alarm For Security Log"
+date: 2019-08-13T23:35:22+10:00
 draft: true
 ---
 
@@ -21,4 +21,3 @@ In this section, we will explore CloudWatch to view EC2 System Logs
 5. You should see all the Security Log of the Operating Systems in the CloudWatch Logs.
 
 	![](/Security Lab/images/image27.png) 
- 
