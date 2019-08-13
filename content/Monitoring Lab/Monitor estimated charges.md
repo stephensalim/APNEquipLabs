@@ -1,7 +1,7 @@
 ---
 title: "Monitor Estimated Charges"
 weight: 8
-draft: true
+draft: false
 ---
 
 In this scenario, you create an Amazon CloudWatch alarm that will

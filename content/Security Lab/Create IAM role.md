@@ -12,7 +12,7 @@ draft: true
 
 4. Select **AWS Service** for the trusted entity, and Choose **EC2** as the service that will use this role.
 
-	![](/Monitoring Lab/images/image24.png) 
+	![](/Security Lab/images/image24.png) 
 
 5. Click **Next permission** 
 

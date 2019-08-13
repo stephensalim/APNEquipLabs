@@ -1,7 +1,7 @@
 ---
 title: "Create IAM User"
 weight: 2
-draft: true
+draft: false
 ---
 
 It is best practice to create a different user for each person who needs

@@ -1,7 +1,7 @@
 ---
 title: "EC2 Lab"
 date: 2019-08-13T20:05:35+10:00
-draft: true
+draft: false
 ---
 
 Amazon Elastic Compute Cloud (Amazon EC2) is a web service that provides

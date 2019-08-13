@@ -1,7 +1,7 @@
 ---
 title: "Clean Up Resources"
 weight: 6
-draft: true
+draft: false
 ---
 
 If you want to clean up your account to get rid of everything we created

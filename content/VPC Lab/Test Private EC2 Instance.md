@@ -1,7 +1,7 @@
 ---
 title: "Test Private EC2 Instance"
 weight: 5
-draft: true
+draft: false
 ---
 
 Optionally, you can go through the same process in the last two sections

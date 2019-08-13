@@ -1,7 +1,7 @@
 ---
 title: "Monitor EC2 Tag"
 weight: 7
-draft: true
+draft: false
 ---
 
 In this scenario, you create an AWS Config rule, that will monitor your

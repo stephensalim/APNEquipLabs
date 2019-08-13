@@ -1,7 +1,7 @@
 ---
 title: "Monitor EC2 System Log"
 weight: 6
-draft: true
+draft: false
 ---
 
 In this section, we will explore CloudWatch to view EC2 System Logs

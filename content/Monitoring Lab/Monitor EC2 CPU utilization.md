@@ -1,7 +1,7 @@
 ---
 title: "Monitor EC2 CPU Utilization"
 weight: 5
-draft: true
+draft: false
 ---
 
 In This Section we will monitor the EC2 instance CPU Utilization, and trigger an an Email notification when Utilization is above 60%.

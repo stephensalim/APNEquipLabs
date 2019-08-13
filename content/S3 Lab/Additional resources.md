@@ -1,7 +1,7 @@
 ---
 title: "Additional resources"
 weight: 6
-draft: true
+draft: false
 ---
 
 In this lab you have learned the basic operations to manage the

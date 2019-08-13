@@ -1,7 +1,7 @@
 ---
 title: "Create IAM Group"
 weight: 1
-draft: true
+draft: false
 ---
 
 1.  To get started, go to the **IAM dashboard** in the AWS console.

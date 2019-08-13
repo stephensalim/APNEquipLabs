@@ -1,7 +1,7 @@
 ---
 title: "Create Public EC2 Instance"
 weight: 3
-draft: true
+draft: false
 ---
 
 In this section, you will spin up an EC2 instance in the Public subnet

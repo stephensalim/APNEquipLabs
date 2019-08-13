@@ -1,7 +1,7 @@
 ---
 title: "S3 Lab"
 date: 2019-08-13T20:30:47+10:00
-draft: true
+draft: false
 ---
 
 Amazon Simple Storage Service (S3) provides a simple web services

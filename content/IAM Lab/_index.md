@@ -1,7 +1,7 @@
 ---
 title: "IAM Lab"
 date: 2019-08-13T22:01:50+10:00
-draft: true
+draft: false
 ---
 
 AWS Identity and Access Management (IAM) is a free service that enables

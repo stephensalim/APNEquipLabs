@@ -1,7 +1,7 @@
 ---
 title: "Configure CloudWatch Alarm"
 weight: 4
-draft: true
+draft: false
 ---
 
 1.  In the EC2 Console, click the checkbox next to your server name to

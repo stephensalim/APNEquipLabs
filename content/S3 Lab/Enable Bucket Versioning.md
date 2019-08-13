@@ -1,7 +1,7 @@
 ---
 title: "Enable Bucket Versioning"
 weight: 4
-draft: true
+draft: false
 ---
 
 If you want to add new version of the object to the same bucket but want

@@ -1,7 +1,7 @@
 ---
 title: "VPC Lab"
 date: 2019-08-13T20:07:59+10:00
-draft: true
+draft: false
 ---
 
 Amazon Virtual Private Cloud (Amazon VPC) lets you provision a logically

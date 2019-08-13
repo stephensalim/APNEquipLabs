@@ -1,7 +1,7 @@
 ---
 title: "Test Public EC2 Instance"
 weight: 4
-draft: true
+draft: false
 ---
 
 In this section, you will ping the EC2 instance that you just created

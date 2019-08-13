@@ -1,7 +1,7 @@
 ---
 title: "Move S3 Object"
 weight: 3
-draft: true
+draft: false
 ---
 
 Now that you've added an object to a bucket and viewed it, you might

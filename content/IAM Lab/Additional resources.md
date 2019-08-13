@@ -1,7 +1,7 @@
 ---
 title: "Additional resources"
 weight: 6
-draft: true
+draft: false
 ---
 
 * IAM Introduction: <https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction.html>

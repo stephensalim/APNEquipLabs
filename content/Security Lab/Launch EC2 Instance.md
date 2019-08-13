@@ -8,12 +8,12 @@ draft: true
 
 2.  Click on **Launch Instance**
     
-    ![](/Monitoring Lab/images/image5.png)
+    ![](/Security Lab/images/image5.png)
     
 3.  In the **Quick** Start section, select the "Amazon Linux AMI" and
     click **Select**
     
-    ![](/Monitoring Lab/images/image6.png)
+    ![](/Security Lab/images/image6.png)
     
     **PLEASE NOTE:** You must select "Amazon Linux AMI", **NOT** "Amazon
     Linux 2 AMI"! This lab will not work properly if you select Amazon
@@ -22,7 +22,7 @@ draft: true
 4.  Select the General purpose t2.micro instance type and click **Next:
     Configure Instance Details**
     
-    ![](/Monitoring Lab/images/image7.png)
+    ![](/Security Lab/images/image7.png)
 
 5.  On the **Configure Instance Details** page, expand the **Advanced Details** section at the bottom of the page.
     
@@ -57,7 +57,7 @@ draft: true
 
 10. Ensure to select role name you created above in the **IAM role** section then 	click **Next: Add Storage**
 
-	![](/Monitoring Lab/images/image8.png)
+	![](/Security Lab/images/image8.png)
 
 11. Click **Next: Tag Instance** to accept the default Storage Device
     Configuration.
@@ -73,17 +73,17 @@ draft: true
     so there are no rules. (You will not need to connect with this
     instance for this step). Then click **Review and Launch**
     
-    ![](/Monitoring Lab/images/image10.jpg)
+    ![](/Security Lab/images/image10.jpg)
 
 14. Review your Instance Launch Configuration, and then click
     **Launch**.
 
-	![](/Monitoring Lab/images/image11.png)
+	![](/Security Lab/images/image11.png)
 
 15. In the drop down choose "Proceed without a keypair" and click
     **Launch Instances**.
 
-	![](/Monitoring Lab/images/image12.jpg)
+	![](/Security Lab/images/image12.jpg)
 	
 16. Click the **View Instances** button in the lower right-hand portion
     of the screen to view the list of EC2 instances. Once your instance

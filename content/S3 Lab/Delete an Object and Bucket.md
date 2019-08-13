@@ -1,7 +1,7 @@
 ---
 title: "Delete an Object and Bucket"
 weight: 5
-draft: true
+draft: false
 ---
 
 You've added an object to a bucket, viewed it, and moved it. Now, you

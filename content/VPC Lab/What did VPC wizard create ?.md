@@ -1,7 +1,7 @@
 ---
 title: "What Did VPC Wizard Create ?"
 weight: 2
-draft: true
+draft: false
 ---
 
 Let's walk through the VPC Console and explain each component that the

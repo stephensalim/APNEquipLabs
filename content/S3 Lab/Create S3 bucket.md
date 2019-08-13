@@ -1,7 +1,7 @@
 ---
 title: "Create S3 Bucket"
 weight: 1
-draft: true
+draft: false
 ---
 
 Every object in Amazon S3 is stored in a bucket. Before you can store

@@ -1,7 +1,7 @@
 ---
 title: "Test IAM User"
 weight: 3
-draft: true
+draft: false
 ---
 
 In this section, we will put your IAM User to the test. You will want to

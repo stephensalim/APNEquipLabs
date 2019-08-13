@@ -1,7 +1,7 @@
 ---
 title: "Navigate the VPC Dashboard"
 weight: 1
-draft: true
+draft: false
 ---
 
 To get started, let's take a look at the VPC Dashboard.

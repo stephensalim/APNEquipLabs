@@ -1,7 +1,7 @@
 ---
 title: "Add Object to S3 Bucket"
 weight: 2
-draft: true
+draft: false
 ---
 
 Now that you've created a bucket, you're ready to add an object to it.

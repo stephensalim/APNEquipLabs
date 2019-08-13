@@ -1,7 +1,7 @@
 ---
 title: "Create IAM Role"
 weight: 4
-draft: true
+draft: false
 ---
 
 IAM Roles can be assumed by AWS services, IAM users, or applications.

@@ -1,7 +1,7 @@
 ---
 title: "Create SNS Topic"
 weight: 1
-draft: true
+draft: false
 ---
 
 First, let's create a Simple Notification Service (SNS) Topic so that we can notify our SysAdmin.

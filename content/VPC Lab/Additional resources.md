@@ -1,7 +1,7 @@
 ---
 title: "Additional Resources"
 weight: 7
-draft: true
+draft: false
 ---
 
 * VPC Introduction: <https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Introduction.html>
