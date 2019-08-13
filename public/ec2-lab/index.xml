@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>EC2 Labs on APN Equip Labs</title>
+    <title>EC2 Lab on APN Equip Labs</title>
     <link>http://example.org/ec2-lab/</link>
-    <description>Recent content in EC2 Labs on APN Equip Labs</description>
+    <description>Recent content in EC2 Lab on APN Equip Labs</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
+    <lastBuildDate>Tue, 13 Aug 2019 20:05:35 +1000</lastBuildDate>
     
 	<atom:link href="http://example.org/ec2-lab/index.xml" rel="self" type="application/rss+xml" />
     

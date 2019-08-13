@@ -9,7 +9,7 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>Tags :: APN Equip Labs</title>
+    <title>Create IAM Group :: APN Equip Labs</title>
 
     
     <link href="/css/nucleus.css?1565703870" rel="stylesheet">
@@ -33,7 +33,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/tags/">
+  <body class="" data-url="/iam-lab/create-iam-group/">
     <nav id="sidebar" class="">
 
 
@@ -276,7 +276,7 @@
   
     
     <li data-nav-id="/iam-lab/" title="IAM Lab" class="dd-item 
-        
+        parent
         
         
         ">
@@ -300,7 +300,7 @@
  
   
     
-      <li data-nav-id="/iam-lab/create-iam-group/" title="Create IAM Group" class="dd-item ">
+      <li data-nav-id="/iam-lab/create-iam-group/" title="Create IAM Group" class="dd-item active">
         <a href="/iam-lab/create-iam-group/">
         Create IAM Group
         
@@ -856,7 +856,19 @@
                     
           
           
-            Tags
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='/'>APN Equip Labs</a> > <a href='/iam-lab/'>IAM Lab</a> > Create IAM Group
+          
+         
+          
+         
           
         
                  
@@ -881,7 +893,7 @@
           
             <h1>
               
-              Tags
+              Create IAM Group
             </h1>
           
 
@@ -889,17 +901,53 @@
 
 
 
+<ol>
+<li>To get started, go to the <strong>IAM dashboard</strong> in the AWS console.</li>
+</ol>
 
+<p>An IAM group is a collection of users. Groups are often based on job
+function or role. They allow you to manage permissions by applying
+policies to each group rather than individual users.</p>
 
+<ol>
+<li><p>Go to <strong>Groups</strong> in the sidebar and click on <strong>Create New Group.</strong></p></li>
 
-<ul>
-	
-</ul>
+<li><p>Type in Power_Users as the Group Name. Go to the Next Step.</p>
+
+<p>Now we will attach a policy to the group. Policies are what give IAM
+entities permissions. AWS provides managed policies for many common
+access needs, but you can also write your own custom policies if needed.</p>
+
+<p>For this lab, we are attaching an AWS managed policy called
+<strong>PowerUserAccess</strong>. This policy allows all AWS actions except for most
+IAM actions. This will prevent <strong>Power_Users</strong> from giving themselves
+more permissions.</p></li>
+
+<li><p>Attach this policy to your group by typing <strong>power</strong> into the search
+bar, and then selecting the correct policy. Go to the <strong>Next Step</strong>
+and then <strong>Create Group</strong>.</p>
+
+<p><img src="/IAM Lab/images/image2.jpg" alt="" /></p>
+
+<p>The group <strong>Power_Users</strong> is now created and you are back on the
+<strong>Groups</strong> page. Click on the <strong>Power_Users</strong> group and go to the
+<strong>Permissions</strong> tab.</p>
+
+<p>We&rsquo;re not going in depth on IAM policy documents in this lab, but if
+you&rsquo;re curious, you should view the JSON content of the
+<strong>PowerUserAccess</strong> policy by clicking on <strong>Show Policy</strong>.</p>
+
+<p>Awesome! You just created an IAM group with a policy attached which will
+give any user in this group permissions to do anything except for most
+IAM actions, such as giving themselves or others additional permissions.
+Next, we will create a user to put into this group.</p></li>
+</ol>
 
 
 <footer class=" footline" >
 	
 </footer>
+
 
         
         </div> 
@@ -1079,6 +1127,7 @@
             
                 
                     
+                    
                 
                 
 
@@ -1091,6 +1140,7 @@
             
             
                 
+                    
                     
                 
                 
@@ -1107,6 +1157,9 @@
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -1499,8 +1552,10 @@
 	 
 	 
 		
+			<a class="nav nav-prev" href="/iam-lab/" title="IAM Lab"> <i class="fa fa-chevron-left"></i></a>
 		
-			<a class="nav nav-next" href="/monitoring-lab/" title="Monitoring Lab" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+			<a class="nav nav-next" href="/iam-lab/create-iam-user/" title="Create IAM User" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -1530,3 +1585,4 @@
 
   </body>
 </html>
+

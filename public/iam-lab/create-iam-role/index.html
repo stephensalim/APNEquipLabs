@@ -9,7 +9,7 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>Tags :: APN Equip Labs</title>
+    <title>Create IAM Role :: APN Equip Labs</title>
 
     
     <link href="/css/nucleus.css?1565703870" rel="stylesheet">
@@ -33,7 +33,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/tags/">
+  <body class="" data-url="/iam-lab/create-iam-role/">
     <nav id="sidebar" class="">
 
 
@@ -276,7 +276,7 @@
   
     
     <li data-nav-id="/iam-lab/" title="IAM Lab" class="dd-item 
-        
+        parent
         
         
         ">
@@ -357,7 +357,7 @@
  
   
     
-      <li data-nav-id="/iam-lab/create-iam-role/" title="Create IAM Role" class="dd-item ">
+      <li data-nav-id="/iam-lab/create-iam-role/" title="Create IAM Role" class="dd-item active">
         <a href="/iam-lab/create-iam-role/">
         Create IAM Role
         
@@ -856,7 +856,19 @@
                     
           
           
-            Tags
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='/'>APN Equip Labs</a> > <a href='/iam-lab/'>IAM Lab</a> > Create IAM Role
+          
+         
+          
+         
           
         
                  
@@ -881,7 +893,7 @@
           
             <h1>
               
-              Tags
+              Create IAM Role
             </h1>
           
 
@@ -889,17 +901,54 @@
 
 
 
+<p>IAM Roles can be assumed by AWS services, IAM users, or applications.
+They are assigned temporary rather than permanent credentials whenever
+assumed. Using roles for privileged permissions sets (such as the
+<strong>PowerUserAccess</strong> policy) can help improve your security posture since
+credential exposure is minimized.</p>
 
+<ol>
+<li><p>Go to <strong>Roles</strong> in the sidebar and click on <strong>Create Role.</strong></p></li>
 
+<li><p>On the <strong>Select type of trusted identity</strong> page, you decide who or
+what will be able to assume this role. For this lab, we will create
+a role that allows an EC2 instance to read files in S3. Therefore,
+we will stay on the <strong>AWS service</strong> tab and select <strong>EC2</strong>. Go to
+<strong>Next: Permissions</strong>.</p>
 
-<ul>
-	
-</ul>
+<p><img src="/IAM Lab/images/image10.png" alt="" /></p></li>
+
+<li><p>Attach a managed policy with S3 Read Only access to the role by
+typing <strong>s3</strong> into the search bar, and then selecting the
+<strong>AmazonS3ReadOnlyAccess</strong> policy. Go to the <strong>Next: Review</strong>.</p>
+
+<p><img src="/IAM Lab/images/image11.png" alt="" /></p></li>
+
+<li><p>Give your role a descriptive name, such as <strong>EC2_S3ReadOnly</strong> and
+edit the <strong>role description</strong> to be a helpful summary of what this
+role is. When you&rsquo;re done, <strong>Create Role</strong>.</p></li>
+
+<li><p>You are now back on the <strong>Roles</strong> page. Enter the name of the role
+you just created into the search bar and click on the role name.</p>
+
+<p><img src="/IAM Lab/images/image12.png" alt="" /></p></li>
+
+<li><p>You are now on the <strong>Summary</strong> page of the role you just created.
+Here you can view and edit attributes of the role, such as how long
+the role&rsquo;s temporary credentials last. The default value as you can
+see below is 1 hour but can be as long as 12 hours.</p>
+
+<p><img src="/IAM Lab/images/image13.png" alt="" /></p></li>
+</ol>
+
+<p><strong>Awesome! You&rsquo;ve just created an IAM role which will allow EC2
+instances to read objects in S3.</strong></p>
 
 
 <footer class=" footline" >
 	
 </footer>
+
 
         
         </div> 
@@ -1079,6 +1128,7 @@
             
                 
                     
+                    
                 
                 
 
@@ -1091,6 +1141,9 @@
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -1140,6 +1193,7 @@
             
                 
                     
+                    
                 
                 
 
@@ -1155,6 +1209,9 @@
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -1499,8 +1556,10 @@
 	 
 	 
 		
+			<a class="nav nav-prev" href="/iam-lab/test-iam-user/" title="Test IAM User"> <i class="fa fa-chevron-left"></i></a>
 		
-			<a class="nav nav-next" href="/monitoring-lab/" title="Monitoring Lab" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+			<a class="nav nav-next" href="/iam-lab/clean-up-resources/" title="Clean Up Resources" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -1530,3 +1589,4 @@
 
   </body>
 </html>
+

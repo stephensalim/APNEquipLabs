@@ -9,7 +9,7 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>Tags :: APN Equip Labs</title>
+    <title>Clean Up Resources :: APN Equip Labs</title>
 
     
     <link href="/css/nucleus.css?1565703870" rel="stylesheet">
@@ -33,7 +33,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/tags/">
+  <body class="" data-url="/iam-lab/clean-up-resources/">
     <nav id="sidebar" class="">
 
 
@@ -276,7 +276,7 @@
   
     
     <li data-nav-id="/iam-lab/" title="IAM Lab" class="dd-item 
-        
+        parent
         
         
         ">
@@ -376,7 +376,7 @@
  
   
     
-      <li data-nav-id="/iam-lab/clean-up-resources/" title="Clean Up Resources" class="dd-item ">
+      <li data-nav-id="/iam-lab/clean-up-resources/" title="Clean Up Resources" class="dd-item active">
         <a href="/iam-lab/clean-up-resources/">
         Clean Up Resources
         
@@ -856,7 +856,19 @@
                     
           
           
-            Tags
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='/'>APN Equip Labs</a> > <a href='/iam-lab/'>IAM Lab</a> > Clean Up Resources
+          
+         
+          
+         
           
         
                  
@@ -881,7 +893,7 @@
           
             <h1>
               
-              Tags
+              Clean Up Resources
             </h1>
           
 
@@ -889,17 +901,30 @@
 
 
 
+<p>If you want to clean up your account to get rid of everything we created
+during this lab, follow the instructions in this section. You can also
+leave your lab environment running if you want to test other AWS IAM
+concepts.</p>
 
+<ol>
+<li><p>Go to <strong>Groups</strong> in the sidebar. Select the <strong>Power_Users</strong> group and
+go to the <strong>Group Actions</strong> dropdown. Select <strong>Delete Group</strong> and then
+<strong>Yes, Delete</strong>.</p></li>
 
+<li><p>Go to <strong>Users</strong> in the sidebar. Select the user you created and select
+<strong>Delete user</strong>. Select the <strong>checkbox</strong> and then <strong>Yes, delete</strong>.</p></li>
 
-<ul>
-	
-</ul>
+<li><p>Go to <strong>Roles</strong> in the sidebar. Type in <strong>EC2_S3ReadOnly</strong> in the
+search bar. Select the role and then click on <strong>Delete role</strong>. Since we
+didn&rsquo;t actually use this role and there was no recent activity, the
+pop-up window will not ask for a confirmation. Click <strong>Yes, delete</strong>.</p></li>
+</ol>
 
 
 <footer class=" footline" >
 	
 </footer>
+
 
         
         </div> 
@@ -1079,6 +1104,7 @@
             
                 
                     
+                    
                 
                 
 
@@ -1091,6 +1117,9 @@
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -1156,6 +1185,7 @@
             
                 
                     
+                    
                 
                 
 
@@ -1171,6 +1201,9 @@
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -1499,8 +1532,10 @@
 	 
 	 
 		
+			<a class="nav nav-prev" href="/iam-lab/create-iam-role/" title="Create IAM Role"> <i class="fa fa-chevron-left"></i></a>
 		
-			<a class="nav nav-next" href="/monitoring-lab/" title="Monitoring Lab" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+			<a class="nav nav-next" href="/iam-lab/additional-resources/" title="Additional resources" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -1530,3 +1565,4 @@
 
   </body>
 </html>
+

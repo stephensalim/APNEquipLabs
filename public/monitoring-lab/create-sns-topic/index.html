@@ -9,7 +9,7 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>Tags :: APN Equip Labs</title>
+    <title>Create SNS Topic :: APN Equip Labs</title>
 
     
     <link href="/css/nucleus.css?1565703870" rel="stylesheet">
@@ -33,7 +33,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/tags/">
+  <body class="" data-url="/monitoring-lab/create-sns-topic/">
     <nav id="sidebar" class="">
 
 
@@ -92,7 +92,7 @@
   
     
     <li data-nav-id="/monitoring-lab/" title="Monitoring Lab" class="dd-item 
-        
+        parent
         
         
         ">
@@ -116,7 +116,7 @@
  
   
     
-      <li data-nav-id="/monitoring-lab/create-sns-topic/" title="Create SNS Topic" class="dd-item ">
+      <li data-nav-id="/monitoring-lab/create-sns-topic/" title="Create SNS Topic" class="dd-item active">
         <a href="/monitoring-lab/create-sns-topic/">
         Create SNS Topic
         
@@ -856,7 +856,19 @@
                     
           
           
-            Tags
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='/'>APN Equip Labs</a> > <a href='/monitoring-lab/'>Monitoring Lab</a> > Create SNS Topic
+          
+         
+          
+         
           
         
                  
@@ -881,7 +893,7 @@
           
             <h1>
               
-              Tags
+              Create SNS Topic
             </h1>
           
 
@@ -889,17 +901,42 @@
 
 
 
+<p>First, let&rsquo;s create a Simple Notification Service (SNS) Topic so that we can notify our SysAdmin.</p>
 
+<ol>
+<li><p>From the AWS console click <strong>Services</strong> &gt; <strong>SNS</strong>.</p></li>
 
+<li><p>Under <strong>Common Actions</strong> click <strong>Create Topic.</strong></p></li>
 
-<ul>
-	
-</ul>
+<li><p>In the <strong>Topic Name</strong> field , type a name for your topic that
+includes your name and optionally a <strong>Display Name</strong> and click
+<strong>Create Topic</strong>.</p>
+
+<p><img src="/Monitoring Lab/images/image2.png" alt="" /></p></li>
+
+<li><p>In the Topic configuration, click <strong>Create Subscription</strong>.</p></li>
+
+<li><p>In the <strong>Protocol</strong> drop down select <strong>Email</strong> and enter a working
+email address you are able to access. Utilize a non-business email
+if there may potentially be a spam filter that will block the SNS
+messages. Click <strong>Create Subscription</strong>.</p>
+
+<p><img src="/Monitoring Lab/images/image3.png" alt="" /></p></li>
+
+<li><p>A verification email will be sent to your address with the subject
+&ldquo;AWS Notification &ndash; Subscription Confirmation&rdquo;. Open the email and
+click the <strong>Confirm Subscription</strong> link.</p></li>
+
+<li><p>Your subscription should now be active and <strong>not</strong>
+&ldquo;PendingConfirmation&rdquo; under the <strong>Subscriptions</strong> section in the SNS
+console.</p></li>
+</ol>
 
 
 <footer class=" footline" >
 	
 </footer>
+
 
         
         </div> 
@@ -932,8 +969,6 @@
             
                 
                     
-                        
-                        
                     
                 
                 
@@ -947,6 +982,7 @@
             
             
                 
+                    
                     
                 
                 
@@ -963,6 +999,9 @@
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -1499,8 +1538,10 @@
 	 
 	 
 		
+			<a class="nav nav-prev" href="/monitoring-lab/" title="Monitoring Lab"> <i class="fa fa-chevron-left"></i></a>
 		
-			<a class="nav nav-next" href="/monitoring-lab/" title="Monitoring Lab" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+			<a class="nav nav-next" href="/monitoring-lab/create-iam-role/" title="Create IAM Role" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -1530,3 +1571,4 @@
 
   </body>
 </html>
+

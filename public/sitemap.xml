@@ -3,7 +3,35 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>http://example.org/iam-lab/create-iam-group/</loc>
+  </url>
+  
+  <url>
     <loc>http://example.org/ec2-lab/create-new-key-pair/</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.org/s3-lab/create-s3-bucket/</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.org/monitoring-lab/create-sns-topic/</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.org/vpc-lab/navigate-the-vpc-dashboard/</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.org/s3-lab/add-object-to-s3-bucket/</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.org/monitoring-lab/create-iam-role/</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.org/iam-lab/create-iam-user/</loc>
   </url>
   
   <url>
@@ -11,7 +39,112 @@
   </url>
   
   <url>
+    <loc>http://example.org/vpc-lab/what-did-vpc-wizard-create-/</loc>
+  </url>
+  
+  <url>
     <loc>http://example.org/ec2-lab/browse-your-web-server/</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.org/vpc-lab/create-ec2-instance/</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.org/monitoring-lab/launch-ec2-instance/</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.org/s3-lab/move-s3-object/</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.org/iam-lab/test-iam-user/</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.org/monitoring-lab/configure-cloudwatch-alarm/</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.org/iam-lab/create-iam-role/</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.org/s3-lab/enable-bucket-versioning/</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.org/vpc-lab/test-public-ec2-instance/</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.org/iam-lab/clean-up-resources/</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.org/s3-lab/delete-an-object-and-bucket/</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.org/monitoring-lab/monitor-ec2-cpu-utilization/</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.org/vpc-lab/test-private-ec2-instance/</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.org/iam-lab/additional-resources/</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.org/s3-lab/additional-resources/</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.org/vpc-lab/clean-up-resources/</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.org/monitoring-lab/monitor-ec2-system-log/</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.org/vpc-lab/additional-resources/</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.org/monitoring-lab/monitor-ec2-tag/</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.org/monitoring-lab/monitor-estimated-charges/</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.org/monitoring-lab/</loc>
+    <lastmod>2019-08-13T22:10:21+10:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://example.org/iam-lab/</loc>
+    <lastmod>2019-08-13T22:01:50+10:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://example.org/s3-lab/</loc>
+    <lastmod>2019-08-13T20:30:47+10:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://example.org/vpc-lab/</loc>
+    <lastmod>2019-08-13T20:07:59+10:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://example.org/ec2-lab/</loc>
+    <lastmod>2019-08-13T20:05:35+10:00</lastmod>
   </url>
   
   <url>
@@ -21,11 +154,6 @@
   
   <url>
     <loc>http://example.org/categories/</loc>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://example.org/ec2-lab/</loc>
     <priority>0</priority>
   </url>
   

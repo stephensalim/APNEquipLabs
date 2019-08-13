@@ -9,7 +9,7 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>Tags :: APN Equip Labs</title>
+    <title>Create S3 Bucket :: APN Equip Labs</title>
 
     
     <link href="/css/nucleus.css?1565703870" rel="stylesheet">
@@ -33,7 +33,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/tags/">
+  <body class="" data-url="/s3-lab/create-s3-bucket/">
     <nav id="sidebar" class="">
 
 
@@ -422,7 +422,7 @@
   
     
     <li data-nav-id="/s3-lab/" title="S3 Lab" class="dd-item 
-        
+        parent
         
         
         ">
@@ -446,7 +446,7 @@
  
   
     
-      <li data-nav-id="/s3-lab/create-s3-bucket/" title="Create S3 Bucket" class="dd-item ">
+      <li data-nav-id="/s3-lab/create-s3-bucket/" title="Create S3 Bucket" class="dd-item active">
         <a href="/s3-lab/create-s3-bucket/">
         Create S3 Bucket
         
@@ -856,7 +856,19 @@
                     
           
           
-            Tags
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='/'>APN Equip Labs</a> > <a href='/s3-lab/'>S3 Lab</a> > Create S3 Bucket
+          
+         
+          
+         
           
         
                  
@@ -881,7 +893,7 @@
           
             <h1>
               
-              Tags
+              Create S3 Bucket
             </h1>
           
 
@@ -889,17 +901,71 @@
 
 
 
+<p>Every object in Amazon S3 is stored in a bucket. Before you can store
+data in Amazon S3 you must create a bucket.</p>
 
+<p>*<strong>Note:</strong> You are not charged for creating a bucket; you are only
+charged for storing objects in the bucket and for transferring objects
+in and out of the bucket.*</p>
 
+<ol>
+<li><p>Sign into the AWS Management Console and open the Amazon S3 console
+at
+<a href="https://console.aws.amazon.com/s3">[https://console.aws.amazon.com/s3]{.underline}</a>.</p></li>
+
+<li><p>Click <strong>Create Bucket</strong>. The <strong>Create a Bucket</strong> dialog box appears.</p>
+
+<p><img src="/S3 Lab/images/image3.png" alt="" /></p></li>
+
+<li><p>Enter a bucket name in the <strong>Bucket Name</strong> field. The bucket name
+you choose must be unique across all existing bucket names in Amazon
+S3. One way to do that is to prefix your bucket names with your
+organisation\&rsquo;s name.  </p>
+
+<p>Bucket names must comply with the following requirements.</p>
+
+<p>Bucket names:</p>
 
 <ul>
-	
+<li>Can contain lowercase letters, numbers, periods (.) and dashes (-)</li>
+<li>Must start with a number or letter</li>
+<li>Must be between 3 and 255 characters long</li>
+<li>Must not be formatted as an IP address (e.g., 265.255.5.4)
+<br /></li>
 </ul>
+
+<p><strong>Note:</strong> There might be additional restrictions on bucket names based
+on the region your bucket is in or how you intend to access the object.
+Once you create a bucket, you cannot change its name. In addition, the
+bucket name is visible in the URL that points to the objects stored in
+the bucket. Make sure the bucket name you choose is appropriate.</p></li>
+
+<li><p>In the <strong>Region</strong> drop-down list box, select a region. Click
+<strong>Next</strong>.</p></li>
+
+<li><p>Under <strong>Tags</strong>, in the <strong>Key</strong> box, type <strong>Purpose</strong>, and in the
+<strong>Value</strong> box, enter <strong>Immersion Day</strong>.</p></li>
+
+<li><p>Have a good look at the other options, but leave them as default for
+this lab. Click <strong>Next</strong>
+twice.</p>
+
+<p><img src="/S3 Lab/images/image4.png" alt="" /></p></li>
+
+<li><p>Finally, review your settings and click <strong>Create bucket</strong>. When
+Amazon S3 successfully creates your bucket, the console displays
+your empty bucket in the <strong>Buckets</strong> panel.</p>
+
+<p><img src="/S3 Lab/images/image5.png" alt="" /></p></li>
+</ol>
+
+<p><strong>Well done - you&rsquo;ve created your first bucket in Amazon S3!</strong></p>
 
 
 <footer class=" footline" >
 	
 </footer>
+
 
         
         </div> 
@@ -1191,6 +1257,7 @@
             
                 
                     
+                    
                 
                 
 
@@ -1203,6 +1270,7 @@
             
             
                 
+                    
                     
                 
                 
@@ -1219,6 +1287,9 @@
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -1499,8 +1570,10 @@
 	 
 	 
 		
+			<a class="nav nav-prev" href="/s3-lab/" title="S3 Lab"> <i class="fa fa-chevron-left"></i></a>
 		
-			<a class="nav nav-next" href="/monitoring-lab/" title="Monitoring Lab" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+			<a class="nav nav-next" href="/s3-lab/add-object-to-s3-bucket/" title="Add Object to S3 Bucket" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -1530,3 +1603,4 @@
 
   </body>
 </html>
+

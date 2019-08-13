@@ -9,7 +9,7 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>Tags :: APN Equip Labs</title>
+    <title>Create IAM User :: APN Equip Labs</title>
 
     
     <link href="/css/nucleus.css?1565703870" rel="stylesheet">
@@ -33,7 +33,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/tags/">
+  <body class="" data-url="/iam-lab/create-iam-user/">
     <nav id="sidebar" class="">
 
 
@@ -276,7 +276,7 @@
   
     
     <li data-nav-id="/iam-lab/" title="IAM Lab" class="dd-item 
-        
+        parent
         
         
         ">
@@ -319,7 +319,7 @@
  
   
     
-      <li data-nav-id="/iam-lab/create-iam-user/" title="Create IAM User" class="dd-item ">
+      <li data-nav-id="/iam-lab/create-iam-user/" title="Create IAM User" class="dd-item active">
         <a href="/iam-lab/create-iam-user/">
         Create IAM User
         
@@ -856,7 +856,19 @@
                     
           
           
-            Tags
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='/'>APN Equip Labs</a> > <a href='/iam-lab/'>IAM Lab</a> > Create IAM User
+          
+         
+          
+         
           
         
                  
@@ -881,7 +893,7 @@
           
             <h1>
               
-              Tags
+              Create IAM User
             </h1>
           
 
@@ -889,17 +901,91 @@
 
 
 
+<p>It is best practice to create a different user for each person who needs
+AWS access. A user is associated with permanent credentials and has
+permissions based off of policies attached directly to the user or
+policies attached to a group to which the user belongs.</p>
 
+<ol>
+<li><p>Go to <strong>Users</strong> in the sidebar and click on <strong>Add user.</strong></p>
 
+<p>Enter a unique name as the <strong>User name</strong>. In this walkthrough, I chose
+<strong>Emily</strong> as the username.</p>
 
-<ul>
-	
-</ul>
+<p>For this lab, we will choose to give this user both <strong>Programmatic
+access</strong> and <strong>AWS Management Console access</strong>. In practice, follow the
+principle of <strong>least privilege</strong> and only give users the type(s) of
+access necessary for their work. This prevents unnecessary extra
+credentials from being created.</p>
+
+<p><img src="/IAM Lab/images/image3.png" alt="" /></p></li>
+
+<li><p>For <strong>console access</strong>, you can choose to have AWS <strong>autogenerate</strong> a
+password or you can type in a <strong>custom</strong> password here. Either way, you
+have the option of emailing this password to the user at the end of this
+process. Click <strong>Next.</strong></p></li>
+
+<li><p>Now we will <strong>Add user</strong> to the <strong>group</strong> we made in the previous step,
+<strong>Power_Users</strong>. There are other options which would attach policies
+directly to this user, but as mentioned before, using IAM groups is a
+best practice in order to simplify policy management.</p>
+
+<p>If the top of your page doesn&rsquo;t look like the screenshot below, you need
+to scroll up.</p>
+
+<p><img src="/IAM Lab/images/image4.png" alt="" /></p></li>
+
+<li><p>Go to <strong>Next: Review</strong> and then <strong>Create user</strong>.</p>
+
+<p>After clicking create user, you will be presented with all of the
+information you will need to get that user started working in AWS.</p>
+
+<p><img src="/IAM Lab/images/image5.png" alt="" /></p></li>
+
+<li><p>For <strong>programmatic access</strong>, the user will need their <strong>Access key ID</strong>
+and <strong>Secret access key</strong>. Take note of the Secret access key now or
+<strong>Download .csv.</strong> <em>You will never be able to retrieve the secret key
+once you leave this page.</em></p></li>
+
+<li><p>For <strong>console access</strong>, the user will need the <strong>IAM users sign-in
+link:</strong> https://[account ID or alias].signin.aws.amazon.com/console.
+Or, they can go to <a href="https://console.aws.amazon.com">https://console.aws.amazon.com</a> and login as long as
+they know the <strong>account ID or alias</strong>.</p></li>
+
+<li><p>They will also need to know their <strong>username</strong> and <strong>password</strong>. Take
+note of the password, <strong>Download .csv</strong>, or <strong>Send</strong> an <strong>email</strong> to the
+user with their login information. If you decide to go down the email
+route, remember to fill in the username in the pre-written email and
+send the password in a separate email. You will not be able to see the
+password once you leave this page.</p>
+
+<p>For this lab, you will need to have the account ID/alias, username, and
+password.</p></li>
+
+<li><p>Once you&rsquo;re done, <strong>Close</strong> out of this page.</p></li>
+
+<li><p>Back on the <strong>Users</strong> page, click on the <strong>User name</strong> of the user that
+you just created.</p>
+
+<p><img src="/IAM Lab/images/image6.png" alt="" /></p></li>
+
+<li><p>Go to the <strong>Security credentials</strong> tab. If you forgot to take note of
+the access keys or password before, or if credentials have been
+compromised, here is where you can reset the password (click on <strong>Manage
+password</strong>), change access keys to <strong>inactive</strong>, and create new access
+keys.</p></li>
+</ol>
+
+<p>Great! You have just created an IAM user with both programmatic and
+console access. You didn&rsquo;t have to attach policy permissions directly to
+the user since you had a group created already with the correct
+permissions.</p>
 
 
 <footer class=" footline" >
 	
 </footer>
+
 
         
         </div> 
@@ -1079,6 +1165,7 @@
             
                 
                     
+                    
                 
                 
 
@@ -1091,6 +1178,9 @@
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -1108,6 +1198,7 @@
             
                 
                     
+                    
                 
                 
 
@@ -1123,6 +1214,9 @@
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -1499,8 +1593,10 @@
 	 
 	 
 		
+			<a class="nav nav-prev" href="/iam-lab/create-iam-group/" title="Create IAM Group"> <i class="fa fa-chevron-left"></i></a>
 		
-			<a class="nav nav-next" href="/monitoring-lab/" title="Monitoring Lab" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+			<a class="nav nav-next" href="/iam-lab/test-iam-user/" title="Test IAM User" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -1530,3 +1626,4 @@
 
   </body>
 </html>
+

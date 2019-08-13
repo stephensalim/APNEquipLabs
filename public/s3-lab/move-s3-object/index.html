@@ -9,7 +9,7 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>Tags :: APN Equip Labs</title>
+    <title>Move S3 Object :: APN Equip Labs</title>
 
     
     <link href="/css/nucleus.css?1565703870" rel="stylesheet">
@@ -33,7 +33,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/tags/">
+  <body class="" data-url="/s3-lab/move-s3-object/">
     <nav id="sidebar" class="">
 
 
@@ -422,7 +422,7 @@
   
     
     <li data-nav-id="/s3-lab/" title="S3 Lab" class="dd-item 
-        
+        parent
         
         
         ">
@@ -484,7 +484,7 @@
  
   
     
-      <li data-nav-id="/s3-lab/move-s3-object/" title="Move S3 Object" class="dd-item ">
+      <li data-nav-id="/s3-lab/move-s3-object/" title="Move S3 Object" class="dd-item active">
         <a href="/s3-lab/move-s3-object/">
         Move S3 Object
         
@@ -856,7 +856,19 @@
                     
           
           
-            Tags
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='/'>APN Equip Labs</a> > <a href='/s3-lab/'>S3 Lab</a> > Move S3 Object
+          
+         
+          
+         
           
         
                  
@@ -881,7 +893,7 @@
           
             <h1>
               
-              Tags
+              Move S3 Object
             </h1>
           
 
@@ -889,17 +901,38 @@
 
 
 
+<p>Now that you&rsquo;ve added an object to a bucket and viewed it, you might
+like to move the object to a different bucket or folder.</p>
 
+<ol>
+<li><p>In the Amazon S3 console, create a new bucket (reference earlier
+section for details).</p></li>
 
+<li><p>Select the first bucket you created and view the list of objects.</p></li>
 
-<ul>
-	
-</ul>
+<li><p>Select the object(s) you want to move by clicking the selection box
+to their left. You can ignore the info box that opens when you
+select an object.</p></li>
+
+<li><p>Once you&rsquo;ve selected your files, click on the <strong>More</strong> button, and
+then click <strong>Cut</strong>.</p></li>
+
+<li><p>Navigate to the target bucket (and folder, if applicable) to which
+you want to move the object, click the <strong>More</strong> button and then
+click <strong>Paste</strong>. At the <strong>Cut and paste</strong> review dialogue, confirm
+the action by clicking <strong>Paste</strong>.</p>
+
+<p><strong><em>Note: When you move an object across buckets the previously set
+object permissions will persist by default.</em></strong></p>
+
+<p><strong>Congratulations - you have now moved an object between buckets.</strong></p></li>
+</ol>
 
 
 <footer class=" footline" >
 	
 </footer>
+
 
         
         </div> 
@@ -1191,6 +1224,7 @@
             
                 
                     
+                    
                 
                 
 
@@ -1203,6 +1237,9 @@
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -1236,6 +1273,7 @@
             
                 
                     
+                    
                 
                 
 
@@ -1251,6 +1289,9 @@
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -1499,8 +1540,10 @@
 	 
 	 
 		
+			<a class="nav nav-prev" href="/s3-lab/add-object-to-s3-bucket/" title="Add Object to S3 Bucket"> <i class="fa fa-chevron-left"></i></a>
 		
-			<a class="nav nav-next" href="/monitoring-lab/" title="Monitoring Lab" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+			<a class="nav nav-next" href="/s3-lab/enable-bucket-versioning/" title="Enable Bucket Versioning" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -1530,3 +1573,4 @@
 
   </body>
 </html>
+

@@ -9,7 +9,7 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>Tags :: APN Equip Labs</title>
+    <title>Test Public EC2 Instance :: APN Equip Labs</title>
 
     
     <link href="/css/nucleus.css?1565703870" rel="stylesheet">
@@ -33,7 +33,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/tags/">
+  <body class="" data-url="/vpc-lab/test-public-ec2-instance/">
     <nav id="sidebar" class="">
 
 
@@ -568,7 +568,7 @@
   
     
     <li data-nav-id="/vpc-lab/" title="VPC Lab" class="dd-item 
-        
+        parent
         
         
         ">
@@ -649,7 +649,7 @@
  
   
     
-      <li data-nav-id="/vpc-lab/test-public-ec2-instance/" title="Test Public EC2 Instance" class="dd-item ">
+      <li data-nav-id="/vpc-lab/test-public-ec2-instance/" title="Test Public EC2 Instance" class="dd-item active">
         <a href="/vpc-lab/test-public-ec2-instance/">
         Test Public EC2 Instance
         
@@ -856,7 +856,19 @@
                     
           
           
-            Tags
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='/'>APN Equip Labs</a> > <a href='/vpc-lab/'>VPC Lab</a> > Test Public EC2 Instance
+          
+         
+          
+         
           
         
                  
@@ -881,7 +893,7 @@
           
             <h1>
               
-              Tags
+              Test Public EC2 Instance
             </h1>
           
 
@@ -889,17 +901,121 @@
 
 
 
+<p>In this section, you will ping the EC2 instance that you just created
+and learn more about security groups along the way.</p>
 
+<p>You should be on the EC2 <strong>Instances dashboard</strong> from the last section,
+looking at all of the EC2 instances in this region. If you just finished
+the last section, your EC2 instance might still be spinning up. You can
+tell by looking at the <strong>Instance State</strong> and <strong>Status Checks</strong> columns.
+If you see <strong>pending</strong> state and/or status <strong>Initializing</strong>, the
+instance is not ready yet.</p>
 
+<p>While you&rsquo;re waiting for your instance to be ready, select the instance
+to look at the <strong>Description</strong> tab. At the top of the right-hand column,
+there is the information that we need to access the instance &ndash; the IP
+addresses and DNS records associated with the instance. However, you can
+see that this instance doesn&rsquo;t have a public IP or DNS yet. We will need
+at least one of these to ping this instance via the internet.</p>
 
-<ul>
-	
-</ul>
+<p><img src="/VPC Lab/images/image13.png" alt="" /></p>
+
+<p>To fix this, we are going to attach an <strong>Elastic IP</strong> to the EC2
+instance. First, copy the <strong>Instance ID</strong> of this EC2 instance by
+hovering your mouse to the right of the Instance ID line in the
+<strong>Description</strong> tab, and clicking on the <strong>Copy to clipboard</strong> icon that
+appears.</p>
+
+<p>Next, click on <strong>Elastic IPs</strong> in the sidebar (under the <strong>Network &amp;
+Security</strong> section). Create a new Elastic IP as before, except this
+time, <strong>do not</strong> click on the <strong>Close</strong> button. Instead, you will:
+<strong>Allocate new address, Allocate</strong>, and then click on the <strong>Elastic IP</strong>
+link in the <strong>New address request succeeded</strong> box.</p>
+
+<p><img src="/VPC Lab/images/image14.png" alt="" /></p>
+
+<p>Now you are back on the <strong>Elastic IPs</strong> dashboard. Go to the <strong>Actions</strong>
+dropdown and select <strong>Associate address</strong>. Paste the Instance ID that
+you copied previously into the <strong>Instance</strong> box and click on
+<strong>Associate</strong>, then <strong>Close</strong>.</p>
+
+<p>Now that an Elastic IP is attached to the EC2 instance, we should be
+able to ping the instance over the internet. It now has a public IP
+address from the Elastic IP, and it&rsquo;s in the public subnet which has a
+route to an IGW.</p>
+
+<p>In the <strong>Description</strong> tab, copy the Elastic IP address.</p>
+
+<p><img src="/VPC Lab/images/image15.png" alt="" /></p>
+
+<p>To ping the instance, you need to open your CLI. On Windows, open the
+<strong>Command Prompt</strong>. On Mac, open the <strong>Terminal</strong>. Type <strong>ping,</strong> then a
+<strong>space</strong>, then <strong>paste the Elastic IP</strong> from above and click <strong>enter</strong>.</p>
+
+<p>If the instance is reachable, we expect to see lines appearing such as</p>
+
+<pre><code>64 bytes from 13.237.153.185: icmp_seq=0 ttl=238 time=169.294 ms
+</code></pre>
+
+<p>However, you will see request timeouts instead. You will see lines that
+say something similar to</p>
+
+<p>Request timed out.</p>
+
+<p><em>Why aren&rsquo;t we able to reach this instance?</em></p>
+
+<p>You can confirm that the instance is in the public subnet and check the
+route table associated with that subnet to make sure there is a route to
+the IGW.</p>
+
+<p>Next, let&rsquo;s check our virtual firewall configurations. As you remember,
+we left the NACL of the public subnet as is, which allows all traffic by
+default. So, let&rsquo;s check the security group associated with this
+instance.</p>
+
+<p>In the <strong>EC2 dashboard</strong>, go to the <strong>Instances</strong> section in the
+sidebar. Select the instance that you created and look at the
+<strong>Description</strong> tab. In the left column, click on the first <strong>Security
+groups</strong> link. It should be called something similar to
+<strong>launch-wizard-1</strong>.</p>
+
+<p><img src="/VPC Lab/images/image16.png" alt="" /></p>
+
+<p>You are now in the <strong>Security Groups</strong> dashboard. Go to the <strong>Inbound</strong>
+tab.</p>
+
+<p>Remember when we were creating the EC2 instance we only specified the
+AMI, instance type, and VPC subnet. We left all the other default
+settings as is. One of these default settings created this security
+group, which allows all inbound access on SSH port 22.</p>
+
+<p>Pings use <strong>ICMP</strong>, so we will need to change the security group rule to
+allow ICMP traffic rather than SSH traffic. Click on the <strong>Edit</strong>
+button.</p>
+
+<p><img src="/VPC Lab/images/image17.png" alt="" /></p>
+
+<p>Click on <strong>SSH</strong> to open the drop-down and change it to <strong>All</strong> <strong>ICMP -
+IPv4</strong>. Click <strong>Save</strong>.</p>
+
+<p>Since security groups are stateful, you don&rsquo;t need to edit the outbound
+rules. The security group will allow the instance to respond to the ping
+since it saw the ping arrive at the instance. This change will also take
+effect immediately, so we can try to ping the instance again right away.</p>
+
+<p>Go back to your CLI and hit the <strong>up arrow</strong> and then <strong>enter</strong> to try
+and ping the instance again.</p>
+
+<p><img src="/VPC Lab/images/image18.png" alt="" /></p>
+
+<p><strong>Good job! You have successfully troubleshooted why an EC2 instance was
+unreachable and then accessed it over the internet.</strong></p>
 
 
 <footer class=" footline" >
 	
 </footer>
+
 
         
         </div> 
@@ -1303,6 +1419,7 @@
             
                 
                     
+                    
                 
                 
 
@@ -1315,6 +1432,9 @@
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -1364,6 +1484,7 @@
             
                 
                     
+                    
                 
                 
 
@@ -1379,6 +1500,9 @@
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -1499,8 +1623,10 @@
 	 
 	 
 		
+			<a class="nav nav-prev" href="/vpc-lab/create-ec2-instance/" title="Create Public EC2 Instance"> <i class="fa fa-chevron-left"></i></a>
 		
-			<a class="nav nav-next" href="/monitoring-lab/" title="Monitoring Lab" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+			<a class="nav nav-next" href="/vpc-lab/test-private-ec2-instance/" title="Test Private EC2 Instance" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -1530,3 +1656,4 @@
 
   </body>
 </html>
+

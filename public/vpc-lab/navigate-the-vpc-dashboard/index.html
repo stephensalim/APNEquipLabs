@@ -9,7 +9,7 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>Tags :: APN Equip Labs</title>
+    <title>Navigate the VPC Dashboard :: APN Equip Labs</title>
 
     
     <link href="/css/nucleus.css?1565703870" rel="stylesheet">
@@ -33,7 +33,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/tags/">
+  <body class="" data-url="/vpc-lab/navigate-the-vpc-dashboard/">
     <nav id="sidebar" class="">
 
 
@@ -568,7 +568,7 @@
   
     
     <li data-nav-id="/vpc-lab/" title="VPC Lab" class="dd-item 
-        
+        parent
         
         
         ">
@@ -592,7 +592,7 @@
  
   
     
-      <li data-nav-id="/vpc-lab/navigate-the-vpc-dashboard/" title="Navigate the VPC Dashboard" class="dd-item ">
+      <li data-nav-id="/vpc-lab/navigate-the-vpc-dashboard/" title="Navigate the VPC Dashboard" class="dd-item active">
         <a href="/vpc-lab/navigate-the-vpc-dashboard/">
         Navigate the VPC Dashboard
         
@@ -856,7 +856,19 @@
                     
           
           
-            Tags
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='/'>APN Equip Labs</a> > <a href='/vpc-lab/'>VPC Lab</a> > Navigate the VPC Dashboard
+          
+         
+          
+         
           
         
                  
@@ -881,7 +893,7 @@
           
             <h1>
               
-              Tags
+              Navigate the VPC Dashboard
             </h1>
           
 
@@ -889,17 +901,66 @@
 
 
 
+<p>To get started, let&rsquo;s take a look at the VPC Dashboard.</p>
 
+<p><img src="/VPC Lab/images/image2.png" alt="" /></p>
 
+<p>In every region, a <strong>default VPC</strong> has already been created for you. So,
+even if you haven&rsquo;t created anything in your account yet, you will see
+some VPC resources already there.</p>
 
-<ul>
-	
-</ul>
+<p>In this lab, we will be using the <strong>VPC Wizard</strong> to create a VPC with
+private and public subnets pre-configured. Once you&rsquo;re more familiar
+with AWS networking, you can create VPCs and subnets without the Wizard
+to create custom networking configurations.</p>
+
+<p>During the VPC wizard set up, you will need to specify an <strong>Elastic IP
+Address (EIP)</strong>. An Elastic IP is a static public IPv4 address that you
+can attach to AWS resources, such as EC2 instances and NAT Gateways.
+Elastic IPs are required for NAT Gateways.</p>
+
+<p>To create one, go to <strong>Elastic IPs</strong> in the sidebar, and press
+<strong>Allocate new address</strong>, <strong>Allocate</strong>, <strong>Close.</strong></p>
+
+<p><img src="/VPC Lab/images/image4.png" alt="" /></p>
+
+<p>Now click on <strong>VPC Dashboard</strong> in the top left corner to go back to the
+main VPC page.</p>
+
+<p>Click on <strong>Launch VPC Wizard</strong> to start the VPC Wizard and select &lsquo;<strong>VPC
+with Public and Private Subnets&rsquo;</strong>.</p>
+
+<p><img src="/VPC Lab/images/image5.png" alt="" /></p>
+
+<p>This option will create a VPC with a /16 CIDR block and two subnets with
+/24 CIDR blocks which have 256 total IP addresses each. In each subnet,
+<strong>AWS reserves 5 IP addresses</strong>. In this case, that leaves you 251 IP
+addresses per subnet. Fill in the <strong>VPC name</strong> (I called my VPC
+&ldquo;<strong>test&rdquo;</strong>) and select your <strong>Elastic IP Allocation ID</strong> from the
+drop-down. For this lab, we will leave the rest of the default
+configuration as is.</p>
+
+<p><img src="/VPC Lab/images/image6.png" alt="" /></p>
+
+<p>This Elastic IP will be used to create a <strong>Network Address Translation
+(NAT) gateway</strong> for the private subnet. NAT gateway is a managed, highly
+scalable NAT service that gives your resources access to the internet
+but doesn&rsquo;t allow anyone on the internet access to your resources. NAT
+is helpful for when a resource needs to pull down updates from the
+internet but should not be publicly accessible.</p>
+
+<p>Click on <strong>Create VPC</strong>. This step will take a couple minutes. Once your
+VPC has been created, click <strong>OK</strong>.</p>
+
+<p>Wow! It only took you a few minutes to set up an entire virtual private
+network, including subnets for public and private resources, routing
+rules, and a scalable NAT service.</p>
 
 
 <footer class=" footline" >
 	
 </footer>
+
 
         
         </div> 
@@ -1303,6 +1364,7 @@
             
                 
                     
+                    
                 
                 
 
@@ -1315,6 +1377,7 @@
             
             
                 
+                    
                     
                 
                 
@@ -1331,6 +1394,9 @@
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -1499,8 +1565,10 @@
 	 
 	 
 		
+			<a class="nav nav-prev" href="/vpc-lab/" title="VPC Lab"> <i class="fa fa-chevron-left"></i></a>
 		
-			<a class="nav nav-next" href="/monitoring-lab/" title="Monitoring Lab" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+			<a class="nav nav-next" href="/vpc-lab/what-did-vpc-wizard-create-/" title="What Did VPC Wizard Create ?" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -1530,3 +1598,4 @@
 
   </body>
 </html>
+

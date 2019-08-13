@@ -9,7 +9,7 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>Tags :: APN Equip Labs</title>
+    <title>Test Private EC2 Instance :: APN Equip Labs</title>
 
     
     <link href="/css/nucleus.css?1565703870" rel="stylesheet">
@@ -33,7 +33,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/tags/">
+  <body class="" data-url="/vpc-lab/test-private-ec2-instance/">
     <nav id="sidebar" class="">
 
 
@@ -568,7 +568,7 @@
   
     
     <li data-nav-id="/vpc-lab/" title="VPC Lab" class="dd-item 
-        
+        parent
         
         
         ">
@@ -668,7 +668,7 @@
  
   
     
-      <li data-nav-id="/vpc-lab/test-private-ec2-instance/" title="Test Private EC2 Instance" class="dd-item ">
+      <li data-nav-id="/vpc-lab/test-private-ec2-instance/" title="Test Private EC2 Instance" class="dd-item active">
         <a href="/vpc-lab/test-private-ec2-instance/">
         Test Private EC2 Instance
         
@@ -856,7 +856,19 @@
                     
           
           
-            Tags
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='/'>APN Equip Labs</a> > <a href='/vpc-lab/'>VPC Lab</a> > Test Private EC2 Instance
+          
+         
+          
+         
           
         
                  
@@ -881,7 +893,7 @@
           
             <h1>
               
-              Tags
+              Test Private EC2 Instance
             </h1>
           
 
@@ -889,17 +901,26 @@
 
 
 
-
-
-
-<ul>
-	
-</ul>
+<p>Optionally, you can go through the same process in the last two sections
+in order to test access to a private EC2 instance. The only difference
+will be in the <strong>Configure Instance Details</strong> section, you will select
+the <strong>Private subnet</strong>. Also, if you don&rsquo;t want to go through attaching
+an Elastic IP, in the same section, you can select <strong>Enable</strong> under
+<strong>Auto-assign Public IP</strong>. Remember that this is not best practice for
+public facing resources, but in this case the instance will not be
+reachable anyways because the private subnet does not have an IGW route.
+We just want a public IP to try to access, and for this, the
+automatically assigned public IP is sufficient. Additionally, you will
+want to open up your security group from the beginning. That way, this
+private instance will be the same in every way to the public instance
+you just created except that it does not have a route to an IGW and thus
+cannot be accessed publicly.</p>
 
 
 <footer class=" footline" >
 	
 </footer>
+
 
         
         </div> 
@@ -1303,6 +1324,7 @@
             
                 
                     
+                    
                 
                 
 
@@ -1315,6 +1337,9 @@
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -1380,6 +1405,7 @@
             
                 
                     
+                    
                 
                 
 
@@ -1395,6 +1421,9 @@
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -1499,8 +1528,10 @@
 	 
 	 
 		
+			<a class="nav nav-prev" href="/vpc-lab/test-public-ec2-instance/" title="Test Public EC2 Instance"> <i class="fa fa-chevron-left"></i></a>
 		
-			<a class="nav nav-next" href="/monitoring-lab/" title="Monitoring Lab" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+			<a class="nav nav-next" href="/vpc-lab/clean-up-resources/" title="Clean Up Resources" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -1530,3 +1561,4 @@
 
   </body>
 </html>
+

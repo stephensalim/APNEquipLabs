@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>VPC Lab on APN Equip Labs</title>
+    <link>http://example.org/vpc-lab/</link>
+    <description>Recent content in VPC Lab on APN Equip Labs</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 13 Aug 2019 20:07:59 +1000</lastBuildDate>
+    
+	<atom:link href="http://example.org/vpc-lab/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Navigate the VPC Dashboard</title>
+      <link>http://example.org/vpc-lab/navigate-the-vpc-dashboard/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/vpc-lab/navigate-the-vpc-dashboard/</guid>
+      <description>To get started, let&amp;rsquo;s take a look at the VPC Dashboard.
+In every region, a default VPC has already been created for you. So, even if you haven&amp;rsquo;t created anything in your account yet, you will see some VPC resources already there.
+In this lab, we will be using the VPC Wizard to create a VPC with private and public subnets pre-configured. Once you&amp;rsquo;re more familiar with AWS networking, you can create VPCs and subnets without the Wizard to create custom networking configurations.</description>
+    </item>
+    
+    <item>
+      <title>What Did VPC Wizard Create ?</title>
+      <link>http://example.org/vpc-lab/what-did-vpc-wizard-create-/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/vpc-lab/what-did-vpc-wizard-create-/</guid>
+      <description>Let&amp;rsquo;s walk through the VPC Console and explain each component that the wizard created.
+From the last step, you should now be on the Your VPCs dashboard looking at all of your VPCs in this region. Select the VPC that you just created, and look at the Summary tab. If you can&amp;rsquo;t see everything in the pane, you can pull the pane up by dragging on the pane&amp;rsquo;s top line.</description>
+    </item>
+    
+    <item>
+      <title>Create Public EC2 Instance</title>
+      <link>http://example.org/vpc-lab/create-ec2-instance/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/vpc-lab/create-ec2-instance/</guid>
+      <description>In this section, you will spin up an EC2 instance in the Public subnet of your VPC.
+To get started, go to the Services drop down menu in the top left corner and go to the EC2 dashboard.
+ Select Launch Instance, and then in the Quick Start section select the first Amazon Linux 2 AMI and click Select.
+ In the Choose Instance Type tab, select the t2.micro instance size and click Next.</description>
+    </item>
+    
+    <item>
+      <title>Test Public EC2 Instance</title>
+      <link>http://example.org/vpc-lab/test-public-ec2-instance/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/vpc-lab/test-public-ec2-instance/</guid>
+      <description>In this section, you will ping the EC2 instance that you just created and learn more about security groups along the way.
+You should be on the EC2 Instances dashboard from the last section, looking at all of the EC2 instances in this region. If you just finished the last section, your EC2 instance might still be spinning up. You can tell by looking at the Instance State and Status Checks columns.</description>
+    </item>
+    
+    <item>
+      <title>Test Private EC2 Instance</title>
+      <link>http://example.org/vpc-lab/test-private-ec2-instance/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/vpc-lab/test-private-ec2-instance/</guid>
+      <description>Optionally, you can go through the same process in the last two sections in order to test access to a private EC2 instance. The only difference will be in the Configure Instance Details section, you will select the Private subnet. Also, if you don&amp;rsquo;t want to go through attaching an Elastic IP, in the same section, you can select Enable under Auto-assign Public IP. Remember that this is not best practice for public facing resources, but in this case the instance will not be reachable anyways because the private subnet does not have an IGW route.</description>
+    </item>
+    
+    <item>
+      <title>Clean Up Resources</title>
+      <link>http://example.org/vpc-lab/clean-up-resources/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/vpc-lab/clean-up-resources/</guid>
+      <description>If you want to clean up your account to get rid of everything we created during this lab, follow the instructions in this section. You can also leave your lab environment running if you want to test other AWS networking concepts.
+First, you will need to terminate the EC2 instances that are running in the VPC. In the EC2 dashboard, select the public instance (as well as the private instance if you created one), go to the Actions dropdown, go to Instance State, and then Terminate.</description>
+    </item>
+    
+    <item>
+      <title>Additional Resources</title>
+      <link>http://example.org/vpc-lab/additional-resources/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/vpc-lab/additional-resources/</guid>
+      <description> VPC Introduction: https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Introduction.html VPC Subnets: https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Subnets.html VPC wizard configuration: https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Scenario2.html NAT Gateways: https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/vpc-nat-gateway.html Elastic IPs: https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/vpc-eips.html Security Groups and NACLs: https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Security.html  </description>
+    </item>
+    
+  </channel>
+</rss>

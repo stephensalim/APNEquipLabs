@@ -9,7 +9,7 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>Tags :: APN Equip Labs</title>
+    <title>Create IAM Role :: APN Equip Labs</title>
 
     
     <link href="/css/nucleus.css?1565703870" rel="stylesheet">
@@ -33,7 +33,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/tags/">
+  <body class="" data-url="/monitoring-lab/create-iam-role/">
     <nav id="sidebar" class="">
 
 
@@ -92,7 +92,7 @@
   
     
     <li data-nav-id="/monitoring-lab/" title="Monitoring Lab" class="dd-item 
-        
+        parent
         
         
         ">
@@ -135,7 +135,7 @@
  
   
     
-      <li data-nav-id="/monitoring-lab/create-iam-role/" title="Create IAM Role" class="dd-item ">
+      <li data-nav-id="/monitoring-lab/create-iam-role/" title="Create IAM Role" class="dd-item active">
         <a href="/monitoring-lab/create-iam-role/">
         Create IAM Role
         
@@ -856,7 +856,19 @@
                     
           
           
-            Tags
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='/'>APN Equip Labs</a> > <a href='/monitoring-lab/'>Monitoring Lab</a> > Create IAM Role
+          
+         
+          
+         
           
         
                  
@@ -881,7 +893,7 @@
           
             <h1>
               
-              Tags
+              Create IAM Role
             </h1>
           
 
@@ -889,17 +901,33 @@
 
 
 
+<ol>
+<li><p>Open the IAM console at <a href="https://console.aws.amazon.com/iam/">https://console.aws.amazon.com/iam/</a></p></li>
 
+<li><p>In the navigation pane, choose Roles.</p></li>
 
+<li><p>Click on <strong>Create role</strong>.</p></li>
 
-<ul>
-	
-</ul>
+<li><p>Select <strong>AWS Service</strong> for the trusted entity, and Choose <strong>EC2</strong> as the service that will use this role.</p>
+
+<p><img src="/Monitoring Lab/images/image24.png" alt="" /></p></li>
+
+<li><p>Click <strong>Next permission</strong></p></li>
+
+<li><p>Under Attach permission policies, seach for <strong>CloudWatchAgentServerPolicy</strong> and select it.</p></li>
+
+<li><p>Click <strong>Next:Tags</strong></p></li>
+
+<li><p>Click <strong>Next:Reviews</strong></p></li>
+
+<li><p>Type in your Role name, and click <strong>Create role</strong></p></li>
+</ol>
 
 
 <footer class=" footline" >
 	
 </footer>
+
 
         
         </div> 
@@ -932,8 +960,6 @@
             
                 
                     
-                        
-                        
                     
                 
                 
@@ -947,6 +973,9 @@
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -964,6 +993,7 @@
             
                 
                     
+                    
                 
                 
 
@@ -979,6 +1009,9 @@
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -1499,8 +1532,10 @@
 	 
 	 
 		
+			<a class="nav nav-prev" href="/monitoring-lab/create-sns-topic/" title="Create SNS Topic"> <i class="fa fa-chevron-left"></i></a>
 		
-			<a class="nav nav-next" href="/monitoring-lab/" title="Monitoring Lab" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+			<a class="nav nav-next" href="/monitoring-lab/launch-ec2-instance/" title="Launch EC2 Instance" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -1530,3 +1565,4 @@
 
   </body>
 </html>
+

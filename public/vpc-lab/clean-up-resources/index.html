@@ -9,7 +9,7 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>Tags :: APN Equip Labs</title>
+    <title>Clean Up Resources :: APN Equip Labs</title>
 
     
     <link href="/css/nucleus.css?1565703870" rel="stylesheet">
@@ -33,7 +33,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/tags/">
+  <body class="" data-url="/vpc-lab/clean-up-resources/">
     <nav id="sidebar" class="">
 
 
@@ -568,7 +568,7 @@
   
     
     <li data-nav-id="/vpc-lab/" title="VPC Lab" class="dd-item 
-        
+        parent
         
         
         ">
@@ -687,7 +687,7 @@
  
   
     
-      <li data-nav-id="/vpc-lab/clean-up-resources/" title="Clean Up Resources" class="dd-item ">
+      <li data-nav-id="/vpc-lab/clean-up-resources/" title="Clean Up Resources" class="dd-item active">
         <a href="/vpc-lab/clean-up-resources/">
         Clean Up Resources
         
@@ -856,7 +856,19 @@
                     
           
           
-            Tags
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='/'>APN Equip Labs</a> > <a href='/vpc-lab/'>VPC Lab</a> > Clean Up Resources
+          
+         
+          
+         
           
         
                  
@@ -881,7 +893,7 @@
           
             <h1>
               
-              Tags
+              Clean Up Resources
             </h1>
           
 
@@ -889,17 +901,46 @@
 
 
 
+<p>If you want to clean up your account to get rid of everything we created
+during this lab, follow the instructions in this section. You can also
+leave your lab environment running if you want to test other AWS
+networking concepts.</p>
 
+<p>First, you will need to terminate the EC2 instances that are running in
+the VPC. In the <strong>EC2 dashboard</strong>, select the public instance (as well
+as the private instance if you created one), go to the <strong>Actions</strong>
+dropdown, go to <strong>Instance State</strong>, and then <strong>Terminate</strong>. In the
+pop-up window, click on <strong>Yes, Terminate.</strong> You may need to wait a
+minute for the instances to finish shutting down. Watch the <strong>Instance
+State</strong> column and wait for the status to change from <strong>shutting-down</strong>
+to <strong>terminated</strong>.</p>
 
+<p>Now we will delete the NAT gateway that the VPC wizard created. Go to
+the <strong>Services</strong> dropdown in the top left corner and select the <strong>VPC</strong>
+<strong>dashboard</strong>. Go to the <strong>NAT Gateways</strong> section in the sidebar. If
+there are multiple NAT Gateways, you can look at the VPC column to
+confirm which one belongs to your VPC. Select that NAT gateway and go to
+the <strong>Actions</strong> dropdown. Select <strong>Delete NAT Gateway</strong>. In the pop-up
+window, click on <strong>Delete NAT Gateway</strong> again. It may take a minute for
+the NAT gateway to delete. Wait for the status to change from
+<strong>deleting</strong> to <strong>deleted</strong> to make sure the VPC deletion will work.</p>
 
-<ul>
-	
-</ul>
+<p>Elastic IP addresses are completely free as long a they are attached to
+a resource. However, if the NAT gateway or EC2 instance they were
+attached to is terminated or deleted, the unattached EIP will incur a
+small monthly charge. To clean up, navigate to Elastic IPs on the
+sidebar, and Release each EIP you have allocated.</p>
+
+<p>Now you can finally delete your VPC. Go to the <strong>Your VPCs</strong> section in
+the sidebar. Select your VPC, go the <strong>Actions</strong> dropdown, and choose
+<strong>Delete VPC</strong>. In the pop-up window, click <strong>Yes, Delete</strong>. This will
+take a minute or so to complete.</p>
 
 
 <footer class=" footline" >
 	
 </footer>
+
 
         
         </div> 
@@ -1303,6 +1344,7 @@
             
                 
                     
+                    
                 
                 
 
@@ -1315,6 +1357,9 @@
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -1396,6 +1441,7 @@
             
                 
                     
+                    
                 
                 
 
@@ -1411,6 +1457,9 @@
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -1499,8 +1548,10 @@
 	 
 	 
 		
+			<a class="nav nav-prev" href="/vpc-lab/test-private-ec2-instance/" title="Test Private EC2 Instance"> <i class="fa fa-chevron-left"></i></a>
 		
-			<a class="nav nav-next" href="/monitoring-lab/" title="Monitoring Lab" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+			<a class="nav nav-next" href="/vpc-lab/additional-resources/" title="Additional Resources" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -1530,3 +1581,4 @@
 
   </body>
 </html>
+

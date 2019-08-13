@@ -9,7 +9,7 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>Tags :: APN Equip Labs</title>
+    <title>Launch EC2 Instance :: APN Equip Labs</title>
 
     
     <link href="/css/nucleus.css?1565703870" rel="stylesheet">
@@ -33,7 +33,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/tags/">
+  <body class="" data-url="/monitoring-lab/launch-ec2-instance/">
     <nav id="sidebar" class="">
 
 
@@ -92,7 +92,7 @@
   
     
     <li data-nav-id="/monitoring-lab/" title="Monitoring Lab" class="dd-item 
-        
+        parent
         
         
         ">
@@ -154,7 +154,7 @@
  
   
     
-      <li data-nav-id="/monitoring-lab/launch-ec2-instance/" title="Launch EC2 Instance" class="dd-item ">
+      <li data-nav-id="/monitoring-lab/launch-ec2-instance/" title="Launch EC2 Instance" class="dd-item active">
         <a href="/monitoring-lab/launch-ec2-instance/">
         Launch EC2 Instance
         
@@ -856,7 +856,19 @@
                     
           
           
-            Tags
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='/'>APN Equip Labs</a> > <a href='/monitoring-lab/'>Monitoring Lab</a> > Launch EC2 Instance
+          
+         
+          
+         
           
         
                  
@@ -881,7 +893,7 @@
           
             <h1>
               
-              Tags
+              Launch EC2 Instance
             </h1>
           
 
@@ -889,17 +901,98 @@
 
 
 
+<ol>
+<li><p>Go back to the EC2 Console.</p></li>
 
+<li><p>Click on <strong>Launch Instance</strong></p>
 
+<p><img src="/Monitoring Lab/images/image5.png" alt="" /></p></li>
 
-<ul>
-	
-</ul>
+<li><p>In the <strong>Quick</strong> Start section, select the &ldquo;Amazon Linux AMI&rdquo; and
+click <strong>Select</strong></p>
+
+<p><img src="/Monitoring Lab/images/image6.png" alt="" /></p>
+
+<p><strong>PLEASE NOTE:</strong> You must select &ldquo;Amazon Linux AMI&rdquo;, <strong>NOT</strong> &ldquo;Amazon
+Linux 2 AMI&rdquo;! This lab will not work properly if you select Amazon
+Linux 2.</p></li>
+
+<li><p>Select the General purpose t2.micro instance type and click <strong>Next:
+Configure Instance Details</strong></p>
+
+<p><img src="/Monitoring Lab/images/image7.png" alt="" /></p></li>
+
+<li><p>On the <strong>Configure Instance Details</strong> page, expand the <strong>Advanced Details</strong> section at the bottom of the page.</p></li>
+
+<li><p>Type the following initialization script information into the UserData  field. <em>(you can use Shift-Enter to create the necessary line break, or     alternatively you could type this into Notepad and copy &amp; paste the     results)</em> (this will automatically install and start the stress tool &amp; install Cloudwatch Agent).</p>
+
+<p><strong>Note:</strong> Don&rsquo;t forget to replace <REPLACE WITH YOUR REGION> section in the script below with the region id where   you run your EC2 instance.</p>
+
+<pre><code>#!/bin/sh
+    
+# THIS COMMAND WILL INSTALL UPDATES ON OS
+yum -y update
+    
+# THIS COMMAND WILL INSTALL STRESS TESTER APP
+yum -y install stress
+
+# THIS COMMAND WILL INSTALL AWSLOGS TOOL
+yum install -y awslogs
+sed -i -e 's/region = us-east-1/region = &lt;REPLACE WITH YOUR REGION&gt;/g' /etc/awslogs/awscli.conf
+sudo service awslogs start
+    
+# THIS COMMAND WILL RUN THE STRESS APP
+stress -c 1 --backoff 300000000 -t 30m
+
+</code></pre></li>
+
+<li><p>For the Network select either your &ldquo;default VPC&rdquo; or the vpc you created in   the previous lab.</p></li>
+
+<li><p>Select any subnet in the VPC (The subnet must be public facing, which means it has   direct connection to the Internet Gateway).</p></li>
+
+<li><p>Confirm &ldquo;Auto-assign Public IP&rdquo; is <strong>Enabled</strong></p></li>
+
+<li><p>Ensure to select role name you created above in the <strong>IAM role</strong> section then   click <strong>Next: Add Storage</strong></p>
+
+<p><img src="/Monitoring Lab/images/image8.png" alt="" /></p></li>
+
+<li><p>Click <strong>Next: Tag Instance</strong> to accept the default Storage Device
+Configuration.</p></li>
+
+<li><p>Next, choose a &ldquo;friendly name&rdquo; for your instance. This name, more
+correctly known as a tag, will appear in the console once the
+instance launches. It makes it easy to keep track of running
+machines in a complex environment. Named yours according to this
+format: &ldquo;[Your Name] Server. Then click <strong>Next: Configure Security
+Group</strong></p></li>
+
+<li><p>Remove the Security Group rule with by clicking the &ldquo;x&rdquo; on the right
+so there are no rules. (You will not need to connect with this
+instance for this step). Then click <strong>Review and Launch</strong></p>
+
+<p><img src="/Monitoring Lab/images/image10.jpg" alt="" /></p></li>
+
+<li><p>Review your Instance Launch Configuration, and then click
+<strong>Launch</strong>.</p>
+
+<p><img src="/Monitoring Lab/images/image11.png" alt="" /></p></li>
+
+<li><p>In the drop down choose &ldquo;Proceed without a keypair&rdquo; and click
+<strong>Launch Instances</strong>.</p>
+
+<p><img src="/Monitoring Lab/images/image12.jpg" alt="" /></p></li>
+
+<li><p>Click the <strong>View Instances</strong> button in the lower right-hand portion
+of the screen to view the list of EC2 instances. Once your instance
+has launched, you will see your Server as well as the Availability
+Zone the instance is in.</p></li>
+</ol>
 
 
 <footer class=" footline" >
 	
 </footer>
+
 
         
         </div> 
@@ -932,8 +1025,6 @@
             
                 
                     
-                        
-                        
                     
                 
                 
@@ -947,6 +1038,9 @@
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -980,6 +1074,7 @@
             
                 
                     
+                    
                 
                 
 
@@ -995,6 +1090,9 @@
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -1499,8 +1597,10 @@
 	 
 	 
 		
+			<a class="nav nav-prev" href="/monitoring-lab/create-iam-role/" title="Create IAM Role"> <i class="fa fa-chevron-left"></i></a>
 		
-			<a class="nav nav-next" href="/monitoring-lab/" title="Monitoring Lab" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+			<a class="nav nav-next" href="/monitoring-lab/configure-cloudwatch-alarm/" title="Configure CloudWatch Alarm" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -1530,3 +1630,4 @@
 
   </body>
 </html>
+

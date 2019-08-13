@@ -9,7 +9,7 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>Tags :: APN Equip Labs</title>
+    <title>Create Public EC2 Instance :: APN Equip Labs</title>
 
     
     <link href="/css/nucleus.css?1565703870" rel="stylesheet">
@@ -33,7 +33,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/tags/">
+  <body class="" data-url="/vpc-lab/create-ec2-instance/">
     <nav id="sidebar" class="">
 
 
@@ -568,7 +568,7 @@
   
     
     <li data-nav-id="/vpc-lab/" title="VPC Lab" class="dd-item 
-        
+        parent
         
         
         ">
@@ -630,7 +630,7 @@
  
   
     
-      <li data-nav-id="/vpc-lab/create-ec2-instance/" title="Create Public EC2 Instance" class="dd-item ">
+      <li data-nav-id="/vpc-lab/create-ec2-instance/" title="Create Public EC2 Instance" class="dd-item active">
         <a href="/vpc-lab/create-ec2-instance/">
         Create Public EC2 Instance
         
@@ -856,7 +856,19 @@
                     
           
           
-            Tags
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='/'>APN Equip Labs</a> > <a href='/vpc-lab/'>VPC Lab</a> > Create Public EC2 Instance
+          
+         
+          
+         
           
         
                  
@@ -881,7 +893,7 @@
           
             <h1>
               
-              Tags
+              Create Public EC2 Instance
             </h1>
           
 
@@ -889,17 +901,47 @@
 
 
 
+<p>In this section, you will spin up an EC2 instance in the Public subnet
+of your VPC.</p>
 
+<p>To get started, go to the <strong>Services</strong> drop down menu in the top left
+corner and go to the <strong>EC2 dashboard</strong>.</p>
 
+<ol>
+<li><p>Select Launch Instance, and then in the <strong>Quick Start</strong> section
+select the first Amazon Linux 2 AMI and click <strong>Select.</strong></p>
 
-<ul>
-	
-</ul>
+<p><img src="/VPC Lab/images/image11.png" alt="" /></p></li>
+
+<li><p>In the Choose Instance Type tab, select the t2.micro instance size
+and click <strong>Next</strong>.</p></li>
+
+<li><p>On this page, you decide which network and subnet this resource will
+be put into. Change the <strong>Network</strong> field to the VPC that you just
+created and change the <strong>Subnet</strong> field to the <strong>Public subnet</strong>.
+Leave the other default settings as is. Click <strong>Next</strong>.</p>
+
+<p><img src="/VPC Lab/images/image12.png" alt="" /></p></li>
+
+<li><p>For this lab, you can accept the default values in the remaining
+steps, so finish creating this instance by clicking on <strong>Review and
+Launch.</strong> You will see a warning that your security group is open to
+the world. You can ignore this warning and select <strong>Launch</strong>.</p></li>
+
+<li><p>In the pop-up window, select <strong>Proceed without a key pair</strong> from the
+drop-down and check the <strong>acknowledgement</strong> box. For this lab, you
+will not need to SSH into this instance. Click <strong>Launch Instances</strong>
+and then <strong>View Instances</strong>.</p></li>
+</ol>
+
+<p><strong>Congratulations! You have just launched a virtual server in your
+private network.</strong></p>
 
 
 <footer class=" footline" >
 	
 </footer>
+
 
         
         </div> 
@@ -1303,6 +1345,7 @@
             
                 
                     
+                    
                 
                 
 
@@ -1315,6 +1358,9 @@
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -1348,6 +1394,7 @@
             
                 
                     
+                    
                 
                 
 
@@ -1363,6 +1410,9 @@
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -1499,8 +1549,10 @@
 	 
 	 
 		
+			<a class="nav nav-prev" href="/vpc-lab/what-did-vpc-wizard-create-/" title="What Did VPC Wizard Create ?"> <i class="fa fa-chevron-left"></i></a>
 		
-			<a class="nav nav-next" href="/monitoring-lab/" title="Monitoring Lab" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+			<a class="nav nav-next" href="/vpc-lab/test-public-ec2-instance/" title="Test Public EC2 Instance" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -1530,3 +1582,4 @@
 
   </body>
 </html>
+

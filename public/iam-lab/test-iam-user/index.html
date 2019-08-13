@@ -9,7 +9,7 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>Tags :: APN Equip Labs</title>
+    <title>Test IAM User :: APN Equip Labs</title>
 
     
     <link href="/css/nucleus.css?1565703870" rel="stylesheet">
@@ -33,7 +33,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/tags/">
+  <body class="" data-url="/iam-lab/test-iam-user/">
     <nav id="sidebar" class="">
 
 
@@ -276,7 +276,7 @@
   
     
     <li data-nav-id="/iam-lab/" title="IAM Lab" class="dd-item 
-        
+        parent
         
         
         ">
@@ -338,7 +338,7 @@
  
   
     
-      <li data-nav-id="/iam-lab/test-iam-user/" title="Test IAM User" class="dd-item ">
+      <li data-nav-id="/iam-lab/test-iam-user/" title="Test IAM User" class="dd-item active">
         <a href="/iam-lab/test-iam-user/">
         Test IAM User
         
@@ -856,7 +856,19 @@
                     
           
           
-            Tags
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='/'>APN Equip Labs</a> > <a href='/iam-lab/'>IAM Lab</a> > Test IAM User
+          
+         
+          
+         
           
         
                  
@@ -881,7 +893,7 @@
           
             <h1>
               
-              Tags
+              Test IAM User
             </h1>
           
 
@@ -889,17 +901,63 @@
 
 
 
+<p>In this section, we will put your IAM User to the test. You will want to
+stay logged in as you currently are while at the same time testing the
+user&rsquo;s access. To do this, you will need to either open a <strong>different
+browser</strong> or open <strong>private browsing</strong> in your current browser. You will
+use this new window to sign in as the user you just created. If you
+didn&rsquo;t take note of the password or login link previously, now is the
+time to do so.</p>
 
+<ol>
+<li><p>Go to your account&rsquo;s IAM user sign-in page. You could also just go to
+console.aws.amazon.com and enter your account ID or alias. Sign in using
+the IAM User <strong>username</strong> and <strong>password</strong>.</p>
 
+<p>You can tell which user you are signed in as by looking at the top right
+corner of the console. The dropdown menu will now be titled <strong>User @
+Account ID/Alias.</strong></p></li>
 
-<ul>
-	
-</ul>
+<li><p>We know from the IAM Group section that this user has access to
+everything except most IAM permissions. Go to the <strong>IAM dashboard</strong> to
+see this in action.</p>
+
+<p>Now instead of seeing a summary of IAM users, groups, and roles, you
+will see multiple errors.</p>
+
+<p><img src="/IAM Lab/images/image7.png" alt="" /></p></li>
+
+<li><p>Now we will give the user extra permissions in order to allow access to
+IAM.</p>
+
+<p>Go to your other browser. You should still be in the <strong>Users</strong> dashboard
+on this user&rsquo;s page. Go to the <strong>Permissions</strong> tab and click on <strong>Add
+permissions</strong>. Adding permissions this way will attach policies directly
+to the user rather than to the entire group.</p>
+
+<p><img src="/IAM Lab/images/image8.png" alt="" /></p>
+
+<p>This time, we will <strong>Attach existing policies directly</strong>. Type IAM into
+the search bar to find a managed policy which will give this user access
+to IAM. Select the <strong>IAMFullAccess</strong> policy and click on <strong>Next:
+Review</strong> and then <strong>Add permissions</strong>.</p>
+
+<p><img src="/IAM Lab/images/image9.png" alt="" /></p>
+
+<p>Go back to the browser where you are signed in as the user. IAM policies
+are evaluated every time an action is attempted, so we just need to
+<strong>refresh</strong> the page to see the changes we made take effect. The IAM
+dashboard should now show content rather than errors.</p>
+
+<p><strong>Congrats! You just tested an IAM user&rsquo;s access to the console and
+modified their privileges as needed.</strong></p></li>
+</ol>
 
 
 <footer class=" footline" >
 	
 </footer>
+
 
         
         </div> 
@@ -1079,6 +1137,7 @@
             
                 
                     
+                    
                 
                 
 
@@ -1091,6 +1150,9 @@
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -1124,6 +1186,7 @@
             
                 
                     
+                    
                 
                 
 
@@ -1139,6 +1202,9 @@
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -1499,8 +1565,10 @@
 	 
 	 
 		
+			<a class="nav nav-prev" href="/iam-lab/create-iam-user/" title="Create IAM User"> <i class="fa fa-chevron-left"></i></a>
 		
-			<a class="nav nav-next" href="/monitoring-lab/" title="Monitoring Lab" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+			<a class="nav nav-next" href="/iam-lab/create-iam-role/" title="Create IAM Role" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -1530,3 +1598,4 @@
 
   </body>
 </html>
+

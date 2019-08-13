@@ -9,7 +9,7 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>Tags :: APN Equip Labs</title>
+    <title>What Did VPC Wizard Create ? :: APN Equip Labs</title>
 
     
     <link href="/css/nucleus.css?1565703870" rel="stylesheet">
@@ -33,7 +33,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/tags/">
+  <body class="" data-url="/vpc-lab/what-did-vpc-wizard-create-/">
     <nav id="sidebar" class="">
 
 
@@ -568,7 +568,7 @@
   
     
     <li data-nav-id="/vpc-lab/" title="VPC Lab" class="dd-item 
-        
+        parent
         
         
         ">
@@ -611,7 +611,7 @@
  
   
     
-      <li data-nav-id="/vpc-lab/what-did-vpc-wizard-create-/" title="What Did VPC Wizard Create ?" class="dd-item ">
+      <li data-nav-id="/vpc-lab/what-did-vpc-wizard-create-/" title="What Did VPC Wizard Create ?" class="dd-item active">
         <a href="/vpc-lab/what-did-vpc-wizard-create-/">
         What Did VPC Wizard Create ?
         
@@ -856,7 +856,19 @@
                     
           
           
-            Tags
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='/'>APN Equip Labs</a> > <a href='/vpc-lab/'>VPC Lab</a> > What Did VPC Wizard Create ?
+          
+         
+          
+         
           
         
                  
@@ -881,7 +893,7 @@
           
             <h1>
               
-              Tags
+              What Did VPC Wizard Create ?
             </h1>
           
 
@@ -889,17 +901,106 @@
 
 
 
+<p>Let&rsquo;s walk through the VPC Console and explain each component that the
+wizard created.</p>
 
+<p>From the last step, you should now be on the <strong>Your VPCs</strong> dashboard
+looking at all of your VPCs in this region. Select the VPC that you just
+created, and look at the <strong>Summary</strong> tab. If you can&rsquo;t see everything in
+the pane, you can pull the pane up by dragging on the pane&rsquo;s top line.</p>
 
+<p>In the <strong>Summary</strong> tab in the left-hand column, you can see the <strong>Main
+Route Table</strong> for your VPC. Any subnets in the VPC that do not have a
+route table directly associated with it will use this route table by
+default. To explore this further, click on the <strong>Route table link</strong>.</p>
 
-<ul>
-	
-</ul>
+<p><img src="/VPC Lab/images/image7.png" alt="" /></p>
+
+<p>You are now in the <strong>Route Tables</strong> dashboard, filtered on the main
+route table of the VPC you just created. That means that there should be
+only one route table shown. Select this route table and click on the
+<strong>Subnet Associations</strong> tab.</p>
+
+<p><img src="/VPC Lab/images/image8.png" alt="" /></p>
+
+<p>You can see that there are no <strong>explicit subnet associations</strong> on this
+route table. However, since this is the main route table for the VPC,
+there is one subnet implicitly associated. It&rsquo;s the <strong>Private subnet</strong>
+of the VPC.</p>
+
+<p>What makes a subnet public or private? We can find out by looking at the
+routes in this table.</p>
+
+<p>Click on the <strong>Routes</strong> tab.</p>
+
+<p>In the <strong>Routes</strong> tab, look at the <strong>Target</strong> column. You&rsquo;ll see one
+<strong>local route</strong> which every route table has. This ensures that resources
+within the VPC can talk to each other.</p>
+
+<p>You will also see a route to the <strong>NAT gateway</strong> that the wizard
+created. Remember that a NAT gateway gives internet access to resources
+which are not publicly accessible. Because the resources in this subnet
+are not publicly accessible, this is considered a <strong>private subnet</strong>.</p>
+
+<p>Now let&rsquo;s find out what makes a subnet public. First, get rid of the
+filter on this view. To do this, <strong>click the X in the search bar</strong>. You
+are now looking at all of the route tables in this region. Your
+dashboard should look something like the screenshot below.</p>
+
+<p>Select the other route table in your VPC (check <strong>VPC</strong> column for name)
+which is not the main route table (check <strong>Main</strong> column for <strong>No</strong>). In
+the <strong>Routes</strong> tab, you&rsquo;ll see a route to an <strong>Internet Gateway (IGW)</strong>.
+IGWs are another managed and scalable service like the NAT Gateway
+except that it allows access from the internet to your resources in the
+VPC, making your resources publicly accessible.</p>
+
+<p><img src="/VPC Lab/images/image9.png" alt="" /></p>
+
+<p>There is a reason why this route table is not the main route table. It
+is best practice for your VPC&rsquo;s main route table to not have a route to
+an IGW so that subnets are private by default and only public if
+specified.</p>
+
+<p>Go to the <strong>Subnet Associations</strong> tab and confirm that it is the
+<strong>Public subnet</strong> which is associated with this route table. Click on
+the <strong>Public subnet link</strong>.</p>
+
+<p>Look at the <strong>Description</strong> tab. You&rsquo;ll notice a <strong>Network Access
+Control List (Network ACL)</strong> link. NACLs are virtual stateless firewalls
+at the subnet layer. This wizard used the <strong>default NACL</strong> (created
+automatically with the VPC) for both subnets. Similar to the main route
+table, the default NACL is implicitly associated with all subnets in a
+VPC unless another NACL is directly associated with that subnet.</p>
+
+<p>Go to the <strong>Network ACL</strong> tab to look at the default NACL rules. Rules
+are evaluated in order from lowest to highest. If the traffic doesn&rsquo;t
+match any rules, the * rule is applied, and the traffic is denied.
+Default NACLs allow all inbound and outbound traffic, as shown below,
+unless customized.</p>
+
+<p><img src="/VPC Lab/images/image10.png" alt="" /></p>
+
+<p>Allowing all traffic in and out of your subnets is not a good security
+posture. However, it is possible to achieve good security with this
+default NACL by leveraging <strong>Security Groups</strong> as well.</p>
+
+<p>Security Groups are virtual stateful firewalls at the resource (EC2
+instance) level. It is best practice to implement necessary firewall
+rules with Security Groups first and only adding rules to NACLs as
+necessary. For instance, you can explicitly deny traffic from specific
+IPs with NACLs but not with Security Groups. We will explore Security
+Groups more in the next section.</p>
+
+<p>We have now gone through the bread and butter of AWS networking. You
+should now understand how routing works in a VPC, what makes a subnet
+public or private, and how to secure your resources at the subnet and
+resource levels.</p>
 
 
 <footer class=" footline" >
 	
 </footer>
+
 
         
         </div> 
@@ -1303,6 +1404,7 @@
             
                 
                     
+                    
                 
                 
 
@@ -1315,6 +1417,9 @@
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -1332,6 +1437,7 @@
             
                 
                     
+                    
                 
                 
 
@@ -1347,6 +1453,9 @@
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -1499,8 +1608,10 @@
 	 
 	 
 		
+			<a class="nav nav-prev" href="/vpc-lab/navigate-the-vpc-dashboard/" title="Navigate the VPC Dashboard"> <i class="fa fa-chevron-left"></i></a>
 		
-			<a class="nav nav-next" href="/monitoring-lab/" title="Monitoring Lab" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+			<a class="nav nav-next" href="/vpc-lab/create-ec2-instance/" title="Create Public EC2 Instance" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -1530,3 +1641,4 @@
 
   </body>
 </html>
+
