@@ -101,3 +101,10 @@ a:hover {
 #sidebar hr {
     border-color: var(--MENU-SECTION-HR-color);
 }
+
+img {
+    width: 80%;
+    border: 1px solid #373F54;
+    border-radius: 8px;
+    padding: 5px;
+}
