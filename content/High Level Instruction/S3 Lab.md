@@ -19,7 +19,7 @@ This lab will walk you through the following:
 -   Delete the object and the bucket in S3
 
 
-**Challange**
+**Challenge**
 
 1. Create a new S3 bucket
 2. Upload an Object to your bucket
@@ -31,7 +31,7 @@ This lab will walk you through the following:
 6. Enable versioning
 	* Investigate object updates and delete
 
-**Additional challange**
+**Additional challenge**
 
 1. Create a static WebSite 
 2. Host it on your S3 bucket

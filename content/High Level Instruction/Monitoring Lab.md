@@ -14,7 +14,7 @@ In this lab we will be building an EC2 instance and set up a CloudWatch alarm to
 Plus, as a bonus you will also learn how to configure AWS Config to detect when EC2 instance is not tagged, as well as a billing alarm to keep your AWS cost in check.
 
 
-**Challange**
+**Challenge**
 
 1.  Create Simple Notification Service Topic.
 2.  Subscribe your email to the topic.
@@ -36,8 +36,8 @@ Plus, as a bonus you will also learn how to configure AWS Config to detect when 
 		```
 
 7.  Enabled detailed monitoring in EC2 instance.
-8.  Create a Cloudwatch Alarm to send an SNS notification to the Topic you created above, when the CPU Utilization is above 60% after 5 munites.
-9.  Wait 5 munites, and confirm you are recieveing the Alert.
+8.  Create a Cloudwatch Alarm to send an SNS notification to the Topic you created above, when the CPU Utilization is above 60% after 5 minutes.
+9.  Wait 5 minutes, and confirm you are receiving the Alert.
 10. Confirm that the EC2 instance has pushed the /var/log/messages logs into CloudWatch Logs.
 11. Configure AWS Config to check if EC2 has "CostCenter" Tag associated to it.
 12. Confirm your EC2 instance is marked as non-compliant.
