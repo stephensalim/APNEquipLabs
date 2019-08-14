@@ -1,7 +1,7 @@
 ---
 title: "Launch EC2 Instance"
 weight: 3
-draft: true
+draft: false
 ---
 
 1.  Go back to the EC2 Console.

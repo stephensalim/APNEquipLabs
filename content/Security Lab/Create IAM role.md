@@ -1,7 +1,7 @@
 ---
 title: "Create IAM Role"
 weight: 2
-draft: true
+draft: false
 ---
 
 1. Open the IAM console at https://console.aws.amazon.com/iam/

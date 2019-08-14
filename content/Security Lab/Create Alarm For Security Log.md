@@ -1,10 +1,10 @@
 ---
 title: "Create Alarm For Security Log"
-date: 2019-08-13T23:35:22+10:00
-draft: true
+weight: 7
+draft: false
 ---
 
-In this section, we will explore CloudWatch to view EC2 System Logs
+In this section, we will create a filter to the /var/log/secure LogGroup to locate any failed SSH connection attempt.
 
 1. Got to CloudWatch Console, by typing in **CloudWatch** in the search bar and and press enter.
 
@@ -14,10 +14,39 @@ In this section, we will explore CloudWatch to view EC2 System Logs
 
 	![](/Security Lab/images/image25.png)
 
-4. Click on the **/var/log/secure** log group, and locate your EC2 instance ID, then 	click on it.
+4. Select on the **/var/log/secure** log group, then click on **Create Metric Filter**
 	
-	![](/Security Lab/images/image26.png)
+	![](/Security Lab/images/image28.png)
 
-5. You should see all the Security Log of the Operating Systems in the CloudWatch Logs.
+5. Enter `[Mon, day, timestamp, ip, id, status = Invalid, ...]` in the Filter pattern field, then click **Assign Metric**
 
-	![](/Security Lab/images/image27.png) 
+	![](/Security Lab/images/image29.png) 
+
+6. Enter `Invalid SSH attempt filter` in Filter Name.
+
+7. Enter `SSH` in Metric dimension.
+
+8. Enter `Invalid SSH sttempt` in Metric dimension, then click **Create Filter**
+
+	![](/Security Lab/images/image30.png) 
+
+9. You should now be able to see the filter being created as below, and click **Create Alarm**
+
+    ![](/Security Lab/images/image31.png) 
+
+10. Set `Sum` Statistic, and 10 seconds for `Period`.
+
+11. Please refer to this picture for the rest of the settings, once you are done click **Next**
+
+    ![](/Security Lab/images/image32.png) 
+
+12. Configure the Alarm to send notification to the SNS topic you created before as per the image below, then click **Next**
+
+    ![](/Security Lab/images/image33.png) 
+
+13. Enter the unique Alarm name for easy identification, then click **Next**
+
+14. Confirm the settings of the alarm and click **Create Alarm**
+
+    ![](/Security Lab/images/image34a.png)
+    ![](/Security Lab/images/image34b.png) 

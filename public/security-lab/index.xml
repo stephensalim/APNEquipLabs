@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Security Labs on APN Equip Labs</title>
+    <link>http://example.org/security-lab/</link>
+    <description>Recent content in Security Labs on APN Equip Labs</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="http://example.org/security-lab/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Create SNS Topic</title>
+      <link>http://example.org/security-lab/create-sns-topic/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/security-lab/create-sns-topic/</guid>
+      <description>First, let&amp;rsquo;s create a Simple Notification Service (SNS) Topic so that we can notify our SysAdmin.
+ From the AWS console click Services &amp;gt; SNS.
+ Under Common Actions click Create Topic.
+ In the Topic Name field , type a name for your topic that includes your name and optionally a Display Name and click Create Topic.
+ In the Topic configuration, click Create Subscription.
+ In the Protocol drop down select Email and enter a working email address you are able to access.</description>
+    </item>
+    
+    <item>
+      <title>Create IAM Role</title>
+      <link>http://example.org/security-lab/create-iam-role/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/security-lab/create-iam-role/</guid>
+      <description> Open the IAM console at https://console.aws.amazon.com/iam/
+ In the navigation pane, choose Roles.
+ Click on Create role.
+ Select AWS Service for the trusted entity, and Choose EC2 as the service that will use this role.
+ Click Next permission
+ Under Attach permission policies, seach for CloudWatchAgentServerPolicy and select it.
+ Click Next:Tags
+ Click Next:Reviews
+ Type in your Role name, and click Create role
+  </description>
+    </item>
+    
+    <item>
+      <title>Launch EC2 Instance</title>
+      <link>http://example.org/security-lab/launch-ec2-instance/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/security-lab/launch-ec2-instance/</guid>
+      <description>Go back to the EC2 Console.
+ Click on Launch Instance
+ In the Quick Start section, select the &amp;ldquo;Amazon Linux AMI&amp;rdquo; and click Select
+PLEASE NOTE: You must select &amp;ldquo;Amazon Linux AMI&amp;rdquo;, NOT &amp;ldquo;Amazon Linux 2 AMI&amp;rdquo;! This lab will not work properly if you select Amazon Linux 2.
+ Select the General purpose t2.micro instance type and click Next: Configure Instance Details
+ On the Configure Instance Details page, expand the Advanced Details section at the bottom of the page.</description>
+    </item>
+    
+    <item>
+      <title>Monitor EC2 Security Log</title>
+      <link>http://example.org/security-lab/monitor-ec2-security-log/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/security-lab/monitor-ec2-security-log/</guid>
+      <description>In this section, we will explore CloudWatch to view EC2 System Logs
+ Got to CloudWatch Console, by typing in CloudWatch in the search bar and and press enter.
+ On the left hand side of the menu, click on Logs.
+ Type in /var/log/secure in the filter field.
+ Click on the /var/log/secure log group, and locate your EC2 instance ID, then click on it.
+ You should see all the Security Log of the Operating Systems in the CloudWatch Logs.</description>
+    </item>
+    
+    <item>
+      <title>Create Alarm For Security Log</title>
+      <link>http://example.org/security-lab/create-alarm-for-security-log/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/security-lab/create-alarm-for-security-log/</guid>
+      <description>In this section, we will create a filter to the /var/log/secure LogGroup to locate any failed SSH connection attempt.
+ Got to CloudWatch Console, by typing in CloudWatch in the search bar and and press enter.
+ On the left hand side of the menu, click on Logs.
+ Type in /var/log/secure in the filter field.
+ Select on the /var/log/secure log group, then click on Create Metric Filter
+ Enter [Mon, day, timestamp, ip, id, status = Invalid, .</description>
+    </item>
+    
+    <item>
+      <title>Test Security Alarm</title>
+      <link>http://example.org/security-lab/test-security-alarm/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/security-lab/test-security-alarm/</guid>
+      <description>In this scenario, we will test the alarm we configured previously by attempting an SSH session using a bad user cred.
+ Go back to the EC2 Console.
+ Select the EC2 instance you launched before.
+ Under the Description Tab take note of the Public IP address of the instance.
+ Locate the Security Group Section, and click on the Security group name you&amp;rsquo;ve attached to the instance.
+ You should now be taken to the Security Group console as below.</description>
+    </item>
+    
+    <item>
+      <title>Query Security Log</title>
+      <link>http://example.org/security-lab/query-security-log/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/security-lab/query-security-log/</guid>
+      <description>Go back to CloudWatch console.
+ Click on Logs &amp;gt; Insights.
+ Under the Select log group(s) section click and select /var/log/secure
+ Click Run query and watch the Logs populate as per screenshot below.
+ Now going through for these log and locate the invalid user might be a bit of a hassle, let&amp;rsquo;s put in a filter to only see failed SSH attempts.
+ Update the query field with this query, and click on Run Query</description>
+    </item>
+    
+  </channel>
+</rss>

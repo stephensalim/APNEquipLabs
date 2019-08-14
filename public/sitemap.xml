@@ -19,6 +19,10 @@
   </url>
   
   <url>
+    <loc>http://example.org/security-lab/create-sns-topic/</loc>
+  </url>
+  
+  <url>
     <loc>http://example.org/vpc-lab/navigate-the-vpc-dashboard/</loc>
   </url>
   
@@ -28,6 +32,10 @@
   
   <url>
     <loc>http://example.org/monitoring-lab/create-iam-role/</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.org/security-lab/create-iam-role/</loc>
   </url>
   
   <url>
@@ -52,6 +60,10 @@
   
   <url>
     <loc>http://example.org/monitoring-lab/launch-ec2-instance/</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.org/security-lab/launch-ec2-instance/</loc>
   </url>
   
   <url>
@@ -107,6 +119,10 @@
   </url>
   
   <url>
+    <loc>http://example.org/security-lab/monitor-ec2-security-log/</loc>
+  </url>
+  
+  <url>
     <loc>http://example.org/monitoring-lab/monitor-ec2-system-log/</loc>
   </url>
   
@@ -115,11 +131,23 @@
   </url>
   
   <url>
+    <loc>http://example.org/security-lab/create-alarm-for-security-log/</loc>
+  </url>
+  
+  <url>
     <loc>http://example.org/monitoring-lab/monitor-ec2-tag/</loc>
   </url>
   
   <url>
     <loc>http://example.org/monitoring-lab/monitor-estimated-charges/</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.org/security-lab/test-security-alarm/</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.org/security-lab/query-security-log/</loc>
   </url>
   
   <url>
@@ -154,6 +182,11 @@
   
   <url>
     <loc>http://example.org/categories/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://example.org/security-lab/</loc>
     <priority>0</priority>
   </url>
   
