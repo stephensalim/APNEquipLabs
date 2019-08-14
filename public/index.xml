@@ -499,5 +499,14 @@ If this is the first time you enabled AWS Config, your console will direct you t
       <description>Amazon CloudWatch is a monitoring and observability service built for DevOps engineers, developers, site reliability engineers (SREs), and IT managers. CloudWatch provides you with data and actionable insights to monitor your applications, respond to system-wide performance changes, optimize resource utilization, and get a unified view of operational health. CloudWatch collects monitoring and operational data in the form of logs, metrics, and events, providing you with a unified view of AWS resources, applications, and services that run on AWS and on-premises servers.</description>
     </item>
     
+    <item>
+      <title>Security Lab</title>
+      <link>http://example.org/high-level-instruction/security-lab/</link>
+      <pubDate>Wed, 14 Aug 2019 13:29:54 +1000</pubDate>
+      
+      <guid>http://example.org/high-level-instruction/security-lab/</guid>
+      <description>Amazon CloudWatch is a monitoring and observability service built for DevOps engineers, developers, site reliability engineers (SREs), and IT managers. CloudWatch provides you with data and actionable insights to monitor your applications, respond to system-wide performance changes, optimize resource utilization, and get a unified view of operational health. CloudWatch collects monitoring and operational data in the form of logs, metrics, and events, providing you with a unified view of AWS resources, applications, and services that run on AWS and on-premises servers.</description>
+    </item>
+    
   </channel>
 </rss>

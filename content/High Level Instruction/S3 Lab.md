@@ -31,9 +31,7 @@ This lab will walk you through the following:
 6. Enable versioning
 	* Investigate object updates and delete
 
-
 **Additional challange**
-
 
 1. Create a static WebSite 
 2. Host it on your S3 bucket

@@ -9,7 +9,7 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>Create Alarm For Security Log :: APN Equip Labs</title>
+    <title>Security Lab :: APN Equip Labs</title>
 
     
     <link href="/css/nucleus.css?1565765637" rel="stylesheet">
@@ -35,7 +35,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/detailed-instructions/security-lab/create-alarm-for-security-log/">
+  <body class="" data-url="/high-level-instruction/security-lab/">
     <nav id="sidebar" class="">
 
 
@@ -95,7 +95,7 @@
   
     
     <li data-nav-id="/high-level-instruction/" title="High Level Instruction" class="dd-item 
-        
+        parent
         
         
         ">
@@ -214,7 +214,7 @@
  
   
     
-      <li data-nav-id="/high-level-instruction/security-lab/" title="Security Lab" class="dd-item ">
+      <li data-nav-id="/high-level-instruction/security-lab/" title="Security Lab" class="dd-item active">
         <a href="/high-level-instruction/security-lab/">
         Security Lab
         
@@ -241,7 +241,7 @@
   
     
     <li data-nav-id="/detailed-instructions/" title="Detailed Instruction" class="dd-item 
-        parent
+        
         
         
         ">
@@ -545,7 +545,7 @@
   
     
     <li data-nav-id="/detailed-instructions/security-lab/" title="Security Lab" class="dd-item 
-        parent
+        
         
         
         ">
@@ -645,7 +645,7 @@
  
   
     
-      <li data-nav-id="/detailed-instructions/security-lab/create-alarm-for-security-log/" title="Create Alarm For Security Log" class="dd-item active">
+      <li data-nav-id="/detailed-instructions/security-lab/create-alarm-for-security-log/" title="Create Alarm For Security Log" class="dd-item ">
         <a href="/detailed-instructions/security-lab/create-alarm-for-security-log/">
         Create Alarm For Security Log
         
@@ -1224,13 +1224,7 @@
             
           
           
-            
-            
-          
-          
-            <a href='/'>APN Equip Lab</a> > <a href='/detailed-instructions/'>Detailed Instruction</a> > <a href='/detailed-instructions/security-lab/'>Security Lab</a> > Create Alarm For Security Log
-          
-         
+            <a href='/'>APN Equip Lab</a> > <a href='/high-level-instruction/'>High Level Instruction</a> > Security Lab
           
          
           
@@ -1259,7 +1253,7 @@
           
             <h1>
               
-              Create Alarm For Security Log
+              Security Lab
             </h1>
           
 
@@ -1267,54 +1261,56 @@
 
 
 
-<p>In this section, we will create a filter to the /var/log/secure LogGroup to locate any failed SSH connection attempt.</p>
+<p><strong>Amazon CloudWatch</strong> is a monitoring and observability service built for DevOps engineers, developers, site reliability engineers (SREs), and IT managers. CloudWatch provides you with data and actionable insights to monitor your applications, respond to system-wide performance changes, optimize resource utilization, and get a unified view of operational health. CloudWatch collects monitoring and operational data in the form of logs, metrics, and events, providing you with a unified view of AWS resources, applications, and services that run on AWS and on-premises servers. You can use CloudWatch to detect anomalous behavior in your environments, set alarms, visualize logs and metrics side by side, take automated actions, troubleshoot issues, and discover insights to keep your applications
+running smoothly.</p>
+
+<p>In this lab we will be building an EC2 instance to emit the Operating system security log to CloudWatch Logs, and set up a CloudWatch alarm to trigger notification when a failed SSH attempt is made to the Instance. You will also learn how filter through the the security log to identiy details about the attempt.</p>
+
+<p><strong>Challange</strong></p>
 
 <ol>
-<li><p>Got to CloudWatch Console, by typing in <strong>CloudWatch</strong> in the search bar and and press enter.</p></li>
+<li>Create Simple Notification Service Topic.</li>
+<li>Subscribe your email to the topic.</li>
+<li>Create a new EC2 instance, in a public facing subnet.</li>
+<li>Use Amazon Linux AMI 2018.03.0 Amazon Machine Image.</li>
+<li>Use t2.micro EC2 instance size.</li>
 
-<li><p>On the left hand side of the menu, click on <strong>Logs</strong>.</p></li>
+<li><p>Bootstrap the EC2 instance using the following bash script
+(Replace the <REPLACE WITH YOUR REGION> section with your region name. e.g: ap-southeast-2)</p>
 
-<li><p>Type in <strong>/var/log/secure</strong> in the filter field.</p>
+<pre><code>```
+#!/bin/sh
+yum -y update
+yum install -y awslogs
+sed -i -e 's/region = us-east-1/region = &lt;REPLACE WITH YOUR REGION&gt;/g' /etc/awslogs/awscli.conf
+sed -i -e 's/messages/secure/g' /etc/awslogs/awslogs.conf
+sudo service awslogs start
+```
+</code></pre></li>
 
-<p><img src="/Detailed Instructions/Security Lab/images/image25.png" alt="" /></p></li>
+<li><p>Open Security Group on EC2 instance to accept SSH traffic from your IP.</p></li>
 
-<li><p>Select on the <strong>/var/log/secure</strong> log group, then click on <strong>Create Metric Filter</strong></p>
+<li><p>Confirm that the EC2 instance has pushed the /var/log/secure logs into CloudWatch Logs.</p></li>
 
-<p><img src="/Detailed Instructions/Security Lab/images/image28.png" alt="" /></p></li>
+<li><p>Create a CloudWatch metric filter, to filter through using this pattern
+<code>[Mon, day, timestamp, ip, id, status = Invalid, ...]</code>.</p></li>
 
-<li><p>Enter <code>[Mon, day, timestamp, ip, id, status = Invalid, ...]</code> in the Filter pattern field, then click <strong>Assign Metric</strong></p>
+<li><p>Create alarm on that filter to detect matched record in the log.</p></li>
 
-<p><img src="/Detailed Instructions/Security Lab/images/image29.png" alt="" /></p></li>
+<li><p>Set up the alarm to trigger the SNS notification the Sum of the event is more than 2 in 10 seconds interval.</p></li>
 
-<li><p>Enter <code>Invalid SSH attempt filter</code> in Filter Name.</p></li>
-
-<li><p>Enter <code>SSH</code> in Metric dimension.</p></li>
-
-<li><p>Enter <code>Invalid SSH sttempt</code> in Metric dimension, then click <strong>Create Filter</strong></p>
-
-<p><img src="/Detailed Instructions/Security Lab/images/image30.png" alt="" /></p></li>
-
-<li><p>You should now be able to see the filter being created as below, and click <strong>Create Alarm</strong></p>
-
-<p><img src="/Detailed Instructions/Security Lab/images/image31.png" alt="" /></p></li>
-
-<li><p>Set <code>Sum</code> Statistic, and 10 seconds for <code>Period</code>.</p></li>
-
-<li><p>Please refer to this picture for the rest of the settings, once you are done click <strong>Next</strong></p>
-
-<p><img src="/Detailed Instructions/Security Lab/images/image32.png" alt="" /></p></li>
-
-<li><p>Configure the Alarm to send notification to the SNS topic you created before as per the image below, then click <strong>Next</strong></p>
-
-<p><img src="/Detailed Instructions/Security Lab/images/image33.png" alt="" /></p></li>
-
-<li><p>Enter the unique Alarm name for easy identification, then click <strong>Next</strong></p></li>
-
-<li><p>Confirm the settings of the alarm and click <strong>Create Alarm</strong></p>
-
-<p><img src="/Detailed Instructions/Security Lab/images/image34a.png" alt="" />
-<img src="/Detailed Instructions/Security Lab/images/image34b.png" alt="" /></p></li>
+<li><p>Use CloudWatch Insight to identify the the IP address and the details of the invalid attempt to the EC2 instance.</p></li>
 </ol>
+
+<p><strong>Documentation References:</strong></p>
+
+<ul>
+<li><a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/MonitoringLogData.html">https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/MonitoringLogData.html</a></li>
+<li><a href="https://docs.aws.amazon.com/quickstarts/latest/vmlaunch/step-1-launch-instance.html">https://docs.aws.amazon.com/quickstarts/latest/vmlaunch/step-1-launch-instance.html</a></li>
+<li><a href="hhttps://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-cloudwatch-createalarm.html">https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-cloudwatch-createalarm.html</a></li>
+<li><a href="https://docs.aws.amazon.com/sns/latest/dg/sns-tutorial-create-topic.html">https://docs.aws.amazon.com/sns/latest/dg/sns-tutorial-create-topic.html</a></li>
+<li><a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/monitor_estimated_charges_with_cloudwatch.html">https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/monitor_estimated_charges_with_cloudwatch.html</a></li>
+</ul>
 
 
 <footer class=" footline" >
@@ -1353,8 +1349,204 @@
             
                 
                     
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
                         
                         
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
                     
                 
                 
@@ -1460,57 +1652,6 @@
             
         
                     
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                    
-                
-                
-
-                    
-                    
-                        
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                        
-                        
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
                         
             
             
@@ -1643,158 +1784,6 @@
             
             
                 
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                        
-                        
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                        
-                        
                     
                 
                 
@@ -2190,10 +2179,10 @@
 	 
 	 
 		
-			<a class="nav nav-prev" href="/detailed-instructions/security-lab/monitor-ec2-security-log/" title="Monitor EC2 Security Log"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/high-level-instruction/monitoring-lab/" title="Monitoring Lab"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/detailed-instructions/security-lab/test-security-alarm/" title="Test Security Alarm" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/detailed-instructions/" title="Detailed Instruction" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
