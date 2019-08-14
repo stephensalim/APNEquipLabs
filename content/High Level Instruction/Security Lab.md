@@ -10,7 +10,7 @@ running smoothly.
 In this lab we will be building an EC2 instance to emit the Operating system security log to CloudWatch Logs, and set up a CloudWatch alarm to trigger notification when a failed SSH attempt is made to the Instance. You will also learn how filter through the the security log to identiy details about the attempt.
 
 
-**Challange**
+**Challenge**
 
 1.  Create Simple Notification Service Topic.
 2.  Subscribe your email to the topic.
