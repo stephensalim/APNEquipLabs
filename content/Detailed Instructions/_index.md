@@ -1,10 +1,9 @@
----
-title: "Detailed Instruction"
-weight: 0
-draft: false
----
++++
+title = "Detailed Instructions"
+chapter = true
+weight = 0
+pre = "<b>2. </b>"
++++
 
-**Select the lab from menu on your left**
-====
-<<<
+**Select Lab on left or Click Left / Right Arrow**
 ====

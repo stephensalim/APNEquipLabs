@@ -1,8 +1,10 @@
----
-title: "VPC Lab"
-date: 2019-08-13T20:07:59+10:00
-draft: false
----
++++
+title = "VPC Lab"
+chapter = true
+weight = 1
+pre = "<b># </b>"
++++
+
 
 **Amazon Virtual Private Cloud (Amazon VPC)** lets you provision a logically
 isolated section of the AWS Cloud where you can launch AWS resources in

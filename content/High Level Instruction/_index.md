@@ -1,10 +1,9 @@
----
-title: "High Level Instruction"
-weight: 0
-draft: false
----
++++
+title = "High Level Instructions"
+chapter = true
+weight = 0
+pre = "<b>1. </b>"
++++
 
-**Select the lab from menu on your left**
-====
-<<<
+**Select Lab on left or Click Left / Right Arrow**
 ====

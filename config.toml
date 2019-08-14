@@ -3,6 +3,7 @@ languageCode = "en-us"
 title = "APN Equip Labs"
 theme = "hugo-theme-learn"
 
-[params]
-  themeVariant = "blue"
 
+[params]
+  showVisitedLinks = true
+  themeVariant = "darkblue"

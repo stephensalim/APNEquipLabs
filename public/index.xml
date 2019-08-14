@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>APN Equip Lab on APN Equip Labs</title>
+    <title>Welcome on APN Equip Labs</title>
     <link>http://example.org/</link>
-    <description>Recent content in APN Equip Lab on APN Equip Labs</description>
+    <description>Recent content in Welcome on APN Equip Labs</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 14 Aug 2019 13:13:19 +1000</lastBuildDate>
+    <lastBuildDate>Wed, 14 Aug 2019 13:30:05 +1000</lastBuildDate>
     
 	<atom:link href="http://example.org/index.xml" rel="self" type="application/rss+xml" />
     

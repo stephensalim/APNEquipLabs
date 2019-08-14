@@ -1,8 +1,9 @@
----
-title: "S3 Lab"
-date: 2019-08-13T20:30:47+10:00
-draft: false
----
++++
+title = "S3 Lab"
+chapter = true
+weight = 3
+pre = "<b># </b>"
++++
 
 **Amazon Simple Storage Service (S3)** provides a simple web services
 interface that can be used to store and retrieve any amount of data, at
