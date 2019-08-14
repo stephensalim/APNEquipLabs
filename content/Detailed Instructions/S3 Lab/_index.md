@@ -4,7 +4,7 @@ date: 2019-08-13T20:30:47+10:00
 draft: false
 ---
 
-Amazon Simple Storage Service (S3) provides a simple web services
+**Amazon Simple Storage Service (S3)** provides a simple web services
 interface that can be used to store and retrieve any amount of data, at
 any time, from anywhere on the web. This lab is designed to demonstrate
 how to interact with S3 to store, view, move and delete objects.

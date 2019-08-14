@@ -4,7 +4,7 @@ date: 2019-08-13T22:01:50+10:00
 draft: false
 ---
 
-AWS Identity and Access Management (IAM) is a free service that enables
+**AWS Identity and Access Management (IAM)** is a free service that enables
 you to manage access to AWS services and resources securely. Using IAM,
 you can create and manage AWS users and groups, and use permissions to
 allow and deny their access to AWS resources. 
