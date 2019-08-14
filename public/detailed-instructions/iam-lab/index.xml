@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>IAM Lab on APN Equip Labs</title>
+    <link>http://example.org/detailed-instructions/iam-lab/</link>
+    <description>Recent content in IAM Lab on APN Equip Labs</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 13 Aug 2019 22:01:50 +1000</lastBuildDate>
+    
+	<atom:link href="http://example.org/detailed-instructions/iam-lab/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Create IAM Group</title>
+      <link>http://example.org/detailed-instructions/iam-lab/create-iam-group/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/detailed-instructions/iam-lab/create-iam-group/</guid>
+      <description>To get started, go to the IAM dashboard in the AWS console.  An IAM group is a collection of users. Groups are often based on job function or role. They allow you to manage permissions by applying policies to each group rather than individual users.
+ Go to Groups in the sidebar and click on Create New Group.
+ Type in Power_Users as the Group Name. Go to the Next Step.</description>
+    </item>
+    
+    <item>
+      <title>Create IAM User</title>
+      <link>http://example.org/detailed-instructions/iam-lab/create-iam-user/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/detailed-instructions/iam-lab/create-iam-user/</guid>
+      <description>It is best practice to create a different user for each person who needs AWS access. A user is associated with permanent credentials and has permissions based off of policies attached directly to the user or policies attached to a group to which the user belongs.
+ Go to Users in the sidebar and click on Add user.
+Enter a unique name as the User name. In this walkthrough, I chose Emily as the username.</description>
+    </item>
+    
+    <item>
+      <title>Test IAM User</title>
+      <link>http://example.org/detailed-instructions/iam-lab/test-iam-user/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/detailed-instructions/iam-lab/test-iam-user/</guid>
+      <description>In this section, we will put your IAM User to the test. You will want to stay logged in as you currently are while at the same time testing the user&amp;rsquo;s access. To do this, you will need to either open a different browser or open private browsing in your current browser. You will use this new window to sign in as the user you just created. If you didn&amp;rsquo;t take note of the password or login link previously, now is the time to do so.</description>
+    </item>
+    
+    <item>
+      <title>Create IAM Role</title>
+      <link>http://example.org/detailed-instructions/iam-lab/create-iam-role/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/detailed-instructions/iam-lab/create-iam-role/</guid>
+      <description>IAM Roles can be assumed by AWS services, IAM users, or applications. They are assigned temporary rather than permanent credentials whenever assumed. Using roles for privileged permissions sets (such as the PowerUserAccess policy) can help improve your security posture since credential exposure is minimized.
+ Go to Roles in the sidebar and click on Create Role.
+ On the Select type of trusted identity page, you decide who or what will be able to assume this role.</description>
+    </item>
+    
+    <item>
+      <title>Clean Up Resources</title>
+      <link>http://example.org/detailed-instructions/iam-lab/clean-up-resources/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/detailed-instructions/iam-lab/clean-up-resources/</guid>
+      <description>If you want to clean up your account to get rid of everything we created during this lab, follow the instructions in this section. You can also leave your lab environment running if you want to test other AWS IAM concepts.
+ Go to Groups in the sidebar. Select the Power_Users group and go to the Group Actions dropdown. Select Delete Group and then Yes, Delete.
+ Go to Users in the sidebar.</description>
+    </item>
+    
+    <item>
+      <title>Additional resources</title>
+      <link>http://example.org/detailed-instructions/iam-lab/additional-resources/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/detailed-instructions/iam-lab/additional-resources/</guid>
+      <description> IAM Introduction: https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction.html IAM Best Practices: https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html IAM Policies: https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html IAM Tutorials: https://docs.aws.amazon.com/IAM/latest/UserGuide/tutorials.html  </description>
+    </item>
+    
+  </channel>
+</rss>

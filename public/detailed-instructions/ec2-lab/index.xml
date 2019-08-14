@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>EC2 Lab on APN Equip Labs</title>
+    <link>http://example.org/detailed-instructions/ec2-lab/</link>
+    <description>Recent content in EC2 Lab on APN Equip Labs</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="http://example.org/detailed-instructions/ec2-lab/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Create New Key Pair</title>
+      <link>http://example.org/detailed-instructions/ec2-lab/create-new-key-pair/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/detailed-instructions/ec2-lab/create-new-key-pair/</guid>
+      <description>In this lab, you will need to create an EC2 instance using an SSH keypair. The following steps outline creating a unique SSH keypair for you to use in this lab.
+ Sign into the AWS Management Console and open the Amazon EC2 console at https://console.aws.amazon.com/ec2.
+ In the upper-right corner of the AWS Management Console, confirm you are in the desired AWS region (e.g., Sydney).
+ Click on Key Pairs in the NETWORK &amp;amp; SECURITY section near the bottom of the leftmost menu.</description>
+    </item>
+    
+    <item>
+      <title>Launch EC2 Web Server</title>
+      <link>http://example.org/detailed-instructions/ec2-lab/launch-ec2-web-server/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/detailed-instructions/ec2-lab/launch-ec2-web-server/</guid>
+      <description>In this example we will launch an Amazon Linux 2 instance, bootstrap Apache/PHP, and install a basic web page that will display information about our instance.
+Sign into your AWS Management Console and choose EC2 from the Services menu. [ ]{.underline}
+ Click on Launch Instance
+ In the Quick Start section, select the first Amazon Linux 2 AMI and click Select.
+ In the Choose Instance Type tab, select the t2.</description>
+    </item>
+    
+    <item>
+      <title>Browse your Web Server</title>
+      <link>http://example.org/detailed-instructions/ec2-lab/browse-your-web-server/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/detailed-instructions/ec2-lab/browse-your-web-server/</guid>
+      <description>Wait for the instance to pass the Status Checks to finish loading.
+Finished initializing   Open a new browser tab and browse the Web Server by entering the EC2 instance&amp;rsquo;s Public DNS name into the browser. The EC2 instance&amp;rsquo;s Public DNS name can be found in the console by reviewing the &amp;ldquo;Public DNS&amp;rdquo; name line highlighted above.
+You should see a website that looks like the following:</description>
+    </item>
+    
+  </channel>
+</rss>
