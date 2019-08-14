@@ -14,7 +14,7 @@ AWS IAM entities: groups, users, and roles. You will also learn about
 IAM policy documents, which you can attach to entities in order to give
 them permissions to access AWS resources and services.
 
-**Challange**
+**Challenge**
 
 1. Create an IAM Group “Power_Users”. 
 	Attach policy called “PowerUserAccess” to the Group
@@ -25,7 +25,7 @@ them permissions to access AWS resources and services.
 5. Grand “IAMFullAccess” policy to user created.
 6. Verify new access level.
 
-**Additional challange/question**
+**Additional challenge/question**
 
 1. Create an IAM Role that allows an EC2 instance to read files in S3
 2. Tips:

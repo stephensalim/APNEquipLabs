@@ -16,7 +16,7 @@ In this lab, you will learn how to set up a VPC with public and private
 subnets. You will also learn about AWS networking concepts such as
 Elastic IPs, NAT Gateways.
 
-**Challange**
+**Challenge**
 
 Review the Documentation references to achieve the following
 
@@ -30,7 +30,7 @@ Review the Documentation references to achieve the following
 	* Security groups
 	* Network Access List
 
-**Additional challange**
+**Additional challenge**
 
 1. Create a Public EC2 instance into the new VPC
 	* Use t2.micro and amazon Linux 2 AMI assign network to new VPC

@@ -16,7 +16,7 @@ capacity that you actually use.
 This lab will walk you through launching, configuring, and customizing
 an EC2 web server using the AWS Management Console.
 
-**Challange**
+**Challenge**
 
 1. 	Create a new Key Pair
 2. 	Download and change the private key to read only mode (chmod 400). (Linux /Mac)
@@ -41,7 +41,7 @@ an EC2 web server using the AWS Management Console.
 		
 7.	Apply appropriate Security Group rule and Network Access List to allow public HTTP access.
 
-**Additional challange / question**
+**Additional challenge / question**
 
 1. Create an Amazon Machine image from the EC2 web server.
 2. Configure snapshot lifecycle manager.
