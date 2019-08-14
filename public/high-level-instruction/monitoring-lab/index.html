@@ -9,7 +9,7 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>Monitor EC2 Security Log :: APN Equip Labs</title>
+    <title>Monitoring Lab :: APN Equip Labs</title>
 
     
     <link href="/css/nucleus.css?1565763504" rel="stylesheet">
@@ -35,7 +35,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/detailed-instructions/security-lab/monitor-ec2-security-log/">
+  <body class="" data-url="/high-level-instruction/monitoring-lab/">
     <nav id="sidebar" class="">
 
 
@@ -95,7 +95,7 @@
   
     
     <li data-nav-id="/high-level-instruction/" title="High Level Instruction" class="dd-item 
-        
+        parent
         
         
         ">
@@ -195,7 +195,7 @@
  
   
     
-      <li data-nav-id="/high-level-instruction/monitoring-lab/" title="Monitoring Lab" class="dd-item ">
+      <li data-nav-id="/high-level-instruction/monitoring-lab/" title="Monitoring Lab" class="dd-item active">
         <a href="/high-level-instruction/monitoring-lab/">
         Monitoring Lab
         
@@ -222,7 +222,7 @@
   
     
     <li data-nav-id="/detailed-instructions/" title="Detailed Instruction" class="dd-item 
-        parent
+        
         
         
         ">
@@ -526,7 +526,7 @@
   
     
     <li data-nav-id="/detailed-instructions/security-lab/" title="Security Lab" class="dd-item 
-        parent
+        
         
         
         ">
@@ -607,7 +607,7 @@
  
   
     
-      <li data-nav-id="/detailed-instructions/security-lab/monitor-ec2-security-log/" title="Monitor EC2 Security Log" class="dd-item active">
+      <li data-nav-id="/detailed-instructions/security-lab/monitor-ec2-security-log/" title="Monitor EC2 Security Log" class="dd-item ">
         <a href="/detailed-instructions/security-lab/monitor-ec2-security-log/">
         Monitor EC2 Security Log
         
@@ -1194,7 +1194,7 @@
                   <span class="links">
                  
                  
-                   Monitor EC2 Security Log 
+                   Monitoring Lab 
                  
                   </span>
                 </div>
@@ -1217,7 +1217,7 @@
           
             <h1>
               
-              Monitor EC2 Security Log
+              Monitoring Lab
             </h1>
           
 
@@ -1225,25 +1225,64 @@
 
 
 
-<p>In this section, we will explore CloudWatch to view EC2 System Logs</p>
+<p><strong>Amazon CloudWatch</strong> is a monitoring and observability service built for DevOps engineers, developers, site reliability engineers (SREs), and IT managers. CloudWatch provides you with data and actionable insights to monitor your applications, respond to system-wide performance changes, optimize resource utilization, and get a unified view of operational health. CloudWatch collects monitoring and operational data in the form of logs, metrics, and events, providing you with a unified view of AWS resources, applications, and services that run on AWS and on-premises servers. You can use CloudWatch to detect anomalous behavior in your environments, set alarms, visualize logs and metrics side by side, take automated actions, troubleshoot issues, and discover insights to keep your applications
+running smoothly.</p>
+
+<p><strong>AWS Config</strong> is a service that enables you to assess, audit, and evaluate the configurations of your AWS resources. Config continuously monitors and records your AWS resource configurations and allows you to automate the evaluation of recorded configurations against desired configurations. With Config, you can review changes in configurations and relationships between AWS resources, dive into detailed resource configuration histories, and determine your overall compliance against the configurations specified in your internal guidelines. This enables you to simplify compliance auditing, security analysis, change management, and operational troubleshooting.</p>
+
+<p>In this lab we will be building an EC2 instance and set up a CloudWatch alarm to trigger notification when the CPU is detected to be highly utilized. We will also be pushing the Operating System Systems log to cloudWatch logs.</p>
+
+<p>Plus, as a bonus you will also learn how to configure AWS Config to detect when EC2 instance is not tagged, as well as a billing alarm to keep your AWS cost in check.</p>
+
+<p><strong>Challange</strong></p>
 
 <ol>
-<li><p>Got to CloudWatch Console, by typing in <strong>CloudWatch</strong> in the search bar and and press enter.</p></li>
+<li>Create Simple Notification Service Topic.</li>
+<li>Subscribe your email to the topic.</li>
+<li>Create a new EC2 instance, in a public facing subnet.</li>
+<li>Use Amazon Linux AMI 2018.03.0 Amazon Machine Image.</li>
+<li>Use t2.micro EC2 instance size.</li>
 
-<li><p>On the left hand side of the menu, click on <strong>Logs</strong>.</p></li>
+<li><p>Bootstrap the EC2 instance using the following bash script
+(Replace the <REPLACE WITH YOUR REGION> section with your region name. e.g: ap-southeast-2)</p>
 
-<li><p>Type in <strong>/var/log/secure</strong> in the filter field.</p>
+<pre><code>```
+#!/bin/sh
+yum -y update
+yum -y install stress
+yum install -y awslogs
+sed -i -e 's/region = us-east-1/region = &lt;REPLACE WITH YOUR REGION&gt;/g' /etc/awslogs/awscli.conf
+sudo service awslogs start
+stress -c 1 --backoff 300000000 -t 30m
+```
+</code></pre></li>
 
-<p><img src="/Detailed Instructions/Security Lab/images/image25.png" alt="" /></p></li>
+<li><p>Enabled detailed monitoring in EC2 instance.</p></li>
 
-<li><p>Click on the <strong>/var/log/secure</strong> log group, and locate your EC2 instance ID, then    click on it.</p>
+<li><p>Create a Cloudwatch Alarm to send an SNS notification to the Topic you created above, when the CPU Utilization is above 60% after 5 munites.</p></li>
 
-<p><img src="/Detailed Instructions/Security Lab/images/image26.png" alt="" /></p></li>
+<li><p>Wait 5 munites, and confirm you are recieveing the Alert.</p></li>
 
-<li><p>You should see all the Security Log of the Operating Systems in the CloudWatch Logs.</p>
+<li><p>Confirm that the EC2 instance has pushed the /var/log/messages logs into CloudWatch Logs.</p></li>
 
-<p><img src="/Detailed Instructions/Security Lab/images/image27.png" alt="" /></p></li>
+<li><p>Configure AWS Config to check if EC2 has &ldquo;CostCenter&rdquo; Tag associated to it.</p></li>
+
+<li><p>Confirm your EC2 instance is marked as non-compliant.</p></li>
+
+<li><p>Add &ldquo;CostCenter&rdquo; tag into the EC2 instance and confirm in AWS Config it is now compliant.</p></li>
+
+<li><p>Create CloudWatch Alarm to send notification if your AWS bill is estimated to go above USD 200.</p></li>
 </ol>
+
+<p><strong>Documentation References:</strong></p>
+
+<ul>
+<li><a href="https://docs.aws.amazon.com/config/latest/developerguide/managing-aws-managed-rules.html">https://docs.aws.amazon.com/config/latest/developerguide/managing-aws-managed-rules.html</a></li>
+<li><a href="https://docs.aws.amazon.com/quickstarts/latest/vmlaunch/step-1-launch-instance.html">https://docs.aws.amazon.com/quickstarts/latest/vmlaunch/step-1-launch-instance.html</a></li>
+<li><a href="hhttps://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-cloudwatch-createalarm.html">https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-cloudwatch-createalarm.html</a></li>
+<li><a href="https://docs.aws.amazon.com/sns/latest/dg/sns-tutorial-create-topic.html">https://docs.aws.amazon.com/sns/latest/dg/sns-tutorial-create-topic.html</a></li>
+<li><a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/monitor_estimated_charges_with_cloudwatch.html">https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/monitor_estimated_charges_with_cloudwatch.html</a></li>
+</ul>
 
 
 <footer class=" footline" >
@@ -1282,8 +1321,188 @@
             
                 
                     
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
                         
                         
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
                     
                 
                 
@@ -1373,41 +1592,6 @@
             
         
                     
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                    
-                
-                
-
-                    
-                    
-                        
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                        
-                        
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
                         
             
             
@@ -1540,158 +1724,6 @@
             
             
                 
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                        
-                        
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                        
-                        
                     
                 
                 

@@ -9,7 +9,7 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>Monitor EC2 Security Log :: APN Equip Labs</title>
+    <title>IAM Lab :: APN Equip Labs</title>
 
     
     <link href="/css/nucleus.css?1565763504" rel="stylesheet">
@@ -35,7 +35,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/detailed-instructions/security-lab/monitor-ec2-security-log/">
+  <body class="" data-url="/high-level-instruction/iam-lab/">
     <nav id="sidebar" class="">
 
 
@@ -95,7 +95,7 @@
   
     
     <li data-nav-id="/high-level-instruction/" title="High Level Instruction" class="dd-item 
-        
+        parent
         
         
         ">
@@ -157,7 +157,7 @@
  
   
     
-      <li data-nav-id="/high-level-instruction/iam-lab/" title="IAM Lab" class="dd-item ">
+      <li data-nav-id="/high-level-instruction/iam-lab/" title="IAM Lab" class="dd-item active">
         <a href="/high-level-instruction/iam-lab/">
         IAM Lab
         
@@ -222,7 +222,7 @@
   
     
     <li data-nav-id="/detailed-instructions/" title="Detailed Instruction" class="dd-item 
-        parent
+        
         
         
         ">
@@ -526,7 +526,7 @@
   
     
     <li data-nav-id="/detailed-instructions/security-lab/" title="Security Lab" class="dd-item 
-        parent
+        
         
         
         ">
@@ -607,7 +607,7 @@
  
   
     
-      <li data-nav-id="/detailed-instructions/security-lab/monitor-ec2-security-log/" title="Monitor EC2 Security Log" class="dd-item active">
+      <li data-nav-id="/detailed-instructions/security-lab/monitor-ec2-security-log/" title="Monitor EC2 Security Log" class="dd-item ">
         <a href="/detailed-instructions/security-lab/monitor-ec2-security-log/">
         Monitor EC2 Security Log
         
@@ -1194,7 +1194,7 @@
                   <span class="links">
                  
                  
-                   Monitor EC2 Security Log 
+                   IAM Lab 
                  
                   </span>
                 </div>
@@ -1217,7 +1217,7 @@
           
             <h1>
               
-              Monitor EC2 Security Log
+              IAM Lab
             </h1>
           
 
@@ -1225,25 +1225,49 @@
 
 
 
-<p>In this section, we will explore CloudWatch to view EC2 System Logs</p>
+<p><strong>AWS Identity and Access Management (IAM)</strong> is a free service that enables
+you to manage access to AWS services and resources securely. Using IAM,
+you can create and manage AWS users and groups, and use permissions to
+allow and deny their access to AWS resources. </p>
+
+<p>In the following lab, you will create one of each of the three types of
+AWS IAM entities: groups, users, and roles. You will also learn about
+IAM policy documents, which you can attach to entities in order to give
+them permissions to access AWS resources and services.</p>
+
+<p><strong>Challange</strong></p>
 
 <ol>
-<li><p>Got to CloudWatch Console, by typing in <strong>CloudWatch</strong> in the search bar and and press enter.</p></li>
-
-<li><p>On the left hand side of the menu, click on <strong>Logs</strong>.</p></li>
-
-<li><p>Type in <strong>/var/log/secure</strong> in the filter field.</p>
-
-<p><img src="/Detailed Instructions/Security Lab/images/image25.png" alt="" /></p></li>
-
-<li><p>Click on the <strong>/var/log/secure</strong> log group, and locate your EC2 instance ID, then    click on it.</p>
-
-<p><img src="/Detailed Instructions/Security Lab/images/image26.png" alt="" /></p></li>
-
-<li><p>You should see all the Security Log of the Operating Systems in the CloudWatch Logs.</p>
-
-<p><img src="/Detailed Instructions/Security Lab/images/image27.png" alt="" /></p></li>
+<li>Create an IAM Group “Power_Users”.
+Attach policy called “PowerUserAccess” to the Group
+(Review JSON content and ask Questions if in doubt)</li>
+<li>Create an IAM User with console &amp; programmatic   access (tip: make note of the programmatic info)</li>
+<li>Make new user part of “power_User” group created</li>
+<li>Test new user log in to AWS via console and verify access level</li>
+<li>Grand “IAMFullAccess” policy to user created.</li>
+<li>Verify new access level.</li>
 </ol>
+
+<p><strong>Additional challange/question</strong></p>
+
+<ol>
+<li>Create an IAM Role that allows an EC2 instance to read files in S3</li>
+<li>Tips:
+
+<ul>
+<li>Trusted identity should be AWS service “EC2”</li>
+<li>Use AWS Managed policy with S3 Read only access</li>
+<li>Verify attributes, can you change duration to 3 hours?</li>
+<li>Review JSON code, ask if in doubt</li>
+</ul></li>
+</ol>
+
+<p><strong>Documentation References:</strong></p>
+
+<ul>
+<li><a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html#create-iam-users">https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html#create-iam-users</a></li>
+<li><a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_groups_create.html">https://docs.aws.amazon.com/IAM/latest/UserGuide/id_groups_create.html</a></li>
+</ul>
 
 
 <footer class=" footline" >
@@ -1282,8 +1306,188 @@
             
                 
                     
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
                         
                         
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
                     
                 
                 
@@ -1373,41 +1577,6 @@
             
         
                     
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                    
-                
-                
-
-                    
-                    
-                        
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                        
-                        
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
                         
             
             
@@ -1540,158 +1709,6 @@
             
             
                 
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                        
-                        
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                        
-                        
                     
                 
                 

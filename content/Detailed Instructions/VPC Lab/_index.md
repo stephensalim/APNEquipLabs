@@ -14,5 +14,4 @@ secure and easy access to resources and applications.
 
 In this lab, you will learn how to set up a VPC with public and private
 subnets. You will also learn about AWS networking concepts such as
-Elastic IPs, NAT Gateways, and Flow Logs.
-
+Elastic IPs, NAT Gateways.

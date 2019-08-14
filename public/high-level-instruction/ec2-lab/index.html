@@ -9,7 +9,7 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>Monitor EC2 Security Log :: APN Equip Labs</title>
+    <title>EC2 Lab :: APN Equip Labs</title>
 
     
     <link href="/css/nucleus.css?1565763504" rel="stylesheet">
@@ -35,7 +35,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/detailed-instructions/security-lab/monitor-ec2-security-log/">
+  <body class="" data-url="/high-level-instruction/ec2-lab/">
     <nav id="sidebar" class="">
 
 
@@ -95,7 +95,7 @@
   
     
     <li data-nav-id="/high-level-instruction/" title="High Level Instruction" class="dd-item 
-        
+        parent
         
         
         ">
@@ -138,7 +138,7 @@
  
   
     
-      <li data-nav-id="/high-level-instruction/ec2-lab/" title="EC2 Lab" class="dd-item ">
+      <li data-nav-id="/high-level-instruction/ec2-lab/" title="EC2 Lab" class="dd-item active">
         <a href="/high-level-instruction/ec2-lab/">
         EC2 Lab
         
@@ -222,7 +222,7 @@
   
     
     <li data-nav-id="/detailed-instructions/" title="Detailed Instruction" class="dd-item 
-        parent
+        
         
         
         ">
@@ -526,7 +526,7 @@
   
     
     <li data-nav-id="/detailed-instructions/security-lab/" title="Security Lab" class="dd-item 
-        parent
+        
         
         
         ">
@@ -607,7 +607,7 @@
  
   
     
-      <li data-nav-id="/detailed-instructions/security-lab/monitor-ec2-security-log/" title="Monitor EC2 Security Log" class="dd-item active">
+      <li data-nav-id="/detailed-instructions/security-lab/monitor-ec2-security-log/" title="Monitor EC2 Security Log" class="dd-item ">
         <a href="/detailed-instructions/security-lab/monitor-ec2-security-log/">
         Monitor EC2 Security Log
         
@@ -1194,7 +1194,7 @@
                   <span class="links">
                  
                  
-                   Monitor EC2 Security Log 
+                   EC2 Lab 
                  
                   </span>
                 </div>
@@ -1217,7 +1217,7 @@
           
             <h1>
               
-              Monitor EC2 Security Log
+              EC2 Lab
             </h1>
           
 
@@ -1225,25 +1225,67 @@
 
 
 
-<p>In this section, we will explore CloudWatch to view EC2 System Logs</p>
+<p><strong>Amazon Elastic Compute Cloud (Amazon EC2</strong>) is a web service that provides
+resizable compute capacity in the cloud. Amazon EC2&rsquo;s simple web service
+interface allows you to obtain and configure capacity with minimal
+friction. Amazon EC2 reduces the time required to obtain and boot new
+server instances to minutes, allowing you to quickly scale capacity,
+both up and down, as your computing requirements change. Amazon EC2
+changes the economics of computing by allowing you to pay only for
+capacity that you actually use.</p>
+
+<p>This lab will walk you through launching, configuring, and customizing
+an EC2 web server using the AWS Management Console.</p>
+
+<p><strong>Challange</strong></p>
 
 <ol>
-<li><p>Got to CloudWatch Console, by typing in <strong>CloudWatch</strong> in the search bar and and press enter.</p></li>
+<li>Create a new Key Pair</li>
+<li>Download and change the private key to read only mode (chmod 400). (Linux /Mac)
+Convert the private key to support putty (Windows)</li>
+<li>Create a new EC2 instance, in a public facing subnet.</li>
+<li>Use Amazon Linux AMI 2018.03.0 Amazon Machine Image.</li>
+<li>Use t2.micro EC2 instance size.</li>
 
-<li><p>On the left hand side of the menu, click on <strong>Logs</strong>.</p></li>
+<li><p>Bootstrap the EC2 instance using the following bash script</p>
 
-<li><p>Type in <strong>/var/log/secure</strong> in the filter field.</p>
+<pre><code>```
+#!/bin/sh
+sudo su
+yum -y install httpd php mysql php-mysql
+chkconfig httpd on
+/etc/init.d/httpd –T
+cd /tmp
+wget http://us-east-1-aws-training.s3.amazonaws.com/self-paced-lab-4/examplefiles-as.zip
+unzip examplefiles-as.zip
+mv examplefiles-as/* /var/www/html
+ls 
+```
+</code></pre></li>
 
-<p><img src="/Detailed Instructions/Security Lab/images/image25.png" alt="" /></p></li>
-
-<li><p>Click on the <strong>/var/log/secure</strong> log group, and locate your EC2 instance ID, then    click on it.</p>
-
-<p><img src="/Detailed Instructions/Security Lab/images/image26.png" alt="" /></p></li>
-
-<li><p>You should see all the Security Log of the Operating Systems in the CloudWatch Logs.</p>
-
-<p><img src="/Detailed Instructions/Security Lab/images/image27.png" alt="" /></p></li>
+<li><p>Apply appropriate Security Group rule and Network Access List to allow public HTTP access.</p></li>
 </ol>
+
+<p><strong>Additional challange / question</strong></p>
+
+<ol>
+<li>Create an Amazon Machine image from the EC2 web server.</li>
+<li>Configure snapshot lifecycle manager.</li>
+<li>How could you make the WebServer elastic?</li>
+<li>How could you make the WebServer balancing across several instance?</li>
+</ol>
+
+<p><strong>Documentation References:</strong></p>
+
+<ul>
+<li><a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html">https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html</a></li>
+<li><a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/launching-instance.html">https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/launching-instance.html</a></li>
+<li><a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html">https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html</a></li>
+<li><a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-network-security.html">https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-network-security.html</a></li>
+<li><a href="https://docs.aws.amazon.com/vpc/latest/userguide/vpc-network-acls.html">https://docs.aws.amazon.com/vpc/latest/userguide/vpc-network-acls.html</a></li>
+<li><a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/creating-an-ami-ebs.html">https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/creating-an-ami-ebs.html</a></li>
+<li><a href="https://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-getting-started.html">https://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-getting-started.html</a></li>
+</ul>
 
 
 <footer class=" footline" >
@@ -1282,8 +1324,188 @@
             
                 
                     
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
                         
                         
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
                     
                 
                 
@@ -1373,41 +1595,6 @@
             
         
                     
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                    
-                
-                
-
-                    
-                    
-                        
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                        
-                        
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
                         
             
             
@@ -1540,158 +1727,6 @@
             
             
                 
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                        
-                        
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                        
-                        
                     
                 
                 

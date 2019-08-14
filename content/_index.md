@@ -1,21 +1,35 @@
 ---
 title: "APN Equip Lab"
 date: 2019-08-14T13:13:19+10:00
-draft: true
+draft: false
 ---
 
-APN Equip Lab
+Welcome
 =============
+<center>
+**Welcome to APN Equip Lab!** <br>
+This lab is designed to encourage learning through exploration.<br>
+To get the most out of this lab, we encourage you to approach the instructions with the following guidelines.
 
-Welcome to APN Equip Lab.
+The Lab intends to cover topics post a 2 hours presentation on EC2, VPC, S3, Security, Monitoring.<br>
+The Lab assumes you already have an AWS account setup, and have direct access to your AWS console.<br>
+If you don't have AWS account set up, please follow this **[link](https://aws.amazon.com/premiumsupport/knowledge-center/create-and-activate-aws-account/)** to set one up.
 
-* 2 hours theory covering key topics EC2, Networking, Storage, Monitoring or Security.  
-* 2 hours Lab putting theory into practice
-* To make the most of this Lab follow below guidelines :
-	* Follow the **High Level instructions** instead of the detailed instructions.
-	* Use the detailed Instructions only when you are desperate.
-	* Attempt to do the instructions by going through AWS public documentations.
-	* Reference to related documentations are included in high level instructions.
-	* Ask Question, we are here to help.
-	* Explore service during the Lab.
+To make the most of this Lab follow below guidelines :
+
+</center>
+
+Guideline
+=========
+<center>
+
+Attempt to do the lab using **High Level instructions** instead of the Detailed instructions.<br>
+Each high level instructions will include **AWS public documentation** that you could **review** to put things together.<br>
+Use the **Detailed Instructions** only if you are desperate or you are completely new to AWS.<br>
+**Take time** to **explore** the service your are building during the Lab.<br>
+**Ask Question**, we are here to help.
+
+**HAVE FUN !**
+
+</center>
 

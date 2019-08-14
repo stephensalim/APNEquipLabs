@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>APN Equip Labs</title>
+    <title>APN Equip Lab on APN Equip Labs</title>
     <link>http://example.org/</link>
-    <description>Recent content on APN Equip Labs</description>
+    <description>Recent content in APN Equip Lab on APN Equip Labs</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
+    <lastBuildDate>Wed, 14 Aug 2019 13:13:19 +1000</lastBuildDate>
     
 	<atom:link href="http://example.org/index.xml" rel="self" type="application/rss+xml" />
     
@@ -85,6 +86,15 @@ In this lab, we will be using the VPC Wizard to create a VPC with private and pu
     </item>
     
     <item>
+      <title>VPC Lab</title>
+      <link>http://example.org/high-level-instruction/vpc-lab/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/high-level-instruction/vpc-lab/</guid>
+      <description>Amazon Virtual Private Cloud (Amazon VPC) lets you provision a logically isolated section of the AWS Cloud where you can launch AWS resources in a virtual network that you define. You have complete control over your virtual networking environment, including selection of your own IP address range, creation of subnets, and configuration of route tables and network gateways. You can use both IPv4 and IPv6 in your VPC for secure and easy access to resources and applications.</description>
+    </item>
+    
+    <item>
       <title>Add Object to S3 Bucket</title>
       <link>http://example.org/detailed-instructions/s3-lab/add-object-to-s3-bucket/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -142,6 +152,15 @@ Enter a unique name as the User name. In this walkthrough, I chose Emily as the 
     </item>
     
     <item>
+      <title>EC2 Lab</title>
+      <link>http://example.org/high-level-instruction/ec2-lab/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/high-level-instruction/ec2-lab/</guid>
+      <description>Amazon Elastic Compute Cloud (Amazon EC2) is a web service that provides resizable compute capacity in the cloud. Amazon EC2&amp;rsquo;s simple web service interface allows you to obtain and configure capacity with minimal friction. Amazon EC2 reduces the time required to obtain and boot new server instances to minutes, allowing you to quickly scale capacity, both up and down, as your computing requirements change. Amazon EC2 changes the economics of computing by allowing you to pay only for capacity that you actually use.</description>
+    </item>
+    
+    <item>
       <title>Launch EC2 Web Server</title>
       <link>http://example.org/detailed-instructions/ec2-lab/launch-ec2-web-server/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -185,6 +204,15 @@ You should see a website that looks like the following:</description>
 To get started, go to the Services drop down menu in the top left corner and go to the EC2 dashboard.
  Select Launch Instance, and then in the Quick Start section select the first Amazon Linux 2 AMI and click Select.
  In the Choose Instance Type tab, select the t2.micro instance size and click Next.</description>
+    </item>
+    
+    <item>
+      <title>IAM Lab</title>
+      <link>http://example.org/high-level-instruction/iam-lab/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/high-level-instruction/iam-lab/</guid>
+      <description>AWS Identity and Access Management (IAM) is a free service that enables you to manage access to AWS services and resources securely. Using IAM, you can create and manage AWS users and groups, and use permissions to allow and deny their access to AWS resources. In the following lab, you will create one of each of the three types of AWS IAM entities: groups, users, and roles. You will also learn about IAM policy documents, which you can attach to entities in order to give them permissions to access AWS resources and services.</description>
     </item>
     
     <item>
@@ -268,6 +296,17 @@ PLEASE NOTE: You must select &amp;ldquo;Amazon Linux AMI&amp;rdquo;, NOT &amp;ld
  In the S3 Console, click on the link representing the bucket you created, and then select the Properties tab.
  Click on the Versioning tile, select the Enable versioning radio button, and then click Save.
  Choose an object that you are able to edit on your computer, and upload it using the steps from the Add an Object to a Bucket section above.</description>
+    </item>
+    
+    <item>
+      <title>S3 Lab</title>
+      <link>http://example.org/high-level-instruction/s3-lab/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/high-level-instruction/s3-lab/</guid>
+      <description>Amazon Simple Storage Service (S3) provides a simple web services interface that can be used to store and retrieve any amount of data, at any time, from anywhere on the web. This lab is designed to demonstrate how to interact with S3 to store, view, move and delete objects.
+This lab will walk you through the following:
+ Creating a bucket in S3 Adding an object to the S3 bucket View the object in S3 Move the object in S3 Enable bucket versioning Delete the object and the bucket in S3  Challange</description>
     </item>
     
     <item>
@@ -449,6 +488,15 @@ If this is the first time you enabled AWS Config, your console will direct you t
  Click Run query and watch the Logs populate as per screenshot below.
  Now going through for these log and locate the invalid user might be a bit of a hassle, let&amp;rsquo;s put in a filter to only see failed SSH attempts.
  Update the query field with this query, and click on Run Query</description>
+    </item>
+    
+    <item>
+      <title>Monitoring Lab</title>
+      <link>http://example.org/high-level-instruction/monitoring-lab/</link>
+      <pubDate>Wed, 14 Aug 2019 13:30:05 +1000</pubDate>
+      
+      <guid>http://example.org/high-level-instruction/monitoring-lab/</guid>
+      <description>Amazon CloudWatch is a monitoring and observability service built for DevOps engineers, developers, site reliability engineers (SREs), and IT managers. CloudWatch provides you with data and actionable insights to monitor your applications, respond to system-wide performance changes, optimize resource utilization, and get a unified view of operational health. CloudWatch collects monitoring and operational data in the form of logs, metrics, and events, providing you with a unified view of AWS resources, applications, and services that run on AWS and on-premises servers.</description>
     </item>
     
   </channel>
