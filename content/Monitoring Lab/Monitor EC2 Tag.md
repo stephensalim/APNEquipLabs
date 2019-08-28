@@ -44,8 +44,6 @@ reconfig-mediation using AWS-StopEC2Instance AWS Systems Manager Automation.
 9.  From this point, you should be able to see your AWS Config menu on
     the left hand side of the console.
 
-	![](/Monitoring Lab/images/config-media-image18.png)
-
 10. Click on **Rules > Add rule**
 
 11. Search for **required-tags** and click on the managed rule.

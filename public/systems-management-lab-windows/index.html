@@ -9,7 +9,7 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>1. Navigate the VPC Dashboard :: APN Equip Labs</title>
+    <title>Systems Management Lab (Windows) :: APN Equip Labs</title>
 
     
     <link href="/css/nucleus.css?1566961270" rel="stylesheet">
@@ -35,7 +35,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/vpc-lab/navigate-the-vpc-dashboard/">
+  <body class="" data-url="/systems-management-lab-windows/">
     <nav id="sidebar" class="showVisitedLinks">
 
 
@@ -75,7 +75,7 @@
   
     
     <li data-nav-id="/vpc-lab/" title="VPC Lab" class="dd-item 
-        parent
+        
         
         
         ">
@@ -101,7 +101,7 @@
  
   
     
-      <li data-nav-id="/vpc-lab/navigate-the-vpc-dashboard/" title="1. Navigate the VPC Dashboard" class="dd-item active">
+      <li data-nav-id="/vpc-lab/navigate-the-vpc-dashboard/" title="1. Navigate the VPC Dashboard" class="dd-item ">
         <a href="/vpc-lab/navigate-the-vpc-dashboard/">
         1. Navigate the VPC Dashboard
         <i class="fas fa-check read-icon"></i>
@@ -839,8 +839,8 @@
   
     
     <li data-nav-id="/systems-management-lab-windows/" title="Systems Management Lab (Windows)" class="dd-item 
-        
-        
+        parent
+        active
         
         ">
       <a href="/systems-management-lab-windows/">
@@ -1066,8 +1066,6 @@
                         </a>
                     </span>
                   
-                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
-                  
                   <span class="links">
                  
                  
@@ -1078,13 +1076,7 @@
             
           
           
-            
-            
-          
-          
-            <a href='/'>Welcome</a> > <a href='/vpc-lab/'>VPC Lab</a> > 1. Navigate the VPC Dashboard
-          
-         
+            <a href='/'>Welcome</a> > Systems Management Lab (Windows)
           
          
           
@@ -1093,13 +1085,6 @@
                   </span>
                 </div>
                 
-                    <div class="progress">
-    <div class="wrapper">
-
-    </div>
-</div>
-
-                
               </div>
             </div>
             
@@ -1107,79 +1092,35 @@
         
         </div>
         
+          <div id="chapter">
+        
         <div id="body-inner">
-          
-            <h1>
-              
-              1. Navigate the VPC Dashboard
-            </h1>
           
 
         
 
 
 
-<p>To get started, let&rsquo;s take a look at the VPC Dashboard.</p>
 
-<p><img src="/VPC Lab/images/image2.png" alt="" /></p>
+	<p><strong>Amazon CloudWatch</strong> is a monitoring and observability service built for DevOps engineers, developers, site reliability engineers (SREs), and IT managers. CloudWatch provides you with data and actionable insights to monitor your applications, respond to system-wide performance changes, optimize resource utilization, and get a unified view of operational health. CloudWatch collects monitoring and operational data in the form of logs, metrics, and events, providing you with a unified view of AWS resources, applications, and services that run on AWS and on-premises servers. You can use CloudWatch to detect anomalous behavior in your environments, set alarms, visualize logs and metrics side by side, take automated actions, troubleshoot issues, and discover insights to keep your applications
+running smoothly.</p>
 
-<p>In every region, a <strong>default VPC</strong> has already been created for you. So,
-even if you haven&rsquo;t created anything in your account yet, you will see
-some VPC resources already there.</p>
+<p><strong>AWS Config</strong> is a service that enables you to assess, audit, and evaluate the configurations of your AWS resources. Config continuously monitors and records your AWS resource configurations and allows you to automate the evaluation of recorded configurations against desired configurations. With Config, you can review changes in configurations and relationships between AWS resources, dive into detailed resource configuration histories, and determine your overall compliance against the configurations specified in your internal guidelines. This enables you to simplify compliance auditing, security analysis, change management, and operational troubleshooting.</p>
 
-<p>In this lab, we will be using the <strong>VPC Wizard</strong> to create a VPC with
-private and public subnets pre-configured. Once you&rsquo;re more familiar
-with AWS networking, you can create VPCs and subnets without the Wizard
-to create custom networking configurations.</p>
+<p>In this lab we will be building an EC2 instance and set up a CloudWatch alarm to trigger notification when the CPU is detected to be highly utilized. We will also be pushing the Operating System Systems log to cloudWatch logs.</p>
 
-<p>During the VPC wizard set up, you will need to specify an <strong>Elastic IP
-Address (EIP)</strong>. An Elastic IP is a static public IPv4 address that you
-can attach to AWS resources, such as EC2 instances and NAT Gateways.
-Elastic IPs are required for NAT Gateways.</p>
+<p>Plus, as a bonus you will also learn how to configure AWS Config to detect when EC2 instance is not tagged, as well as a billing alarm to keep your AWS cost in check.</p>
 
-<p>To create one, go to <strong>Elastic IPs</strong> in the sidebar, and press
-<strong>Allocate new address</strong>, <strong>Allocate</strong>, <strong>Close.</strong></p>
 
-<p><img src="/VPC Lab/images/image4.png" alt="" /></p>
 
-<p>Now click on <strong>VPC Dashboard</strong> in the top left corner to go back to the
-main VPC page.</p>
-
-<p>Click on <strong>Launch VPC Wizard</strong> to start the VPC Wizard and select &lsquo;<strong>VPC
-with Public and Private Subnets&rsquo;</strong>.</p>
-
-<p><img src="/VPC Lab/images/image5.png" alt="" /></p>
-
-<p>This option will create a VPC with a /16 CIDR block and two subnets with
-/24 CIDR blocks which have 256 total IP addresses each. In each subnet,
-<strong>AWS reserves 5 IP addresses</strong>. In this case, that leaves you 251 IP
-addresses per subnet. Fill in the <strong>VPC name</strong> (I called my VPC
-&ldquo;<strong>test&rdquo;</strong>) and select your <strong>Elastic IP Allocation ID</strong> from the
-drop-down. For this lab, we will leave the rest of the default
-configuration as is.</p>
-
-<p><img src="/VPC Lab/images/image6.png" alt="" /></p>
-
-<p>This Elastic IP will be used to create a <strong>Network Address Translation
-(NAT) gateway</strong> for the private subnet. NAT gateway is a managed, highly
-scalable NAT service that gives your resources access to the internet
-but doesn&rsquo;t allow anyone on the internet access to your resources. NAT
-is helpful for when a resource needs to pull down updates from the
-internet but should not be publicly accessible.</p>
-
-<p>Click on <strong>Create VPC</strong>. This step will take a couple minutes. Once your
-VPC has been created, click <strong>OK</strong>.</p>
-
-<p>Wow! It only took you a few minutes to set up an entire virtual private
-network, including subnets for public and private resources, routing
-rules, and a scalable NAT service.</p>
 
 
 <footer class=" footline" >
 	
 </footer>
 
-
+        
+            </div> 
         
         </div> 
         
@@ -1211,218 +1152,8 @@ rules, and a scalable NAT service.</p>
             
                 
                     
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
                         
                         
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
                     
                 
                 
@@ -1527,6 +1258,102 @@ rules, and a scalable NAT service.</p>
                     
             
         
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
                     
             
         
@@ -1752,6 +1579,118 @@ rules, and a scalable NAT service.</p>
             
         
                     
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
                         
             
             
@@ -1792,6 +1731,7 @@ rules, and a scalable NAT service.</p>
             
                 
                     
+                    
                 
                 
 
@@ -1807,6 +1747,9 @@ rules, and a scalable NAT service.</p>
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -1940,10 +1883,10 @@ rules, and a scalable NAT service.</p>
 	 
 	 
 		
-			<a class="nav nav-prev" href="/vpc-lab/" title="VPC Lab"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/monitoring-lab/monitor-estimated-charges/" title="8. Monitor Estimated Charges"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/vpc-lab/what-did-vpc-wizard-create-/" title="2. What Did VPC Wizard Create ?" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/security-lab/" title="Security Lab" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -1973,4 +1916,3 @@ rules, and a scalable NAT service.</p>
 
   </body>
 </html>
-

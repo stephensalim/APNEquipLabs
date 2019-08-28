@@ -59,6 +59,10 @@
   </url>
   
   <url>
+    <loc>http://example.org/ec2-lab-windows/</loc>
+  </url>
+  
+  <url>
     <loc>http://example.org/ec2-lab/browse-your-web-server/</loc>
   </url>
   
@@ -124,6 +128,10 @@
   
   <url>
     <loc>http://example.org/monitoring-lab/</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.org/systems-management-lab-windows/</loc>
   </url>
   
   <url>
