@@ -27,7 +27,7 @@ see this in action.
 	Now instead of seeing a summary of IAM users, groups, and roles, you
 will see multiple errors.
 
-	![](/Detailed Instructions/IAM Lab/images/image7.png)
+	![](/IAM Lab/images/image7.png)
 
 3. Now we will give the user extra permissions in order to allow access to
 IAM.
@@ -37,14 +37,14 @@ on this user's page. Go to the **Permissions** tab and click on **Add
 permissions**. Adding permissions this way will attach policies directly
 to the user rather than to the entire group.
 
-	![](/Detailed Instructions/IAM Lab/images/image8.png)
+	![](/IAM Lab/images/image8.png)
 
 	This time, we will **Attach existing policies directly**. Type IAM into
 the search bar to find a managed policy which will give this user access
 to IAM. Select the **IAMFullAccess** policy and click on **Next:
 Review** and then **Add permissions**.
 
-	![](/Detailed Instructions/IAM Lab/images/image9.png)
+	![](/IAM Lab/images/image9.png)
 
 	Go back to the browser where you are signed in as the user. IAM policies
 are evaluated every time an action is attempted, so we just need to

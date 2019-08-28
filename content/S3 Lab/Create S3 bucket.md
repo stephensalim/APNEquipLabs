@@ -17,7 +17,7 @@ in and out of the bucket.*
 
 2.  Click **Create Bucket**. The **Create a Bucket** dialog box appears.
 
-	![](/Detailed Instructions/S3 Lab/images/image3.png)
+	![](/S3 Lab/images/image3.png)
 
 3.  Enter a bucket name in the **Bucket Name** field. The bucket name
     you choose must be unique across all existing bucket names in Amazon
@@ -49,13 +49,13 @@ in and out of the bucket.*
     this lab. Click **Next**
     twice.
     
-    ![](/Detailed Instructions/S3 Lab/images/image4.png)
+    ![](/S3 Lab/images/image4.png)
 
 7.  Finally, review your settings and click **Create bucket**. When
     Amazon S3 successfully creates your bucket, the console displays
     your empty bucket in the **Buckets** panel.
 
-	![](/Detailed Instructions/S3 Lab/images/image5.png)
+	![](/S3 Lab/images/image5.png)
 
 **Well done - you've created your first bucket in Amazon S3!**
 

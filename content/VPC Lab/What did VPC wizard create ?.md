@@ -17,14 +17,14 @@ Route Table** for your VPC. Any subnets in the VPC that do not have a
 route table directly associated with it will use this route table by
 default. To explore this further, click on the **Route table link**.
 
-![](/Detailed Instructions/VPC Lab/images/image7.png)
+![](/VPC Lab/images/image7.png)
 
 You are now in the **Route Tables** dashboard, filtered on the main
 route table of the VPC you just created. That means that there should be
 only one route table shown. Select this route table and click on the
 **Subnet Associations** tab.
 
-![](/Detailed Instructions/VPC Lab/images/image8.png)
+![](/VPC Lab/images/image8.png)
 
 You can see that there are no **explicit subnet associations** on this
 route table. However, since this is the main route table for the VPC,
@@ -57,7 +57,7 @@ IGWs are another managed and scalable service like the NAT Gateway
 except that it allows access from the internet to your resources in the
 VPC, making your resources publicly accessible.
 
-![](/Detailed Instructions/VPC Lab/images/image9.png)
+![](/VPC Lab/images/image9.png)
 
 There is a reason why this route table is not the main route table. It
 is best practice for your VPC's main route table to not have a route to
@@ -81,7 +81,7 @@ match any rules, the \* rule is applied, and the traffic is denied.
 Default NACLs allow all inbound and outbound traffic, as shown below,
 unless customized.
 
-![](/Detailed Instructions/VPC Lab/images/image10.png)
+![](/VPC Lab/images/image10.png)
 
 Allowing all traffic in and out of your subnets is not a good security
 posture. However, it is possible to achieve good security with this

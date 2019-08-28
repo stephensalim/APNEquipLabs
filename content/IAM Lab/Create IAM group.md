@@ -27,7 +27,7 @@ policies to each group rather than individual users.
     bar, and then selecting the correct policy. Go to the **Next Step**
     and then **Create Group**.
 
-	![](/Detailed Instructions/IAM Lab/images/image2.jpg)
+	![](/IAM Lab/images/image2.jpg)
 
 	The group **Power_Users** is now created and you are back on the
 	**Groups** page. Click on the **Power_Users** group and go to the

@@ -11,14 +11,14 @@ In This Section we will monitor the EC2 instance CPU Utilization, and trigger an
     and then click **Enable Detailed Monitoring** to provide monitoring
     data at a 1 minute interval vs. the default of 5 minutes.
     
-    ![](/Detailed Instructions/Monitoring Lab/images/image13.jpg)
+    ![](/Monitoring Lab/images/image13.jpg)
 
 2.  Click the **Description** tab and copy your "Instance ID" to the
     clipboard or other location such as notepad.
 
 3.  Click the **Monitoring** tab and click **Create Alarm**.
 
-    ![](/Detailed Instructions/Monitoring Lab/images/image14.jpg)
+    ![](/Monitoring Lab/images/image14.jpg)
     
 4.  To the right of the "Send a notification to:" drop down, select the
     SNS Topic you created in the previous step. In the "Whenever:"
@@ -29,7 +29,7 @@ In This Section we will monitor the EC2 instance CPU Utilization, and trigger an
     the **Description** tab and then click back to the **Monitoring**
     tab and proceed to set up the Alarm.
 
-	![](/Detailed Instructions/Monitoring Lab/images/image15.jpg)
+	![](/Monitoring Lab/images/image15.jpg)
 
 5.  In the top left area of the AWS Console select **Services >
     CloudWatch**.
@@ -37,7 +37,7 @@ In This Section we will monitor the EC2 instance CPU Utilization, and trigger an
 6.  Click Alarms in the left pane of the Console and check the State of
     your Alarm.
 
-	![](/Detailed Instructions/Monitoring Lab/images/image16.jpg)
+	![](/Monitoring Lab/images/image16.jpg)
 
 7.  In the CloudWatch Console select **Metrics** in the left pane.
     Select the **All Metrics** tab and paste your Instance ID into the
@@ -46,7 +46,7 @@ In This Section we will monitor the EC2 instance CPU Utilization, and trigger an
     to 1 Minute. Change the graph interval to a custom value of 30m and
     select Auto refresh of 1min.
     
-    ![](/Detailed Instructions/Monitoring Lab/images/image17.jpg)
+    ![](/Monitoring Lab/images/image17.jpg)
 
 8.  After 5 minutes, the stress tool will begin to simulate CPU workload
     and trigger the Alarm once the threshold is reached. You can view
@@ -54,7 +54,7 @@ In This Section we will monitor the EC2 instance CPU Utilization, and trigger an
     setup an email notification you will receive an email alert when the
     Alarm is triggered.
     
-    ![](/Detailed Instructions/Monitoring Lab/images/image18.jpg)
+    ![](/Monitoring Lab/images/image18.jpg)
 
 9.	While you wait for this alarm to kick off, you can move on to the next section of the lab. 
     (If alarm is not triggered after 10 mins, please ask for help).

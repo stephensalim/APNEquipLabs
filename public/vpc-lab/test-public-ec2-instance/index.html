@@ -12,20 +12,20 @@
     <title>4. Test Public EC2 Instance :: APN Equip Labs</title>
 
     
-    <link href="/css/nucleus.css?1566960404" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1566960404" rel="stylesheet">
-    <link href="/css/hybrid.css?1566960404" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1566960404" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1566960404" rel="stylesheet">
-    <link href="/css/auto-complete.css?1566960404" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1566960404" rel="stylesheet">
-    <link href="/css/theme.css?1566960404" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1566960404" rel="stylesheet">
+    <link href="/css/nucleus.css?1566960944" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1566960944" rel="stylesheet">
+    <link href="/css/hybrid.css?1566960944" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1566960944" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1566960944" rel="stylesheet">
+    <link href="/css/auto-complete.css?1566960944" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1566960944" rel="stylesheet">
+    <link href="/css/theme.css?1566960944" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1566960944" rel="stylesheet">
     
-      <link href="/css/theme-darkblue.css?1566960404" rel="stylesheet">
+      <link href="/css/theme-darkblue.css?1566960944" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1566960404"></script>
+    <script src="/js/jquery-3.3.1.min.js?1566960944"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -51,14 +51,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1566960404"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1566960404"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1566960944"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1566960944"></script>
 <script type="text/javascript">
     
         var baseurl = "http:\/\/example.org\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1566960404"></script>
+<script type="text/javascript" src="/js/search.js?1566960944"></script>
 
     
   </div>
@@ -1088,7 +1088,7 @@ addresses and DNS records associated with the instance. However, you can
 see that this instance doesn&rsquo;t have a public IP or DNS yet. We will need
 at least one of these to ping this instance via the internet.</p>
 
-<p><img src="/Detailed Instructions/VPC Lab/images/image13.png" alt="" /></p>
+<p><img src="/VPC Lab/images/image13.png" alt="" /></p>
 
 <p>To fix this, we are going to attach an <strong>Elastic IP</strong> to the EC2
 instance. First, copy the <strong>Instance ID</strong> of this EC2 instance by
@@ -1102,7 +1102,7 @@ time, <strong>do not</strong> click on the <strong>Close</strong> button. Instea
 <strong>Allocate new address, Allocate</strong>, and then click on the <strong>Elastic IP</strong>
 link in the <strong>New address request succeeded</strong> box.</p>
 
-<p><img src="/Detailed Instructions/VPC Lab/images/image14.png" alt="" /></p>
+<p><img src="/VPC Lab/images/image14.png" alt="" /></p>
 
 <p>Now you are back on the <strong>Elastic IPs</strong> dashboard. Go to the <strong>Actions</strong>
 dropdown and select <strong>Associate address</strong>. Paste the Instance ID that
@@ -1116,7 +1116,7 @@ route to an IGW.</p>
 
 <p>In the <strong>Description</strong> tab, copy the Elastic IP address.</p>
 
-<p><img src="/Detailed Instructions/VPC Lab/images/image15.png" alt="" /></p>
+<p><img src="/VPC Lab/images/image15.png" alt="" /></p>
 
 <p>To ping the instance, you need to open your CLI. On Windows, open the
 <strong>Command Prompt</strong>. On Mac, open the <strong>Terminal</strong>. Type <strong>ping,</strong> then a
@@ -1149,7 +1149,7 @@ sidebar. Select the instance that you created and look at the
 groups</strong> link. It should be called something similar to
 <strong>launch-wizard-1</strong>.</p>
 
-<p><img src="/Detailed Instructions/VPC Lab/images/image16.png" alt="" /></p>
+<p><img src="/VPC Lab/images/image16.png" alt="" /></p>
 
 <p>You are now in the <strong>Security Groups</strong> dashboard. Go to the <strong>Inbound</strong>
 tab.</p>
@@ -1163,7 +1163,7 @@ group, which allows all inbound access on SSH port 22.</p>
 allow ICMP traffic rather than SSH traffic. Click on the <strong>Edit</strong>
 button.</p>
 
-<p><img src="/Detailed Instructions/VPC Lab/images/image17.png" alt="" /></p>
+<p><img src="/VPC Lab/images/image17.png" alt="" /></p>
 
 <p>Click on <strong>SSH</strong> to open the drop-down and change it to <strong>All</strong> <strong>ICMP -
 IPv4</strong>. Click <strong>Save</strong>.</p>
@@ -1176,7 +1176,7 @@ effect immediately, so we can try to ping the instance again right away.</p>
 <p>Go back to your CLI and hit the <strong>up arrow</strong> and then <strong>enter</strong> to try
 and ping the instance again.</p>
 
-<p><img src="/Detailed Instructions/VPC Lab/images/image18.png" alt="" /></p>
+<p><img src="/VPC Lab/images/image18.png" alt="" /></p>
 
 <p><strong>Good job! You have successfully troubleshooted why an EC2 instance was
 unreachable and then accessed it over the internet.</strong></p>
@@ -1931,19 +1931,19 @@ unreachable and then accessed it over the internet.</strong></p>
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1566960404"></script>
-    <script src="/js/perfect-scrollbar.min.js?1566960404"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1566960404"></script>
-    <script src="/js/jquery.sticky.js?1566960404"></script>
-    <script src="/js/featherlight.min.js?1566960404"></script>
-    <script src="/js/highlight.pack.js?1566960404"></script>
+    <script src="/js/clipboard.min.js?1566960944"></script>
+    <script src="/js/perfect-scrollbar.min.js?1566960944"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1566960944"></script>
+    <script src="/js/jquery.sticky.js?1566960944"></script>
+    <script src="/js/featherlight.min.js?1566960944"></script>
+    <script src="/js/highlight.pack.js?1566960944"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1566960404"></script>
-    <script src="/js/learn.js?1566960404"></script>
-    <script src="/js/hugo-learn.js?1566960404"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1566960944"></script>
+    <script src="/js/learn.js?1566960944"></script>
+    <script src="/js/hugo-learn.js?1566960944"></script>
 
-    <link href="/mermaid/mermaid.css?1566960404" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1566960404"></script>
+    <link href="/mermaid/mermaid.css?1566960944" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1566960944"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

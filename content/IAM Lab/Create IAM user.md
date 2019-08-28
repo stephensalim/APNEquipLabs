@@ -20,7 +20,7 @@ policies attached to a group to which the user belongs.
 	access necessary for their work. This prevents unnecessary extra
 	credentials from being created.
 	
-	![](/Detailed Instructions/IAM Lab/images/image3.png)
+	![](/IAM Lab/images/image3.png)
 
 2. For **console access**, you can choose to have AWS **autogenerate** a
 password or you can type in a **custom** password here. Either way, you
@@ -35,14 +35,14 @@ best practice in order to simplify policy management.
 	If the top of your page doesn't look like the screenshot below, you need
 to scroll up.
 
-	![](/Detailed Instructions/IAM Lab/images/image4.png)
+	![](/IAM Lab/images/image4.png)
 
 4. Go to **Next: Review** and then **Create user**.
 
 	After clicking create user, you will be presented with all of the
 information you will need to get that user started working in AWS.
 
-	![](/Detailed Instructions/IAM Lab/images/image5.png)
+	![](/IAM Lab/images/image5.png)
 
 5. For **programmatic access**, the user will need their **Access key ID**
 and **Secret access key**. Take note of the Secret access key now or
@@ -69,7 +69,7 @@ password.
 9. Back on the **Users** page, click on the **User name** of the user that
 you just created.
 
-	![](/Detailed Instructions/IAM Lab/images/image6.png)
+	![](/IAM Lab/images/image6.png)
 
 10. Go to the **Security credentials** tab. If you forgot to take note of
 the access keys or password before, or if credentials have been

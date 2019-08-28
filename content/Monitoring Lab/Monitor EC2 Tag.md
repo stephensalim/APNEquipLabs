@@ -17,21 +17,21 @@ reconfig-mediation using AWS-StopEC2Instance AWS Systems Manager Automation.
 
 2.  Click on **Get started** button.
 
-	![](/Detailed Instructions/Monitoring Lab/images/config-media-image13.png)
+	![](/Monitoring Lab/images/config-media-image13.png)
 
 3.  Tick on the **Record all resources supported in this region**.
 
-	![](/Detailed Instructions/Monitoring Lab/images/config-media-image14.png)
+	![](/Monitoring Lab/images/config-media-image14.png)
 
 4.  Select **Create a bucket**.
 
 5.  Entere a unique bucket name the **Bucket name** field.
 
-	![](/Detailed Instructions/Monitoring Lab/images/config-media-image15.png)
+	![](/Monitoring Lab/images/config-media-image15.png)
 
 6.  Select **Use an existing AWS Config service-linked role**
 
-	![](/Detailed Instructions/Monitoring Lab/images/config-media-image16.png)
+	![](/Monitoring Lab/images/config-media-image16.png)
 
 7.  Click on **Next**
 
@@ -39,18 +39,18 @@ reconfig-mediation using AWS-StopEC2Instance AWS Systems Manager Automation.
     **This will prepare the AWS config resource recording ready for you
     to deploy the required-tags managed rule.
 
-    ![](/Detailed Instructions/Monitoring Lab/images/config-media-image17.png)
+    ![](/Monitoring Lab/images/config-media-image17.png)
     
 9.  From this point, you should be able to see your AWS Config menu on
     the left hand side of the console.
 
-	![](/Detailed Instructions/Monitoring Lab/images/config-media-image18.png)
+	![](/Monitoring Lab/images/config-media-image18.png)
 
 10. Click on **Rules > Add rule**
 
 11. Search for **required-tags** and click on the managed rule.
 
-    ![](/Detailed Instructions/Monitoring Lab/images/config-media-image19.png)
+    ![](/Monitoring Lab/images/config-media-image19.png)
 
 12. On the **Trigger** section, remove Resources except for
     **EC2:Instance** to only allow this rule to check for changes on
@@ -59,7 +59,7 @@ reconfig-mediation using AWS-StopEC2Instance AWS Systems Manager Automation.
 13. On the **Rule parameters** ensure that CostCenter is the value for
     **tag1Key**
 
-    ![](/Detailed Instructions/Monitoring Lab/images/config-media-image20.png)
+    ![](/Monitoring Lab/images/config-media-image20.png)
 
 14. Under **Choose reconfig-mediation action** select **AWS-StopEC2Instance**
     for the Reconfig-mediation action.
@@ -77,7 +77,7 @@ reconfig-mediation using AWS-StopEC2Instance AWS Systems Manager Automation.
     Once it has completed it's evaluation, you should now see the EC2
     instance you launched in previous steps as being, Noncompliant.
 
-    ![](/Detailed Instructions/Monitoring Lab/images/config-media-image21.png)
+    ![](/Monitoring Lab/images/config-media-image21.png)
 
 17. Optionally, you can select the instance and click on **Reconfig-mediate**
     to execute the pre-defined reconfig-mediation action
@@ -105,5 +105,5 @@ reconfig-mediation using AWS-StopEC2Instance AWS Systems Manager Automation.
 23. Click on the EC2 instance resource and click on Compliance timeline
     to see the timeline of the changes on that EC2 instance.
 
-    ![](/Detailed Instructions/Monitoring Lab/images/config-media-image22.png)
+    ![](/Monitoring Lab/images/config-media-image22.png)
   

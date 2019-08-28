@@ -14,7 +14,7 @@ First, let's create a Simple Notification Service (SNS) Topic so that we can not
     includes your name and optionally a **Display Name** and click
     **Create Topic**.
     
-    ![](/Detailed Instructions/Monitoring Lab/images/image2.png)
+    ![](/Monitoring Lab/images/image2.png)
 
 4.  In the Topic configuration, click **Create Subscription**.
 
@@ -23,7 +23,7 @@ First, let's create a Simple Notification Service (SNS) Topic so that we can not
     if there may potentially be a spam filter that will block the SNS
     messages. Click **Create Subscription**.
     
-    ![](/Detailed Instructions/Monitoring Lab/images/image3.png)
+    ![](/Monitoring Lab/images/image3.png)
 
 6.  A verification email will be sent to your address with the subject
     "AWS Notification -- Subscription Confirmation". Open the email and

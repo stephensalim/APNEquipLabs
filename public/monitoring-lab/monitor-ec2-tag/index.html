@@ -12,20 +12,20 @@
     <title>7. Monitor EC2 Tag :: APN Equip Labs</title>
 
     
-    <link href="/css/nucleus.css?1566960404" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1566960404" rel="stylesheet">
-    <link href="/css/hybrid.css?1566960404" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1566960404" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1566960404" rel="stylesheet">
-    <link href="/css/auto-complete.css?1566960404" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1566960404" rel="stylesheet">
-    <link href="/css/theme.css?1566960404" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1566960404" rel="stylesheet">
+    <link href="/css/nucleus.css?1566960944" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1566960944" rel="stylesheet">
+    <link href="/css/hybrid.css?1566960944" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1566960944" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1566960944" rel="stylesheet">
+    <link href="/css/auto-complete.css?1566960944" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1566960944" rel="stylesheet">
+    <link href="/css/theme.css?1566960944" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1566960944" rel="stylesheet">
     
-      <link href="/css/theme-darkblue.css?1566960404" rel="stylesheet">
+      <link href="/css/theme-darkblue.css?1566960944" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1566960404"></script>
+    <script src="/js/jquery-3.3.1.min.js?1566960944"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -51,14 +51,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1566960404"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1566960404"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1566960944"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1566960944"></script>
 <script type="text/javascript">
     
         var baseurl = "http:\/\/example.org\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1566960404"></script>
+<script type="text/javascript" src="/js/search.js?1566960944"></script>
 
     
   </div>
@@ -1085,21 +1085,21 @@ direct you to the &ldquo;Get Started Page&rdquo;.</p></li>
 
 <li><p>Click on <strong>Get started</strong> button.</p>
 
-<p><img src="/Detailed Instructions/Monitoring Lab/images/config-media-image13.png" alt="" /></p></li>
+<p><img src="/Monitoring Lab/images/config-media-image13.png" alt="" /></p></li>
 
 <li><p>Tick on the <strong>Record all resources supported in this region</strong>.</p>
 
-<p><img src="/Detailed Instructions/Monitoring Lab/images/config-media-image14.png" alt="" /></p></li>
+<p><img src="/Monitoring Lab/images/config-media-image14.png" alt="" /></p></li>
 
 <li><p>Select <strong>Create a bucket</strong>.</p></li>
 
 <li><p>Entere a unique bucket name the <strong>Bucket name</strong> field.</p>
 
-<p><img src="/Detailed Instructions/Monitoring Lab/images/config-media-image15.png" alt="" /></p></li>
+<p><img src="/Monitoring Lab/images/config-media-image15.png" alt="" /></p></li>
 
 <li><p>Select <strong>Use an existing AWS Config service-linked role</strong></p>
 
-<p><img src="/Detailed Instructions/Monitoring Lab/images/config-media-image16.png" alt="" /></p></li>
+<p><img src="/Monitoring Lab/images/config-media-image16.png" alt="" /></p></li>
 
 <li><p>Click on <strong>Next</strong></p></li>
 
@@ -1107,18 +1107,18 @@ direct you to the &ldquo;Get Started Page&rdquo;.</p></li>
 **This will prepare the AWS config resource recording ready for you
 to deploy the required-tags managed rule.</p>
 
-<p><img src="/Detailed Instructions/Monitoring Lab/images/config-media-image17.png" alt="" /></p></li>
+<p><img src="/Monitoring Lab/images/config-media-image17.png" alt="" /></p></li>
 
 <li><p>From this point, you should be able to see your AWS Config menu on
 the left hand side of the console.</p>
 
-<p><img src="/Detailed Instructions/Monitoring Lab/images/config-media-image18.png" alt="" /></p></li>
+<p><img src="/Monitoring Lab/images/config-media-image18.png" alt="" /></p></li>
 
 <li><p>Click on <strong>Rules &gt; Add rule</strong></p></li>
 
 <li><p>Search for <strong>required-tags</strong> and click on the managed rule.</p>
 
-<p><img src="/Detailed Instructions/Monitoring Lab/images/config-media-image19.png" alt="" /></p></li>
+<p><img src="/Monitoring Lab/images/config-media-image19.png" alt="" /></p></li>
 
 <li><p>On the <strong>Trigger</strong> section, remove Resources except for
 <strong>EC2:Instance</strong> to only allow this rule to check for changes on
@@ -1127,7 +1127,7 @@ EC2:Instances</p></li>
 <li><p>On the <strong>Rule parameters</strong> ensure that CostCenter is the value for
 <strong>tag1Key</strong></p>
 
-<p><img src="/Detailed Instructions/Monitoring Lab/images/config-media-image20.png" alt="" /></p></li>
+<p><img src="/Monitoring Lab/images/config-media-image20.png" alt="" /></p></li>
 
 <li><p>Under <strong>Choose reconfig-mediation action</strong> select <strong>AWS-StopEC2Instance</strong>
 for the Reconfig-mediation action.</p></li>
@@ -1145,7 +1145,7 @@ Automation document please refer to this
 Once it has completed it&rsquo;s evaluation, you should now see the EC2
 instance you launched in previous steps as being, Noncompliant.</p>
 
-<p><img src="/Detailed Instructions/Monitoring Lab/images/config-media-image21.png" alt="" /></p></li>
+<p><img src="/Monitoring Lab/images/config-media-image21.png" alt="" /></p></li>
 
 <li><p>Optionally, you can select the instance and click on <strong>Reconfig-mediate</strong>
 to execute the pre-defined reconfig-mediation action
@@ -1173,7 +1173,7 @@ list.</p></li>
 <li><p>Click on the EC2 instance resource and click on Compliance timeline
 to see the timeline of the changes on that EC2 instance.</p>
 
-<p><img src="/Detailed Instructions/Monitoring Lab/images/config-media-image22.png" alt="" /></p></li>
+<p><img src="/Monitoring Lab/images/config-media-image22.png" alt="" /></p></li>
 </ol>
 
 
@@ -1929,19 +1929,19 @@ to see the timeline of the changes on that EC2 instance.</p>
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1566960404"></script>
-    <script src="/js/perfect-scrollbar.min.js?1566960404"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1566960404"></script>
-    <script src="/js/jquery.sticky.js?1566960404"></script>
-    <script src="/js/featherlight.min.js?1566960404"></script>
-    <script src="/js/highlight.pack.js?1566960404"></script>
+    <script src="/js/clipboard.min.js?1566960944"></script>
+    <script src="/js/perfect-scrollbar.min.js?1566960944"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1566960944"></script>
+    <script src="/js/jquery.sticky.js?1566960944"></script>
+    <script src="/js/featherlight.min.js?1566960944"></script>
+    <script src="/js/highlight.pack.js?1566960944"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1566960404"></script>
-    <script src="/js/learn.js?1566960404"></script>
-    <script src="/js/hugo-learn.js?1566960404"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1566960944"></script>
+    <script src="/js/learn.js?1566960944"></script>
+    <script src="/js/hugo-learn.js?1566960944"></script>
 
-    <link href="/mermaid/mermaid.css?1566960404" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1566960404"></script>
+    <link href="/mermaid/mermaid.css?1566960944" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1566960944"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

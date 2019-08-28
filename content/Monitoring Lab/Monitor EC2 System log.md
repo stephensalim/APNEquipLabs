@@ -12,15 +12,15 @@ In this section, we will explore CloudWatch to view EC2 System Logs
 
 3. Type in **/var/log/messages** in the filter field.
 
-	![](/Detailed Instructions/Monitoring Lab/images/image25.png)
+	![](/Monitoring Lab/images/image25.png)
 
 4. Click on the **/var/log/messages** log group, and locate your EC2 instance ID, then 	click on it.
 	
-	![](/Detailed Instructions/Monitoring Lab/images/image26.png)
+	![](/Monitoring Lab/images/image26.png)
 
 5. You should see all the System Log of the Operating Systems in the CloudWatch Logs.
 
-	![](/Detailed Instructions/Monitoring Lab/images/image27.png) 
+	![](/Monitoring Lab/images/image27.png) 
  
 6. These log is generated from below User Data Section of the EC2 instance. This is 	how you would push any machine log from within your operating system to CloudWatch.
 

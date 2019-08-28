@@ -13,12 +13,12 @@ menu. [ ]{.underline}
 
 1.  Click on Launch Instance
 
-	![](/Detailed Instructions/EC2 Lab/images/image7.png)
+	![](/EC2 Lab/images/image7.png)
 
 8.  In the **Quick Start** section, select the first Amazon Linux 2 AMI
     and click **Select.**
 
-    ![](/Detailed Instructions/EC2 Lab/images/image8.png)
+    ![](/EC2 Lab/images/image8.png)
 
 9.  In the Choose Instance Type tab, select the t2.micro instance size
     and click **Next**.
@@ -63,7 +63,7 @@ menu. [ ]{.underline}
     is allowed from Anywhere *(you'll notice, that "Anywhere is the same
     as '0.0.0.0/0')*. Click **Add Rule**.
 
-    ![](/Detailed Instructions/EC2 Lab/images/image9.png)
+    ![](/EC2 Lab/images/image9.png)
 
 15. Click the **Review and Launch** button after configuring the
     security group.
@@ -83,4 +83,4 @@ menu. [ ]{.underline}
 19. Click the checkbox next to your web server to view details about
     this EC2 instance.
 
-	![](/Detailed Instructions/EC2 Lab/images/image10.png)
+	![](/EC2 Lab/images/image10.png)

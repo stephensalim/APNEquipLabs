@@ -40,7 +40,7 @@ account.
 3.  **In the navigation pane, click Preferences, and then select
     the Receive Billing Alerts check box.**
     
-    ![](/Detailed Instructions/Monitoring Lab/images/image19.jpg)
+    ![](/Monitoring Lab/images/image19.jpg)
 
 **Step 2: Create a Billing Alarm**
 
@@ -67,19 +67,19 @@ monitoring of your estimated charges for the first time, it takes about
 4.  **In the CloudWatch Metrics by Category pane, under Billing Metrics,
     click Total Estimated Charge.**
     
-    ![](/Detailed Instructions/Monitoring Lab/images/image20.jpg)
+    ![](/Monitoring Lab/images/image20.jpg)
 
 5.  Under **Billing \> Total Estimated Charge**, select
     the **EstimatedCharges** metric to view a graph of billing data in
     the lower pane.
     
-    ![](/Detailed Instructions/Monitoring Lab/images/image21.jpg)
+    ![](/Monitoring Lab/images/image21.jpg)
 
 6.  Click **Next**, and then in the **Alarm Threshold** pane, in
     the **Name** box, type a unique, friendly name for the alarm (for
     example, My Estimated Charges).
     
-    ![](/Detailed Instructions/Monitoring Lab/images/image22.jpg)
+    ![](/Monitoring Lab/images/image22.jpg)
 
 7.  In the Description box, enter a description for the alarm (for
     example, Estimated Monthly Charges).
@@ -103,7 +103,7 @@ monitoring of your estimated charges for the first time, it takes about
 
 	**Note: If you create a new Amazon SNS topic, the email account associated with the topic will receive a subscription confirmation email. You must confirm the subscription in order to receive future email notifications when the alarm is triggered.**
 	
-	![](/Detailed Instructions/Monitoring Lab/images/image23.jpg)
+	![](/Monitoring Lab/images/image23.jpg)
 	
 11. Click **Create Alarm**.
 

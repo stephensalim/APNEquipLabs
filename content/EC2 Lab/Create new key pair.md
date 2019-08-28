@@ -18,18 +18,18 @@ you to use in this lab.
     bottom of the leftmost menu. This will display a page to manage your
     SSH key pairs.
 
-	![Image](/Detailed Instructions/EC2 Lab/images/image2.png)
+	![Image](/EC2 Lab/images/image2.png)
 
 4.  To create a new SSH key pair, click the **Create Key Pair** button
     at the top of the browser window.
 
-    ![](/Detailed Instructions/EC2 Lab/images/image3.png)
+    ![](/EC2 Lab/images/image3.png)
 
 5.  In the resulting pop up window, type *\[First Name\]-\[Last
     Name\]-ImmersionDay* into the **Key Pair Name:** text box and click
     **Create.**
     
-    ![](/Detailed Instructions/EC2 Lab/images/image4.png)
+    ![](/EC2 Lab/images/image4.png)
 
 6.  The page will download the file "*\[Your-Name\]-*ImmersionDay.pem"
     to the local drive. Follow the browser instructions to save the file

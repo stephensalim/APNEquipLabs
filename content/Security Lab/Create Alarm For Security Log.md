@@ -12,15 +12,15 @@ In this section, we will create a filter to the /var/log/secure LogGroup to loca
 
 3. Type in **/var/log/secure** in the filter field.
 
-	![](/Detailed Instructions/Security Lab/images/image25.png)
+	![](/Security Lab/images/image25.png)
 
 4. Select on the **/var/log/secure** log group, then click on **Create Metric Filter**
 	
-	![](/Detailed Instructions/Security Lab/images/image28.png)
+	![](/Security Lab/images/image28.png)
 
 5. Enter `[Mon, day, timestamp, ip, id, status = Invalid, ...]` in the Filter pattern field, then click **Assign Metric**
 
-	![](/Detailed Instructions/Security Lab/images/image29.png) 
+	![](/Security Lab/images/image29.png) 
 
 6. Enter `Invalid SSH attempt filter` in Filter Name.
 
@@ -28,25 +28,25 @@ In this section, we will create a filter to the /var/log/secure LogGroup to loca
 
 8. Enter `Invalid SSH sttempt` in Metric dimension, then click **Create Filter**
 
-	![](/Detailed Instructions/Security Lab/images/image30.png) 
+	![](/Security Lab/images/image30.png) 
 
 9. You should now be able to see the filter being created as below, and click **Create Alarm**
 
-    ![](/Detailed Instructions/Security Lab/images/image31.png) 
+    ![](/Security Lab/images/image31.png) 
 
 10. Set `Sum` Statistic, and 10 seconds for `Period`.
 
 11. Please refer to this picture for the rest of the settings, once you are done click **Next**
 
-    ![](/Detailed Instructions/Security Lab/images/image32.png) 
+    ![](/Security Lab/images/image32.png) 
 
 12. Configure the Alarm to send notification to the SNS topic you created before as per the image below, then click **Next**
 
-    ![](/Detailed Instructions/Security Lab/images/image33.png) 
+    ![](/Security Lab/images/image33.png) 
 
 13. Enter the unique Alarm name for easy identification, then click **Next**
 
 14. Confirm the settings of the alarm and click **Create Alarm**
 
-    ![](/Detailed Instructions/Security Lab/images/image34a.png)
-    ![](/Detailed Instructions/Security Lab/images/image34b.png) 
+    ![](/Security Lab/images/image34a.png)
+    ![](/Security Lab/images/image34b.png) 

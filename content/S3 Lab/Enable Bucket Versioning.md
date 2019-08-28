@@ -10,7 +10,7 @@ to retain the old version, you can turn on bucket versioning.
 1.  In the S3 Console, click on the link representing the bucket you
     created, and then select the **Properties** tab.
 
-	![](/Detailed Instructions/S3 Lab/images/image7.png)
+	![](/S3 Lab/images/image7.png)
 
 2.  Click on the **Versioning** tile, select the **Enable versioning**
     radio button, and then click **Save**.
@@ -27,7 +27,7 @@ to retain the old version, you can turn on bucket versioning.
 6.  Now click on the object's link in the S3 bucket and click on the
     words **Latest version** (to the right of the object's name).
 
-	![](/Detailed Instructions/S3 Lab/images/image8.png)
+	![](/S3 Lab/images/image8.png)
 
 	This shows the different versions of the object in the bucket. You can
 	click on the **download** icon and view the different versions of the

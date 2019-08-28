@@ -48,7 +48,7 @@ in a browser.
     In the Everyone dialogue, under the **Object access** section, tick
     the **Read** box, and then click **Save.**
 
-	![](/Detailed Instructions/S3 Lab/images/image6.png)
+	![](/S3 Lab/images/image6.png)
 
 3.  Click on the **Overview** tab, and then click on the link to your
     object at the bottom of the screen to view the file using your

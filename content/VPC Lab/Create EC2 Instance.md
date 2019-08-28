@@ -13,7 +13,7 @@ corner and go to the **EC2 dashboard**.
 1.  Select Launch Instance, and then in the **Quick Start** section
     select the first Amazon Linux 2 AMI and click **Select.**
 
-    ![](/Detailed Instructions/VPC Lab/images/image11.png)
+    ![](/VPC Lab/images/image11.png)
 
 2.  In the Choose Instance Type tab, select the t2.micro instance size
     and click **Next**.
@@ -23,7 +23,7 @@ corner and go to the **EC2 dashboard**.
     created and change the **Subnet** field to the **Public subnet**.
     Leave the other default settings as is. Click **Next**.
 
-	![](/Detailed Instructions/VPC Lab/images/image12.png)
+	![](/VPC Lab/images/image12.png)
 
 4.  For this lab, you can accept the default values in the remaining
     steps, so finish creating this instance by clicking on **Review and

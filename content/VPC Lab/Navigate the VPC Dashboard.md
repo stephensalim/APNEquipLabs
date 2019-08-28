@@ -6,7 +6,7 @@ draft: false
 
 To get started, let's take a look at the VPC Dashboard.
 
-![](/Detailed Instructions/VPC Lab/images/image2.png)
+![](/VPC Lab/images/image2.png)
 
 In every region, a **default VPC** has already been created for you. So,
 even if you haven't created anything in your account yet, you will see
@@ -25,7 +25,7 @@ Elastic IPs are required for NAT Gateways.
 To create one, go to **Elastic IPs** in the sidebar, and press
 **Allocate new address**, **Allocate**, **Close.**
 
-![](/Detailed Instructions/VPC Lab/images/image4.png)
+![](/VPC Lab/images/image4.png)
 
 Now click on **VPC Dashboard** in the top left corner to go back to the
 main VPC page.
@@ -33,7 +33,7 @@ main VPC page.
 Click on **Launch VPC Wizard** to start the VPC Wizard and select '**VPC
 with Public and Private Subnets'**.
 
-![](/Detailed Instructions/VPC Lab/images/image5.png)
+![](/VPC Lab/images/image5.png)
 
 This option will create a VPC with a /16 CIDR block and two subnets with
 /24 CIDR blocks which have 256 total IP addresses each. In each subnet,
@@ -43,7 +43,7 @@ addresses per subnet. Fill in the **VPC name** (I called my VPC
 drop-down. For this lab, we will leave the rest of the default
 configuration as is.
 
-![](/Detailed Instructions/VPC Lab/images/image6.png)
+![](/VPC Lab/images/image6.png)
 
 This Elastic IP will be used to create a **Network Address Translation
 (NAT) gateway** for the private subnet. NAT gateway is a managed, highly

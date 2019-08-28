@@ -21,7 +21,7 @@ addresses and DNS records associated with the instance. However, you can
 see that this instance doesn't have a public IP or DNS yet. We will need
 at least one of these to ping this instance via the internet.
 
-![](/Detailed Instructions/VPC Lab/images/image13.png)
+![](/VPC Lab/images/image13.png)
 
 To fix this, we are going to attach an **Elastic IP** to the EC2
 instance. First, copy the **Instance ID** of this EC2 instance by
@@ -35,7 +35,7 @@ time, **do not** click on the **Close** button. Instead, you will:
 **Allocate new address, Allocate**, and then click on the **Elastic IP**
 link in the **New address request succeeded** box.
 
-![](/Detailed Instructions/VPC Lab/images/image14.png)
+![](/VPC Lab/images/image14.png)
 
 Now you are back on the **Elastic IPs** dashboard. Go to the **Actions**
 dropdown and select **Associate address**. Paste the Instance ID that
@@ -49,7 +49,7 @@ route to an IGW.
 
 In the **Description** tab, copy the Elastic IP address.
 
-![](/Detailed Instructions/VPC Lab/images/image15.png)
+![](/VPC Lab/images/image15.png)
 
 To ping the instance, you need to open your CLI. On Windows, open the
 **Command Prompt**. On Mac, open the **Terminal**. Type **ping,** then a
@@ -83,7 +83,7 @@ sidebar. Select the instance that you created and look at the
 groups** link. It should be called something similar to
 **launch-wizard-1**.
 
-![](/Detailed Instructions/VPC Lab/images/image16.png)
+![](/VPC Lab/images/image16.png)
 
 You are now in the **Security Groups** dashboard. Go to the **Inbound**
 tab.
@@ -97,7 +97,7 @@ Pings use **ICMP**, so we will need to change the security group rule to
 allow ICMP traffic rather than SSH traffic. Click on the **Edit**
 button.
 
-![](/Detailed Instructions/VPC Lab/images/image17.png)
+![](/VPC Lab/images/image17.png)
 
 Click on **SSH** to open the drop-down and change it to **All** **ICMP -
 IPv4**. Click **Save**.
@@ -110,7 +110,7 @@ effect immediately, so we can try to ping the instance again right away.
 Go back to your CLI and hit the **up arrow** and then **enter** to try
 and ping the instance again.
 
-![](/Detailed Instructions/VPC Lab/images/image18.png)
+![](/VPC Lab/images/image18.png)
 
 **Good job! You have successfully troubleshooted why an EC2 instance was
 unreachable and then accessed it over the internet.**

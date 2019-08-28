@@ -12,20 +12,20 @@
     <title>5. Monitor EC2 CPU Utilization :: APN Equip Labs</title>
 
     
-    <link href="/css/nucleus.css?1566960404" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1566960404" rel="stylesheet">
-    <link href="/css/hybrid.css?1566960404" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1566960404" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1566960404" rel="stylesheet">
-    <link href="/css/auto-complete.css?1566960404" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1566960404" rel="stylesheet">
-    <link href="/css/theme.css?1566960404" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1566960404" rel="stylesheet">
+    <link href="/css/nucleus.css?1566960944" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1566960944" rel="stylesheet">
+    <link href="/css/hybrid.css?1566960944" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1566960944" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1566960944" rel="stylesheet">
+    <link href="/css/auto-complete.css?1566960944" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1566960944" rel="stylesheet">
+    <link href="/css/theme.css?1566960944" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1566960944" rel="stylesheet">
     
-      <link href="/css/theme-darkblue.css?1566960404" rel="stylesheet">
+      <link href="/css/theme-darkblue.css?1566960944" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1566960404"></script>
+    <script src="/js/jquery-3.3.1.min.js?1566960944"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -51,14 +51,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1566960404"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1566960404"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1566960944"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1566960944"></script>
 <script type="text/javascript">
     
         var baseurl = "http:\/\/example.org\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1566960404"></script>
+<script type="text/javascript" src="/js/search.js?1566960944"></script>
 
     
   </div>
@@ -1079,14 +1079,14 @@ view details about this EC2 instance. Click the <strong>Monitoring</strong> tab
 and then click <strong>Enable Detailed Monitoring</strong> to provide monitoring
 data at a 1 minute interval vs. the default of 5 minutes.</p>
 
-<p><img src="/Detailed Instructions/Monitoring Lab/images/image13.jpg" alt="" /></p></li>
+<p><img src="/Monitoring Lab/images/image13.jpg" alt="" /></p></li>
 
 <li><p>Click the <strong>Description</strong> tab and copy your &ldquo;Instance ID&rdquo; to the
 clipboard or other location such as notepad.</p></li>
 
 <li><p>Click the <strong>Monitoring</strong> tab and click <strong>Create Alarm</strong>.</p>
 
-<p><img src="/Detailed Instructions/Monitoring Lab/images/image14.jpg" alt="" /></p></li>
+<p><img src="/Monitoring Lab/images/image14.jpg" alt="" /></p></li>
 
 <li><p>To the right of the &ldquo;Send a notification to:&rdquo; drop down, select the
 SNS Topic you created in the previous step. In the &ldquo;Whenever:&rdquo;
@@ -1097,7 +1097,7 @@ Minute</strong>. Add your name to the &ldquo;Name of alarm:&rdquo; field and cli
 the <strong>Description</strong> tab and then click back to the <strong>Monitoring</strong>
 tab and proceed to set up the Alarm.</p>
 
-<p><img src="/Detailed Instructions/Monitoring Lab/images/image15.jpg" alt="" /></p></li>
+<p><img src="/Monitoring Lab/images/image15.jpg" alt="" /></p></li>
 
 <li><p>In the top left area of the AWS Console select <strong>Services &gt;
 CloudWatch</strong>.</p></li>
@@ -1105,7 +1105,7 @@ CloudWatch</strong>.</p></li>
 <li><p>Click Alarms in the left pane of the Console and check the State of
 your Alarm.</p>
 
-<p><img src="/Detailed Instructions/Monitoring Lab/images/image16.jpg" alt="" /></p></li>
+<p><img src="/Monitoring Lab/images/image16.jpg" alt="" /></p></li>
 
 <li><p>In the CloudWatch Console select <strong>Metrics</strong> in the left pane.
 Select the <strong>All Metrics</strong> tab and paste your Instance ID into the
@@ -1114,7 +1114,7 @@ metric. Select the <strong>Graphed metrics</strong> tab and change the <strong>P
 to 1 Minute. Change the graph interval to a custom value of 30m and
 select Auto refresh of 1min.</p>
 
-<p><img src="/Detailed Instructions/Monitoring Lab/images/image17.jpg" alt="" /></p></li>
+<p><img src="/Monitoring Lab/images/image17.jpg" alt="" /></p></li>
 
 <li><p>After 5 minutes, the stress tool will begin to simulate CPU workload
 and trigger the Alarm once the threshold is reached. You can view
@@ -1122,7 +1122,7 @@ the Alarm state in the CloudWatch console under <strong>Alarms</strong>. If you
 setup an email notification you will receive an email alert when the
 Alarm is triggered.</p>
 
-<p><img src="/Detailed Instructions/Monitoring Lab/images/image18.jpg" alt="" /></p></li>
+<p><img src="/Monitoring Lab/images/image18.jpg" alt="" /></p></li>
 
 <li><p>While you wait for this alarm to kick off, you can move on to the next section of the lab.
 (If alarm is not triggered after 10 mins, please ask for help).</p></li>
@@ -1881,19 +1881,19 @@ Alarm is triggered.</p>
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1566960404"></script>
-    <script src="/js/perfect-scrollbar.min.js?1566960404"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1566960404"></script>
-    <script src="/js/jquery.sticky.js?1566960404"></script>
-    <script src="/js/featherlight.min.js?1566960404"></script>
-    <script src="/js/highlight.pack.js?1566960404"></script>
+    <script src="/js/clipboard.min.js?1566960944"></script>
+    <script src="/js/perfect-scrollbar.min.js?1566960944"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1566960944"></script>
+    <script src="/js/jquery.sticky.js?1566960944"></script>
+    <script src="/js/featherlight.min.js?1566960944"></script>
+    <script src="/js/highlight.pack.js?1566960944"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1566960404"></script>
-    <script src="/js/learn.js?1566960404"></script>
-    <script src="/js/hugo-learn.js?1566960404"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1566960944"></script>
+    <script src="/js/learn.js?1566960944"></script>
+    <script src="/js/hugo-learn.js?1566960944"></script>
 
-    <link href="/mermaid/mermaid.css?1566960404" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1566960404"></script>
+    <link href="/mermaid/mermaid.css?1566960944" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1566960944"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
