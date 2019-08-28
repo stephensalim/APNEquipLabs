@@ -3,6 +3,10 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>http://example.org/ec2-lab-windows/configure-network/</loc>
+  </url>
+  
+  <url>
     <loc>http://example.org/iam-lab/create-iam-group/</loc>
   </url>
   
@@ -35,6 +39,10 @@
   </url>
   
   <url>
+    <loc>http://example.org/ec2-lab-windows/configure-security-group/</loc>
+  </url>
+  
+  <url>
     <loc>http://example.org/monitoring-lab/create-iam-role/</loc>
   </url>
   
@@ -59,11 +67,11 @@
   </url>
   
   <url>
-    <loc>http://example.org/ec2-lab-windows/</loc>
+    <loc>http://example.org/ec2-lab/browse-your-web-server/</loc>
   </url>
   
   <url>
-    <loc>http://example.org/ec2-lab/browse-your-web-server/</loc>
+    <loc>http://example.org/ec2-lab-windows/configure-an-iam-user-and-policy/</loc>
   </url>
   
   <url>
@@ -87,7 +95,7 @@
   </url>
   
   <url>
-    <loc>http://example.org/s3-lab/</loc>
+    <loc>http://example.org/ec2-lab-windows/</loc>
   </url>
   
   <url>
@@ -96,6 +104,10 @@
   
   <url>
     <loc>http://example.org/iam-lab/create-iam-role/</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.org/ec2-lab-windows/create-windows-ec2-instance/</loc>
   </url>
   
   <url>
@@ -127,11 +139,11 @@
   </url>
   
   <url>
-    <loc>http://example.org/monitoring-lab/</loc>
+    <loc>http://example.org/ec2-lab-windows/validate-iam-policy/</loc>
   </url>
   
   <url>
-    <loc>http://example.org/systems-management-lab-windows/</loc>
+    <loc>http://example.org/s3-lab/</loc>
   </url>
   
   <url>
@@ -147,6 +159,10 @@
   </url>
   
   <url>
+    <loc>http://example.org/ec2-lab-windows/cleanup/</loc>
+  </url>
+  
+  <url>
     <loc>http://example.org/security-lab/monitor-ec2-security-log/</loc>
   </url>
   
@@ -155,7 +171,7 @@
   </url>
   
   <url>
-    <loc>http://example.org/security-lab/</loc>
+    <loc>http://example.org/monitoring-lab/</loc>
   </url>
   
   <url>
@@ -168,6 +184,10 @@
   
   <url>
     <loc>http://example.org/monitoring-lab/monitor-ec2-tag/</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.org/security-lab/</loc>
   </url>
   
   <url>

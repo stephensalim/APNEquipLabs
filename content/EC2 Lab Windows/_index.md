@@ -1,7 +1,7 @@
 +++
 title = "EC2 Lab (Windows)"
 chapter = true
-weight = 2
+weight = 3
 pre = "<b></b>"
 +++
 

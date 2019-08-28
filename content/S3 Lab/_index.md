@@ -1,7 +1,7 @@
 +++
 title = "S3 Lab"
 chapter = true
-weight = 3
+weight = 5
 pre = "<b></b>"
 +++
 

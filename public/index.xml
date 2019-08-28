@@ -11,6 +11,20 @@
     
     
     <item>
+      <title>1. Configure Network</title>
+      <link>http://example.org/ec2-lab-windows/configure-network/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/ec2-lab-windows/configure-network/</guid>
+      <description>Before launching a new instance, you will need to configure a new VPC, subnet, internet gateway and routes. All activities should be performed in the us-west-1 region (N. California).
+ In AWS console ensure that you are accessing the West-1 region, navigate to VPC.
+ In the left navigation pane click &amp;ldquo;Your VPCs&amp;rdquo;
+ Click Create VPC then configure:
+   Name tag: West VPC
+ IPv4 CIDR block: 10.</description>
+    </item>
+    
+    <item>
       <title>1. Create IAM Group</title>
       <link>http://example.org/iam-lab/create-iam-group/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -95,6 +109,16 @@ In this lab, we will be using the VPC Wizard to create a VPC with private and pu
     </item>
     
     <item>
+      <title>2. Configure a Security Group</title>
+      <link>http://example.org/ec2-lab-windows/configure-security-group/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/ec2-lab-windows/configure-security-group/</guid>
+      <description>You will now create a security group which will allow remote desktop (RDP) access to an EC2 instance.
+A security group acts as a virtual firewall for your instance to control inbound and outbound traffic. When you launch an instance in a VPC, you can assign up to five security groups to the instance. Security groups act at the instance level, not the subnet level. Therefore, each instance in a subnet in your VPC could be assigned to a different set of security groups.</description>
+    </item>
+    
+    <item>
       <title>2. Create IAM Role</title>
       <link>http://example.org/monitoring-lab/create-iam-role/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -173,6 +197,20 @@ From the last step, you should now be on the Your VPCs dashboard looking at all 
       <description>Wait for the instance to pass the Status Checks to finish loading.
 Finished initializing   Open a new browser tab and browse the Web Server by entering the EC2 instance&amp;rsquo;s Public DNS name into the browser. The EC2 instance&amp;rsquo;s Public DNS name can be found in the console by reviewing the &amp;ldquo;Public DNS&amp;rdquo; name line highlighted above.
 You should see a website that looks like the following:</description>
+    </item>
+    
+    <item>
+      <title>3. Configure an IAM User and Policy</title>
+      <link>http://example.org/ec2-lab-windows/configure-an-iam-user-and-policy/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/ec2-lab-windows/configure-an-iam-user-and-policy/</guid>
+      <description>Next you will work in the Identity and Access Management service (IAM) to create a user and define a custom policy which will restrict EC2 instance launch to a specific (US-West-1) region.
+ Navigate to the IAM console
+ In the IAM console click Policies on the left
+ Click Create Policy
+ In the Create Policy page, click the JSON tab.
+ Copy the following following text and replace all of the text in the JSON tab:</description>
     </item>
     
     <item>
@@ -259,6 +297,18 @@ PLEASE NOTE: You must select &amp;ldquo;Amazon Linux AMI&amp;rdquo;, NOT &amp;ld
     </item>
     
     <item>
+      <title>4. Create a Windows EC2 Instance</title>
+      <link>http://example.org/ec2-lab-windows/create-windows-ec2-instance/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/ec2-lab-windows/create-windows-ec2-instance/</guid>
+      <description>You have now created a new user (West_User) and restricted it from creating EC2 instances outside of the us-west-1 region
+In this task, you will create a Windows Server 2016 EC2 instance in the us-west-1 (N.California) region. You will perform the following steps as the newly created &amp;ldquo;West_Admin&amp;rdquo; user.
+ In a new browser session (Private browsing or from another maching) log in as West_Admin
+ Ensure that you are working in the us-west-1 region (N.</description>
+    </item>
+    
+    <item>
       <title>4. Enable Bucket Versioning</title>
       <link>http://example.org/s3-lab/enable-bucket-versioning/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -323,6 +373,18 @@ If you no longer need to store the objects you uploaded and moved while going th
     </item>
     
     <item>
+      <title>5. Validate IAM Policy</title>
+      <link>http://example.org/ec2-lab-windows/validate-iam-policy/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/ec2-lab-windows/validate-iam-policy/</guid>
+      <description>In this task, you will attempt to create a Windows Server 2016 EC2 instance in the us-east-1 region (N.Virginia). You will perform the following steps as the newly created &amp;ldquo;West_Admin&amp;rdquo; user.
+ In a new browser session (Private browsing or from another maching) log in as West_Admin
+ Ensure that you are working in the us-east-1 (N.Virginia) region Navigate to EC2 Console and click &amp;ldquo;Launch Instance&amp;rdquo;
+ In the search field type: Windows</description>
+    </item>
+    
+    <item>
       <title>6. Additional resources</title>
       <link>http://example.org/iam-lab/additional-resources/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -350,6 +412,20 @@ You should continue exploring more features of S3!
       <guid>http://example.org/vpc-lab/clean-up-resources/</guid>
       <description>If you want to clean up your account to get rid of everything we created during this lab, follow the instructions in this section. You can also leave your lab environment running if you want to test other AWS networking concepts.
 First, you will need to terminate the EC2 instances that are running in the VPC. In the EC2 dashboard, select the public instance (as well as the private instance if you created one), go to the Actions dropdown, go to Instance State, and then Terminate.</description>
+    </item>
+    
+    <item>
+      <title>6. Cleanup</title>
+      <link>http://example.org/ec2-lab-windows/cleanup/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/ec2-lab-windows/cleanup/</guid>
+      <description>Steps to remove lab content from your AWS account:
+ Log back into the console as your primary admin account (not West_Admin)
+ From EC2 &amp;ndash; Terminate Windows West Instance
+ From VPC &amp;ndash; Delete West VPC
+ From IAM &amp;ndash; Delete West_Admin user and EC2_West_Only policy
+  Done</description>
     </item>
     
     <item>

@@ -1,7 +1,7 @@
 +++
 title = "Monitoring Lab"
 chapter = true
-weight = 5
+weight = 6
 pre = "<b></b>"
 +++
 
