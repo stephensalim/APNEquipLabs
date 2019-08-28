@@ -1,7 +1,7 @@
 ---
 title: "VPC Lab"
 weight: 1
-draft: false
+draft: true
 ---
 
 **Amazon Virtual Private Cloud (Amazon VPC)** lets you provision a logically
@@ -22,7 +22,7 @@ Review the Documentation references to achieve the following
 
 1. Use the VPC Wizard to create a new VPC
 	* Use both Public and Private subnets
-2. Use an Elastic IP to the NAT Gateway
+2. Use an Elastic IP to the NAT Gateway.
 3. Review your new VPC and draw out the complete deployment including:
 	* Subnets
 	* Internet Gateway

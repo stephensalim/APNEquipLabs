@@ -1,7 +1,7 @@
 ---
 title: "S3 Lab"
 weight: 4
-draft: false
+draft: true
 ---
 
 **Amazon Simple Storage Service (S3)** provides a simple web services

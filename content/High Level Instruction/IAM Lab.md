@@ -1,7 +1,7 @@
 ---
 title: "IAM Lab"
 weight: 3
-draft: false
+draft: true
 ---
 
 **AWS Identity and Access Management (IAM)** is a free service that enables

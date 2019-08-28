@@ -1,7 +1,7 @@
 ---
 title: "EC2 Lab"
 weight: 2
-draft: false
+draft: true
 ---
 
 **Amazon Elastic Compute Cloud (Amazon EC2**) is a web service that provides
