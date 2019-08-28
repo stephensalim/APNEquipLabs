@@ -6,7 +6,6 @@
     <description>Recent content in S3 Lab on APN Equip Labs</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 13 Aug 2019 20:30:47 +1000</lastBuildDate>
     
 	<atom:link href="http://example.org/s3-lab/index.xml" rel="self" type="application/rss+xml" />
     
@@ -63,7 +62,7 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://example.org/s3-lab/delete-an-object-and-bucket/</guid>
-      <description>You&amp;rsquo;ve added an object to a bucket, viewed it, and moved it. Now, you can delete it and the bucket it\&amp;rsquo;s in.
+      <description>You&amp;rsquo;ve added an object to a bucket, viewed it, and moved it. Now, you can delete it and the bucket it&amp;rsquo;s in.
 If you no longer need to store the objects you uploaded and moved while going through this guide, you should delete them so you do not incur further charges on those objects.
  In the Amazon S3 console, click on the link representing the bucket containing the object(s) you want to delete.</description>
     </item>

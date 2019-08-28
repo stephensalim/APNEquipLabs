@@ -3,211 +3,175 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>http://example.org/detailed-instructions/iam-lab/create-iam-group/</loc>
+    <loc>http://example.org/iam-lab/create-iam-group/</loc>
   </url>
   
   <url>
-    <loc>http://example.org/detailed-instructions/ec2-lab/create-new-key-pair/</loc>
+    <loc>http://example.org/ec2-lab/create-new-key-pair/</loc>
   </url>
   
   <url>
-    <loc>http://example.org/detailed-instructions/s3-lab/create-s3-bucket/</loc>
+    <loc>http://example.org/s3-lab/create-s3-bucket/</loc>
   </url>
   
   <url>
-    <loc>http://example.org/detailed-instructions/monitoring-lab/create-sns-topic/</loc>
+    <loc>http://example.org/monitoring-lab/create-sns-topic/</loc>
   </url>
   
   <url>
-    <loc>http://example.org/detailed-instructions/security-lab/create-sns-topic/</loc>
+    <loc>http://example.org/security-lab/create-sns-topic/</loc>
   </url>
   
   <url>
-    <loc>http://example.org/detailed-instructions/vpc-lab/navigate-the-vpc-dashboard/</loc>
+    <loc>http://example.org/vpc-lab/navigate-the-vpc-dashboard/</loc>
   </url>
   
   <url>
-    <loc>http://example.org/detailed-instructions/vpc-lab/</loc>
+    <loc>http://example.org/vpc-lab/</loc>
   </url>
   
   <url>
-    <loc>http://example.org/high-level-instruction/vpc-lab/</loc>
+    <loc>http://example.org/s3-lab/add-object-to-s3-bucket/</loc>
   </url>
   
   <url>
-    <loc>http://example.org/detailed-instructions/s3-lab/add-object-to-s3-bucket/</loc>
+    <loc>http://example.org/monitoring-lab/create-iam-role/</loc>
   </url>
   
   <url>
-    <loc>http://example.org/detailed-instructions/monitoring-lab/create-iam-role/</loc>
+    <loc>http://example.org/security-lab/create-iam-role/</loc>
   </url>
   
   <url>
-    <loc>http://example.org/detailed-instructions/security-lab/create-iam-role/</loc>
+    <loc>http://example.org/iam-lab/create-iam-user/</loc>
   </url>
   
   <url>
-    <loc>http://example.org/detailed-instructions/iam-lab/create-iam-user/</loc>
+    <loc>http://example.org/ec2-lab/</loc>
   </url>
   
   <url>
-    <loc>http://example.org/detailed-instructions/ec2-lab/</loc>
+    <loc>http://example.org/ec2-lab/launch-ec2-web-server/</loc>
   </url>
   
   <url>
-    <loc>http://example.org/high-level-instruction/ec2-lab/</loc>
+    <loc>http://example.org/vpc-lab/what-did-vpc-wizard-create-/</loc>
   </url>
   
   <url>
-    <loc>http://example.org/detailed-instructions/ec2-lab/launch-ec2-web-server/</loc>
+    <loc>http://example.org/ec2-lab/browse-your-web-server/</loc>
   </url>
   
   <url>
-    <loc>http://example.org/detailed-instructions/vpc-lab/what-did-vpc-wizard-create-/</loc>
+    <loc>http://example.org/vpc-lab/create-ec2-instance/</loc>
   </url>
   
   <url>
-    <loc>http://example.org/detailed-instructions/ec2-lab/browse-your-web-server/</loc>
+    <loc>http://example.org/monitoring-lab/launch-ec2-instance/</loc>
   </url>
   
   <url>
-    <loc>http://example.org/detailed-instructions/vpc-lab/create-ec2-instance/</loc>
+    <loc>http://example.org/security-lab/launch-ec2-instance/</loc>
   </url>
   
   <url>
-    <loc>http://example.org/high-level-instruction/iam-lab/</loc>
+    <loc>http://example.org/s3-lab/move-s3-object/</loc>
   </url>
   
   <url>
-    <loc>http://example.org/detailed-instructions/monitoring-lab/launch-ec2-instance/</loc>
+    <loc>http://example.org/s3-lab/</loc>
   </url>
   
   <url>
-    <loc>http://example.org/detailed-instructions/security-lab/launch-ec2-instance/</loc>
+    <loc>http://example.org/iam-lab/test-iam-user/</loc>
   </url>
   
   <url>
-    <loc>http://example.org/detailed-instructions/s3-lab/move-s3-object/</loc>
+    <loc>http://example.org/monitoring-lab/configure-cloudwatch-alarm/</loc>
   </url>
   
   <url>
-    <loc>http://example.org/detailed-instructions/s3-lab/</loc>
+    <loc>http://example.org/iam-lab/create-iam-role/</loc>
   </url>
   
   <url>
-    <loc>http://example.org/detailed-instructions/iam-lab/test-iam-user/</loc>
+    <loc>http://example.org/s3-lab/enable-bucket-versioning/</loc>
   </url>
   
   <url>
-    <loc>http://example.org/detailed-instructions/monitoring-lab/configure-cloudwatch-alarm/</loc>
+    <loc>http://example.org/iam-lab/</loc>
   </url>
   
   <url>
-    <loc>http://example.org/detailed-instructions/iam-lab/create-iam-role/</loc>
+    <loc>http://example.org/vpc-lab/test-public-ec2-instance/</loc>
   </url>
   
   <url>
-    <loc>http://example.org/detailed-instructions/s3-lab/enable-bucket-versioning/</loc>
+    <loc>http://example.org/iam-lab/clean-up-resources/</loc>
   </url>
   
   <url>
-    <loc>http://example.org/detailed-instructions/iam-lab/</loc>
+    <loc>http://example.org/s3-lab/delete-an-object-and-bucket/</loc>
   </url>
   
   <url>
-    <loc>http://example.org/high-level-instruction/s3-lab/</loc>
+    <loc>http://example.org/monitoring-lab/monitor-ec2-cpu-utilization/</loc>
   </url>
   
   <url>
-    <loc>http://example.org/detailed-instructions/vpc-lab/test-public-ec2-instance/</loc>
+    <loc>http://example.org/monitoring-lab/</loc>
   </url>
   
   <url>
-    <loc>http://example.org/detailed-instructions/iam-lab/clean-up-resources/</loc>
+    <loc>http://example.org/vpc-lab/test-private-ec2-instance/</loc>
   </url>
   
   <url>
-    <loc>http://example.org/detailed-instructions/s3-lab/delete-an-object-and-bucket/</loc>
+    <loc>http://example.org/iam-lab/additional-resources/</loc>
   </url>
   
   <url>
-    <loc>http://example.org/detailed-instructions/monitoring-lab/monitor-ec2-cpu-utilization/</loc>
+    <loc>http://example.org/s3-lab/additional-resources/</loc>
   </url>
   
   <url>
-    <loc>http://example.org/detailed-instructions/monitoring-lab/</loc>
+    <loc>http://example.org/vpc-lab/clean-up-resources/</loc>
   </url>
   
   <url>
-    <loc>http://example.org/detailed-instructions/vpc-lab/test-private-ec2-instance/</loc>
+    <loc>http://example.org/security-lab/monitor-ec2-security-log/</loc>
   </url>
   
   <url>
-    <loc>http://example.org/detailed-instructions/iam-lab/additional-resources/</loc>
+    <loc>http://example.org/monitoring-lab/monitor-ec2-system-log/</loc>
   </url>
   
   <url>
-    <loc>http://example.org/detailed-instructions/s3-lab/additional-resources/</loc>
+    <loc>http://example.org/security-lab/</loc>
   </url>
   
   <url>
-    <loc>http://example.org/detailed-instructions/vpc-lab/clean-up-resources/</loc>
+    <loc>http://example.org/vpc-lab/additional-resources/</loc>
   </url>
   
   <url>
-    <loc>http://example.org/detailed-instructions/security-lab/monitor-ec2-security-log/</loc>
+    <loc>http://example.org/security-lab/create-alarm-for-security-log/</loc>
   </url>
   
   <url>
-    <loc>http://example.org/detailed-instructions/monitoring-lab/monitor-ec2-system-log/</loc>
+    <loc>http://example.org/monitoring-lab/monitor-ec2-tag/</loc>
   </url>
   
   <url>
-    <loc>http://example.org/detailed-instructions/security-lab/</loc>
+    <loc>http://example.org/monitoring-lab/monitor-estimated-charges/</loc>
   </url>
   
   <url>
-    <loc>http://example.org/detailed-instructions/vpc-lab/additional-resources/</loc>
+    <loc>http://example.org/security-lab/test-security-alarm/</loc>
   </url>
   
   <url>
-    <loc>http://example.org/detailed-instructions/security-lab/create-alarm-for-security-log/</loc>
-  </url>
-  
-  <url>
-    <loc>http://example.org/detailed-instructions/monitoring-lab/monitor-ec2-tag/</loc>
-  </url>
-  
-  <url>
-    <loc>http://example.org/detailed-instructions/monitoring-lab/monitor-estimated-charges/</loc>
-  </url>
-  
-  <url>
-    <loc>http://example.org/detailed-instructions/security-lab/test-security-alarm/</loc>
-  </url>
-  
-  <url>
-    <loc>http://example.org/detailed-instructions/security-lab/query-security-log/</loc>
-  </url>
-  
-  <url>
-    <loc>http://example.org/high-level-instruction/</loc>
-    <lastmod>2019-08-14T13:30:05+10:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://example.org/high-level-instruction/monitoring-lab/</loc>
-    <lastmod>2019-08-14T13:30:05+10:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://example.org/</loc>
-    <lastmod>2019-08-14T13:30:05+10:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://example.org/high-level-instruction/security-lab/</loc>
-    <lastmod>2019-08-14T13:29:54+10:00</lastmod>
+    <loc>http://example.org/security-lab/query-security-log/</loc>
   </url>
   
   <url>
@@ -216,12 +180,12 @@
   </url>
   
   <url>
-    <loc>http://example.org/detailed-instructions/</loc>
+    <loc>http://example.org/tags/</loc>
+    <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://example.org/tags/</loc>
-    <priority>0</priority>
+    <loc>http://example.org/</loc>
   </url>
   
 </urlset>
