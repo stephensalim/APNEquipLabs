@@ -1,5 +1,5 @@
 ---
-title: "Monitor EC2 CPU Utilization"
+title: "5. Monitor EC2 CPU Utilization"
 weight: 5
 draft: false
 ---

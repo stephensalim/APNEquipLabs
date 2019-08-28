@@ -1,5 +1,5 @@
 ---
-title: "Add Object to S3 Bucket"
+title: "2. Add Object to S3 Bucket"
 weight: 2
 draft: false
 ---

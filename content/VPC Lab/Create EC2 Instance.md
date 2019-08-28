@@ -1,5 +1,5 @@
 ---
-title: "Create Public EC2 Instance"
+title: "3. Create Public EC2 Instance"
 weight: 3
 draft: false
 ---

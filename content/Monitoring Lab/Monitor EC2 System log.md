@@ -1,5 +1,5 @@
 ---
-title: "Monitor EC2 System Log"
+title: "6. Monitor EC2 System Log"
 weight: 6
 draft: false
 ---

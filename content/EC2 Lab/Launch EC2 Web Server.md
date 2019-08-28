@@ -1,5 +1,5 @@
 ---
-title: "Launch EC2 Web Server"
+title: "2. Launch EC2 Web Server"
 weight: 2
 draft: false
 ---

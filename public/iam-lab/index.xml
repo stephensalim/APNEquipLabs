@@ -11,7 +11,7 @@
     
     
     <item>
-      <title>Create IAM Group</title>
+      <title>1. Create IAM Group</title>
       <link>http://example.org/iam-lab/create-iam-group/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -22,7 +22,7 @@
     </item>
     
     <item>
-      <title>Create IAM User</title>
+      <title>2. Create IAM User</title>
       <link>http://example.org/iam-lab/create-iam-user/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -33,7 +33,7 @@ Enter a unique name as the User name. In this walkthrough, I chose Emily as the 
     </item>
     
     <item>
-      <title>Test IAM User</title>
+      <title>3. Test IAM User</title>
       <link>http://example.org/iam-lab/test-iam-user/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -42,7 +42,7 @@ Enter a unique name as the User name. In this walkthrough, I chose Emily as the 
     </item>
     
     <item>
-      <title>Create IAM Role</title>
+      <title>4. Create IAM Role</title>
       <link>http://example.org/iam-lab/create-iam-role/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -53,7 +53,7 @@ Enter a unique name as the User name. In this walkthrough, I chose Emily as the 
     </item>
     
     <item>
-      <title>Clean Up Resources</title>
+      <title>5. Clean Up Resources</title>
       <link>http://example.org/iam-lab/clean-up-resources/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -64,7 +64,7 @@ Enter a unique name as the User name. In this walkthrough, I chose Emily as the 
     </item>
     
     <item>
-      <title>Additional resources</title>
+      <title>6. Additional resources</title>
       <link>http://example.org/iam-lab/additional-resources/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       

@@ -1,5 +1,5 @@
 ---
-title: "Delete an Object and Bucket"
+title: "5. Delete an Object and Bucket"
 weight: 5
 draft: false
 ---

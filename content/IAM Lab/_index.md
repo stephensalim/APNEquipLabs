@@ -2,7 +2,7 @@
 title = "IAM Lab"
 chapter = true
 weight = 4
-pre = "<b># </b>"
+pre = "<b></b>"
 +++
 
 

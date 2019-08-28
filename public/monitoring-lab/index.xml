@@ -11,7 +11,7 @@
     
     
     <item>
-      <title>Create SNS Topic</title>
+      <title>1. Create SNS Topic</title>
       <link>http://example.org/monitoring-lab/create-sns-topic/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -25,7 +25,7 @@
     </item>
     
     <item>
-      <title>Create IAM Role</title>
+      <title>2. Create IAM Role</title>
       <link>http://example.org/monitoring-lab/create-iam-role/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -43,7 +43,7 @@
     </item>
     
     <item>
-      <title>Launch EC2 Instance</title>
+      <title>3. Launch EC2 Instance</title>
       <link>http://example.org/monitoring-lab/launch-ec2-instance/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -57,7 +57,7 @@ PLEASE NOTE: You must select &amp;ldquo;Amazon Linux AMI&amp;rdquo;, NOT &amp;ld
     </item>
     
     <item>
-      <title>Configure CloudWatch Alarm</title>
+      <title>4. Configure CloudWatch Alarm</title>
       <link>http://example.org/monitoring-lab/configure-cloudwatch-alarm/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -68,7 +68,7 @@ PLEASE NOTE: You must select &amp;ldquo;Amazon Linux AMI&amp;rdquo;, NOT &amp;ld
     </item>
     
     <item>
-      <title>Monitor EC2 CPU Utilization</title>
+      <title>5. Monitor EC2 CPU Utilization</title>
       <link>http://example.org/monitoring-lab/monitor-ec2-cpu-utilization/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -79,7 +79,7 @@ PLEASE NOTE: You must select &amp;ldquo;Amazon Linux AMI&amp;rdquo;, NOT &amp;ld
     </item>
     
     <item>
-      <title>Monitor EC2 System Log</title>
+      <title>6. Monitor EC2 System Log</title>
       <link>http://example.org/monitoring-lab/monitor-ec2-system-log/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -93,7 +93,7 @@ PLEASE NOTE: You must select &amp;ldquo;Amazon Linux AMI&amp;rdquo;, NOT &amp;ld
     </item>
     
     <item>
-      <title>Monitor EC2 Tag</title>
+      <title>7. Monitor EC2 Tag</title>
       <link>http://example.org/monitoring-lab/monitor-ec2-tag/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -104,7 +104,7 @@ If this is the first time you enabled AWS Config, your console will direct you t
     </item>
     
     <item>
-      <title>Monitor Estimated Charges</title>
+      <title>8. Monitor Estimated Charges</title>
       <link>http://example.org/monitoring-lab/monitor-estimated-charges/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       

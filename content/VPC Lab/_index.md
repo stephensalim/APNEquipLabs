@@ -2,7 +2,7 @@
 title = "VPC Lab"
 chapter = true
 weight = 1
-pre = "<b># </b>"
+pre = "<b></b>"
 +++
 
 

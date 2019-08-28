@@ -1,5 +1,5 @@
 ---
-title: "Navigate the VPC Dashboard"
+title: "1. Navigate the VPC Dashboard"
 weight: 1
 draft: false
 ---

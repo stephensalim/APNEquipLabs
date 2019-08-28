@@ -1,5 +1,5 @@
 ---
-title: "Browse your Web Server"
+title: "3. Browse your Web Server"
 weight: 3
 draft: false
 ---

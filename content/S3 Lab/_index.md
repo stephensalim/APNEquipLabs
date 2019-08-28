@@ -2,7 +2,7 @@
 title = "S3 Lab"
 chapter = true
 weight = 3
-pre = "<b># </b>"
+pre = "<b></b>"
 +++
 
 **Amazon Simple Storage Service (S3)** provides a simple web services

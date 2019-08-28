@@ -1,5 +1,5 @@
 ---
-title: "Launch EC2 Instance"
+title: "3. Launch EC2 Instance"
 weight: 3
 draft: false
 ---

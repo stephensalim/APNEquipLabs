@@ -11,7 +11,7 @@
     
     
     <item>
-      <title>Create S3 Bucket</title>
+      <title>1. Create S3 Bucket</title>
       <link>http://example.org/s3-lab/create-s3-bucket/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -23,7 +23,7 @@
     </item>
     
     <item>
-      <title>Add Object to S3 Bucket</title>
+      <title>2. Add Object to S3 Bucket</title>
       <link>http://example.org/s3-lab/add-object-to-s3-bucket/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -33,7 +33,7 @@
     </item>
     
     <item>
-      <title>Move S3 Object</title>
+      <title>3. Move S3 Object</title>
       <link>http://example.org/s3-lab/move-s3-object/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -45,7 +45,7 @@
     </item>
     
     <item>
-      <title>Enable Bucket Versioning</title>
+      <title>4. Enable Bucket Versioning</title>
       <link>http://example.org/s3-lab/enable-bucket-versioning/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -57,7 +57,7 @@
     </item>
     
     <item>
-      <title>Delete an Object and Bucket</title>
+      <title>5. Delete an Object and Bucket</title>
       <link>http://example.org/s3-lab/delete-an-object-and-bucket/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -68,7 +68,7 @@ If you no longer need to store the objects you uploaded and moved while going th
     </item>
     
     <item>
-      <title>Additional resources</title>
+      <title>6. Additional resources</title>
       <link>http://example.org/s3-lab/additional-resources/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       

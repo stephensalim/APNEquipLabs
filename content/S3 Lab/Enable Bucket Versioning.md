@@ -1,5 +1,5 @@
 ---
-title: "Enable Bucket Versioning"
+title: "4. Enable Bucket Versioning"
 weight: 4
 draft: false
 ---

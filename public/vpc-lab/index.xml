@@ -11,7 +11,7 @@
     
     
     <item>
-      <title>Navigate the VPC Dashboard</title>
+      <title>1. Navigate the VPC Dashboard</title>
       <link>http://example.org/vpc-lab/navigate-the-vpc-dashboard/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -22,7 +22,7 @@ In this lab, we will be using the VPC Wizard to create a VPC with private and pu
     </item>
     
     <item>
-      <title>What Did VPC Wizard Create ?</title>
+      <title>2. What Did VPC Wizard Create ?</title>
       <link>http://example.org/vpc-lab/what-did-vpc-wizard-create-/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -32,7 +32,7 @@ From the last step, you should now be on the Your VPCs dashboard looking at all 
     </item>
     
     <item>
-      <title>Create Public EC2 Instance</title>
+      <title>3. Create Public EC2 Instance</title>
       <link>http://example.org/vpc-lab/create-ec2-instance/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -44,7 +44,7 @@ To get started, go to the Services drop down menu in the top left corner and go 
     </item>
     
     <item>
-      <title>Test Public EC2 Instance</title>
+      <title>4. Test Public EC2 Instance</title>
       <link>http://example.org/vpc-lab/test-public-ec2-instance/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -54,7 +54,7 @@ You should be on the EC2 Instances dashboard from the last section, looking at a
     </item>
     
     <item>
-      <title>Test Private EC2 Instance</title>
+      <title>5. Test Private EC2 Instance</title>
       <link>http://example.org/vpc-lab/test-private-ec2-instance/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -63,7 +63,7 @@ You should be on the EC2 Instances dashboard from the last section, looking at a
     </item>
     
     <item>
-      <title>Clean Up Resources</title>
+      <title>6. Clean Up Resources</title>
       <link>http://example.org/vpc-lab/clean-up-resources/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -73,7 +73,7 @@ First, you will need to terminate the EC2 instances that are running in the VPC.
     </item>
     
     <item>
-      <title>Additional Resources</title>
+      <title>7. Additional Resources</title>
       <link>http://example.org/vpc-lab/additional-resources/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       

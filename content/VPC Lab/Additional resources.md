@@ -1,5 +1,5 @@
 ---
-title: "Additional Resources"
+title: "7. Additional Resources"
 weight: 7
 draft: false
 ---

@@ -47,15 +47,15 @@
   </url>
   
   <url>
-    <loc>http://example.org/ec2-lab/</loc>
-  </url>
-  
-  <url>
     <loc>http://example.org/ec2-lab/launch-ec2-web-server/</loc>
   </url>
   
   <url>
     <loc>http://example.org/vpc-lab/what-did-vpc-wizard-create-/</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.org/ec2-lab/</loc>
   </url>
   
   <url>
@@ -79,11 +79,11 @@
   </url>
   
   <url>
-    <loc>http://example.org/s3-lab/</loc>
+    <loc>http://example.org/iam-lab/test-iam-user/</loc>
   </url>
   
   <url>
-    <loc>http://example.org/iam-lab/test-iam-user/</loc>
+    <loc>http://example.org/s3-lab/</loc>
   </url>
   
   <url>
@@ -99,11 +99,11 @@
   </url>
   
   <url>
-    <loc>http://example.org/iam-lab/</loc>
+    <loc>http://example.org/vpc-lab/test-public-ec2-instance/</loc>
   </url>
   
   <url>
-    <loc>http://example.org/vpc-lab/test-public-ec2-instance/</loc>
+    <loc>http://example.org/iam-lab/</loc>
   </url>
   
   <url>
@@ -119,11 +119,11 @@
   </url>
   
   <url>
-    <loc>http://example.org/monitoring-lab/</loc>
+    <loc>http://example.org/vpc-lab/test-private-ec2-instance/</loc>
   </url>
   
   <url>
-    <loc>http://example.org/vpc-lab/test-private-ec2-instance/</loc>
+    <loc>http://example.org/monitoring-lab/</loc>
   </url>
   
   <url>

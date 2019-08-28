@@ -1,5 +1,5 @@
 ---
-title: "Create New Key Pair"
+title: "1. Create New Key Pair"
 weight: 1
 draft: false
 ---

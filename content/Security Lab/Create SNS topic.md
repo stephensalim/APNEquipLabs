@@ -1,5 +1,5 @@
 ---
-title: "Create SNS Topic"
+title: "1. Create SNS Topic"
 weight: 1
 draft: false
 ---

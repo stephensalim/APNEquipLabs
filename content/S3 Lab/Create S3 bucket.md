@@ -1,5 +1,5 @@
 ---
-title: "Create S3 Bucket"
+title: "1. Create S3 Bucket"
 weight: 1
 draft: false
 ---

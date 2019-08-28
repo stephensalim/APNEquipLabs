@@ -1,5 +1,5 @@
 ---
-title: "Query Security Log"
+title: "10. Query Security Log"
 weight: 10
 draft: false
 ---

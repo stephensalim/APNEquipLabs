@@ -11,7 +11,7 @@
     
     
     <item>
-      <title>Create IAM Group</title>
+      <title>1. Create IAM Group</title>
       <link>http://example.org/iam-lab/create-iam-group/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -22,7 +22,7 @@
     </item>
     
     <item>
-      <title>Create New Key Pair</title>
+      <title>1. Create New Key Pair</title>
       <link>http://example.org/ec2-lab/create-new-key-pair/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -34,7 +34,7 @@
     </item>
     
     <item>
-      <title>Create S3 Bucket</title>
+      <title>1. Create S3 Bucket</title>
       <link>http://example.org/s3-lab/create-s3-bucket/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -46,7 +46,7 @@
     </item>
     
     <item>
-      <title>Create SNS Topic</title>
+      <title>1. Create SNS Topic</title>
       <link>http://example.org/monitoring-lab/create-sns-topic/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -60,7 +60,7 @@
     </item>
     
     <item>
-      <title>Create SNS Topic</title>
+      <title>1. Create SNS Topic</title>
       <link>http://example.org/security-lab/create-sns-topic/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -74,7 +74,7 @@
     </item>
     
     <item>
-      <title>Navigate the VPC Dashboard</title>
+      <title>1. Navigate the VPC Dashboard</title>
       <link>http://example.org/vpc-lab/navigate-the-vpc-dashboard/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -85,7 +85,7 @@ In this lab, we will be using the VPC Wizard to create a VPC with private and pu
     </item>
     
     <item>
-      <title>Add Object to S3 Bucket</title>
+      <title>2. Add Object to S3 Bucket</title>
       <link>http://example.org/s3-lab/add-object-to-s3-bucket/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -95,7 +95,7 @@ In this lab, we will be using the VPC Wizard to create a VPC with private and pu
     </item>
     
     <item>
-      <title>Create IAM Role</title>
+      <title>2. Create IAM Role</title>
       <link>http://example.org/monitoring-lab/create-iam-role/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -113,7 +113,7 @@ In this lab, we will be using the VPC Wizard to create a VPC with private and pu
     </item>
     
     <item>
-      <title>Create IAM Role</title>
+      <title>2. Create IAM Role</title>
       <link>http://example.org/security-lab/create-iam-role/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -131,7 +131,7 @@ In this lab, we will be using the VPC Wizard to create a VPC with private and pu
     </item>
     
     <item>
-      <title>Create IAM User</title>
+      <title>2. Create IAM User</title>
       <link>http://example.org/iam-lab/create-iam-user/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -142,7 +142,7 @@ Enter a unique name as the User name. In this walkthrough, I chose Emily as the 
     </item>
     
     <item>
-      <title>Launch EC2 Web Server</title>
+      <title>2. Launch EC2 Web Server</title>
       <link>http://example.org/ec2-lab/launch-ec2-web-server/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -155,7 +155,7 @@ Sign into your AWS Management Console and choose EC2 from the Services menu. [ ]
     </item>
     
     <item>
-      <title>What Did VPC Wizard Create ?</title>
+      <title>2. What Did VPC Wizard Create ?</title>
       <link>http://example.org/vpc-lab/what-did-vpc-wizard-create-/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -165,7 +165,7 @@ From the last step, you should now be on the Your VPCs dashboard looking at all 
     </item>
     
     <item>
-      <title>Browse your Web Server</title>
+      <title>3. Browse your Web Server</title>
       <link>http://example.org/ec2-lab/browse-your-web-server/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -176,7 +176,7 @@ You should see a website that looks like the following:</description>
     </item>
     
     <item>
-      <title>Create Public EC2 Instance</title>
+      <title>3. Create Public EC2 Instance</title>
       <link>http://example.org/vpc-lab/create-ec2-instance/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -188,7 +188,7 @@ To get started, go to the Services drop down menu in the top left corner and go 
     </item>
     
     <item>
-      <title>Launch EC2 Instance</title>
+      <title>3. Launch EC2 Instance</title>
       <link>http://example.org/monitoring-lab/launch-ec2-instance/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -202,7 +202,7 @@ PLEASE NOTE: You must select &amp;ldquo;Amazon Linux AMI&amp;rdquo;, NOT &amp;ld
     </item>
     
     <item>
-      <title>Launch EC2 Instance</title>
+      <title>3. Launch EC2 Instance</title>
       <link>http://example.org/security-lab/launch-ec2-instance/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -216,7 +216,7 @@ PLEASE NOTE: You must select &amp;ldquo;Amazon Linux AMI&amp;rdquo;, NOT &amp;ld
     </item>
     
     <item>
-      <title>Move S3 Object</title>
+      <title>3. Move S3 Object</title>
       <link>http://example.org/s3-lab/move-s3-object/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -228,7 +228,7 @@ PLEASE NOTE: You must select &amp;ldquo;Amazon Linux AMI&amp;rdquo;, NOT &amp;ld
     </item>
     
     <item>
-      <title>Test IAM User</title>
+      <title>3. Test IAM User</title>
       <link>http://example.org/iam-lab/test-iam-user/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -237,7 +237,7 @@ PLEASE NOTE: You must select &amp;ldquo;Amazon Linux AMI&amp;rdquo;, NOT &amp;ld
     </item>
     
     <item>
-      <title>Configure CloudWatch Alarm</title>
+      <title>4. Configure CloudWatch Alarm</title>
       <link>http://example.org/monitoring-lab/configure-cloudwatch-alarm/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -248,7 +248,7 @@ PLEASE NOTE: You must select &amp;ldquo;Amazon Linux AMI&amp;rdquo;, NOT &amp;ld
     </item>
     
     <item>
-      <title>Create IAM Role</title>
+      <title>4. Create IAM Role</title>
       <link>http://example.org/iam-lab/create-iam-role/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -259,7 +259,7 @@ PLEASE NOTE: You must select &amp;ldquo;Amazon Linux AMI&amp;rdquo;, NOT &amp;ld
     </item>
     
     <item>
-      <title>Enable Bucket Versioning</title>
+      <title>4. Enable Bucket Versioning</title>
       <link>http://example.org/s3-lab/enable-bucket-versioning/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -271,7 +271,7 @@ PLEASE NOTE: You must select &amp;ldquo;Amazon Linux AMI&amp;rdquo;, NOT &amp;ld
     </item>
     
     <item>
-      <title>Test Public EC2 Instance</title>
+      <title>4. Test Public EC2 Instance</title>
       <link>http://example.org/vpc-lab/test-public-ec2-instance/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -281,7 +281,7 @@ You should be on the EC2 Instances dashboard from the last section, looking at a
     </item>
     
     <item>
-      <title>Clean Up Resources</title>
+      <title>5. Clean Up Resources</title>
       <link>http://example.org/iam-lab/clean-up-resources/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -292,7 +292,7 @@ You should be on the EC2 Instances dashboard from the last section, looking at a
     </item>
     
     <item>
-      <title>Delete an Object and Bucket</title>
+      <title>5. Delete an Object and Bucket</title>
       <link>http://example.org/s3-lab/delete-an-object-and-bucket/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -303,7 +303,7 @@ If you no longer need to store the objects you uploaded and moved while going th
     </item>
     
     <item>
-      <title>Monitor EC2 CPU Utilization</title>
+      <title>5. Monitor EC2 CPU Utilization</title>
       <link>http://example.org/monitoring-lab/monitor-ec2-cpu-utilization/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -314,7 +314,7 @@ If you no longer need to store the objects you uploaded and moved while going th
     </item>
     
     <item>
-      <title>Test Private EC2 Instance</title>
+      <title>5. Test Private EC2 Instance</title>
       <link>http://example.org/vpc-lab/test-private-ec2-instance/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -323,7 +323,7 @@ If you no longer need to store the objects you uploaded and moved while going th
     </item>
     
     <item>
-      <title>Additional resources</title>
+      <title>6. Additional resources</title>
       <link>http://example.org/iam-lab/additional-resources/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -332,7 +332,7 @@ If you no longer need to store the objects you uploaded and moved while going th
     </item>
     
     <item>
-      <title>Additional resources</title>
+      <title>6. Additional resources</title>
       <link>http://example.org/s3-lab/additional-resources/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -343,7 +343,7 @@ You should continue exploring more features of S3!
     </item>
     
     <item>
-      <title>Clean Up Resources</title>
+      <title>6. Clean Up Resources</title>
       <link>http://example.org/vpc-lab/clean-up-resources/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -353,7 +353,7 @@ First, you will need to terminate the EC2 instances that are running in the VPC.
     </item>
     
     <item>
-      <title>Monitor EC2 Security Log</title>
+      <title>6. Monitor EC2 Security Log</title>
       <link>http://example.org/security-lab/monitor-ec2-security-log/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -367,7 +367,7 @@ First, you will need to terminate the EC2 instances that are running in the VPC.
     </item>
     
     <item>
-      <title>Monitor EC2 System Log</title>
+      <title>6. Monitor EC2 System Log</title>
       <link>http://example.org/monitoring-lab/monitor-ec2-system-log/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -381,7 +381,7 @@ First, you will need to terminate the EC2 instances that are running in the VPC.
     </item>
     
     <item>
-      <title>Additional Resources</title>
+      <title>7. Additional Resources</title>
       <link>http://example.org/vpc-lab/additional-resources/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -390,7 +390,7 @@ First, you will need to terminate the EC2 instances that are running in the VPC.
     </item>
     
     <item>
-      <title>Create Alarm For Security Log</title>
+      <title>7. Create Alarm For Security Log</title>
       <link>http://example.org/security-lab/create-alarm-for-security-log/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -404,7 +404,7 @@ First, you will need to terminate the EC2 instances that are running in the VPC.
     </item>
     
     <item>
-      <title>Monitor EC2 Tag</title>
+      <title>7. Monitor EC2 Tag</title>
       <link>http://example.org/monitoring-lab/monitor-ec2-tag/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -415,7 +415,7 @@ If this is the first time you enabled AWS Config, your console will direct you t
     </item>
     
     <item>
-      <title>Monitor Estimated Charges</title>
+      <title>8. Monitor Estimated Charges</title>
       <link>http://example.org/monitoring-lab/monitor-estimated-charges/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -424,7 +424,7 @@ If this is the first time you enabled AWS Config, your console will direct you t
     </item>
     
     <item>
-      <title>Test Security Alarm</title>
+      <title>8. Test Security Alarm</title>
       <link>http://example.org/security-lab/test-security-alarm/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -438,7 +438,7 @@ If this is the first time you enabled AWS Config, your console will direct you t
     </item>
     
     <item>
-      <title>Query Security Log</title>
+      <title>10. Query Security Log</title>
       <link>http://example.org/security-lab/query-security-log/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       

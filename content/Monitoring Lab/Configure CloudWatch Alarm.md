@@ -1,5 +1,5 @@
 ---
-title: "Configure CloudWatch Alarm"
+title: "4. Configure CloudWatch Alarm"
 weight: 4
 draft: false
 ---

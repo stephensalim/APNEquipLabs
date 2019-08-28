@@ -1,5 +1,5 @@
 ---
-title: "Create IAM User"
+title: "2. Create IAM User"
 weight: 2
 draft: false
 ---

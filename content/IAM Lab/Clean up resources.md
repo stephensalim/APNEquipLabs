@@ -1,5 +1,5 @@
 ---
-title: "Clean Up Resources"
+title: "5. Clean Up Resources"
 weight: 5
 draft: false
 ---

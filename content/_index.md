@@ -5,11 +5,9 @@ draft: false
 
 <h4>Welcome to APN Equip Lab !</h4>
 
-This lab is designed to encourage learning through exploration.<br>
-To get the most out of this lab, we encourage you to approach the instructions with the following guidelines.<br>
 The Lab assumes you already have an AWS account setup, and have direct unrestricted access to your AWS console.<br>
 If you don't have AWS account set up, please follow this [Link](https://aws.amazon.com/premiumsupport/knowledge-center/create-and-activate-aws-account/) to set one up.
-To make the most of this Lab follow below guidelines.
+Each Lab are built independently of each other so you can pick and choose your module as preffered 
 
 <br>
 

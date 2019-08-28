@@ -1,5 +1,5 @@
 ---
-title: "Test Public EC2 Instance"
+title: "4. Test Public EC2 Instance"
 weight: 4
 draft: false
 ---

@@ -1,5 +1,5 @@
 ---
-title: "Monitor EC2 Tag"
+title: "7. Monitor EC2 Tag"
 weight: 7
 draft: false
 ---
