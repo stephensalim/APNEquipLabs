@@ -73,13 +73,11 @@ reconfig-mediation using AWS-StopEC2Instance AWS Systems Manager Automation.
     Automation document please refer to this
     [page](https://docs.aws.amazon.com/systems-manager/latest/userguide/automation-documents.html)
 
-    ![](/Detailed Instructions/Monitoring Lab/images/image21.jpg)
-
 16. AWS config should now evaluate the the instances in your region.\
     Once it has completed it's evaluation, you should now see the EC2
     instance you launched in previous steps as being, Noncompliant.
 
-    ![](/Detailed Instructions/Monitoring Lab/images/image22.jpg)
+    ![](/Detailed Instructions/Monitoring Lab/images/config-media-image21.png)
 
 17. Optionally, you can select the instance and click on **Reconfig-mediate**
     to execute the pre-defined reconfig-mediation action
@@ -92,16 +90,12 @@ reconfig-mediation using AWS-StopEC2Instance AWS Systems Manager Automation.
     [guide](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html#adding-or-deleting-tags)
     ).
 
-	![](/Detailed Instructions/Monitoring Lab/images/image23.jpg)
-
 19. Go back to the AWS Config console, click on **Rules >**
     **required-tags** Rule name.
 
 20. Click on **Re-evaluate**
 
     You should now see the config running it's re-evaluation.
-
-    ![](/Detailed Instructions/Monitoring Lab/images/image24.png)
 
 21. Once the evaluation complete, locate the instance in the Compliance
     list.
@@ -111,5 +105,5 @@ reconfig-mediation using AWS-StopEC2Instance AWS Systems Manager Automation.
 23. Click on the EC2 instance resource and click on Compliance timeline
     to see the timeline of the changes on that EC2 instance.
 
-    ![](/Detailed Instructions/Monitoring Lab/images/image25.png)
+    ![](/Detailed Instructions/Monitoring Lab/images/config-media-image22.png)
   
