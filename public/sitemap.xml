@@ -27,6 +27,10 @@
   </url>
   
   <url>
+    <loc>http://example.org/cloudformation-lab/template_overview/</loc>
+  </url>
+  
+  <url>
     <loc>http://example.org/vpc-lab/navigate-the-vpc-dashboard/</loc>
   </url>
   
@@ -55,11 +59,15 @@
   </url>
   
   <url>
+    <loc>http://example.org/cloudformation-lab/create_stack/</loc>
+  </url>
+  
+  <url>
     <loc>http://example.org/ec2-lab/launch-ec2-web-server/</loc>
   </url>
   
   <url>
-    <loc>http://example.org/vpc-lab/what-did-vpc-wizard-create-/</loc>
+    <loc>http://example.org/vpc-lab/what-did-vpc-wizard-create/</loc>
   </url>
   
   <url>
@@ -68,6 +76,10 @@
   
   <url>
     <loc>http://example.org/ec2-lab/browse-your-web-server/</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.org/cloudformation-lab/lab_objective/</loc>
   </url>
   
   <url>
@@ -103,11 +115,11 @@
   </url>
   
   <url>
-    <loc>http://example.org/iam-lab/create-iam-role/</loc>
+    <loc>http://example.org/ec2-lab-windows/create-windows-ec2-instance/</loc>
   </url>
   
   <url>
-    <loc>http://example.org/ec2-lab-windows/create-windows-ec2-instance/</loc>
+    <loc>http://example.org/iam-lab/create-iam-role/</loc>
   </url>
   
   <url>
@@ -119,7 +131,15 @@
   </url>
   
   <url>
+    <loc>http://example.org/cloudformation-lab/update_stack/</loc>
+  </url>
+  
+  <url>
     <loc>http://example.org/iam-lab/</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.org/cloudformation-lab/appendix/</loc>
   </url>
   
   <url>
@@ -199,17 +219,19 @@
   </url>
   
   <url>
+    <loc>http://example.org/cloudformation-lab/</loc>
+  </url>
+  
+  <url>
     <loc>http://example.org/security-lab/query-security-log/</loc>
   </url>
   
   <url>
     <loc>http://example.org/categories/</loc>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>http://example.org/tags/</loc>
-    <priority>0</priority>
   </url>
   
   <url>

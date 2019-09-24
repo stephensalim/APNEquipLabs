@@ -1,0 +1,2424 @@
+<!DOCTYPE html>
+<html lang="en" class="js csstransforms3d">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Hugo 0.57.2" />
+    <meta name="description" content="">
+
+
+    <link rel="icon" href="/images/favicon.png" type="image/png">
+
+    <title>2. What Did VPC Wizard Create ? :: APN Equip Labs</title>
+
+    
+    <link href="/css/nucleus.css?1569301878" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1569301878" rel="stylesheet">
+    <link href="/css/hybrid.css?1569301878" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1569301878" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1569301878" rel="stylesheet">
+    <link href="/css/auto-complete.css?1569301878" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1569301878" rel="stylesheet">
+    <link href="/css/theme.css?1569301878" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1569301878" rel="stylesheet">
+    
+      <link href="/css/theme-darkblue.css?1569301878" rel="stylesheet">
+    
+
+    <script src="/js/jquery-3.3.1.min.js?1569301878"></script>
+
+    <style>
+      :root #header + #content > #left > #rlblock_left{
+          display:none !important;
+      }
+      
+    </style>
+    
+  </head>
+  <body class="" data-url="/vpc-lab/what-did-vpc-wizard-create/">
+    <nav id="sidebar" class="showVisitedLinks">
+
+
+
+  <div id="header-wrapper">
+    <div id="header">
+      <a href=".."><img src="/images/logo.jpg" ></a>
+    </div>
+    
+        <div class="searchbox">
+    <label for="search-by"><i class="fas fa-search"></i></label>
+    <input data-search-input id="search-by" type="search" placeholder="Search...">
+    <span data-search-clear=""><i class="fas fa-times"></i></span>
+</div>
+
+<script type="text/javascript" src="/js/lunr.min.js?1569301878"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1569301878"></script>
+<script type="text/javascript">
+    
+        var baseurl = "http:\/\/example.org\/";
+    
+</script>
+<script type="text/javascript" src="/js/search.js?1569301878"></script>
+
+    
+  </div>
+
+    <div class="highlightable">
+    <ul class="topics">
+
+        
+          
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/vpc-lab/" title="VPC Lab" class="dd-item 
+        parent
+        
+        
+        ">
+      <a href="/vpc-lab/">
+          <b></b>VPC Lab
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/vpc-lab/navigate-the-vpc-dashboard/" title="1. Navigate the VPC Dashboard" class="dd-item ">
+        <a href="/vpc-lab/navigate-the-vpc-dashboard/">
+        1. Navigate the VPC Dashboard
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/vpc-lab/what-did-vpc-wizard-create/" title="2. What Did VPC Wizard Create ?" class="dd-item active">
+        <a href="/vpc-lab/what-did-vpc-wizard-create/">
+        2. What Did VPC Wizard Create ?
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/vpc-lab/create-ec2-instance/" title="3. Create Public EC2 Instance" class="dd-item ">
+        <a href="/vpc-lab/create-ec2-instance/">
+        3. Create Public EC2 Instance
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/vpc-lab/test-public-ec2-instance/" title="4. Test Public EC2 Instance" class="dd-item ">
+        <a href="/vpc-lab/test-public-ec2-instance/">
+        4. Test Public EC2 Instance
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/vpc-lab/test-private-ec2-instance/" title="5. Test Private EC2 Instance" class="dd-item ">
+        <a href="/vpc-lab/test-private-ec2-instance/">
+        5. Test Private EC2 Instance
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/vpc-lab/clean-up-resources/" title="6. Clean Up Resources" class="dd-item ">
+        <a href="/vpc-lab/clean-up-resources/">
+        6. Clean Up Resources
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/vpc-lab/additional-resources/" title="7. Additional Resources" class="dd-item ">
+        <a href="/vpc-lab/additional-resources/">
+        7. Additional Resources
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/ec2-lab/" title="EC2 Lab" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/ec2-lab/">
+          <b></b>EC2 Lab
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/ec2-lab/create-new-key-pair/" title="1. Create New Key Pair" class="dd-item ">
+        <a href="/ec2-lab/create-new-key-pair/">
+        1. Create New Key Pair
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/ec2-lab/launch-ec2-web-server/" title="2. Launch EC2 Web Server" class="dd-item ">
+        <a href="/ec2-lab/launch-ec2-web-server/">
+        2. Launch EC2 Web Server
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/ec2-lab/browse-your-web-server/" title="3. Browse your Web Server" class="dd-item ">
+        <a href="/ec2-lab/browse-your-web-server/">
+        3. Browse your Web Server
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/ec2-lab-windows/" title="EC2 Lab (Windows)" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/ec2-lab-windows/">
+          <b></b>EC2 Lab (Windows)
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/ec2-lab-windows/configure-network/" title="1. Configure Network" class="dd-item ">
+        <a href="/ec2-lab-windows/configure-network/">
+        1. Configure Network
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/ec2-lab-windows/configure-security-group/" title="2. Configure a Security Group" class="dd-item ">
+        <a href="/ec2-lab-windows/configure-security-group/">
+        2. Configure a Security Group
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/ec2-lab-windows/configure-an-iam-user-and-policy/" title="3. Configure an IAM User and Policy" class="dd-item ">
+        <a href="/ec2-lab-windows/configure-an-iam-user-and-policy/">
+        3. Configure an IAM User and Policy
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/ec2-lab-windows/create-windows-ec2-instance/" title="4. Create a Windows EC2 Instance" class="dd-item ">
+        <a href="/ec2-lab-windows/create-windows-ec2-instance/">
+        4. Create a Windows EC2 Instance
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/ec2-lab-windows/validate-iam-policy/" title="5. Validate IAM Policy" class="dd-item ">
+        <a href="/ec2-lab-windows/validate-iam-policy/">
+        5. Validate IAM Policy
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/ec2-lab-windows/cleanup/" title="6. Cleanup" class="dd-item ">
+        <a href="/ec2-lab-windows/cleanup/">
+        6. Cleanup
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/iam-lab/" title="IAM Lab" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/iam-lab/">
+          <b></b>IAM Lab
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/iam-lab/create-iam-group/" title="1. Create IAM Group" class="dd-item ">
+        <a href="/iam-lab/create-iam-group/">
+        1. Create IAM Group
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/iam-lab/create-iam-user/" title="2. Create IAM User" class="dd-item ">
+        <a href="/iam-lab/create-iam-user/">
+        2. Create IAM User
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/iam-lab/test-iam-user/" title="3. Test IAM User" class="dd-item ">
+        <a href="/iam-lab/test-iam-user/">
+        3. Test IAM User
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/iam-lab/create-iam-role/" title="4. Create IAM Role" class="dd-item ">
+        <a href="/iam-lab/create-iam-role/">
+        4. Create IAM Role
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/iam-lab/clean-up-resources/" title="5. Clean Up Resources" class="dd-item ">
+        <a href="/iam-lab/clean-up-resources/">
+        5. Clean Up Resources
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/iam-lab/additional-resources/" title="6. Additional resources" class="dd-item ">
+        <a href="/iam-lab/additional-resources/">
+        6. Additional resources
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/s3-lab/" title="S3 Lab" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/s3-lab/">
+          <b></b>S3 Lab
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/s3-lab/create-s3-bucket/" title="1. Create S3 Bucket" class="dd-item ">
+        <a href="/s3-lab/create-s3-bucket/">
+        1. Create S3 Bucket
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/s3-lab/add-object-to-s3-bucket/" title="2. Add Object to S3 Bucket" class="dd-item ">
+        <a href="/s3-lab/add-object-to-s3-bucket/">
+        2. Add Object to S3 Bucket
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/s3-lab/move-s3-object/" title="3. Move S3 Object" class="dd-item ">
+        <a href="/s3-lab/move-s3-object/">
+        3. Move S3 Object
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/s3-lab/enable-bucket-versioning/" title="4. Enable Bucket Versioning" class="dd-item ">
+        <a href="/s3-lab/enable-bucket-versioning/">
+        4. Enable Bucket Versioning
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/s3-lab/delete-an-object-and-bucket/" title="5. Delete an Object and Bucket" class="dd-item ">
+        <a href="/s3-lab/delete-an-object-and-bucket/">
+        5. Delete an Object and Bucket
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/s3-lab/additional-resources/" title="6. Additional resources" class="dd-item ">
+        <a href="/s3-lab/additional-resources/">
+        6. Additional resources
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/monitoring-lab/" title="Monitoring Lab" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/monitoring-lab/">
+          <b></b>Monitoring Lab
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/monitoring-lab/create-sns-topic/" title="1. Create SNS Topic" class="dd-item ">
+        <a href="/monitoring-lab/create-sns-topic/">
+        1. Create SNS Topic
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/monitoring-lab/create-iam-role/" title="2. Create IAM Role" class="dd-item ">
+        <a href="/monitoring-lab/create-iam-role/">
+        2. Create IAM Role
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/monitoring-lab/launch-ec2-instance/" title="3. Launch EC2 Instance" class="dd-item ">
+        <a href="/monitoring-lab/launch-ec2-instance/">
+        3. Launch EC2 Instance
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/monitoring-lab/configure-cloudwatch-alarm/" title="4. Configure CloudWatch Alarm" class="dd-item ">
+        <a href="/monitoring-lab/configure-cloudwatch-alarm/">
+        4. Configure CloudWatch Alarm
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/monitoring-lab/monitor-ec2-cpu-utilization/" title="5. Monitor EC2 CPU Utilization" class="dd-item ">
+        <a href="/monitoring-lab/monitor-ec2-cpu-utilization/">
+        5. Monitor EC2 CPU Utilization
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/monitoring-lab/monitor-ec2-system-log/" title="6. Monitor EC2 System Log" class="dd-item ">
+        <a href="/monitoring-lab/monitor-ec2-system-log/">
+        6. Monitor EC2 System Log
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/monitoring-lab/monitor-ec2-tag/" title="7. Monitor EC2 Tag" class="dd-item ">
+        <a href="/monitoring-lab/monitor-ec2-tag/">
+        7. Monitor EC2 Tag
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/monitoring-lab/monitor-estimated-charges/" title="8. Monitor Estimated Charges" class="dd-item ">
+        <a href="/monitoring-lab/monitor-estimated-charges/">
+        8. Monitor Estimated Charges
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/security-lab/" title="Security Lab" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/security-lab/">
+          <b></b>Security Lab
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/security-lab/create-sns-topic/" title="1. Create SNS Topic" class="dd-item ">
+        <a href="/security-lab/create-sns-topic/">
+        1. Create SNS Topic
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/security-lab/create-iam-role/" title="2. Create IAM Role" class="dd-item ">
+        <a href="/security-lab/create-iam-role/">
+        2. Create IAM Role
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/security-lab/launch-ec2-instance/" title="3. Launch EC2 Instance" class="dd-item ">
+        <a href="/security-lab/launch-ec2-instance/">
+        3. Launch EC2 Instance
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/security-lab/monitor-ec2-security-log/" title="6. Monitor EC2 Security Log" class="dd-item ">
+        <a href="/security-lab/monitor-ec2-security-log/">
+        6. Monitor EC2 Security Log
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/security-lab/create-alarm-for-security-log/" title="7. Create Alarm For Security Log" class="dd-item ">
+        <a href="/security-lab/create-alarm-for-security-log/">
+        7. Create Alarm For Security Log
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/security-lab/test-security-alarm/" title="8. Test Security Alarm" class="dd-item ">
+        <a href="/security-lab/test-security-alarm/">
+        8. Test Security Alarm
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/security-lab/query-security-log/" title="10. Query Security Log" class="dd-item ">
+        <a href="/security-lab/query-security-log/">
+        10. Query Security Log
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/cloudformation-lab/" title="CloudFormation Lab" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/cloudformation-lab/">
+          <b></b>CloudFormation Lab
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/cloudformation-lab/template_overview/" title="1. Exploring the templates" class="dd-item ">
+        <a href="/cloudformation-lab/template_overview/">
+        1. Exploring the templates
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/cloudformation-lab/create_stack/" title="2. Create Stack" class="dd-item ">
+        <a href="/cloudformation-lab/create_stack/">
+        2. Create Stack
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/cloudformation-lab/lab_objective/" title="3. Change Your Stack" class="dd-item ">
+        <a href="/cloudformation-lab/lab_objective/">
+        3. Change Your Stack
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/cloudformation-lab/update_stack/" title="4. Update Stack" class="dd-item ">
+        <a href="/cloudformation-lab/update_stack/">
+        4. Update Stack
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/cloudformation-lab/appendix/" title="5. Appendix" class="dd-item ">
+        <a href="/cloudformation-lab/appendix/">
+        5. Appendix
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+         
+    </ul>
+
+    
+    
+
+    
+    <section id="prefooter">
+      <hr/>
+      <ul>
+      
+      
+      
+        <li><a class="padding" href="#" data-clear-history-toggle=""><i class="fas fa-history fa-fw"></i> Clear History</a></li>
+      
+      </ul>
+    </section>
+    
+    <section id="footer">
+      
+    </section>
+  </div>
+</nav>
+
+
+
+
+
+        <section id="body">
+        <div id="overlay"></div>
+        <div class="padding highlightable">
+              
+              <div>
+                <div id="top-bar">
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                 
+                 
+                    
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='/'>Welcome</a> > <a href='/vpc-lab/'>VPC Lab</a> > 2. What Did VPC Wizard Create ?
+          
+         
+          
+         
+          
+        
+                 
+                  </span>
+                </div>
+                
+                    <div class="progress">
+    <div class="wrapper">
+
+    </div>
+</div>
+
+                
+              </div>
+            </div>
+            
+        <div id="head-tags">
+        
+        </div>
+        
+        <div id="body-inner">
+          
+            <h1>
+              
+              2. What Did VPC Wizard Create ?
+            </h1>
+          
+
+        
+
+
+
+<p>Let&rsquo;s walk through the VPC Console and explain each component that the
+wizard created.</p>
+
+<p>From the last step, you should now be on the <strong>Your VPCs</strong> dashboard
+looking at all of your VPCs in this region. Select the VPC that you just
+created, and look at the <strong>Summary</strong> tab. If you can&rsquo;t see everything in
+the pane, you can pull the pane up by dragging on the pane&rsquo;s top line.</p>
+
+<p>In the <strong>Summary</strong> tab in the left-hand column, you can see the <strong>Main
+Route Table</strong> for your VPC. Any subnets in the VPC that do not have a
+route table directly associated with it will use this route table by
+default. To explore this further, click on the <strong>Route table link</strong>.</p>
+
+<p><img src="/VPC Lab/images/image7.png" alt="" /></p>
+
+<p>You are now in the <strong>Route Tables</strong> dashboard, filtered on the main
+route table of the VPC you just created. That means that there should be
+only one route table shown. Select this route table and click on the
+<strong>Subnet Associations</strong> tab.</p>
+
+<p><img src="/VPC Lab/images/image8.png" alt="" /></p>
+
+<p>You can see that there are no <strong>explicit subnet associations</strong> on this
+route table. However, since this is the main route table for the VPC,
+there is one subnet implicitly associated. It&rsquo;s the <strong>Private subnet</strong>
+of the VPC.</p>
+
+<p>What makes a subnet public or private? We can find out by looking at the
+routes in this table.</p>
+
+<p>Click on the <strong>Routes</strong> tab.</p>
+
+<p>In the <strong>Routes</strong> tab, look at the <strong>Target</strong> column. You&rsquo;ll see one
+<strong>local route</strong> which every route table has. This ensures that resources
+within the VPC can talk to each other.</p>
+
+<p>You will also see a route to the <strong>NAT gateway</strong> that the wizard
+created. Remember that a NAT gateway gives internet access to resources
+which are not publicly accessible. Because the resources in this subnet
+are not publicly accessible, this is considered a <strong>private subnet</strong>.</p>
+
+<p>Now let&rsquo;s find out what makes a subnet public. First, get rid of the
+filter on this view. To do this, <strong>click the X in the search bar</strong>. You
+are now looking at all of the route tables in this region. Your
+dashboard should look something like the screenshot below.</p>
+
+<p>Select the other route table in your VPC (check <strong>VPC</strong> column for name)
+which is not the main route table (check <strong>Main</strong> column for <strong>No</strong>). In
+the <strong>Routes</strong> tab, you&rsquo;ll see a route to an <strong>Internet Gateway (IGW)</strong>.
+IGWs are another managed and scalable service like the NAT Gateway
+except that it allows access from the internet to your resources in the
+VPC, making your resources publicly accessible.</p>
+
+<p><img src="/VPC Lab/images/image9.png" alt="" /></p>
+
+<p>There is a reason why this route table is not the main route table. It
+is best practice for your VPC&rsquo;s main route table to not have a route to
+an IGW so that subnets are private by default and only public if
+specified.</p>
+
+<p>Go to the <strong>Subnet Associations</strong> tab and confirm that it is the
+<strong>Public subnet</strong> which is associated with this route table. Click on
+the <strong>Public subnet link</strong>.</p>
+
+<p>Look at the <strong>Description</strong> tab. You&rsquo;ll notice a <strong>Network Access
+Control List (Network ACL)</strong> link. NACLs are virtual stateless firewalls
+at the subnet layer. This wizard used the <strong>default NACL</strong> (created
+automatically with the VPC) for both subnets. Similar to the main route
+table, the default NACL is implicitly associated with all subnets in a
+VPC unless another NACL is directly associated with that subnet.</p>
+
+<p>Go to the <strong>Network ACL</strong> tab to look at the default NACL rules. Rules
+are evaluated in order from lowest to highest. If the traffic doesn&rsquo;t
+match any rules, the * rule is applied, and the traffic is denied.
+Default NACLs allow all inbound and outbound traffic, as shown below,
+unless customized.</p>
+
+<p><img src="/VPC Lab/images/image10.png" alt="" /></p>
+
+<p>Allowing all traffic in and out of your subnets is not a good security
+posture. However, it is possible to achieve good security with this
+default NACL by leveraging <strong>Security Groups</strong> as well.</p>
+
+<p>Security Groups are virtual stateful firewalls at the resource (EC2
+instance) level. It is best practice to implement necessary firewall
+rules with Security Groups first and only adding rules to NACLs as
+necessary. For instance, you can explicitly deny traffic from specific
+IPs with NACLs but not with Security Groups. We will explore Security
+Groups more in the next section.</p>
+
+<p>We have now gone through the bread and butter of AWS networking. You
+should now understand how routing works in a VPC, what makes a subnet
+public or private, and how to secure your resources at the subnet and
+resource levels.</p>
+
+
+<footer class=" footline" >
+	
+</footer>
+
+
+        
+        </div> 
+        
+
+      </div>
+
+    <div id="navigation">
+        
+        
+        
+        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+            
+        
+        
+        
+
+
+	 
+	 
+		
+			<a class="nav nav-prev" href="/vpc-lab/navigate-the-vpc-dashboard/" title="1. Navigate the VPC Dashboard"> <i class="fa fa-chevron-left"></i></a>
+		
+		
+			<a class="nav nav-next" href="/vpc-lab/create-ec2-instance/" title="3. Create Public EC2 Instance" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+	
+    </div>
+
+    </section>
+    
+    <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
+      <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
+    </div>
+    <script src="/js/clipboard.min.js?1569301878"></script>
+    <script src="/js/perfect-scrollbar.min.js?1569301878"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1569301878"></script>
+    <script src="/js/jquery.sticky.js?1569301878"></script>
+    <script src="/js/featherlight.min.js?1569301878"></script>
+    <script src="/js/highlight.pack.js?1569301878"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="/js/modernizr.custom-3.6.0.js?1569301878"></script>
+    <script src="/js/learn.js?1569301878"></script>
+    <script src="/js/hugo-learn.js?1569301878"></script>
+
+    <link href="/mermaid/mermaid.css?1569301878" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1569301878"></script>
+    <script>
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+    
+
+  </body>
+</html>
+

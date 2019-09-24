@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>CloudFormation Lab on APN Equip Labs</title>
+    <link>http://example.org/cloudformation-lab/</link>
+    <description>Recent content in CloudFormation Lab on APN Equip Labs</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="http://example.org/cloudformation-lab/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>1. Exploring the templates</title>
+      <link>http://example.org/cloudformation-lab/template_overview/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/cloudformation-lab/template_overview/</guid>
+      <description>Please collapse the Sample CloudFormation Template file, You can use any text editor to explore the different elements of VPC mentioned in the template. To make it easy for you can copy and paste the entire template into any YAML friendly text editor and collapse / expand the section.
+Some Recommendations :
+ Notepad++ (https://notepad-plus-plus.org/downloads/) VisualStudioCode. (https://code.visualstudio.com/)  Source CloudFormation Template
+CLICK HERE 
+AWSTemplateFormatVersion: &#39;2010-09-09&#39; Parameters: vpccidr: Type: String Default: 10.</description>
+    </item>
+    
+    <item>
+      <title>2. Create Stack</title>
+      <link>http://example.org/cloudformation-lab/create_stack/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/cloudformation-lab/create_stack/</guid>
+      <description>Copy and paste the Sample CloudFormation Template from the previous section to a text file called Sample_VPC_CloudFormation.yml
+Log into the AWS Console, and click on CloudFormation and below screen will open:
+Now click on Create new stack and browse your initial template to against choose a template option :
+Click Next and give stack name. Make sure your stack name should be unique to your account. Leave all other option as default</description>
+    </item>
+    
+    <item>
+      <title>3. Change Your Stack</title>
+      <link>http://example.org/cloudformation-lab/lab_objective/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/cloudformation-lab/lab_objective/</guid>
+      <description>Now you need to modify your template with following objectives:
+Add Parameter Constraint :
+ Vpccidr
+ Minimum length should be set to 9
+ Maximum length should be set to 18
+ Allowed pattern should be: ((\d{1,3})\.){3}\d{1,3}/\d{1,2}
+ Add a constraint description
+  Psharedacidr
+ Minimum length should be set to 9
+ Maximum length should be set to 18
+ Allowed pattern should be: ((\d{1,3})\.){3}\d{1,3}/\d{1,2}
+ Add a constraint description</description>
+    </item>
+    
+    <item>
+      <title>4. Update Stack</title>
+      <link>http://example.org/cloudformation-lab/update_stack/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/cloudformation-lab/update_stack/</guid>
+      <description>Once you modified your existing template , you can use Update Stack option to update your stack. To update select your Stack and click on Actions drop down and you will find Update Stack option.
+In Update, Stack screen select browse your updated template. If you have not figured out a solution yet Follow instruction in appendix section to get template
+Lab_Solution_CloudFormation_Module_General_ImmersionDay.json.
+Now remaining steps are same as you followed in Create stack.</description>
+    </item>
+    
+    <item>
+      <title>5. Appendix</title>
+      <link>http://example.org/cloudformation-lab/appendix/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/cloudformation-lab/appendix/</guid>
+      <description>Initial AWS CloudFormation Template for lab exercise:
+AWSTemplateFormatVersion: &#39;2010-09-09&#39; Parameters: vpccidr: Type: String Default: 10.20.0.0/16 psharedacidr: Type: String Default: 10.20.0.0/22 psharedbcidr: Type: String Default: 10.20.4.0/22 Resources: VPC: Type: &amp;quot;AWS::EC2::VPC&amp;quot; Properties: CidrBlock: !Ref vpccidr IGW: Type: &amp;quot;AWS::EC2::InternetGateway&amp;quot; S3AppBucket: Type: &amp;quot;AWS::S3::Bucket&amp;quot; Properties: AccessControl: PublicRead WebsiteConfiguration: ErrorDocument: index.html IndexDocument: index.html BucketPolicyApp: Type: &amp;quot;AWS::S3::BucketPolicy&amp;quot; Properties: Bucket: !Ref S3AppBucket PolicyDocument: Statement: - Sid: &amp;quot;ABC123&amp;quot; Action: - &amp;quot;s3:GetObject&amp;quot; Effect: Allow Resource: !Join [&amp;quot;&amp;quot;, [&amp;quot;arn:aws:s3:::&amp;quot;, !Ref S3AppBucket, &amp;quot;/*&amp;quot;]] Principal: AWS: - &amp;quot;*&amp;quot; GatewayAttach: Type: &amp;quot;AWS::EC2::VPCGatewayAttachment&amp;quot; Properties: InternetGatewayId: !</description>
+    </item>
+    
+  </channel>
+</rss>
