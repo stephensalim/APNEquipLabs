@@ -4,7 +4,7 @@ weight: 1
 draft: false
 ---
 
-Please collapse the **Sample CloudFormation Template** file, You can use
+Please collapse the **Source CloudFormation Template** file, You can use
 any text editor to explore the different elements of VPC mentioned in
 the template. To make it easy for you can copy and paste the entire template into any YAML friendly text editor and collapse / expand the section.
 
@@ -15,6 +15,8 @@ Some Recommendations :
 
 
 **Source CloudFormation Template**
+
+Copy this template for the next section.
 
 <details><summary>CLICK HERE</summary>
 <p>

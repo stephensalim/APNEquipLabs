@@ -27,11 +27,15 @@
   </url>
   
   <url>
-    <loc>http://example.org/cloudformation-lab/template_overview/</loc>
+    <loc>http://example.org/cloudformation-lab/explore_template/</loc>
   </url>
   
   <url>
     <loc>http://example.org/vpc-lab/navigate-the-vpc-dashboard/</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.org/ami-inspector-lab/solutions_overview/</loc>
   </url>
   
   <url>
@@ -67,6 +71,10 @@
   </url>
   
   <url>
+    <loc>http://example.org/ami-inspector-lab/tag_golden_ami/</loc>
+  </url>
+  
+  <url>
     <loc>http://example.org/vpc-lab/what-did-vpc-wizard-create/</loc>
   </url>
   
@@ -79,7 +87,7 @@
   </url>
   
   <url>
-    <loc>http://example.org/cloudformation-lab/lab_objective/</loc>
+    <loc>http://example.org/cloudformation-lab/change_stack/</loc>
   </url>
   
   <url>
@@ -103,6 +111,10 @@
   </url>
   
   <url>
+    <loc>http://example.org/ami-inspector-lab/store_golden_ami_metadata/</loc>
+  </url>
+  
+  <url>
     <loc>http://example.org/iam-lab/test-iam-user/</loc>
   </url>
   
@@ -116,6 +128,10 @@
   
   <url>
     <loc>http://example.org/ec2-lab-windows/create-windows-ec2-instance/</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.org/ami-inspector-lab/create_automation_function/</loc>
   </url>
   
   <url>
@@ -139,10 +155,6 @@
   </url>
   
   <url>
-    <loc>http://example.org/cloudformation-lab/appendix/</loc>
-  </url>
-  
-  <url>
     <loc>http://example.org/iam-lab/clean-up-resources/</loc>
   </url>
   
@@ -152,6 +164,10 @@
   
   <url>
     <loc>http://example.org/monitoring-lab/monitor-ec2-cpu-utilization/</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.org/ami-inspector-lab/test_assesment/</loc>
   </url>
   
   <url>
@@ -220,6 +236,10 @@
   
   <url>
     <loc>http://example.org/cloudformation-lab/</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.org/ami-inspector-lab/</loc>
   </url>
   
   <url>

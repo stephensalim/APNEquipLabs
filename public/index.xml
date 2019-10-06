@@ -89,15 +89,15 @@
     
     <item>
       <title>1. Exploring the templates</title>
-      <link>http://example.org/cloudformation-lab/template_overview/</link>
+      <link>http://example.org/cloudformation-lab/explore_template/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/cloudformation-lab/template_overview/</guid>
-      <description>Please collapse the Sample CloudFormation Template file, You can use any text editor to explore the different elements of VPC mentioned in the template. To make it easy for you can copy and paste the entire template into any YAML friendly text editor and collapse / expand the section.
+      <guid>http://example.org/cloudformation-lab/explore_template/</guid>
+      <description>Please collapse the Source CloudFormation Template file, You can use any text editor to explore the different elements of VPC mentioned in the template. To make it easy for you can copy and paste the entire template into any YAML friendly text editor and collapse / expand the section.
 Some Recommendations :
  Notepad++ (https://notepad-plus-plus.org/downloads/) VisualStudioCode. (https://code.visualstudio.com/)  Source CloudFormation Template
-CLICK HERE 
-AWSTemplateFormatVersion: &#39;2010-09-09&#39; Parameters: vpccidr: Type: String Default: 10.</description>
+Copy this template for the next section.
+CLICK HERE</description>
     </item>
     
     <item>
@@ -109,6 +109,18 @@ AWSTemplateFormatVersion: &#39;2010-09-09&#39; Parameters: vpccidr: Type: String
       <description>To get started, let&amp;rsquo;s take a look at the VPC Dashboard.
 In every region, a default VPC has already been created for you. So, even if you haven&amp;rsquo;t created anything in your account yet, you will see some VPC resources already there.
 In this lab, we will be using the VPC Wizard to create a VPC with private and public subnets pre-configured. Once you&amp;rsquo;re more familiar with AWS networking, you can create VPCs and subnets without the Wizard to create custom networking configurations.</description>
+    </item>
+    
+    <item>
+      <title>1. Solutions Overview</title>
+      <link>http://example.org/ami-inspector-lab/solutions_overview/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/ami-inspector-lab/solutions_overview/</guid>
+      <description>Here’s how this solution works :
+ A scheduled CloudWatch Events event triggers the StartContinuousAssessment AWS Lambda function, which starts the security assessment of your golden AMIs. The StartContinuousAssessment Lambda function performs the following actions:
+It reads a JSON parameter stored in the AWS Systems Manager (Systems Manager) Parameter Store. This JSON parameter contains the following metadata for each golden AMI:
+ InstanceType – A valid instance-type for launching an EC2 instance of the golden AMI.</description>
     </item>
     
     <item>
@@ -204,6 +216,16 @@ Sign into your AWS Management Console and choose EC2 from the Services menu. [ ]
     </item>
     
     <item>
+      <title>2. Tag your Golden AMI</title>
+      <link>http://example.org/ami-inspector-lab/tag_golden_ami/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/ami-inspector-lab/tag_golden_ami/</guid>
+      <description>To deploy this solution, you must set it up in the AWS Region where you build your golden AMIs. If that AWS Region does not support Amazon Inspector, at the end of your continuous integration pipeline, you can copy your AMIs to an AWS Region where Amazon Inspector assessments are supported. To learn more about continuous integration pipelines, see What is Continuous Integration?
+You can search assessment findings based on golden AMI tags after Amazon Inspector completes an assessment.</description>
+    </item>
+    
+    <item>
       <title>2. What Did VPC Wizard Create ?</title>
       <link>http://example.org/vpc-lab/what-did-vpc-wizard-create/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -226,22 +248,13 @@ You should see a website that looks like the following:</description>
     
     <item>
       <title>3. Change Your Stack</title>
-      <link>http://example.org/cloudformation-lab/lab_objective/</link>
+      <link>http://example.org/cloudformation-lab/change_stack/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/cloudformation-lab/lab_objective/</guid>
-      <description>Now you need to modify your template with following objectives:
-Add Parameter Constraint :
- Vpccidr
- Minimum length should be set to 9
- Maximum length should be set to 18
- Allowed pattern should be: ((\d{1,3})\.){3}\d{1,3}/\d{1,2}
- Add a constraint description
-  Psharedacidr
- Minimum length should be set to 9
- Maximum length should be set to 18
- Allowed pattern should be: ((\d{1,3})\.){3}\d{1,3}/\d{1,2}
- Add a constraint description</description>
+      <guid>http://example.org/cloudformation-lab/change_stack/</guid>
+      <description>Now that you have explored and deployed your VPC stack, lets modify the template and update the stack to change the environment.
+ Go back to the Source Cloudformation template you created before. Modify Section of the Source CloudFormation temoplate, and save the change into a new template file e.g: CloudFormation_Updated.yml.  Solution CloudFormation Template
+Click below to look at the Solution CloudFormation template, you can copy and paste this into a new file and update the stack following the next section.</description>
     </item>
     
     <item>
@@ -311,6 +324,17 @@ PLEASE NOTE: You must select &amp;ldquo;Amazon Linux AMI&amp;rdquo;, NOT &amp;ld
     </item>
     
     <item>
+      <title>3. Store Golden AMI metadata.</title>
+      <link>http://example.org/ami-inspector-lab/store_golden_ami_metadata/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/ami-inspector-lab/store_golden_ami_metadata/</guid>
+      <description>This solution reads golden AMI metadata from a parameter stored in the Systems Manager Parameter Store. The metadata must be in JSON format and must contain the following information for each golden AMI:
+ Ami-Id InstanceType UserData  Step A: Find the AMI ID of your golden AMI.
+An AMI ID uniquely identifies an AMI in an AWS Region and is a required parameter for launching an EC2 instance from a golden AMI.</description>
+    </item>
+    
+    <item>
       <title>3. Test IAM User</title>
       <link>http://example.org/iam-lab/test-iam-user/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -340,6 +364,17 @@ PLEASE NOTE: You must select &amp;ldquo;Amazon Linux AMI&amp;rdquo;, NOT &amp;ld
 In this task, you will create a Windows Server 2016 EC2 instance in the us-west-1 (N.California) region. You will perform the following steps as the newly created &amp;ldquo;West_Admin&amp;rdquo; user.
  In a new browser session (Private browsing or from another maching) log in as West_Admin
  Ensure that you are working in the us-west-1 region (N.</description>
+    </item>
+    
+    <item>
+      <title>4. Create Automation Functions</title>
+      <link>http://example.org/ami-inspector-lab/create_automation_function/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/ami-inspector-lab/create_automation_function/</guid>
+      <description>Next, create a CloudFormation stack using the provided CloudFormation template. Before you start, download the CloudFormation template to your computer.
+To create a stack:
+ Sign in to the AWS Management Console and choose CloudFormation in the Services menu. Click Create Stack. On the Select Template page, choose Upload a template to Amazon S3. Choose Choose File and then choose the CloudFormation template you just downloaded. Choose Next. On the Specify Details page, specify the Stack Name as AmazonInspectorAssessment.</description>
     </item>
     
     <item>
@@ -388,16 +423,6 @@ Now remaining steps are same as you followed in Create stack.</description>
     </item>
     
     <item>
-      <title>5. Appendix</title>
-      <link>http://example.org/cloudformation-lab/appendix/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://example.org/cloudformation-lab/appendix/</guid>
-      <description>Initial AWS CloudFormation Template for lab exercise:
-AWSTemplateFormatVersion: &#39;2010-09-09&#39; Parameters: vpccidr: Type: String Default: 10.20.0.0/16 psharedacidr: Type: String Default: 10.20.0.0/22 psharedbcidr: Type: String Default: 10.20.4.0/22 Resources: VPC: Type: &amp;quot;AWS::EC2::VPC&amp;quot; Properties: CidrBlock: !Ref vpccidr IGW: Type: &amp;quot;AWS::EC2::InternetGateway&amp;quot; S3AppBucket: Type: &amp;quot;AWS::S3::Bucket&amp;quot; Properties: AccessControl: PublicRead WebsiteConfiguration: ErrorDocument: index.html IndexDocument: index.html BucketPolicyApp: Type: &amp;quot;AWS::S3::BucketPolicy&amp;quot; Properties: Bucket: !Ref S3AppBucket PolicyDocument: Statement: - Sid: &amp;quot;ABC123&amp;quot; Action: - &amp;quot;s3:GetObject&amp;quot; Effect: Allow Resource: !Join [&amp;quot;&amp;quot;, [&amp;quot;arn:aws:s3:::&amp;quot;, !Ref S3AppBucket, &amp;quot;/*&amp;quot;]] Principal: AWS: - &amp;quot;*&amp;quot; GatewayAttach: Type: &amp;quot;AWS::EC2::VPCGatewayAttachment&amp;quot; Properties: InternetGatewayId: !</description>
-    </item>
-    
-    <item>
       <title>5. Clean Up Resources</title>
       <link>http://example.org/iam-lab/clean-up-resources/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -428,6 +453,17 @@ If you no longer need to store the objects you uploaded and moved while going th
       <description>In This Section we will monitor the EC2 instance CPU Utilization, and trigger an an Email notification when Utilization is above 60%.
  In the EC2 Console, click the checkbox next to your server name to view details about this EC2 instance. Click the Monitoring tab and then click Enable Detailed Monitoring to provide monitoring data at a 1 minute interval vs. the default of 5 minutes.
  Click the Description tab and copy your &amp;ldquo;Instance ID&amp;rdquo; to the clipboard or other location such as notepad.</description>
+    </item>
+    
+    <item>
+      <title>5. Test Assesment</title>
+      <link>http://example.org/ami-inspector-lab/test_assesment/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/ami-inspector-lab/test_assesment/</guid>
+      <description>Before you schedule vulnerability assessments, you should test the process by running the StartContinuousAssessment function. In this test, you trigger a security assessment and monitor it. You then receive an email after the assessment has completed, which shows that vulnerability assessments have been successfully set up.
+To start golden AMI vulnerability assessments:
+ Sign in to the AWS Management Console and choose Lambda in the Services menu. Choose Functions. In the Functions pane, choose the StartContinuousAssessment function.</description>
     </item>
     
     <item>
