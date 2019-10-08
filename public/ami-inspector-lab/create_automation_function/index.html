@@ -12,20 +12,20 @@
     <title>4. Create Automation Functions :: APN Equip Labs</title>
 
     
-    <link href="/css/nucleus.css?1570512228" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1570512228" rel="stylesheet">
-    <link href="/css/hybrid.css?1570512228" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1570512228" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1570512228" rel="stylesheet">
-    <link href="/css/auto-complete.css?1570512228" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1570512228" rel="stylesheet">
-    <link href="/css/theme.css?1570512228" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1570512228" rel="stylesheet">
+    <link href="/css/nucleus.css?1570526876" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1570526876" rel="stylesheet">
+    <link href="/css/hybrid.css?1570526876" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1570526876" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1570526876" rel="stylesheet">
+    <link href="/css/auto-complete.css?1570526876" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1570526876" rel="stylesheet">
+    <link href="/css/theme.css?1570526876" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1570526876" rel="stylesheet">
     
-      <link href="/css/theme-darkblue.css?1570512228" rel="stylesheet">
+      <link href="/css/theme-darkblue.css?1570526876" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1570512228"></script>
+    <script src="/js/jquery-3.3.1.min.js?1570526876"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -51,14 +51,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1570512228"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1570512228"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1570526876"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1570526876"></script>
 <script type="text/javascript">
     
         var baseurl = "http:\/\/example.org\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1570512228"></script>
+<script type="text/javascript" src="/js/search.js?1570526876"></script>
 
     
   </div>
@@ -1477,33 +1477,165 @@
 <ol>
 <li><p><strong>Creating Lambda Execution Role for StartContinuousAssessmentLambdaFunction</strong></p>
 
-<p>Open your notepad / text editor, create a file named <code>GoldenAMIContinuousAssesment.yml</code></p>
-
-<p>Reference : <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html">https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html</a></p>
+<ul>
+<li>Open your notepad / text editor, create a file named <code>GoldenAMIContinuousAssesment.yml</code>
+Reference : <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html">https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html</a></li>
+<li>Create a resource named <code>StartContinuousAssessmentLambdaRole</code> of type <code>AWS::IAM::Role</code>.</li>
+<li>In the <code>Properties</code> section add <code>ManagedPolicyArns</code> below to allow the lambda function to do basic execution and have access to Amazon Inspector APIs
 
 <ul>
-<li><p>Create a resource named <code>StartContinuousAssessmentLambdaRole</code> of type <code>AWS::IAM::Role</code>.</p></li>
-
-<li><p>In the <code>Properties</code> section add <code>ManagedPolicyArns</code> below to allow the lambda function to do basic execution and have access to Amazon Inspector APIs</p>
-
-<ul>
-<li>&ldquo;arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole&rdquo;</li>
-<li>&ldquo;arn:aws:iam::aws:policy/AmazonInspectorFullAccess&rdquo;</li>
+<li><code>arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole</code></li>
+<li><code>arn:aws:iam::aws:policy/AmazonInspectorFullAccess</code></li>
 </ul></li>
-
-<li><p>In the <code>Properties</code> secion add an <code>AssumeRolePolicyDocument</code> to allow <code>lambda.amazonaws.com</code> service principal role to do an action called <code>sts:AssumeRole</code></p></li>
-
-<li><p>Also in the <code>Properties</code> section add a policy to allow below actions</p>
+<li>In the <code>Properties</code> secion add an <code>AssumeRolePolicyDocument</code> to allow <code>lambda.amazonaws.com</code> service principal role to do an action called <code>sts:AssumeRole</code></li>
+<li>Also in the <code>Properties</code> section add a policy to allow below actions<br />
 
 <ul>
-<li>ssm:GetParameter</li>
-<li>ec2:DescribeImages</li>
-<li>ec2:RunInstances</li>
-<li>ec2:CreateTags
+<li><code>ssm:GetParameter</code></li>
+<li><code>ec2:DescribeImages</code></li>
+<li><code>ec2:RunInstances</code></li>
+<li><code>ec2:CreateTags</code>
 The document should be created under the <code>Policies</code> section under <code>Properties</code></li>
 </ul></li>
-</ul></li>
+</ul>
+
+<p><details><summary>CLICK HERE ( to see the solution ).</summary>
+<p></p>
+
+<pre><code>StartContinuousAssessmentLambdaRole:
+    Type: &quot;AWS::IAM::Role&quot;
+    Properties:
+    ManagedPolicyArns:
+        - &quot;arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole&quot;
+        - &quot;arn:aws:iam::aws:policy/AmazonInspectorFullAccess&quot;
+    AssumeRolePolicyDocument:
+        Version: &quot;2012-10-17&quot;
+        Statement:
+            - 
+            Effect: &quot;Allow&quot;
+            Principal:
+                Service:
+                - &quot;lambda.amazonaws.com&quot;
+            Action:
+                - &quot;sts:AssumeRole&quot;
+    Path: &quot;/&quot;
+    Policies:
+        - 
+            PolicyName: &quot;root&quot;
+            PolicyDocument:
+            Version: &quot;2012-10-17&quot;
+            Statement:
+                - 
+                    Sid: &quot;StartContinuousAssessmentLambdaPolicyStmt&quot;
+                    Effect: &quot;Allow&quot;
+                    Action: 
+                    - &quot;ssm:GetParameter&quot;
+                    - &quot;ec2:DescribeImages&quot;
+                    - &quot;ec2:RunInstances&quot;
+                    - &quot;ec2:CreateTags&quot;
+                    Resource: &quot;*&quot;
+</code></pre>
+
+<p></p>
+</detail></p></li>
+
+<li><p><strong>Creating the SNS Topic for Assesment completion</strong></p>
+
+<ul>
+<li>Open your notepad the file you created in step 1 <code>GoldenAMIContinuousAssesment.yml</code></li>
+<li>Create a resource named <code>ContinuousAssessmentCompleteTopic</code> of type <code>AWS::SNS::Topic</code>.</li>
+<li>No need to put in any <code>Properties</code>, keep all empty / default</li>
+</ul>
+
+<p><details><summary>CLICK HERE ( to see the solution ).</summary>
+<p></p>
+
+<pre><code>ContinuousAssessmentCompleteTopic:
+    Type: &quot;AWS::SNS::Topic&quot; 
+</code></pre>
+
+<p></p>
+</detail></p></li>
+
+<li><p><strong>Creating the Lambda Fucntion to Inspect the AMI</strong></p>
+
+<ul>
+<li>Open your notepad the file you created in step 1 <code>GoldenAMIContinuousAssesment.yml</code></li>
+<li>Create a resource named <code>StartContinuousAssessmentLambdaFunction</code> of type <code>AWS::Lambda::Function</code>.</li>
+<li>In the <code>Properties</code> section create a <code>Role</code> property and using the !Ref intrinsic function reference the IAM role you created in step 1.
+Reference : <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-ref.html">https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-ref.html</a></li>
+<li>In the <code>Properties</code> section create a <code>Code</code> property and specify the lambda function code using in line code instead of specifying the s3 bucket location paste in below.
+To place in multiple line, in yaml you can use the | sign then place the remaining text below it.
+Example : <a href="https://aws.amazon.com/blogs/infrastructure-and-automation/deploying-aws-lambda-functions-using-aws-cloudformation-the-portable-way/">https://aws.amazon.com/blogs/infrastructure-and-automation/deploying-aws-lambda-functions-using-aws-cloudformation-the-portable-way/</a></li>
+<li>In the <code>Properties</code> section create a <code>Environment</code> property and specify an environment variable named <code>AssesmentCompleteTopicArn</code> and reference the SNS topic resource created in step 2.
+To do this, you can use !Ref intrinsic function.
+Reference : <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-ref.html">https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-ref.html</a>
+<br /></li>
+</ul>
+
+<p><details><summary>CLICK HERE ( to see the solution ).</summary>
+<p></p>
+
+<pre><code>StartContinuousAssessmentLambdaFunction:
+    Type: &quot;AWS::Lambda::Function&quot;
+    Properties:
+    Role:
+        !GetAtt StartContinuousAssessmentLambdaRole.Arn
+    Code:
+        ZipFile: |
+            import json
+            import urllib.parse
+            import boto3
+            import time
+            import os
+            def lambda_handler(event, context):
+                AMIsParamName = event['AMIsParamName'];
+                region=os.environ['AWS_DEFAULT_REGION']
+                ec2 = boto3.client('ec2',region)
+                ssm = boto3.client('ssm',region)
+                inspector = boto3.client('inspector',region)
+                AmiJson =  ssm.get_parameter(Name=AMIsParamName)['Parameter']['Value']
+                print(AmiJson)
+                items = json.loads(AmiJson)
+                for entry in items:
+                    images= ec2.describe_images(ImageIds=[entry['ami-id']],DryRun=False)
+                    tags = images['Images'][0]['Tags']
+                    tags.append({'Key': 'continuous-assessment-instance', 'Value': 'true'})
+                    ec2.run_instances(ImageId=entry['ami-id'],InstanceType=entry['instanceType'],UserData=entry['userData'],DryRun=False,MaxCount=1,MinCount=1,TagSpecifications=[{'ResourceType': 'instance','Tags': tags}])
+                assessmentTemplateArn='';
+                rules = inspector.list_rules_packages();
+                    
+                millis = int(round(time.time() * 1000))
+                existingTemplates = inspector.list_assessment_templates(filter={'namePattern': 'ContinuousAssessment'})
+                print('Total templates found:'+str(len(existingTemplates['assessmentTemplateArns'])))
+                if len(existingTemplates['assessmentTemplateArns'])==0:
+                    resGroup = inspector.create_resource_group(resourceGroupTags=[{'key': 'continuous-assessment-instance','value': 'true'}])
+                    target = inspector.create_assessment_target(assessmentTargetName='ContinuousAssessment',resourceGroupArn=resGroup['resourceGroupArn'])
+                    template = inspector.create_assessment_template(assessmentTargetArn=target['assessmentTargetArn'],assessmentTemplateName='ContinuousAssessment', durationInSeconds=3600,rulesPackageArns=rules['rulesPackageArns'])
+                    assessmentTemplateArn=template['assessmentTemplateArn']
+                    response = inspector.subscribe_to_event(event='ASSESSMENT_RUN_COMPLETED',resourceArn=template['assessmentTemplateArn'],topicArn=os.environ['AssesmentCompleteTopicArn']) 
+                    print('Template Created:'+template['assessmentTemplateArn'])
+                else:
+                    assessmentTemplateArn=existingTemplates.get('assessmentTemplateArns')[0]
+                time.sleep(240)
+                run = inspector.start_assessment_run(assessmentTemplateArn=assessmentTemplateArn,assessmentRunName='ContinuousAssessment'+'-'+str(millis))
+                return 'Done'
+    Runtime: python3.6 
+    Timeout: 300
+    Handler: index.lambda_handler
+    MemorySize: 512
+    Environment:
+        Variables:
+            AssesmentCompleteTopicArn: !Ref ContinuousAssessmentCompleteTopic 
+</code></pre>
+
+<p></p>
+</detail></p></li>
+
+<li><p>Once this is set up, the next thing to do is for us</p></li>
 </ol>
+
+<hr />
 
 <p>To create a stack:</p>
 
@@ -2669,19 +2801,19 @@ The document should be created under the <code>Policies</code> section under <co
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1570512228"></script>
-    <script src="/js/perfect-scrollbar.min.js?1570512228"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1570512228"></script>
-    <script src="/js/jquery.sticky.js?1570512228"></script>
-    <script src="/js/featherlight.min.js?1570512228"></script>
-    <script src="/js/highlight.pack.js?1570512228"></script>
+    <script src="/js/clipboard.min.js?1570526876"></script>
+    <script src="/js/perfect-scrollbar.min.js?1570526876"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1570526876"></script>
+    <script src="/js/jquery.sticky.js?1570526876"></script>
+    <script src="/js/featherlight.min.js?1570526876"></script>
+    <script src="/js/highlight.pack.js?1570526876"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1570512228"></script>
-    <script src="/js/learn.js?1570512228"></script>
-    <script src="/js/hugo-learn.js?1570512228"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1570526876"></script>
+    <script src="/js/learn.js?1570526876"></script>
+    <script src="/js/hugo-learn.js?1570526876"></script>
 
-    <link href="/mermaid/mermaid.css?1570512228" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1570512228"></script>
+    <link href="/mermaid/mermaid.css?1570526876" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1570526876"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

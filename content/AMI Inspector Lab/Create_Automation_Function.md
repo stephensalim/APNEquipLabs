@@ -9,25 +9,158 @@ In this section we will create, create a couple of lambda functions to execute t
 
 1. **Creating Lambda Execution Role for StartContinuousAssessmentLambdaFunction**
 
-    Open your notepad / text editor, create a file named `GoldenAMIContinuousAssesment.yml`
-
-    Reference : https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html
-
-
-    * Create a resource named `StartContinuousAssessmentLambdaRole` of type `AWS::IAM::Role`.
-    
-    * In the `Properties` section add `ManagedPolicyArns` below to allow the lambda function to do basic execution and have access to Amazon Inspector APIs 
-        * "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
-        * "arn:aws:iam::aws:policy/AmazonInspectorFullAccess"
-    * In the `Properties` secion add an `AssumeRolePolicyDocument` to allow `lambda.amazonaws.com` service principal role to do an action called `sts:AssumeRole`
-
-    * Also in the `Properties` section add a policy to allow below actions           
-        * ssm:GetParameter
-        * ec2:DescribeImages
-        * ec2:RunInstances
-        * ec2:CreateTags
+    *   Open your notepad / text editor, create a file named `GoldenAMIContinuousAssesment.yml`
+        Reference : https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html
+    *   Create a resource named `StartContinuousAssessmentLambdaRole` of type `AWS::IAM::Role`.
+    *   In the `Properties` section add `ManagedPolicyArns` below to allow the lambda function to do basic execution and have access to Amazon Inspector APIs 
+        *   `arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole`
+        *   `arn:aws:iam::aws:policy/AmazonInspectorFullAccess`
+    *   In the `Properties` secion add an `AssumeRolePolicyDocument` to allow `lambda.amazonaws.com` service principal role to do an action called `sts:AssumeRole`
+    *   Also in the `Properties` section add a policy to allow below actions           
+        *   `ssm:GetParameter`
+        *   `ec2:DescribeImages`
+        *   `ec2:RunInstances`
+        *   `ec2:CreateTags`
       The document should be created under the `Policies` section under `Properties` 
 
+    <details><summary>CLICK HERE ( to see the solution ).</summary>
+    <p>
+    ```
+    StartContinuousAssessmentLambdaRole:
+        Type: "AWS::IAM::Role"
+        Properties:
+        ManagedPolicyArns:
+            - "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+            - "arn:aws:iam::aws:policy/AmazonInspectorFullAccess"
+        AssumeRolePolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+                - 
+                Effect: "Allow"
+                Principal:
+                    Service:
+                    - "lambda.amazonaws.com"
+                Action:
+                    - "sts:AssumeRole"
+        Path: "/"
+        Policies:
+            - 
+                PolicyName: "root"
+                PolicyDocument:
+                Version: "2012-10-17"
+                Statement:
+                    - 
+                        Sid: "StartContinuousAssessmentLambdaPolicyStmt"
+                        Effect: "Allow"
+                        Action: 
+                        - "ssm:GetParameter"
+                        - "ec2:DescribeImages"
+                        - "ec2:RunInstances"
+                        - "ec2:CreateTags"
+                        Resource: "*"
+    ```
+    </p>
+    </detail>
+
+2. **Creating the SNS Topic for Assesment completion**
+
+    *   Open your notepad the file you created in step 1 `GoldenAMIContinuousAssesment.yml`
+    *   Create a resource named `ContinuousAssessmentCompleteTopic` of type `AWS::SNS::Topic`.
+    *   No need to put in any `Properties`, keep all empty / default 
+
+    <details><summary>CLICK HERE ( to see the solution ).</summary>
+    <p>
+    ```
+    ContinuousAssessmentCompleteTopic:
+        Type: "AWS::SNS::Topic" 
+    ```
+    </p>
+    </detail>
+
+3. **Creating the Lambda Fucntion to Inspect the AMI**
+
+    *   Open your notepad the file you created in step 1 `GoldenAMIContinuousAssesment.yml`
+    *   Create a resource named `StartContinuousAssessmentLambdaFunction` of type `AWS::Lambda::Function`.
+    *   In the `Properties` section create a `Role` property and using the !Ref intrinsic function reference the IAM role you created in step 1.
+        Reference : https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-ref.html
+    *   In the `Properties` section create a `Code` property and specify the lambda function code using in line code instead of specifying the s3 bucket location paste in below.
+        To place in multiple line, in yaml you can use the | sign then place the remaining text below it.
+        Example : https://aws.amazon.com/blogs/infrastructure-and-automation/deploying-aws-lambda-functions-using-aws-cloudformation-the-portable-way/
+    *   In the `Properties` section create a `Environment` property and specify an environment variable named `AssesmentCompleteTopicArn` and reference the SNS topic resource created in step 2. 
+        To do this, you can use !Ref intrinsic function.
+        Reference : https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-ref.html
+        
+    <details><summary>CLICK HERE ( to see the solution ).</summary>
+    <p>
+    ```
+    StartContinuousAssessmentLambdaFunction:
+        Type: "AWS::Lambda::Function"
+        Properties:
+        Role:
+            !GetAtt StartContinuousAssessmentLambdaRole.Arn
+        Code:
+            ZipFile: |
+                import json
+                import urllib.parse
+                import boto3
+                import time
+                import os
+                def lambda_handler(event, context):
+                    AMIsParamName = event['AMIsParamName'];
+                    region=os.environ['AWS_DEFAULT_REGION']
+                    ec2 = boto3.client('ec2',region)
+                    ssm = boto3.client('ssm',region)
+                    inspector = boto3.client('inspector',region)
+                    AmiJson =  ssm.get_parameter(Name=AMIsParamName)['Parameter']['Value']
+                    print(AmiJson)
+                    items = json.loads(AmiJson)
+                    for entry in items:
+                        images= ec2.describe_images(ImageIds=[entry['ami-id']],DryRun=False)
+                        tags = images['Images'][0]['Tags']
+                        tags.append({'Key': 'continuous-assessment-instance', 'Value': 'true'})
+                        ec2.run_instances(ImageId=entry['ami-id'],InstanceType=entry['instanceType'],UserData=entry['userData'],DryRun=False,MaxCount=1,MinCount=1,TagSpecifications=[{'ResourceType': 'instance','Tags': tags}])
+                    assessmentTemplateArn='';
+                    rules = inspector.list_rules_packages();
+                    
+                    millis = int(round(time.time() * 1000))
+                    existingTemplates = inspector.list_assessment_templates(filter={'namePattern': 'ContinuousAssessment'})
+                    print('Total templates found:'+str(len(existingTemplates['assessmentTemplateArns'])))
+                    if len(existingTemplates['assessmentTemplateArns'])==0:
+                        resGroup = inspector.create_resource_group(resourceGroupTags=[{'key': 'continuous-assessment-instance','value': 'true'}])
+                        target = inspector.create_assessment_target(assessmentTargetName='ContinuousAssessment',resourceGroupArn=resGroup['resourceGroupArn'])
+                        template = inspector.create_assessment_template(assessmentTargetArn=target['assessmentTargetArn'],assessmentTemplateName='ContinuousAssessment', durationInSeconds=3600,rulesPackageArns=rules['rulesPackageArns'])
+                        assessmentTemplateArn=template['assessmentTemplateArn']
+                        response = inspector.subscribe_to_event(event='ASSESSMENT_RUN_COMPLETED',resourceArn=template['assessmentTemplateArn'],topicArn=os.environ['AssesmentCompleteTopicArn']) 
+                        print('Template Created:'+template['assessmentTemplateArn'])
+                    else:
+                        assessmentTemplateArn=existingTemplates.get('assessmentTemplateArns')[0]
+                    time.sleep(240)
+                    run = inspector.start_assessment_run(assessmentTemplateArn=assessmentTemplateArn,assessmentRunName='ContinuousAssessment'+'-'+str(millis))
+                    return 'Done'
+        Runtime: python3.6 
+        Timeout: 300
+        Handler: index.lambda_handler
+        MemorySize: 512
+        Environment:
+            Variables:
+                AssesmentCompleteTopicArn: !Ref ContinuousAssessmentCompleteTopic 
+    ```
+    </p>
+    </detail>
+
+
+4. Once this is set up, the next thing to do is for us
+
+
+
+
+
+
+
+
+
+
+-----
 
 To create a stack:
 
