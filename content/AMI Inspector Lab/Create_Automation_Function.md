@@ -4,7 +4,30 @@ weight: 4
 draft: false
 ---
 
-Next, create a CloudFormation stack using the provided [CloudFormation template](https://s3.amazonaws.com/awsiammedia/public/sample/GoldenAMIContinuousVulnerabilityAssessment/GoldenAMIs_template.json). Before you start, download the CloudFormation template to your computer.
+In this section we will create, create a couple of lambda functions to execute the AMI inspection as well as notify users of the findings
+
+
+1. **Creating Lambda Execution Role for StartContinuousAssessmentLambdaFunction**
+
+    Open your notepad / text editor, create a file named `GoldenAMIContinuousAssesment.yml`
+
+    Reference : https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html
+
+
+    * Create a resource named `StartContinuousAssessmentLambdaRole` of type `AWS::IAM::Role`.
+    
+    * In the `Properties` section add `ManagedPolicyArns` below to allow the lambda function to do basic execution and have access to Amazon Inspector APIs 
+        * "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+        * "arn:aws:iam::aws:policy/AmazonInspectorFullAccess"
+    * In the `Properties` secion add an `AssumeRolePolicyDocument` to allow `lambda.amazonaws.com` service principal role to do an action called `sts:AssumeRole`
+
+    * Also in the `Properties` section add a policy to allow below actions           
+        * ssm:GetParameter
+        * ec2:DescribeImages
+        * ec2:RunInstances
+        * ec2:CreateTags
+      The document should be created under the `Policies` section under `Properties` 
+
 
 To create a stack:
 

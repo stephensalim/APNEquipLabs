@@ -4,128 +4,146 @@ weight: 3
 draft: false
 ---
 
-This solution reads golden AMI metadata from a parameter stored in the Systems Manager Parameter Store. The metadata must be in JSON format and must contain the following information for each golden AMI:
+In this solution we will read the golden AMI metadata from a parameter stored in the Systems Manager Parameter Store. 
+The metadata will be in JSON format and must contain the following information for each golden AMI:
 
-*   `Ami-Id`
-*   `InstanceType`
-*   `UserData`
+* The **Ami-Id** is the golden AMI id that we tagged in the previous step ( Hopefully you've taken note of that, otherwise please review the previous step ).
+* The **InstanceType** is the EC2 instance type our solution will use to launch the golden AMI with and run the inspection on.
+* The **UserData** section will contain our bootstrap instructions to install AWS Inspector Agent.
 
-**Step A:** Find the AMI ID of your golden AMI.
+    **Note:** 
 
-An AMI ID uniquely identifies an AMI in an AWS Region and is a required parameter for launching an EC2 instance from a golden AMI. To find the AMI ID of your golden AMI:
+    You must use a compatible InstanceType that is supported by your AMI, to gind a compatible `InstanceType` for your golden AMI follow below steps. (But for simplicity you can use t2.large). Each AMI has a list of compatible `InstanceTypes`. The `InstanceType` is a required parameter for launching an EC2 instance from a golden AMI. To find a compatible `InstanceType` for your golden AMI:
 
-1.  Sign in to the [AWS Management Console](https://console.aws.amazon.com/console/home) and navigate to the [EC2 console](https://console.aws.amazon.com/ec2/).
-2.  In the navigation pane, choose **AMIs**.
-3.  Choose your AMI from the list and then note the corresponding value in the **AMI ID** column.
+    1.  Sign in to the [AWS Management Console](https://console.aws.amazon.com/console/home) and navigate to the [EC2 console](https://console.aws.amazon.com/ec2/).
+    2.  Choose **Launch Instance**. On the **Choose an Amazon Machine Image** (**AMI**) page, choose **My AMIs**.
+    3.  Type the **AMI ID** that you noted in Step A in the **Search my AMIs** box, and then choose **Enter**.
+    4.  The search result will contain your golden AMI. To choose it, choose **Select**.
+    5.  Locate any available **Instance Type** and then note the corresponding value in the **Type** column.
+    6.  Choose **Cancel**.
+    Amazon Inspector will launch the chosen `InstanceType` every time the vulnerability assessment runs.
 
-**Step B:** Find a compatible `InstanceType` for your golden AMI.
+For the UserData section you will need to create a `user-data` script to install and start the Amazon Inspector agent.
+The `user-data` script automates the installation of software packages when an EC2 instance launches for the first time. 
+In this step, you will create an operating system specific, JSON-compatible user-data script that installs and starts the Amazon Inspector agent.
 
-Each AMI has a list of compatible `InstanceTypes`. The `InstanceType` is a required parameter for launching an EC2 instance from a golden AMI. To find a compatible `InstanceType` for your golden AMI:
-
-1.  Sign in to the [AWS Management Console](https://console.aws.amazon.com/console/home) and navigate to the [EC2 console](https://console.aws.amazon.com/ec2/).
-2.  Choose **Launch Instance**. On the **Choose an Amazon Machine Image** (**AMI**) page, choose **My AMIs**.
-3.  Type the **AMI ID** that you noted in Step A in the **Search my AMIs** box, and then choose **Enter**.
-4.  The search result will contain your golden AMI. To choose it, choose **Select**.
-5.  Locate any available **Instance Type** and then note the corresponding value in the **Type** column.
-6.  Choose **Cancel**.
-
-**Note:** Amazon Inspector will launch the chosen `InstanceType` every time the vulnerability assessment runs.
-
-**Step C:** Create the `user-data` script to install and start the Amazon Inspector agent.
-
-The `user-data` script automates the installation of software packages when an EC2 instance launches for the first time. In this step, you create an operating system specific, JSON-compatible user-data script that installs and starts the Amazon Inspector agent.
-
-1.  Identify the command that installs the Amazon Inspector agent
-
-Based on [Installing Amazon Inspector Agents](http://docs.aws.amazon.com/inspector/latest/userguide/inspector_installing-uninstalling-agents.html), the following shell command installs the Amazon Inspector agent on an Amazon Linux-based EC2 instance.
-
-<div class="hide-language">
-
+1.  **Identify the command that installs the Amazon Inspector agent**
+    Based on [Installing Amazon Inspector Agents](http://docs.aws.amazon.com/inspector/latest/userguide/inspector_installing-uninstalling-agents.html), the following shell command installs the Amazon Inspector agent on an Amazon Linux-based EC2 instance.
+    ```
     wget https://d1wk0tztpsntt1.cloudfront.net/linux/latest/install
     bash install
+    ```
+    To find this command for other operating systems, see [Installing Amazon Inspector Agents](http://docs.aws.amazon.com/inspector/latest/userguide/inspector_installing-uninstalling-agents.html).
 
-</div>
 
-To find this command for other operating systems, see [Installing Amazon Inspector Agents](http://docs.aws.amazon.com/inspector/latest/userguide/inspector_installing-uninstalling-agents.html).
-
-1.  Identify the command that starts the Amazon Inspector agent
-
-The following shell command starts the Amazon Inspector agent on an Amazon Linux-based EC2 instance.
-
+2.  **Identify the command that starts the Amazon Inspector agent**
+    The following shell command starts the Amazon Inspector agent on an Amazon Linux-based EC2 instance.
+    ```
     sudo /etc/init.d/awsagent start
+    ```
+    To find this command for other operating systems, see [Amazon Inspector Agents](http://docs.aws.amazon.com/inspector/latest/userguide/inspector_agents.html).
 
-To find this command for other operating systems, see [Amazon Inspector Agents](http://docs.aws.amazon.com/inspector/latest/userguide/inspector_agents.html).
+3.  **Create a script by concatenating the commands from the preceding two steps**
 
-1.  Create a script by concatenating the commands from the preceding two steps
-
-The following is a sample concatenated script for the Amazon Linux operating system that installs and starts an Amazon Inspector agent.
-
+    The following is a sample concatenated script for the Amazon Linux operating system that installs and starts an Amazon Inspector agent.
+    ```
     wget https://d1wk0tztpsntt1.cloudfront.net/linux/latest/install
     bash install
     sudo /etc/init.d/awsagent start
+    ```
 
-1.  Make the script user-data compatible
 
-Based on [Running Commands on Your Linux Instance at Launch](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html#user-data-api-cli), you make a Linux shell script user-data compatible by prefixing it with a `#!/bin/bash`. In this step, you add the `#!/bin/bash` prefix to the script from the preceding step. The following is the user-data compatible version of the script from the preceding step.
+4.  **Make the script user-data compatible**
 
+    Based on [Running Commands on Your Linux Instance at Launch](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html#user-data-api-cli), you make a Linux shell script user-data compatible by prefixing it with a `#!/bin/bash`. In this step, you add the `#!/bin/bash` prefix to the script from the preceding step. The following is the user-data compatible version of the script from the preceding step.
+
+    ```
     #!/bin/bash
     wget https://d1wk0tztpsntt1.cloudfront.net/linux/latest/install
     bash install
     sudo /etc/init.d/awsagent start
+    ```
+    To make your script user-data compatible for Windows, see [Running Commands on Your Windows Instance at Launch](http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ec2-windows-user-data.html).
 
-To make your script user-data compatible for Windows, see [Running Commands on Your Windows Instance at Launch](http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ec2-windows-user-data.html).
+    The `user-data` script provided in the JSON metadata must be JSON-compatible, which you will do next.
 
-The `user-data` script provided in the JSON metadata must be JSON-compatible, which you will do next.
+5.  **Make the user-data script JSON compatible**
 
-1.  Make the user-data script JSON compatible
+    To make the user-data script JSON compatible, replace all the commands in step 4 into a one line of string.
+    You can use third party online tools to escape all the " signs and new line characters.
+    But to make things easy for you I have created a converted version for you below. 
 
-To make the user-data script JSON compatible, you must replace all new-line characters with a `\r\n\r\n` sequence. The following is the JSON-compatible user-data script that you specify for your Amazon Linux-based golden AMI in Step D.
+    **JSON-compatible-user-data-of-first-AMI**
+    ```
+    "#!/bin/bash \n wget https://d1wk0tztpsntt1.cloudfront.net/linux/latest/install;bash install;/etc/init.d/awsagent start"
+    ```
+    
+6.  **Create a JSON document of metadata of all your golden AMIs.**
 
-<span style="text-decoration: underline">**`JSON-compatible-user-data-for-Amazon-Linux-AMI`**</span>
+    Open your notepad or text editor copy and paste the JSON below and replace 
+    * **instance-type-of-first-AMI** with the instance type you will use to launch the AMI to be inspected.
+    * **AMI-ID-of-first-AMI** with the AMI id of your golden AMI.
+    * **JSON-compatible-user-data-of-first-AMI** with the string in previous step above.
 
-    #!/bin/bash \r\n\r\nwget https://d1wk0tztpsntt1.cloudfront.net/linux/latest/install \r\n\r\nbash install \r\n\r\nsudo /etc/init.d/awsagent start
-
-Repeat Steps A, B, and C to find the `Ami Id`, `InstanceType`, and `UserData` for each of your golden AMIs. When you have this metadata, you can create the JSON document of metadata for all your golden AMIs. The `StartContinuousAssessment` Lambda function reads this JSON to start golden AMI vulnerability assessments.
-
-**Step D**: Create a JSON document of metadata of all your golden AMIs.
-
-Use the following template to create a JSON document:
-
-<div class="hide-language">
-
+    Use the following template to create a JSON document:
+    
+    ```
     [	
         { 
             "instanceType": "instance-type-of-first-AMI", 
             "ami-id": "AMI-ID-of-first-AMI", 
             "userData": "JSON-compatible-user-data-of-first-AMI"
-         },
-        { 
-            "instanceType": "instance-type-of-second-AMI",
-            "ami-id": "AMI-ID-of-second-AMI",
-            "userData": "JSON-compatible-user-data-of-second-AMI" 
-        }
+         }
     ]
+    ```
 
-</div>
+    once it is done, your JSON should look like this.
 
-Replace all <span style="color: #ff0000">**placeholder values**</span> with values corresponding to your first golden AMI. If your golden AMI is Amazon Linux-based, you can specify the `userData` as the `JSON-compatible-user-data-for-Amazon-Linux-AMI` from Step C.5\. Next, replace the <span style="color: #0000ff">**placeholder values**</span> for your second golden AMI. You can add more entries to your JSON document, if you have more than two golden AMIs.
+    ```
+    [	
+        { 
+            "instanceType": "t2.large", 
+            "ami-id": "ami-133213", 
+            "userData": "#!/bin/bash \n wget https://d1wk0tztpsntt1.cloudfront.net/linux/latest/install;bash install;/etc/init.d/awsagent start"
+         }
+    ]
+    ```
 
-**Note****:** The total number of characters in the JSON document must be fewer than or equal to 4,096 characters, and the number of golden AMIs must be fewer than 500\. You must verify whether your account has permissions to run one on-demand EC2 instance for each of your golden AMIs. For information about how to verify service limits, see [Amazon EC2 Service Limits](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-resource-limits.html).
+7.  Once you have everything setup your JSON needs to be converted into a string.
+    This is just a matter of converting your JSON and escaping the " signs.
+    Again for simplicity you can just copy the string below and replace the ami-0fe2fc7acf5400b25 with your prefered ami.
 
-Now that you have created the JSON document of your golden AMIs, you will store the JSON document in a Systems Manager parameter. The `StartContinuousAssessment` Lambda function will read the metadata from this parameter.
+    ```
+    "[{ \"instanceType\": \"t2.large\",\"ami-id\": \"ami-0fe2fc7acf5400b25\", \"userData\": \"#!/bin/bash \\n wget https://d1wk0tztpsntt1.cloudfront.net/linux/latest/install;bash install;/etc/init.d/awsagent start\" }]"
+    ```
 
-**Step E:** Store the JSON in a Systems Manager parameter.
+    Now that you have created the JSON document of your golden AMIs, you will store the JSON document in a Systems Manager parameter. The `StartContinuousAssessment` Lambda function will read the metadata from this parameter.
 
-To store the JSON in a Systems Manager parameter:
+8.  **Create an AWS Systems Manager parameter using CloudFormation**
+    
+    Open your notepad / text editor, create a file named `GoldenAMIInspector.yml`
 
-1.  Sign in to the [AWS Management Console](https://console.aws.amazon.com/console/home) and navigate to the [EC2 console](https://console.aws.amazon.com/ec2/).
-2.  Expand **Systems Manager Shared Resources** in the navigation pane, and then choose **Parameter Store**.
-3.  Choose **Create Parameter**.
-4.  For **Name**, type `ContinuousAssessmentInput`.
-5.  In the **Description** field, type `Continuous golden AMI vulnerability assessment process metadata`.
-6.  For **Type**, choose **String**.
-7.  Paste the JSON that you created in **Step D** in the **Value** field.
-8.  Choose **Create Parameter**. After the system creates the parameter, choose **Close**.
+    Reference : https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ssm-parameter.html
 
-To set up the remaining components required to run assessments, you will run a CloudFormation template and perform the configuration explained in the next section.
+    * Create a resource named `AMIMetadata` of type `AWS::SSM::Parameter`.
+    * The name properties of the parameter store should be called `ContinuousAssessmentInput`
+    * The type properties of the parameter store is `String`
+    * The value properties of the parameter store is the String you've created in step 7 above.
+    * The Description properties is `Continuous golden AMI vulnerability assessment process metadata.`
 
+    <details><summary>CLICK HERE to see the solution</summary>
+    <p>
+
+    ```
+    Resources:
+    BasicParameter:
+        Type: "AWS::SSM::Parameter"
+        Properties:
+        Name: "ContinuousAssessmentInput_new"
+        Type: "String"
+        Value: "[{ \"instanceType\": \"t2.large\",\"ami-id\": \"ami-0e2b940b603bf07f3\", \"userData\": \"#!/bin/bash \\n wget https://d1wk0tztpsntt1.cloudfront.net/linux/latest/install;bash install;/etc/init.d/awsagent start\" }]"
+        Description: "Continuous golden AMI vulnerability assessment process metadata."
+    ```
+
+    </p>
+    </detail>
