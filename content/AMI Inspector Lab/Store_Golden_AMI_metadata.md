@@ -121,7 +121,7 @@ In this step, you will create an operating system specific, JSON-compatible user
 
 8.  **Create an AWS Systems Manager parameter using CloudFormation**
     
-    Open your notepad / text editor, create a file named `GoldenAMIInspector.yml`
+    Open your notepad / text editor, create a file named `GoldenAMIParameters.yml`
 
     Reference : https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ssm-parameter.html
 

@@ -50,8 +50,10 @@ To tag a golden AMI by using the AWS Management Console:</description>
       
       <guid>http://example.org/ami-inspector-lab/create_automation_function/</guid>
       <description>In this section we will create, create a couple of lambda functions to execute the AMI inspection as well as notify users of the findings
- Creating Lambda Execution Role for StartContinuousAssessmentLambdaFunction
- Open your notepad / text editor, create a file named GoldenAMIContinuousAssesment.yml Reference : https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html Create a resource named StartContinuousAssessmentLambdaRole of type AWS::IAM::Role. In the Properties section add ManagedPolicyArns below to allow the lambda function to do basic execution and have access to Amazon Inspector APIs  arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole arn:aws:iam::aws:policy/AmazonInspectorFullAccess  In the Properties secion add an AssumeRolePolicyDocument to allow lambda.</description>
+Creating Lambda Execution Role for StartContinuousAssessmentLambdaFunction
+ Open your notepad / text editor, create a file named GoldenAMIContinuousAssesment.yml. Reference: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html
+ Create a resource named StartContinuousAssessmentLambdaRole of type AWS::IAM::Role.
+ In the Properties section add ManagedPolicyArns below to allow the lambda function to do basic execution and have access to Amazon Inspector APIs.</description>
     </item>
     
     <item>

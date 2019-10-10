@@ -12,20 +12,20 @@
     <title>4. Create Automation Functions :: APN Equip Labs</title>
 
     
-    <link href="/css/nucleus.css?1570526876" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1570526876" rel="stylesheet">
-    <link href="/css/hybrid.css?1570526876" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1570526876" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1570526876" rel="stylesheet">
-    <link href="/css/auto-complete.css?1570526876" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1570526876" rel="stylesheet">
-    <link href="/css/theme.css?1570526876" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1570526876" rel="stylesheet">
+    <link href="/css/nucleus.css?1570675609" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1570675609" rel="stylesheet">
+    <link href="/css/hybrid.css?1570675609" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1570675609" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1570675609" rel="stylesheet">
+    <link href="/css/auto-complete.css?1570675609" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1570675609" rel="stylesheet">
+    <link href="/css/theme.css?1570675609" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1570675609" rel="stylesheet">
     
-      <link href="/css/theme-darkblue.css?1570526876" rel="stylesheet">
+      <link href="/css/theme-darkblue.css?1570675609" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1570526876"></script>
+    <script src="/js/jquery-3.3.1.min.js?1570675609"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -51,14 +51,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1570526876"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1570526876"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1570675609"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1570675609"></script>
 <script type="text/javascript">
     
         var baseurl = "http:\/\/example.org\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1570526876"></script>
+<script type="text/javascript" src="/js/search.js?1570675609"></script>
 
     
   </div>
@@ -1434,19 +1434,7 @@
                 
                     <div class="progress">
     <div class="wrapper">
-<nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li>
-<ul>
-<li><a href="#4-test-golden-ami-vulnerability-assessments">4.  Test golden AMI vulnerability assessments</a></li>
-<li><a href="#5-set-up-a-cloudwatch-events-rule-for-triggering-continuous-golden-ami-vulnerability-assessments">5.  Set up a CloudWatch Events rule for triggering continuous golden AMI vulnerability assessments</a></li>
-<li><a href="#summary">Summary</a></li>
-</ul></li>
-</ul></li>
-</ul>
-</nav>
+
     </div>
 </div>
 
@@ -1470,118 +1458,158 @@
 
 
 
-
-
 <p>In this section we will create, create a couple of lambda functions to execute the AMI inspection as well as notify users of the findings</p>
 
-<ol>
-<li><p><strong>Creating Lambda Execution Role for StartContinuousAssessmentLambdaFunction</strong></p>
+<p><strong>Creating Lambda Execution Role for StartContinuousAssessmentLambdaFunction</strong></p>
 
-<ul>
-<li>Open your notepad / text editor, create a file named <code>GoldenAMIContinuousAssesment.yml</code>
-Reference : <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html">https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html</a></li>
-<li>Create a resource named <code>StartContinuousAssessmentLambdaRole</code> of type <code>AWS::IAM::Role</code>.</li>
-<li>In the <code>Properties</code> section add <code>ManagedPolicyArns</code> below to allow the lambda function to do basic execution and have access to Amazon Inspector APIs
+<ol>
+<li><p>Open your notepad / text editor, create a file named <code>GoldenAMIContinuousAssesment.yml</code>.
+Reference: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html">https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html</a></p></li>
+
+<li><p>Create a resource named <code>StartContinuousAssessmentLambdaRole</code> of type <code>AWS::IAM::Role</code>.</p></li>
+
+<li><p>In the <code>Properties</code> section add <code>ManagedPolicyArns</code> below to allow the lambda function to do basic execution and have access to Amazon Inspector APIs.</p>
 
 <ul>
 <li><code>arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole</code></li>
 <li><code>arn:aws:iam::aws:policy/AmazonInspectorFullAccess</code></li>
 </ul></li>
-<li>In the <code>Properties</code> secion add an <code>AssumeRolePolicyDocument</code> to allow <code>lambda.amazonaws.com</code> service principal role to do an action called <code>sts:AssumeRole</code></li>
-<li>Also in the <code>Properties</code> section add a policy to allow below actions<br />
+
+<li><p>In the <code>Properties</code> secion add an <code>AssumeRolePolicyDocument</code> to allow <code>lambda.amazonaws.com</code> service principal role to do an action called <code>sts:AssumeRole</code>.</p></li>
+
+<li><p>In the <code>Properties</code> section create a policy under <code>Policies</code> to allow access to below APIs</p>
 
 <ul>
 <li><code>ssm:GetParameter</code></li>
 <li><code>ec2:DescribeImages</code></li>
 <li><code>ec2:RunInstances</code></li>
-<li><code>ec2:CreateTags</code>
-The document should be created under the <code>Policies</code> section under <code>Properties</code></li>
+<li><code>ec2:CreateTags</code></li>
 </ul></li>
-</ul>
+</ol>
 
-<p><details><summary>CLICK HERE ( to see the solution ).</summary>
-<p></p>
+<p><details><summary>CLICK HERE ( to see the solution ).</summary></p>
 
-<pre><code>StartContinuousAssessmentLambdaRole:
-    Type: &quot;AWS::IAM::Role&quot;
-    Properties:
-    ManagedPolicyArns:
+<pre><code>  StartContinuousAssessmentLambdaRole: 
+    Properties: 
+      AssumeRolePolicyDocument: 
+        Statement: 
+          - 
+            Action: 
+              - &quot;sts:AssumeRole&quot;
+            Effect: Allow
+            Principal: 
+              Service: 
+                - lambda.amazonaws.com
+        Version: &quot;2012-10-17&quot;
+      ManagedPolicyArns: 
         - &quot;arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole&quot;
         - &quot;arn:aws:iam::aws:policy/AmazonInspectorFullAccess&quot;
-    AssumeRolePolicyDocument:
-        Version: &quot;2012-10-17&quot;
-        Statement:
-            - 
-            Effect: &quot;Allow&quot;
-            Principal:
-                Service:
-                - &quot;lambda.amazonaws.com&quot;
-            Action:
-                - &quot;sts:AssumeRole&quot;
-    Path: &quot;/&quot;
-    Policies:
+      Path: /
+      Policies: 
         - 
-            PolicyName: &quot;root&quot;
-            PolicyDocument:
+          PolicyDocument: 
+            Statement: 
+              - 
+                Action: 
+                  - &quot;ssm:GetParameter&quot;
+                  - &quot;ec2:DescribeImages&quot;
+                  - &quot;ec2:RunInstances&quot;
+                  - &quot;ec2:CreateTags&quot;
+                Effect: Allow
+                Resource: &quot;*&quot;
+                Sid: StartContinuousAssessmentLambdaPolicyStmt
             Version: &quot;2012-10-17&quot;
-            Statement:
-                - 
-                    Sid: &quot;StartContinuousAssessmentLambdaPolicyStmt&quot;
-                    Effect: &quot;Allow&quot;
-                    Action: 
-                    - &quot;ssm:GetParameter&quot;
-                    - &quot;ec2:DescribeImages&quot;
-                    - &quot;ec2:RunInstances&quot;
-                    - &quot;ec2:CreateTags&quot;
-                    Resource: &quot;*&quot;
+          PolicyName: root
+    Type: &quot;AWS::IAM::Role&quot;
 </code></pre>
 
-<p></p>
-</detail></p></li>
+<p></details></p>
 
-<li><p><strong>Creating the SNS Topic for Assesment completion</strong></p>
+<p><strong>Creating the SNS Topic for Assesment completion</strong></p>
 
-<ul>
-<li>Open your notepad the file you created in step 1 <code>GoldenAMIContinuousAssesment.yml</code></li>
-<li>Create a resource named <code>ContinuousAssessmentCompleteTopic</code> of type <code>AWS::SNS::Topic</code>.</li>
-<li>No need to put in any <code>Properties</code>, keep all empty / default</li>
-</ul>
+<ol>
+<li><p>Open your notepad the file you created in step 1 <code>GoldenAMIContinuousAssesment.yml</code></p></li>
 
-<p><details><summary>CLICK HERE ( to see the solution ).</summary>
-<p></p>
+<li><p>Create a resource named <code>ContinuousAssessmentCompleteTopic</code> of type <code>AWS::SNS::Topic</code>.</p></li>
 
-<pre><code>ContinuousAssessmentCompleteTopic:
-    Type: &quot;AWS::SNS::Topic&quot; 
+<li><p>No need to put in any <code>Properties</code>, keep all empty / default</p></li>
+</ol>
+
+<p><details><summary>CLICK HERE ( to see the solution ).</summary></p>
+
+<pre><code>  ContinuousAssessmentCompleteTopic: 
+    Type: &quot;AWS::SNS::Topic&quot;
 </code></pre>
 
-<p></p>
-</detail></p></li>
+<p></details></p>
 
-<li><p><strong>Creating the Lambda Fucntion to Inspect the AMI</strong></p>
+<p><strong>Creating the Lambda Fucntion to Inspect the AMI</strong></p>
 
-<ul>
-<li>Open your notepad the file you created in step 1 <code>GoldenAMIContinuousAssesment.yml</code></li>
-<li>Create a resource named <code>StartContinuousAssessmentLambdaFunction</code> of type <code>AWS::Lambda::Function</code>.</li>
-<li>In the <code>Properties</code> section create a <code>Role</code> property and using the !Ref intrinsic function reference the IAM role you created in step 1.
-Reference : <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-ref.html">https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-ref.html</a></li>
-<li>In the <code>Properties</code> section create a <code>Code</code> property and specify the lambda function code using in line code instead of specifying the s3 bucket location paste in below.
-To place in multiple line, in yaml you can use the | sign then place the remaining text below it.
-Example : <a href="https://aws.amazon.com/blogs/infrastructure-and-automation/deploying-aws-lambda-functions-using-aws-cloudformation-the-portable-way/">https://aws.amazon.com/blogs/infrastructure-and-automation/deploying-aws-lambda-functions-using-aws-cloudformation-the-portable-way/</a></li>
-<li>In the <code>Properties</code> section create a <code>Environment</code> property and specify an environment variable named <code>AssesmentCompleteTopicArn</code> and reference the SNS topic resource created in step 2.
-To do this, you can use !Ref intrinsic function.
-Reference : <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-ref.html">https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-ref.html</a>
-<br /></li>
-</ul>
+<ol>
+<li><p>Open your notepad the file you created in step 1 <code>GoldenAMIContinuousAssesment.yml</code></p></li>
 
-<p><details><summary>CLICK HERE ( to see the solution ).</summary>
-<p></p>
+<li><p>Create a resource named <code>StartContinuousAssessmentLambdaFunction</code> of type <code>AWS::Lambda::Function</code>.</p></li>
 
-<pre><code>StartContinuousAssessmentLambdaFunction:
-    Type: &quot;AWS::Lambda::Function&quot;
-    Properties:
-    Role:
-        !GetAtt StartContinuousAssessmentLambdaRole.Arn
-    Code:
+<li><p>In the <code>Properties</code> section create a <code>Role</code> property and using the !GetAtt intrinsic function reference the IAM role Arn you created in step 1.
+Reference : <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-getatt.html">https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-getatt.html</a></p></li>
+
+<li><p>In the <code>Properties</code> section create a <code>Code</code> property and specify the lambda function code using in line code instead of specifying the s3 bucket location paste in below.
+To place in multiple line, in yaml you can use the | sign then place the remaining code below it.</p>
+
+<p>Example : <a href="https://aws.amazon.com/blogs/infrastructure-and-automation/deploying-aws-lambda-functions-using-aws-cloudformation-the-portable-way/">https://aws.amazon.com/blogs/infrastructure-and-automation/deploying-aws-lambda-functions-using-aws-cloudformation-the-portable-way/</a></p>
+
+<p>Code</p>
+
+<pre><code>import json
+import urllib.parse
+import boto3
+import time
+import os
+def lambda_handler(event, context):
+    AMIsParamName = event['AMIsParamName'];
+    region=os.environ['AWS_DEFAULT_REGION']
+    ec2 = boto3.client('ec2',region)
+    ssm = boto3.client('ssm',region)
+    inspector = boto3.client('inspector',region)
+    AmiJson =  ssm.get_parameter(Name=AMIsParamName)['Parameter']['Value']
+    print(AmiJson)
+    items = json.loads(AmiJson)
+    for entry in items:
+        images= ec2.describe_images(ImageIds=[entry['ami-id']],DryRun=False)
+        tags = images['Images'][0]['Tags']
+        tags.append({'Key': 'continuous-assessment-instance', 'Value': 'true'})
+        ec2.run_instances(ImageId=entry['ami-id'],InstanceType=entry['instanceType'],UserData=entry['userData'],DryRun=False,MaxCount=1,MinCount=1,TagSpecifications=[{'ResourceType': 'instance','Tags': tags}])
+    assessmentTemplateArn='';
+    rules = inspector.list_rules_packages();
+        
+    millis = int(round(time.time() * 1000))
+    existingTemplates = inspector.list_assessment_templates(filter={'namePattern': 'ContinuousAssessment'})
+    print('Total templates found:'+str(len(existingTemplates['assessmentTemplateArns'])))
+    if len(existingTemplates['assessmentTemplateArns'])==0:
+        resGroup = inspector.create_resource_group(resourceGroupTags=[{'key': 'continuous-assessment-instance','value': 'true'}])
+        target = inspector.create_assessment_target(assessmentTargetName='ContinuousAssessment',resourceGroupArn=resGroup['resourceGroupArn'])
+        template = inspector.create_assessment_template(assessmentTargetArn=target['assessmentTargetArn'],assessmentTemplateName='ContinuousAssessment', durationInSeconds=3600,rulesPackageArns=rules['rulesPackageArns'])
+        assessmentTemplateArn=template['assessmentTemplateArn']
+        response = inspector.subscribe_to_event(event='ASSESSMENT_RUN_COMPLETED',resourceArn=template['assessmentTemplateArn'],topicArn=os.environ['AssesmentCompleteTopicArn']) 
+        print('Template Created:'+template['assessmentTemplateArn'])
+    else:
+        assessmentTemplateArn=existingTemplates.get('assessmentTemplateArns')[0]
+    time.sleep(240)
+    run = inspector.start_assessment_run(assessmentTemplateArn=assessmentTemplateArn,assessmentRunName='ContinuousAssessment'+'-'+str(millis))
+    return 'Done'
+</code></pre></li>
+
+<li><p>In the <code>Properties</code> section create a <code>Environment</code> property and specify an environment variable named <code>AssesmentCompleteTopicArn</code> and reference the SNS topic resource created in step 2.
+To do this, you can use !Ref intrinsic function.</p>
+
+<p>Reference : <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-ref.html">https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-ref.html</a></p></li>
+</ol>
+
+<p><details><summary>CLICK HERE ( to see the solution ).</summary></p>
+
+<pre><code>  StartContinuousAssessmentLambdaFunction: 
+    Properties: 
+      Code: 
         ZipFile: |
             import json
             import urllib.parse
@@ -1604,7 +1632,7 @@ Reference : <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGu
                     ec2.run_instances(ImageId=entry['ami-id'],InstanceType=entry['instanceType'],UserData=entry['userData'],DryRun=False,MaxCount=1,MinCount=1,TagSpecifications=[{'ResourceType': 'instance','Tags': tags}])
                 assessmentTemplateArn='';
                 rules = inspector.list_rules_packages();
-                    
+                
                 millis = int(round(time.time() * 1000))
                 existingTemplates = inspector.list_assessment_templates(filter={'namePattern': 'ContinuousAssessment'})
                 print('Total templates found:'+str(len(existingTemplates['assessmentTemplateArns'])))
@@ -1620,145 +1648,305 @@ Reference : <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGu
                 time.sleep(240)
                 run = inspector.start_assessment_run(assessmentTemplateArn=assessmentTemplateArn,assessmentRunName='ContinuousAssessment'+'-'+str(millis))
                 return 'Done'
-    Runtime: python3.6 
-    Timeout: 300
-    Handler: index.lambda_handler
-    MemorySize: 512
-    Environment:
-        Variables:
-            AssesmentCompleteTopicArn: !Ref ContinuousAssessmentCompleteTopic 
+      Environment: 
+        Variables: 
+          AssesmentCompleteTopicArn: !Ref &quot;ContinuousAssessmentCompleteTopic&quot;
+      Handler: index.lambda_handler
+      MemorySize: 512
+      Role: !GetAtt &quot;StartContinuousAssessmentLambdaRole.Arn&quot;
+      Runtime: python3.6
+      Timeout: 300
+    Type: &quot;AWS::Lambda::Function&quot;
 </code></pre>
 
-<p></p>
-</detail></p></li>
+<p></details></p>
 
-<li><p>Once this is set up, the next thing to do is for us</p></li>
-</ol>
+<p>Once this is set up, the next thing to do is to set up the SNS Topic that AWS Inspector will trigger upon completion of the inspection. Below steps to create the resources.</p>
 
-<hr />
-
-<p>To create a stack:</p>
+<p><strong>Create Inspection Complete SNS Topic &amp; Policy to allow access for AW Inspector</strong>.</p>
 
 <ol>
-<li>Sign in to the <a href="https://console.aws.amazon.com/console/home">AWS Management Console</a> and choose <strong>CloudFormation</strong> in the <strong>Services</strong> menu.</li>
-<li>Click <strong>Create Stack</strong>.</li>
-<li>On the <strong>Select Template </strong>page, choose <strong>Upload a template to Amazon S3</strong>.</li>
-<li>Choose <strong>Choose File </strong>and then choose the CloudFormation template you just downloaded. Choose <strong>Next</strong>.</li>
-<li>On the <strong>Specify Details</strong> page, specify the <strong>Stack Name</strong> as <code>AmazonInspectorAssessment</code>. Choose <strong>Next</strong>.</li>
-<li>On the <strong>Options</strong> page, choose <strong>Next</strong>.</li>
-<li>On the <strong>Review</strong> page, choose the check box next to the following message: “<strong>I acknowledge that AWS CloudFormation might create IAM resources</strong>.<strong>”</strong></li>
-<li>Choose <strong>Create</strong>. The CloudFormation template creates SNS topics, <a href="https://aws.amazon.com/iam/">AWS Identity and Access Management</a> (IAM) roles, and Lambda functions.</li>
-<li>On the <strong>Stacks</strong> page, choose <strong>AmazonInspectorAssessment</strong>.</li>
-<li>In the <strong>Detail</strong> pane, choose <strong>Outputs </strong>to view the output of your stack.</li>
+<li><p>Open your notepad the file you created in step 1 <code>GoldenAMIContinuousAssesment.yml</code>.</p></li>
+
+<li><p>Create a resource named <code>ContinuousAssessmentCompleteTopic</code> of type <code>AWS::SNS::Topic</code>.</p></li>
+
+<li><p>No need to put in any <code>Properties</code> in this resource, keep all empty / default.</p></li>
+
+<li><p>Create another resource named <code>ContinuousAssessmentCompleteTopicPolicy</code> of type <code>AWS::SNS::TopicPolicy</code>.</p></li>
+
+<li><p>In the <code>Properties</code> section create a <code>PolicyDocument</code> and allow service <code>inspector.amazonaws.com</code> to do action <code>sns:Publish</code> on all resource.</p>
+
+<p>Reference : <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sns-policy.html">https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sns-policy.html</a></p></li>
+
+<li><p>In the <code>Properties</code> section create a <code>Topics</code> and Reference the SNS Topic we just created in this step using !Ref intrinsic function.</p>
+
+<p>Reference : <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-ref.html">https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-ref.html</a></p></li>
 </ol>
 
-<p>After CloudFormation successfully creates a stack, the <strong>Outputs</strong> tab displays following results:</p>
+<p><details><summary>CLICK HERE ( to see the solution ).</summary></p>
+
+<pre><code>  ContinuousAssessmentCompleteTopic: 
+    Type: &quot;AWS::SNS::Topic&quot;
+  ContinuousAssessmentCompleteTopicPolicy: 
+    Properties: 
+      PolicyDocument: 
+        Id: MyTopicPolicy
+        Statement: 
+          - 
+            Action: &quot;sns:Publish&quot;
+            Effect: Allow
+            Principal: 
+              Service: inspector.amazonaws.com
+            Resource: &quot;*&quot;
+            Sid: My-statement-id
+        Version: &quot;2012-10-17&quot;
+      Topics: 
+        - !Ref &quot;ContinuousAssessmentCompleteTopic&quot;
+    Type: &quot;AWS::SNS::TopicPolicy&quot;
+</code></pre>
+
+<p></details></p>
+
+<p><strong>Creating Lambda Execution Role for AnalyzeInspectorFindingsLambdaFunction</strong></p>
+
+<ol>
+<li><p>Open your notepad / text editor, create a file named <code>GoldenAMIContinuousAssesment.yml</code>
+Reference : <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html">https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html</a></p></li>
+
+<li><p>Create a resource named <code>AnalyzeInspectorFindingsLambdaRole</code> of type <code>AWS::IAM::Role</code>.</p></li>
+
+<li><p>In the <code>Properties</code> section add <code>ManagedPolicyArns</code> below to allow the lambda function to do basic execution and have access to Amazon Inspector APIs</p>
 
 <ul>
-<li><code>StartContinuousAssessmentLambdaFunction</code> – The <strong>Value</strong> box displays the name of the <code>StartContinuousAssessment</code> function. You will run this function to trigger the entire workflow.</li>
-<li><code>ContinuousAssessmentResultsTopic</code> – The <strong>Value</strong> box displays the <code>ContinuousAssessmentResultsTopic</code> topic’s <a href="http://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html">Amazon Resource Name</a> (ARN), which you will use later.</li>
-</ul>
+<li><code>arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole</code></li>
+</ul></li>
 
-<p>To receive consolidated vulnerability assessment results in email, you must subscribe to <code>ContinuousAssessmentResultsTopic</code>.</p>
+<li><p>In the <code>Properties</code> secion add an <code>AssumeRolePolicyDocument</code> to allow <code>lambda.amazonaws.com</code> service principal role to do an action called <code>sts:AssumeRole</code></p></li>
 
-<p>To subscribe to <code>ContinuousAssessmentResultsTopic</code>:</p>
+<li><p>In the <code>Properties</code> section create a policy under <code>Policies</code> to allow access to below APIs</p>
 
-<ol>
-<li>Sign in to the <a href="https://console.aws.amazon.com/console/home">AWS Management Console</a> and navigate to the <a href="https://console.aws.amazon.com/sns/v2/home">SNS console</a>.</li>
-<li>Choose <strong>Create subscription</strong>. In the <strong>Topic ARN</strong> field, paste the ARN of <code>ContinuousAssessmentResultsTopic</code> that you noted in the previous section.</li>
-<li>In the <strong>Protocol</strong> drop-down, choose <strong>Email</strong>.</li>
-<li>In the <strong>Endpoint</strong> box, type the email address where you will receive notifications.</li>
-<li>Choose <strong>Create subscription</strong>.</li>
-<li>Navigate to your email application and open the message from AWS Notifications. Click the link to confirm your subscription to the SNS topic.</li>
+<ul>
+<li><code>sns:Publish</code></li>
+<li><code>ec2:DescribeInstances</code></li>
+<li><code>ec2:TerminateInstances</code></li>
+<li><code>inspector:AddAttributesToFindings</code></li>
+<li><code>inspector:DescribeFindings</code></li>
+<li><code>inspector:ListFindings</code></li>
+</ul></li>
 </ol>
 
-<h3 id="4-test-golden-ami-vulnerability-assessments">4.  Test golden AMI vulnerability assessments</h3>
+<p><details><summary>CLICK HERE ( to see the solution ).</summary></p>
 
-<p>Before you schedule vulnerability assessments, you should test the process by running the <code>StartContinuousAssessment</code> function. In this test, you trigger a security assessment and monitor it. You then receive an email after the assessment has completed, which shows that vulnerability assessments have been successfully set up.</p>
+<pre><code>  AnalyzeInspectorFindingsLambdaRole: 
+    Properties: 
+      AssumeRolePolicyDocument: 
+        Statement: 
+          - 
+            Action: 
+              - &quot;sts:AssumeRole&quot;
+            Effect: Allow
+            Principal: 
+              Service: 
+                - lambda.amazonaws.com
+        Version: &quot;2012-10-17&quot;
+      ManagedPolicyArns: 
+        - &quot;arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole&quot;
+      Path: /
+      Policies: 
+        - 
+          PolicyDocument: 
+            Statement: 
+              - 
+                Action: 
+                  - &quot;sns:Publish&quot;
+                  - &quot;ec2:DescribeInstances&quot;
+                  - &quot;ec2:TerminateInstances&quot;
+                  - &quot;inspector:AddAttributesToFindings&quot;
+                  - &quot;inspector:DescribeFindings&quot;
+                  - &quot;inspector:ListFindings&quot;
+                Effect: Allow
+                Resource: &quot;*&quot;
+                Sid: AnalyzeInspectorFindingsLambdaPolicyStmt
+            Version: &quot;2012-10-17&quot;
+          PolicyName: AnalyzeInspectorFindingsLambdaPolicy
+    Type: &quot;AWS::IAM::Role&quot;
+</code></pre>
 
-<p>To start golden AMI vulnerability assessments:</p>
+<p></details></p>
 
-<ol>
-<li>Sign in to the <a href="https://console.aws.amazon.com/console/home">AWS Management Console</a> and choose <strong>Lambda</strong> in the <strong>Services </strong>menu.</li>
-<li>Choose <strong>Functions</strong>. In the <strong>Functions</strong> pane, choose the <strong>StartContinuousAssessment</strong> function.</li>
-<li>Choose the <strong>Select a test event</strong> drop-down, and choose <strong>Configure test events</strong>.</li>
-<li>On the <strong>Configure test event</strong> page, choose <strong>Create new test event</strong> and specify the event name as test.</li>
-
-<li><p>Paste the following JSON in the editor box.</p>
-
-<div class="hide-language">
-
-    {
-    "AMIsParamName": "ContinuousAssessmentInput"
-    }
-
-</div></li>
-
-<li><p>Choose <strong>Create</strong>. Choose <strong>Test</strong>.</p></li>
-</ol>
-
-<p>The <code>StartContinuousAssessment</code> function runs for approximately five minutes and then displays the following message.<br />
-<img src="https://d2908q01vomqb2.cloudfront.net/22d200f8670dbdb3e253a90eee5098477c95c23d/2017/12/15/KW_1_1217.png" alt="Message showing the function has run successfully" title="Message showing the function has run successfully" /></p>
-
-<p>Next, open Amazon Inspector and monitor the progress of the assessment:</p>
-
-<ol>
-<li>Sign in to the <a href="https://console.aws.amazon.com/console/home">AWS Management Console</a> and navigate to the <a href="https://console.aws.amazon.com/inspector/">Amazon Inspector console</a>.</li>
-<li>On <strong>Dashboard</strong> under <strong>Recent Assessment Runs</strong>, you will see an entry with the status, <strong>Collecting Data</strong>. This status indicates that Amazon Inspector agents are collecting data from instances running your golden AMIs. The agents collect data for an hour and then Amazon Inspector analyzes the collected data.</li>
-</ol>
-
-<p>After Amazon Inspector completes the assessment, the status in the console changes to <strong>Analysis complete</strong>. Amazon Inspector then publishes an SNS message that triggers the <code>AnalyzeInspectionReports</code> Lambda function. When <code>AnalyzeInspectionReports</code> publishes results, you will receive an email containing consolidated assessment results. You also will be able to see the findings.</p>
-
-<p>To see the findings in Amazon Inspector’s <strong>Findings</strong> section:</p>
-
-<ol>
-<li>Sign in to the <a href="https://console.aws.amazon.com/console/home">AWS Management Console</a> and navigate to the <a href="https://console.aws.amazon.com/inspector/home">Amazon Inspector console</a>.</li>
-<li>In the navigation pane, choose <strong>Assessment Runs</strong>. In the table on the <strong>Amazon Inspector – Assessment Runs</strong> page<strong>,</strong> choose the findings of the latest assessment run.</li>
-<li>Choose the settings (<img src="https://d2908q01vomqb2.cloudfront.net/22d200f8670dbdb3e253a90eee5098477c95c23d/2017/12/15/KW_3_1217.png" alt="Gear icon" title="Gear icon" />) icon and choose the appropriate tags to see the details of findings, as shown in the following screenshot. The findings also contain information about how you can address each underlying vulnerability.<br />
-<img src="https://d2908q01vomqb2.cloudfront.net/22d200f8670dbdb3e253a90eee5098477c95c23d/2017/12/15/KW_2_1217.png" alt="Screenshot showing details of findings" title="Screenshot showing details of findings" /></li>
-</ol>
-
-<p>Having verified that you have successfully set up all components of golden AMI vulnerability assessments, you now will schedule the vulnerability assessments to run on a regular basis to give you continual insight into the health of instances created from your golden AMIs.</p>
-
-<h3 id="5-set-up-a-cloudwatch-events-rule-for-triggering-continuous-golden-ami-vulnerability-assessments">5.  Set up a CloudWatch Events rule for triggering continuous golden AMI vulnerability assessments</h3>
-
-<p>The last step is to create a CloudWatch Events rule to schedule the execution of the vulnerability assessments on a daily or weekly basis.</p>
-
-<p>To set up a CloudWatch Events rule:</p>
+<p><strong>Create Lambda Function to AnalyzeInspectorFindings</strong>.</p>
 
 <ol>
-<li>Sign in to the <a href="https://console.aws.amazon.com/console/home">AWS Management Console</a> and navigate to the <a href="https://console.aws.amazon.com/cloudwatch/">CloudWatch console</a>.</li>
-<li>In the navigation pane, choose <strong>Rules</strong> &gt; <strong>Create rule</strong>.</li>
-<li>On the <strong>Event Source</strong> page, choose <strong>Schedule</strong>. Choose <strong>Fixed rate of </strong>and specify the interval (for example, 1 day).</li>
-<li>For <strong>Targets</strong>, choose <strong>Add target </strong>and then choose <strong>Lambda function</strong>.</li>
-<li>For <strong>Function</strong>, choose the <strong>StartContinuousAssessment</strong> function.</li>
-<li>Choose <strong>Configure Input</strong>.</li>
-<li>Choose <strong>Constant (JSON text)</strong>.</li>
+<li><p>Open your notepad the file you created in step 1 <code>GoldenAMIContinuousAssesment.yml</code></p></li>
 
-<li><p>In the box, paste the following JSON code.</p>
+<li><p>Create a resource named <code>AnalyzeInspectorFindingsLambdaFunction</code> of type <code>AWS::Lambda::Function</code>.</p></li>
 
-<div class="hide-language">
+<li><p>In the <code>Properties</code> section create a <code>Role</code> property and using the !GetAtt intrinsic function reference the IAM role Arn you created for <code>AnalyzeInspectorFindingsLambdaRole</code>.
+Reference : <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-getatt.html">https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-getatt.html</a></p></li>
 
-    {
-         "AMIsParamName": "ContinuousAssessmentInput"
-    }
+<li><p>In the <code>Properties</code> section create a <code>Code</code> property and specify the lambda function code using in line code instead of specifying the s3 bucket location paste in below.
+To place in multiple line, in yaml you can use the | sign then place the remaining code below it.</p>
 
-</div></li>
+<p>Example : <a href="https://aws.amazon.com/blogs/infrastructure-and-automation/deploying-aws-lambda-functions-using-aws-cloudformation-the-portable-way/">https://aws.amazon.com/blogs/infrastructure-and-automation/deploying-aws-lambda-functions-using-aws-cloudformation-the-portable-way/</a></p>
 
-<li><p>Choose <strong>Configure details</strong>.</p></li>
+<p>Code</p>
 
-<li><p>For <strong>Rule definition</strong>, type <code>ContinuousGoldenAMIAssessmentTrigger</code> for the name, and type as the description, <code>This rule triggers the continuous golden AMI vulnerability assessment process</code>.</p></li>
+<pre><code>        import json 
+        import os
+        import boto3
+        import collections
+        import ast
+        def lambda_handler(event, context): 
+            message = event['Records'][0]['Sns']['Message'] 
+            jsonVal = json.loads(message);
+            assessmentArn =jsonVal['run']  
+            region=os.environ['AWS_DEFAULT_REGION']
+            ec2 = boto3.client('ec2',region) 
+            sns = boto3.client('sns',region) 
+            inspector = boto3.client('inspector',region) 
+            findingArns = inspector.list_findings(assessmentRunArns=[jsonVal['run']],maxResults=5000)
+            aggregateData={}
+            for findingArn in findingArns['findingArns']:
+                finding = inspector.describe_findings(findingArns=[findingArn]) 
+                for result in finding['findings']: 
+                    instanceId =result['assetAttributes']['agentId']
+                    severity =result['severity']
+                    cveName=result['id']
+                    if not (instanceId) in aggregateData:
+                        aggregateData[instanceId]={}
+                        aggregateData[instanceId]['findings']={}
+                        aggregateData[instanceId]['findings'][severity]=0
+                        instance=ec2.describe_instances(InstanceIds=[instanceId]);
+                        tagsStr=str(instance['Reservations'][0]['Instances'][0]['Tags']) 
+                        tagsStr =tagsStr.replace('Key','key').replace('Value','value')  
+                        aggregateData[instanceId]['tags']= ast.literal_eval(tagsStr)
+                    elif not (severity) in aggregateData[instanceId]['findings']:
+                        aggregateData[instanceId]['findings'][severity]=0
+                    aggregateData[instanceId]['findings'][severity]=aggregateData[instanceId]['findings'][severity]+1; 
+                    inspector.add_attributes_to_findings(findingArns=[result['arn']],attributes=aggregateData[instanceId]['tags'])
+                    print(findingArns=[result['arn']])
+                    print(attributes=aggregateData[instanceId]['tags'])
+            tagsList=[]
+            for key  in aggregateData: 
+                outputJson=[] 
+                for tag in aggregateData[key]['tags']:
+                    if tag['key'] != 'continuous-assessment-instance':
+                        outputJson.append(&quot;\&quot;&quot;+tag['key']+&quot;\&quot;&quot;+&quot;:&quot;+&quot;\&quot;&quot;+tag['value']+&quot;\&quot;&quot;)
+                for sev in aggregateData[key]['findings']:
+                    outputJson.append(&quot;\&quot;Finding-Severity-&quot;+sev+&quot;-Count\&quot;&quot;+&quot;:&quot;+&quot;\&quot;&quot;+str(aggregateData[key]['findings'][sev])+&quot;\&quot;&quot;)
+                outputJson.sort()
+                print(outputJson)
+                tagsList.append('{'+', '.join(outputJson)+'}')
+                print('Terminating:'+key)
+                ec2.terminate_instances(InstanceIds=[key],DryRun=False)
+            sns.publish(TopicArn=os.environ['ContinuousAssessmentResultsTopic'],Message='['+', '.join(tagsList)+']')
+            return jsonVal['run']
+</code></pre></li>
 
-<li><p>Choose <strong>Create rule</strong>.</p></li>
+<li><p>In the <code>Properties</code> section create a <code>Environment</code> property and specify an environment variable named <code>ContinuousAssessmentResultsTopic</code> and reference the SNS topic resource <code>ContinuousAssessmentCompleteTopic</code>
+To do this, you can use !Ref intrinsic function.</p>
+
+<p>Reference : <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-ref.html">https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-ref.html</a></p></li>
 </ol>
 
-<p>The vulnerability assessments are executed on the first occurrence of the schedule you chose while setting up the CloudWatch Events rule. After the vulnerability assessment <strong>is</strong> executed, you will receive an email to indicate that your continuous golden AMI vulnerability assessments are set up.</p>
+<p><details><summary>CLICK HERE ( to see the solution ).</summary></p>
 
-<h3 id="summary">Summary</h3>
+<pre><code>  AnalyzeInspectorFindingsLambdaFunction: 
+    Properties: 
+      Code: 
+        ZipFile: |
+            import json 
+            import os
+            import boto3
+            import collections
+            import ast
+            def lambda_handler(event, context): 
+                message = event['Records'][0]['Sns']['Message'] 
+                jsonVal = json.loads(message);
+                assessmentArn =jsonVal['run']  
+                region=os.environ['AWS_DEFAULT_REGION']
+                ec2 = boto3.client('ec2',region) 
+                sns = boto3.client('sns',region) 
+                inspector = boto3.client('inspector',region) 
+                findingArns = inspector.list_findings(assessmentRunArns=[jsonVal['run']],maxResults=5000)
+                aggregateData={}
+                for findingArn in findingArns['findingArns']:
+                    finding = inspector.describe_findings(findingArns=[findingArn]) 
+                    for result in finding['findings']: 
+                        instanceId =result['assetAttributes']['agentId']
+                        severity =result['severity']
+                        cveName=result['id']
+                        if not (instanceId) in aggregateData:
+                            aggregateData[instanceId]={}
+                            aggregateData[instanceId]['findings']={}
+                            aggregateData[instanceId]['findings'][severity]=0
+                            instance=ec2.describe_instances(InstanceIds=[instanceId]);
+                            tagsStr=str(instance['Reservations'][0]['Instances'][0]['Tags']) 
+                            tagsStr =tagsStr.replace('Key','key').replace('Value','value')  
+                            aggregateData[instanceId]['tags']= ast.literal_eval(tagsStr)
+                        elif not (severity) in aggregateData[instanceId]['findings']:
+                            aggregateData[instanceId]['findings'][severity]=0
+                        aggregateData[instanceId]['findings'][severity]=aggregateData[instanceId]['findings'][severity]+1; 
+                        inspector.add_attributes_to_findings(findingArns=[result['arn']],attributes=aggregateData[instanceId]['tags'])
+                        print(findingArns=[result['arn']])
+                        print(attributes=aggregateData[instanceId]['tags'])
+                tagsList=[]
+                for key  in aggregateData: 
+                    outputJson=[] 
+                    for tag in aggregateData[key]['tags']:
+                        if tag['key'] != 'continuous-assessment-instance':
+                            outputJson.append(&quot;\&quot;&quot;+tag['key']+&quot;\&quot;&quot;+&quot;:&quot;+&quot;\&quot;&quot;+tag['value']+&quot;\&quot;&quot;)
+                    for sev in aggregateData[key]['findings']:
+                        outputJson.append(&quot;\&quot;Finding-Severity-&quot;+sev+&quot;-Count\&quot;&quot;+&quot;:&quot;+&quot;\&quot;&quot;+str(aggregateData[key]['findings'][sev])+&quot;\&quot;&quot;)
+                    outputJson.sort()
+                    print(outputJson)
+                    tagsList.append('{'+', '.join(outputJson)+'}')
+                    print('Terminating:'+key)
+                    ec2.terminate_instances(InstanceIds=[key],DryRun=False)
+                sns.publish(TopicArn=os.environ['ContinuousAssessmentResultsTopic'],Message='['+', '.join(tagsList)+']')
+                return jsonVal['run']
+      Environment: 
+        Variables: 
+          ContinuousAssessmentResultsTopic: !Ref &quot;ContinuousAssessmentResultsTopic&quot;
+      Handler: index.lambda_handler
+      MemorySize: 512
+      Role: !GetAtt &quot;AnalyzeInspectorFindingsLambdaRole.Arn&quot;
+      Runtime: python3.6
+      Timeout: 300
+    Type: &quot;AWS::Lambda::Function&quot;
+</code></pre>
 
-<p>To get visibility into the security of your EC2 instances created from your golden AMIs, it is important that you perform security assessments of your golden AMIs on a regular basis. In this blog post, I have demonstrated how to set up vulnerability assessments, and the results of these continuous golden AMI vulnerability assessments can help you keep your environment up to date with security patches. To learn how to patch your golden AMIs, see <a href="https://aws.amazon.com/blogs/aws/streamline-ami-maintenance-and-patching-using-amazon-ec2-systems-manager-automation/">Streamline AMI Maintenance and Patching Using Amazon EC2 Systems Manager</a>.</p>
+<p></details></p>
 
-<p>If you have comments about this blog post, submit them in the “Comments” section below. If you have questions about implementing the solution in this post, start a new thread on the <a href="https://forums.aws.amazon.com/forum.jspa?forumID=205">Amazon Inspector forum</a> or <a href="https://console.aws.amazon.com/support/home">contact AWS Support</a>.</p>
+<p><strong>Create Lambda Permission to allow SNS service to invoke.</strong>.</p>
+
+<ol>
+<li><p>Open your notepad the file you created in step 1 <code>GoldenAMIContinuousAssesment.yml</code></p></li>
+
+<li><p>Create a resource named <code>LambdaInvokePermission</code> of type <code>AWS::Lambda::Permission</code>.</p></li>
+
+<li><p>In the <code>Properties</code> section create a <code>FunctionName</code> property and using the !GetAtt intrinsic function reference the <code>AnalyzeInspectorFindingsLambdaRole</code> Arn you created before
+Reference : <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-getatt.html">https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-getatt.html</a></p></li>
+
+<li><p>In the <code>Properties</code> section create a <code>Action</code> property and specify <code>lambda:InvokeFunction</code></p></li>
+
+<li><p>In the <code>Properties</code> section create a <code>Principal</code> property and specify <code>sns.amazonaws.com</code></p></li>
+
+<li><p>In the <code>Properties</code> section create a <code>SourceArn</code> property and specify a reference to the <code>ContinuousAssessmentCompleteTopic</code> using !Ref intrinsic function</p></li>
+</ol>
+
+<p><details><summary>CLICK HERE ( to see the solution ).</summary></p>
+
+<pre><code>  LambdaInvokePermission: 
+    Properties: 
+      Action: &quot;lambda:InvokeFunction&quot;
+      FunctionName: !GetAtt &quot;AnalyzeInspectorFindingsLambdaFunction.Arn&quot;
+      Principal: sns.amazonaws.com
+      SourceArn: !Ref &quot;ContinuousAssessmentCompleteTopic&quot;
+    Type: &quot;AWS::Lambda::Permission&quot;
+</code></pre>
+
+<p></details></p>
 
 
 <footer class=" footline" >
@@ -2801,19 +2989,19 @@ Reference : <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGu
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1570526876"></script>
-    <script src="/js/perfect-scrollbar.min.js?1570526876"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1570526876"></script>
-    <script src="/js/jquery.sticky.js?1570526876"></script>
-    <script src="/js/featherlight.min.js?1570526876"></script>
-    <script src="/js/highlight.pack.js?1570526876"></script>
+    <script src="/js/clipboard.min.js?1570675609"></script>
+    <script src="/js/perfect-scrollbar.min.js?1570675609"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1570675609"></script>
+    <script src="/js/jquery.sticky.js?1570675609"></script>
+    <script src="/js/featherlight.min.js?1570675609"></script>
+    <script src="/js/highlight.pack.js?1570675609"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1570526876"></script>
-    <script src="/js/learn.js?1570526876"></script>
-    <script src="/js/hugo-learn.js?1570526876"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1570675609"></script>
+    <script src="/js/learn.js?1570675609"></script>
+    <script src="/js/hugo-learn.js?1570675609"></script>
 
-    <link href="/mermaid/mermaid.css?1570526876" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1570526876"></script>
+    <link href="/mermaid/mermaid.css?1570675609" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1570675609"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
