@@ -1,0 +1,2888 @@
+<!DOCTYPE html>
+<html lang="en" class="js csstransforms3d">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Hugo 0.57.2" />
+    <meta name="description" content="">
+
+
+    <link rel="icon" href="/images/favicon.png" type="image/png">
+
+    <title>6. Create Lambda Functions :: APN Equip Labs</title>
+
+    
+    <link href="/css/nucleus.css?1573045556" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1573045556" rel="stylesheet">
+    <link href="/css/hybrid.css?1573045556" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1573045556" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1573045556" rel="stylesheet">
+    <link href="/css/auto-complete.css?1573045556" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1573045556" rel="stylesheet">
+    <link href="/css/theme.css?1573045556" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1573045556" rel="stylesheet">
+    
+      <link href="/css/theme-darkblue.css?1573045556" rel="stylesheet">
+    
+
+    <script src="/js/jquery-3.3.1.min.js?1573045556"></script>
+
+    <style>
+      :root #header + #content > #left > #rlblock_left{
+          display:none !important;
+      }
+      
+    </style>
+    
+  </head>
+  <body class="" data-url="/ami-inspector-lab/create_continuousassess_lambda/">
+    <nav id="sidebar" class="showVisitedLinks">
+
+
+
+  <div id="header-wrapper">
+    <div id="header">
+      <a href=".."><img src="/images/logo.jpg" ></a>
+    </div>
+    
+        <div class="searchbox">
+    <label for="search-by"><i class="fas fa-search"></i></label>
+    <input data-search-input id="search-by" type="search" placeholder="Search...">
+    <span data-search-clear=""><i class="fas fa-times"></i></span>
+</div>
+
+<script type="text/javascript" src="/js/lunr.min.js?1573045556"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1573045556"></script>
+<script type="text/javascript">
+    
+        var baseurl = "http:\/\/example.org\/";
+    
+</script>
+<script type="text/javascript" src="/js/search.js?1573045556"></script>
+
+    
+  </div>
+
+    <div class="highlightable">
+    <ul class="topics">
+
+        
+          
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/vpc-lab/" title="VPC Lab" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/vpc-lab/">
+          <b></b>VPC Lab
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/vpc-lab/navigate-the-vpc-dashboard/" title="1. Navigate the VPC Dashboard" class="dd-item ">
+        <a href="/vpc-lab/navigate-the-vpc-dashboard/">
+        1. Navigate the VPC Dashboard
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/vpc-lab/what-did-vpc-wizard-create/" title="2. What Did VPC Wizard Create ?" class="dd-item ">
+        <a href="/vpc-lab/what-did-vpc-wizard-create/">
+        2. What Did VPC Wizard Create ?
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/vpc-lab/create-ec2-instance/" title="3. Create Public EC2 Instance" class="dd-item ">
+        <a href="/vpc-lab/create-ec2-instance/">
+        3. Create Public EC2 Instance
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/vpc-lab/test-public-ec2-instance/" title="4. Test Public EC2 Instance" class="dd-item ">
+        <a href="/vpc-lab/test-public-ec2-instance/">
+        4. Test Public EC2 Instance
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/vpc-lab/test-private-ec2-instance/" title="5. Test Private EC2 Instance" class="dd-item ">
+        <a href="/vpc-lab/test-private-ec2-instance/">
+        5. Test Private EC2 Instance
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/vpc-lab/clean-up-resources/" title="6. Clean Up Resources" class="dd-item ">
+        <a href="/vpc-lab/clean-up-resources/">
+        6. Clean Up Resources
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/vpc-lab/additional-resources/" title="7. Additional Resources" class="dd-item ">
+        <a href="/vpc-lab/additional-resources/">
+        7. Additional Resources
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/ec2-lab/" title="EC2 Lab" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/ec2-lab/">
+          <b></b>EC2 Lab
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/ec2-lab/create-new-key-pair/" title="1. Create New Key Pair" class="dd-item ">
+        <a href="/ec2-lab/create-new-key-pair/">
+        1. Create New Key Pair
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/ec2-lab/launch-ec2-web-server/" title="2. Launch EC2 Web Server" class="dd-item ">
+        <a href="/ec2-lab/launch-ec2-web-server/">
+        2. Launch EC2 Web Server
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/ec2-lab/browse-your-web-server/" title="3. Browse your Web Server" class="dd-item ">
+        <a href="/ec2-lab/browse-your-web-server/">
+        3. Browse your Web Server
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/ec2-lab-windows/" title="EC2 Lab (Windows)" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/ec2-lab-windows/">
+          <b></b>EC2 Lab (Windows)
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/ec2-lab-windows/configure-network/" title="1. Configure Network" class="dd-item ">
+        <a href="/ec2-lab-windows/configure-network/">
+        1. Configure Network
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/ec2-lab-windows/configure-security-group/" title="2. Configure a Security Group" class="dd-item ">
+        <a href="/ec2-lab-windows/configure-security-group/">
+        2. Configure a Security Group
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/ec2-lab-windows/configure-an-iam-user-and-policy/" title="3. Configure an IAM User and Policy" class="dd-item ">
+        <a href="/ec2-lab-windows/configure-an-iam-user-and-policy/">
+        3. Configure an IAM User and Policy
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/ec2-lab-windows/create-windows-ec2-instance/" title="4. Create a Windows EC2 Instance" class="dd-item ">
+        <a href="/ec2-lab-windows/create-windows-ec2-instance/">
+        4. Create a Windows EC2 Instance
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/ec2-lab-windows/validate-iam-policy/" title="5. Validate IAM Policy" class="dd-item ">
+        <a href="/ec2-lab-windows/validate-iam-policy/">
+        5. Validate IAM Policy
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/ec2-lab-windows/cleanup/" title="6. Cleanup" class="dd-item ">
+        <a href="/ec2-lab-windows/cleanup/">
+        6. Cleanup
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/iam-lab/" title="IAM Lab" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/iam-lab/">
+          <b></b>IAM Lab
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/iam-lab/create-iam-group/" title="1. Create IAM Group" class="dd-item ">
+        <a href="/iam-lab/create-iam-group/">
+        1. Create IAM Group
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/iam-lab/create-iam-user/" title="2. Create IAM User" class="dd-item ">
+        <a href="/iam-lab/create-iam-user/">
+        2. Create IAM User
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/iam-lab/test-iam-user/" title="3. Test IAM User" class="dd-item ">
+        <a href="/iam-lab/test-iam-user/">
+        3. Test IAM User
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/iam-lab/create-iam-role/" title="4. Create IAM Role" class="dd-item ">
+        <a href="/iam-lab/create-iam-role/">
+        4. Create IAM Role
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/iam-lab/clean-up-resources/" title="5. Clean Up Resources" class="dd-item ">
+        <a href="/iam-lab/clean-up-resources/">
+        5. Clean Up Resources
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/iam-lab/additional-resources/" title="6. Additional resources" class="dd-item ">
+        <a href="/iam-lab/additional-resources/">
+        6. Additional resources
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/s3-lab/" title="S3 Lab" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/s3-lab/">
+          <b></b>S3 Lab
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/s3-lab/create-s3-bucket/" title="1. Create S3 Bucket" class="dd-item ">
+        <a href="/s3-lab/create-s3-bucket/">
+        1. Create S3 Bucket
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/s3-lab/add-object-to-s3-bucket/" title="2. Add Object to S3 Bucket" class="dd-item ">
+        <a href="/s3-lab/add-object-to-s3-bucket/">
+        2. Add Object to S3 Bucket
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/s3-lab/move-s3-object/" title="3. Move S3 Object" class="dd-item ">
+        <a href="/s3-lab/move-s3-object/">
+        3. Move S3 Object
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/s3-lab/enable-bucket-versioning/" title="4. Enable Bucket Versioning" class="dd-item ">
+        <a href="/s3-lab/enable-bucket-versioning/">
+        4. Enable Bucket Versioning
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/s3-lab/delete-an-object-and-bucket/" title="5. Delete an Object and Bucket" class="dd-item ">
+        <a href="/s3-lab/delete-an-object-and-bucket/">
+        5. Delete an Object and Bucket
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/s3-lab/additional-resources/" title="6. Additional resources" class="dd-item ">
+        <a href="/s3-lab/additional-resources/">
+        6. Additional resources
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/monitoring-lab/" title="Monitoring Lab" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/monitoring-lab/">
+          <b></b>Monitoring Lab
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/monitoring-lab/create-sns-topic/" title="1. Create SNS Topic" class="dd-item ">
+        <a href="/monitoring-lab/create-sns-topic/">
+        1. Create SNS Topic
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/monitoring-lab/create-iam-role/" title="2. Create IAM Role" class="dd-item ">
+        <a href="/monitoring-lab/create-iam-role/">
+        2. Create IAM Role
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/monitoring-lab/launch-ec2-instance/" title="3. Launch EC2 Instance" class="dd-item ">
+        <a href="/monitoring-lab/launch-ec2-instance/">
+        3. Launch EC2 Instance
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/monitoring-lab/configure-cloudwatch-alarm/" title="4. Configure CloudWatch Alarm" class="dd-item ">
+        <a href="/monitoring-lab/configure-cloudwatch-alarm/">
+        4. Configure CloudWatch Alarm
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/monitoring-lab/monitor-ec2-cpu-utilization/" title="5. Monitor EC2 CPU Utilization" class="dd-item ">
+        <a href="/monitoring-lab/monitor-ec2-cpu-utilization/">
+        5. Monitor EC2 CPU Utilization
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/monitoring-lab/monitor-ec2-system-log/" title="6. Monitor EC2 System Log" class="dd-item ">
+        <a href="/monitoring-lab/monitor-ec2-system-log/">
+        6. Monitor EC2 System Log
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/monitoring-lab/monitor-ec2-tag/" title="7. Monitor EC2 Tag" class="dd-item ">
+        <a href="/monitoring-lab/monitor-ec2-tag/">
+        7. Monitor EC2 Tag
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/monitoring-lab/monitor-estimated-charges/" title="8. Monitor Estimated Charges" class="dd-item ">
+        <a href="/monitoring-lab/monitor-estimated-charges/">
+        8. Monitor Estimated Charges
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/security-lab/" title="Security Lab" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/security-lab/">
+          <b></b>Security Lab
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/security-lab/create-sns-topic/" title="1. Create SNS Topic" class="dd-item ">
+        <a href="/security-lab/create-sns-topic/">
+        1. Create SNS Topic
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/security-lab/create-iam-role/" title="2. Create IAM Role" class="dd-item ">
+        <a href="/security-lab/create-iam-role/">
+        2. Create IAM Role
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/security-lab/launch-ec2-instance/" title="3. Launch EC2 Instance" class="dd-item ">
+        <a href="/security-lab/launch-ec2-instance/">
+        3. Launch EC2 Instance
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/security-lab/monitor-ec2-security-log/" title="6. Monitor EC2 Security Log" class="dd-item ">
+        <a href="/security-lab/monitor-ec2-security-log/">
+        6. Monitor EC2 Security Log
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/security-lab/create-alarm-for-security-log/" title="7. Create Alarm For Security Log" class="dd-item ">
+        <a href="/security-lab/create-alarm-for-security-log/">
+        7. Create Alarm For Security Log
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/security-lab/test-security-alarm/" title="8. Test Security Alarm" class="dd-item ">
+        <a href="/security-lab/test-security-alarm/">
+        8. Test Security Alarm
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/security-lab/query-security-log/" title="10. Query Security Log" class="dd-item ">
+        <a href="/security-lab/query-security-log/">
+        10. Query Security Log
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/cloudformation-lab/" title="CloudFormation Lab" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/cloudformation-lab/">
+          <b></b>CloudFormation Lab
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/cloudformation-lab/explore_template/" title="1. Exploring the templates" class="dd-item ">
+        <a href="/cloudformation-lab/explore_template/">
+        1. Exploring the templates
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/cloudformation-lab/create_stack/" title="2. Create Stack" class="dd-item ">
+        <a href="/cloudformation-lab/create_stack/">
+        2. Create Stack
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/cloudformation-lab/change_stack/" title="3. Change Your Stack" class="dd-item ">
+        <a href="/cloudformation-lab/change_stack/">
+        3. Change Your Stack
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/cloudformation-lab/update_stack/" title="4. Update Stack" class="dd-item ">
+        <a href="/cloudformation-lab/update_stack/">
+        4. Update Stack
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+ 
+  
+    
+    <li data-nav-id="/ami-inspector-lab/" title="Golden AMI Assessment Lab" class="dd-item 
+        parent
+        
+        
+        ">
+      <a href="/ami-inspector-lab/">
+          <b></b>Golden AMI Assessment Lab
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/ami-inspector-lab/solutions_overview/" title="1. Solutions Overview" class="dd-item ">
+        <a href="/ami-inspector-lab/solutions_overview/">
+        1. Solutions Overview
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/ami-inspector-lab/tag_golden_ami/" title="2. Tag your Golden AMI" class="dd-item ">
+        <a href="/ami-inspector-lab/tag_golden_ami/">
+        2. Tag your Golden AMI
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/ami-inspector-lab/store_golden_ami_metadata/" title="3. Store Golden AMI metadata." class="dd-item ">
+        <a href="/ami-inspector-lab/store_golden_ami_metadata/">
+        3. Store Golden AMI metadata.
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/ami-inspector-lab/create_exec_role_for_contasses/" title="4. Create Lambda Execution role." class="dd-item ">
+        <a href="/ami-inspector-lab/create_exec_role_for_contasses/">
+        4. Create Lambda Execution role.
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/ami-inspector-lab/create_snstopic_assesmentcomplete/" title="5. Create SNS Topic " class="dd-item ">
+        <a href="/ami-inspector-lab/create_snstopic_assesmentcomplete/">
+        5. Create SNS Topic 
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/ami-inspector-lab/create_continuousassess_lambda/" title="6. Create Lambda Functions" class="dd-item active">
+        <a href="/ami-inspector-lab/create_continuousassess_lambda/">
+        6. Create Lambda Functions
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/ami-inspector-lab/test_assesment/" title="10. Test Assesment" class="dd-item ">
+        <a href="/ami-inspector-lab/test_assesment/">
+        10. Test Assesment
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+         
+    </ul>
+
+    
+    
+
+    
+    <section id="prefooter">
+      <hr/>
+      <ul>
+      
+      
+      
+        <li><a class="padding" href="#" data-clear-history-toggle=""><i class="fas fa-history fa-fw"></i> Clear History</a></li>
+      
+      </ul>
+    </section>
+    
+    <section id="footer">
+      
+    </section>
+  </div>
+</nav>
+
+
+
+
+
+        <section id="body">
+        <div id="overlay"></div>
+        <div class="padding highlightable">
+              
+              <div>
+                <div id="top-bar">
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                 
+                 
+                    
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='/'>Welcome</a> > <a href='/ami-inspector-lab/'>Golden AMI Assessment Lab</a> > 6. Create Lambda Functions
+          
+         
+          
+         
+          
+        
+                 
+                  </span>
+                </div>
+                
+                    <div class="progress">
+    <div class="wrapper">
+
+    </div>
+</div>
+
+                
+              </div>
+            </div>
+            
+        <div id="head-tags">
+        
+        </div>
+        
+        <div id="body-inner">
+          
+            <h1>
+              
+              6. Create Lambda Functions
+            </h1>
+          
+
+        
+
+
+
+<p><strong>Creating the Lambda Function to Inspect the AMI</strong></p>
+
+<p><img src="/AMI Inspector Lab/images/ContinuousAssesmentLambdaFunction.png" alt="" /></p>
+
+<ol>
+<li><p>Open your notepad the file you created in step 1 <code>GoldenAMIContinuousAssesment.yml</code></p></li>
+
+<li><p>Create a resource named <code>StartContinuousAssessmentLambdaFunction</code> of type <code>AWS::Lambda::Function</code>.</p></li>
+
+<li><p>In the <code>Properties</code> section create a <code>Role</code> property and using the !GetAtt intrinsic function reference the IAM role Arn you created in step 1.
+Reference : <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-getatt.html">https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-getatt.html</a></p></li>
+
+<li><p>In the <code>Properties</code> section create a <code>Code</code> property and specify the lambda function code using in line code instead of specifying the s3 bucket location paste in below.
+To place in multiple line, in yaml you can use the | sign then place the remaining code below it.</p>
+
+<p>Example : <a href="https://aws.amazon.com/blogs/infrastructure-and-automation/deploying-aws-lambda-functions-using-aws-cloudformation-the-portable-way/">https://aws.amazon.com/blogs/infrastructure-and-automation/deploying-aws-lambda-functions-using-aws-cloudformation-the-portable-way/</a></p>
+
+<p>Code</p>
+
+<pre><code>import json
+import urllib.parse
+import boto3
+import time
+import os
+def lambda_handler(event, context):
+    AMIsParamName = event['AMIsParamName'];
+    region=os.environ['AWS_DEFAULT_REGION']
+    ec2 = boto3.client('ec2',region)
+    ssm = boto3.client('ssm',region)
+    inspector = boto3.client('inspector',region)
+    AmiJson =  ssm.get_parameter(Name=AMIsParamName)['Parameter']['Value']
+    print(AmiJson)
+    items = json.loads(AmiJson)
+    for entry in items:
+        images= ec2.describe_images(ImageIds=[entry['ami-id']],DryRun=False)
+        tags = images['Images'][0]['Tags']
+        tags.append({'Key': 'continuous-assessment-instance', 'Value': 'true'})
+        ec2.run_instances(ImageId=entry['ami-id'],InstanceType=entry['instanceType'],UserData=entry['userData'],DryRun=False,MaxCount=1,MinCount=1,TagSpecifications=[{'ResourceType': 'instance','Tags': tags}])
+    assessmentTemplateArn='';
+    rules = inspector.list_rules_packages();
+        
+    millis = int(round(time.time() * 1000))
+    existingTemplates = inspector.list_assessment_templates(filter={'namePattern': 'ContinuousAssessment'})
+    print('Total templates found:'+str(len(existingTemplates['assessmentTemplateArns'])))
+    if len(existingTemplates['assessmentTemplateArns'])==0:
+        resGroup = inspector.create_resource_group(resourceGroupTags=[{'key': 'continuous-assessment-instance','value': 'true'}])
+        target = inspector.create_assessment_target(assessmentTargetName='ContinuousAssessment',resourceGroupArn=resGroup['resourceGroupArn'])
+        template = inspector.create_assessment_template(assessmentTargetArn=target['assessmentTargetArn'],assessmentTemplateName='ContinuousAssessment', durationInSeconds=3600,rulesPackageArns=rules['rulesPackageArns'])
+        assessmentTemplateArn=template['assessmentTemplateArn']
+        response = inspector.subscribe_to_event(event='ASSESSMENT_RUN_COMPLETED',resourceArn=template['assessmentTemplateArn'],topicArn=os.environ['AssesmentCompleteTopicArn']) 
+        print('Template Created:'+template['assessmentTemplateArn'])
+    else:
+        assessmentTemplateArn=existingTemplates.get('assessmentTemplateArns')[0]
+    time.sleep(240)
+    run = inspector.start_assessment_run(assessmentTemplateArn=assessmentTemplateArn,assessmentRunName='ContinuousAssessment'+'-'+str(millis))
+    return 'Done'
+</code></pre></li>
+
+<li><p>In the <code>Properties</code> section create a <code>Environment</code> property and specify an environment variable named <code>AssesmentCompleteTopicArn</code> and reference the SNS topic resource created in step 2.
+To do this, you can use !Ref intrinsic function.</p>
+
+<p>Reference : <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-ref.html">https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-ref.html</a></p></li>
+</ol>
+
+<p><details><summary>CLICK HERE ( to see the solution ).</summary></p>
+
+<pre><code>  StartContinuousAssessmentLambdaFunction: 
+    Properties: 
+      Code: 
+        ZipFile: |
+            import json
+            import urllib.parse
+            import boto3
+            import time
+            import os
+            def lambda_handler(event, context):
+                AMIsParamName = event['AMIsParamName'];
+                region=os.environ['AWS_DEFAULT_REGION']
+                ec2 = boto3.client('ec2',region)
+                ssm = boto3.client('ssm',region)
+                inspector = boto3.client('inspector',region)
+                AmiJson =  ssm.get_parameter(Name=AMIsParamName)['Parameter']['Value']
+                print(AmiJson)
+                items = json.loads(AmiJson)
+                for entry in items:
+                    images= ec2.describe_images(ImageIds=[entry['ami-id']],DryRun=False)
+                    tags = images['Images'][0]['Tags']
+                    tags.append({'Key': 'continuous-assessment-instance', 'Value': 'true'})
+                    ec2.run_instances(ImageId=entry['ami-id'],InstanceType=entry['instanceType'],UserData=entry['userData'],DryRun=False,MaxCount=1,MinCount=1,TagSpecifications=[{'ResourceType': 'instance','Tags': tags}])
+                assessmentTemplateArn='';
+                rules = inspector.list_rules_packages();
+                
+                millis = int(round(time.time() * 1000))
+                existingTemplates = inspector.list_assessment_templates(filter={'namePattern': 'ContinuousAssessment'})
+                print('Total templates found:'+str(len(existingTemplates['assessmentTemplateArns'])))
+                if len(existingTemplates['assessmentTemplateArns'])==0:
+                    resGroup = inspector.create_resource_group(resourceGroupTags=[{'key': 'continuous-assessment-instance','value': 'true'}])
+                    target = inspector.create_assessment_target(assessmentTargetName='ContinuousAssessment',resourceGroupArn=resGroup['resourceGroupArn'])
+                    template = inspector.create_assessment_template(assessmentTargetArn=target['assessmentTargetArn'],assessmentTemplateName='ContinuousAssessment', durationInSeconds=3600,rulesPackageArns=rules['rulesPackageArns'])
+                    assessmentTemplateArn=template['assessmentTemplateArn']
+                    response = inspector.subscribe_to_event(event='ASSESSMENT_RUN_COMPLETED',resourceArn=template['assessmentTemplateArn'],topicArn=os.environ['AssesmentCompleteTopicArn']) 
+                    print('Template Created:'+template['assessmentTemplateArn'])
+                else:
+                    assessmentTemplateArn=existingTemplates.get('assessmentTemplateArns')[0]
+                time.sleep(240)
+                run = inspector.start_assessment_run(assessmentTemplateArn=assessmentTemplateArn,assessmentRunName='ContinuousAssessment'+'-'+str(millis))
+                return 'Done'
+      Environment: 
+        Variables: 
+          AssesmentCompleteTopicArn: !Ref &quot;ContinuousAssessmentCompleteTopic&quot;
+      Handler: index.lambda_handler
+      MemorySize: 512
+      Role: !GetAtt &quot;StartContinuousAssessmentLambdaRole.Arn&quot;
+      Runtime: python3.6
+      Timeout: 300
+    Type: &quot;AWS::Lambda::Function&quot;
+</code></pre>
+
+<p></details></p>
+
+<p>Once this is set up, the next thing to do is to set up the SNS Topic that AWS Inspector will trigger upon completion of the inspection. Below steps to create the resources.</p>
+
+<p><strong>Create Lambda Function to AnalyzeInspectorFindings</strong>.</p>
+
+<ol>
+<li><p>Open your notepad the file you created in step 1 <code>GoldenAMIContinuousAssesment.yml</code></p></li>
+
+<li><p>Create a resource named <code>AnalyzeInspectorFindingsLambdaFunction</code> of type <code>AWS::Lambda::Function</code>.</p></li>
+
+<li><p>In the <code>Properties</code> section create a <code>Role</code> property and using the !GetAtt intrinsic function reference the IAM role Arn you created for <code>AnalyzeInspectorFindingsLambdaRole</code>.
+Reference : <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-getatt.html">https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-getatt.html</a></p></li>
+
+<li><p>In the <code>Properties</code> section create a <code>Code</code> property and specify the lambda function code using in line code instead of specifying the s3 bucket location paste in below.
+To place in multiple line, in yaml you can use the | sign then place the remaining code below it.</p>
+
+<p>Example : <a href="https://aws.amazon.com/blogs/infrastructure-and-automation/deploying-aws-lambda-functions-using-aws-cloudformation-the-portable-way/">https://aws.amazon.com/blogs/infrastructure-and-automation/deploying-aws-lambda-functions-using-aws-cloudformation-the-portable-way/</a></p>
+
+<p>Code</p>
+
+<pre><code>        import json 
+        import os
+        import boto3
+        import collections
+        import ast
+        def lambda_handler(event, context): 
+            message = event['Records'][0]['Sns']['Message'] 
+            jsonVal = json.loads(message);
+            assessmentArn =jsonVal['run']  
+            region=os.environ['AWS_DEFAULT_REGION']
+            ec2 = boto3.client('ec2',region) 
+            sns = boto3.client('sns',region) 
+            inspector = boto3.client('inspector',region) 
+            findingArns = inspector.list_findings(assessmentRunArns=[jsonVal['run']],maxResults=5000)
+            aggregateData={}
+            for findingArn in findingArns['findingArns']:
+                finding = inspector.describe_findings(findingArns=[findingArn]) 
+                for result in finding['findings']: 
+                    instanceId =result['assetAttributes']['agentId']
+                    severity =result['severity']
+                    cveName=result['id']
+                    if not (instanceId) in aggregateData:
+                        aggregateData[instanceId]={}
+                        aggregateData[instanceId]['findings']={}
+                        aggregateData[instanceId]['findings'][severity]=0
+                        instance=ec2.describe_instances(InstanceIds=[instanceId]);
+                        tagsStr=str(instance['Reservations'][0]['Instances'][0]['Tags']) 
+                        tagsStr =tagsStr.replace('Key','key').replace('Value','value')  
+                        aggregateData[instanceId]['tags']= ast.literal_eval(tagsStr)
+                    elif not (severity) in aggregateData[instanceId]['findings']:
+                        aggregateData[instanceId]['findings'][severity]=0
+                    aggregateData[instanceId]['findings'][severity]=aggregateData[instanceId]['findings'][severity]+1; 
+                    inspector.add_attributes_to_findings(findingArns=[result['arn']],attributes=aggregateData[instanceId]['tags'])
+                    print(findingArns=[result['arn']])
+                    print(attributes=aggregateData[instanceId]['tags'])
+            tagsList=[]
+            for key  in aggregateData: 
+                outputJson=[] 
+                for tag in aggregateData[key]['tags']:
+                    if tag['key'] != 'continuous-assessment-instance':
+                        outputJson.append(&quot;\&quot;&quot;+tag['key']+&quot;\&quot;&quot;+&quot;:&quot;+&quot;\&quot;&quot;+tag['value']+&quot;\&quot;&quot;)
+                for sev in aggregateData[key]['findings']:
+                    outputJson.append(&quot;\&quot;Finding-Severity-&quot;+sev+&quot;-Count\&quot;&quot;+&quot;:&quot;+&quot;\&quot;&quot;+str(aggregateData[key]['findings'][sev])+&quot;\&quot;&quot;)
+                outputJson.sort()
+                print(outputJson)
+                tagsList.append('{'+', '.join(outputJson)+'}')
+                print('Terminating:'+key)
+                ec2.terminate_instances(InstanceIds=[key],DryRun=False)
+            sns.publish(TopicArn=os.environ['ContinuousAssessmentResultsTopic'],Message='['+', '.join(tagsList)+']')
+            return jsonVal['run']
+</code></pre></li>
+
+<li><p>In the <code>Properties</code> section create a <code>Environment</code> property and specify an environment variable named <code>ContinuousAssessmentResultsTopic</code> and reference the SNS topic resource <code>ContinuousAssessmentCompleteTopic</code>
+To do this, you can use !Ref intrinsic function.</p>
+
+<p>Reference : <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-ref.html">https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-ref.html</a></p></li>
+</ol>
+
+<p><details><summary>CLICK HERE ( to see the solution ).</summary></p>
+
+<pre><code>  AnalyzeInspectorFindingsLambdaFunction: 
+    Properties: 
+      Code: 
+        ZipFile: |
+            import json 
+            import os
+            import boto3
+            import collections
+            import ast
+            def lambda_handler(event, context): 
+                message = event['Records'][0]['Sns']['Message'] 
+                jsonVal = json.loads(message);
+                assessmentArn =jsonVal['run']  
+                region=os.environ['AWS_DEFAULT_REGION']
+                ec2 = boto3.client('ec2',region) 
+                sns = boto3.client('sns',region) 
+                inspector = boto3.client('inspector',region) 
+                findingArns = inspector.list_findings(assessmentRunArns=[jsonVal['run']],maxResults=5000)
+                aggregateData={}
+                for findingArn in findingArns['findingArns']:
+                    finding = inspector.describe_findings(findingArns=[findingArn]) 
+                    for result in finding['findings']: 
+                        instanceId =result['assetAttributes']['agentId']
+                        severity =result['severity']
+                        cveName=result['id']
+                        if not (instanceId) in aggregateData:
+                            aggregateData[instanceId]={}
+                            aggregateData[instanceId]['findings']={}
+                            aggregateData[instanceId]['findings'][severity]=0
+                            instance=ec2.describe_instances(InstanceIds=[instanceId]);
+                            tagsStr=str(instance['Reservations'][0]['Instances'][0]['Tags']) 
+                            tagsStr =tagsStr.replace('Key','key').replace('Value','value')  
+                            aggregateData[instanceId]['tags']= ast.literal_eval(tagsStr)
+                        elif not (severity) in aggregateData[instanceId]['findings']:
+                            aggregateData[instanceId]['findings'][severity]=0
+                        aggregateData[instanceId]['findings'][severity]=aggregateData[instanceId]['findings'][severity]+1; 
+                        inspector.add_attributes_to_findings(findingArns=[result['arn']],attributes=aggregateData[instanceId]['tags'])
+                        print(findingArns=[result['arn']])
+                        print(attributes=aggregateData[instanceId]['tags'])
+                tagsList=[]
+                for key  in aggregateData: 
+                    outputJson=[] 
+                    for tag in aggregateData[key]['tags']:
+                        if tag['key'] != 'continuous-assessment-instance':
+                            outputJson.append(&quot;\&quot;&quot;+tag['key']+&quot;\&quot;&quot;+&quot;:&quot;+&quot;\&quot;&quot;+tag['value']+&quot;\&quot;&quot;)
+                    for sev in aggregateData[key]['findings']:
+                        outputJson.append(&quot;\&quot;Finding-Severity-&quot;+sev+&quot;-Count\&quot;&quot;+&quot;:&quot;+&quot;\&quot;&quot;+str(aggregateData[key]['findings'][sev])+&quot;\&quot;&quot;)
+                    outputJson.sort()
+                    print(outputJson)
+                    tagsList.append('{'+', '.join(outputJson)+'}')
+                    print('Terminating:'+key)
+                    ec2.terminate_instances(InstanceIds=[key],DryRun=False)
+                sns.publish(TopicArn=os.environ['ContinuousAssessmentResultsTopic'],Message='['+', '.join(tagsList)+']')
+                return jsonVal['run']
+      Environment: 
+        Variables: 
+          ContinuousAssessmentResultsTopic: !Ref &quot;ContinuousAssessmentResultsTopic&quot;
+      Handler: index.lambda_handler
+      MemorySize: 512
+      Role: !GetAtt &quot;AnalyzeInspectorFindingsLambdaRole.Arn&quot;
+      Runtime: python3.6
+      Timeout: 300
+    Type: &quot;AWS::Lambda::Function&quot;
+</code></pre>
+
+<p></details></p>
+
+<p><strong>Create Lambda Permission to allow SNS service to invoke.</strong>.</p>
+
+<ol>
+<li><p>Open your notepad the file you created in step 1 <code>GoldenAMIContinuousAssesment.yml</code></p></li>
+
+<li><p>Create a resource named <code>LambdaInvokePermission</code> of type <code>AWS::Lambda::Permission</code>.</p></li>
+
+<li><p>In the <code>Properties</code> section create a <code>FunctionName</code> property and using the !GetAtt intrinsic function reference the <code>AnalyzeInspectorFindingsLambdaRole</code> Arn you created before
+Reference : <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-getatt.html">https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-getatt.html</a></p></li>
+
+<li><p>In the <code>Properties</code> section create a <code>Action</code> property and specify <code>lambda:InvokeFunction</code></p></li>
+
+<li><p>In the <code>Properties</code> section create a <code>Principal</code> property and specify <code>sns.amazonaws.com</code></p></li>
+
+<li><p>In the <code>Properties</code> section create a <code>SourceArn</code> property and specify a reference to the <code>ContinuousAssessmentCompleteTopic</code> using !Ref intrinsic function</p></li>
+</ol>
+
+<p><details><summary>CLICK HERE ( to see the solution ).</summary></p>
+
+<pre><code>  LambdaInvokePermission: 
+    Properties: 
+      Action: &quot;lambda:InvokeFunction&quot;
+      FunctionName: !GetAtt &quot;AnalyzeInspectorFindingsLambdaFunction.Arn&quot;
+      Principal: sns.amazonaws.com
+      SourceArn: !Ref &quot;ContinuousAssessmentCompleteTopic&quot;
+    Type: &quot;AWS::Lambda::Permission&quot;
+</code></pre>
+
+<p></details></p>
+
+
+<footer class=" footline" >
+	
+</footer>
+
+
+        
+        </div> 
+        
+
+      </div>
+
+    <div id="navigation">
+        
+        
+        
+        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+            
+        
+        
+        
+
+
+	 
+	 
+		
+			<a class="nav nav-prev" href="/ami-inspector-lab/create_snstopic_assesmentcomplete/" title="5. Create SNS Topic "> <i class="fa fa-chevron-left"></i></a>
+		
+		
+			<a class="nav nav-next" href="/ami-inspector-lab/test_assesment/" title="10. Test Assesment" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+	
+    </div>
+
+    </section>
+    
+    <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
+      <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
+    </div>
+    <script src="/js/clipboard.min.js?1573045556"></script>
+    <script src="/js/perfect-scrollbar.min.js?1573045556"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1573045556"></script>
+    <script src="/js/jquery.sticky.js?1573045556"></script>
+    <script src="/js/featherlight.min.js?1573045556"></script>
+    <script src="/js/highlight.pack.js?1573045556"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="/js/modernizr.custom-3.6.0.js?1573045556"></script>
+    <script src="/js/learn.js?1573045556"></script>
+    <script src="/js/hugo-learn.js?1573045556"></script>
+
+    <link href="/mermaid/mermaid.css?1573045556" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1573045556"></script>
+    <script>
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+    
+
+  </body>
+</html>
+

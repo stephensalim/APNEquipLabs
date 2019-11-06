@@ -28,8 +28,8 @@ It reads a JSON parameter stored in the AWS Systems Manager (Systems Manager) Pa
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://example.org/ami-inspector-lab/tag_golden_ami/</guid>
-      <description>To deploy this solution, you must set it up in the AWS Region where you build your golden AMIs. If that AWS Region does not support Amazon Inspector, at the end of your continuous integration pipeline, you can copy your AMIs to an AWS Region where Amazon Inspector assessments are supported.
-You can search assessment findings based on golden AMI tags after Amazon Inspector completes an assessment.
+      <description>Before we start, you must set this solution in the AWS Region where you build your golden AMIs and have Amazon Inspector available. If you don&amp;rsquo;t have any preferance, please choose Sydney Region ( ap-southeast-2) as this lab has been tested in this region.
+In this solution you will search assessment findings based on golden AMI tags after Amazon Inspector completes an assessment.
 To tag a golden AMI by using the AWS Management Console:</description>
     </item>
     
@@ -39,25 +39,53 @@ To tag a golden AMI by using the AWS Management Console:</description>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://example.org/ami-inspector-lab/store_golden_ami_metadata/</guid>
-      <description>In this solution we will read the golden AMI metadata from a parameter stored in the Systems Manager Parameter Store. The metadata will be in JSON format and must contain the following information for each golden AMI:
+      <description>In this section we will read the golden AMI metadata from a parameter stored in the Systems Manager Parameter Store. The metadata will be in JSON format and must contain the following information for each golden AMI:
  The Ami-Id is the golden AMI id that we tagged in the previous step ( Hopefully you&amp;rsquo;ve taken note of that, otherwise please review the previous step ). The InstanceType is the EC2 instance type our solution will use to launch the golden AMI with and run the inspection on.</description>
     </item>
     
     <item>
-      <title>4. Create Automation Functions</title>
-      <link>http://example.org/ami-inspector-lab/create_automation_function/</link>
+      <title>4. Create Lambda Execution role.</title>
+      <link>http://example.org/ami-inspector-lab/create_exec_role_for_contasses/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/ami-inspector-lab/create_automation_function/</guid>
-      <description>In this section we will create, create a couple of lambda functions to execute the AMI inspection as well as notify users of the findings
-Creating Lambda Execution Role for StartContinuousAssessmentLambdaFunction
+      <guid>http://example.org/ami-inspector-lab/create_exec_role_for_contasses/</guid>
+      <description>Creating Lambda Execution Role for StartContinuousAssessmentLambdaFunction
  Open your notepad / text editor, create a file named GoldenAMIContinuousAssesment.yml. Reference: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html
  Create a resource named StartContinuousAssessmentLambdaRole of type AWS::IAM::Role.
- In the Properties section add ManagedPolicyArns below to allow the lambda function to do basic execution and have access to Amazon Inspector APIs.</description>
+ In the Properties section add ManagedPolicyArns below to allow the lambda function to do basic execution and have access to Amazon Inspector APIs.
+ arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole arn:aws:iam::aws:policy/AmazonInspectorFullAccess  In the Properties secion add an AssumeRolePolicyDocument to allow lambda.amazonaws.com service principal role to do an action called sts:AssumeRole.</description>
     </item>
     
     <item>
-      <title>5. Test Assesment</title>
+      <title>5. Create SNS Topic </title>
+      <link>http://example.org/ami-inspector-lab/create_snstopic_assesmentcomplete/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/ami-inspector-lab/create_snstopic_assesmentcomplete/</guid>
+      <description>Creating the SNS Topic for Assesment completion
+Create Inspection Complete SNS Topic &amp;amp; Policy to allow access for AW Inspector.
+ Open your notepad the file you created in step 1 GoldenAMIContinuousAssesment.yml.
+ Create a resource named ContinuousAssessmentCompleteTopic of type AWS::SNS::Topic.
+ No need to put in any Properties in this resource, keep all empty / default.
+ Create another resource named ContinuousAssessmentCompleteTopicPolicy of type AWS::SNS::TopicPolicy.
+ In the Properties section create a PolicyDocument and allow service inspector.</description>
+    </item>
+    
+    <item>
+      <title>6. Create Lambda Functions</title>
+      <link>http://example.org/ami-inspector-lab/create_continuousassess_lambda/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/ami-inspector-lab/create_continuousassess_lambda/</guid>
+      <description>Creating the Lambda Function to Inspect the AMI
+ Open your notepad the file you created in step 1 GoldenAMIContinuousAssesment.yml
+ Create a resource named StartContinuousAssessmentLambdaFunction of type AWS::Lambda::Function.
+ In the Properties section create a Role property and using the !GetAtt intrinsic function reference the IAM role Arn you created in step 1. Reference : https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-getatt.html
+ In the Properties section create a Code property and specify the lambda function code using in line code instead of specifying the s3 bucket location paste in below.</description>
+    </item>
+    
+    <item>
+      <title>10. Test Assesment</title>
       <link>http://example.org/ami-inspector-lab/test_assesment/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       

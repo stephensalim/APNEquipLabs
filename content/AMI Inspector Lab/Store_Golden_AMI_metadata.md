@@ -4,8 +4,9 @@ weight: 3
 draft: false
 ---
 
-In this solution we will read the golden AMI metadata from a parameter stored in the Systems Manager Parameter Store. 
-The metadata will be in JSON format and must contain the following information for each golden AMI:
+ ![](/AMI Inspector Lab/images/StoreMetaParam.png)
+
+In this section we will read the golden AMI metadata from a parameter stored in the Systems Manager Parameter Store. The metadata will be in JSON format and must contain the following information for each golden AMI:
 
 * The **Ami-Id** is the golden AMI id that we tagged in the previous step ( Hopefully you've taken note of that, otherwise please review the previous step ).
 * The **InstanceType** is the EC2 instance type our solution will use to launch the golden AMI with and run the inspection on.
@@ -13,7 +14,10 @@ The metadata will be in JSON format and must contain the following information f
 
     **Note:** 
 
-    You must use a compatible InstanceType that is supported by your AMI, to gind a compatible `InstanceType` for your golden AMI follow below steps. (But for simplicity you can use t2.large). Each AMI has a list of compatible `InstanceTypes`. The `InstanceType` is a required parameter for launching an EC2 instance from a golden AMI. To find a compatible `InstanceType` for your golden AMI:
+    You must use a compatible InstanceType that is supported by your AMI, to find the compatible `InstanceType` for your golden AMI follow below steps. 
+    (But for simplicity you can use t2.large). 
+    
+    Each AMI has a list of compatible `InstanceTypes`. The `InstanceType` is a required parameter for launching an EC2 instance from a golden AMI. To find a compatible `InstanceType` for your golden AMI:
 
     1.  Sign in to the [AWS Management Console](https://console.aws.amazon.com/console/home) and navigate to the [EC2 console](https://console.aws.amazon.com/ec2/).
     2.  Choose **Launch Instance**. On the **Choose an Amazon Machine Image** (**AMI**) page, choose **My AMIs**.

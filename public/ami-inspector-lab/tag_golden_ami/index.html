@@ -12,20 +12,20 @@
     <title>2. Tag your Golden AMI :: APN Equip Labs</title>
 
     
-    <link href="/css/nucleus.css?1570675609" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1570675609" rel="stylesheet">
-    <link href="/css/hybrid.css?1570675609" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1570675609" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1570675609" rel="stylesheet">
-    <link href="/css/auto-complete.css?1570675609" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1570675609" rel="stylesheet">
-    <link href="/css/theme.css?1570675609" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1570675609" rel="stylesheet">
+    <link href="/css/nucleus.css?1573045555" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1573045555" rel="stylesheet">
+    <link href="/css/hybrid.css?1573045555" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1573045555" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1573045555" rel="stylesheet">
+    <link href="/css/auto-complete.css?1573045555" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1573045555" rel="stylesheet">
+    <link href="/css/theme.css?1573045555" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1573045555" rel="stylesheet">
     
-      <link href="/css/theme-darkblue.css?1570675609" rel="stylesheet">
+      <link href="/css/theme-darkblue.css?1573045555" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1570675609"></script>
+    <script src="/js/jquery-3.3.1.min.js?1573045555"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -51,14 +51,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1570675609"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1570675609"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1573045555"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1573045555"></script>
 <script type="text/javascript">
     
         var baseurl = "http:\/\/example.org\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1570675609"></script>
+<script type="text/javascript" src="/js/search.js?1573045555"></script>
 
     
   </div>
@@ -1323,9 +1323,9 @@
  
   
     
-      <li data-nav-id="/ami-inspector-lab/create_automation_function/" title="4. Create Automation Functions" class="dd-item ">
-        <a href="/ami-inspector-lab/create_automation_function/">
-        4. Create Automation Functions
+      <li data-nav-id="/ami-inspector-lab/create_exec_role_for_contasses/" title="4. Create Lambda Execution role." class="dd-item ">
+        <a href="/ami-inspector-lab/create_exec_role_for_contasses/">
+        4. Create Lambda Execution role.
         <i class="fas fa-check read-icon"></i>
         </a>
     </li>
@@ -1342,9 +1342,47 @@
  
   
     
-      <li data-nav-id="/ami-inspector-lab/test_assesment/" title="5. Test Assesment" class="dd-item ">
+      <li data-nav-id="/ami-inspector-lab/create_snstopic_assesmentcomplete/" title="5. Create SNS Topic " class="dd-item ">
+        <a href="/ami-inspector-lab/create_snstopic_assesmentcomplete/">
+        5. Create SNS Topic 
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/ami-inspector-lab/create_continuousassess_lambda/" title="6. Create Lambda Functions" class="dd-item ">
+        <a href="/ami-inspector-lab/create_continuousassess_lambda/">
+        6. Create Lambda Functions
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/ami-inspector-lab/test_assesment/" title="10. Test Assesment" class="dd-item ">
         <a href="/ami-inspector-lab/test_assesment/">
-        5. Test Assesment
+        10. Test Assesment
         <i class="fas fa-check read-icon"></i>
         </a>
     </li>
@@ -1458,9 +1496,11 @@
 
 
 
-<p>To deploy this solution, you must set it up in the AWS Region where you build your golden AMIs. If that AWS Region does not <a href="http://docs.aws.amazon.com/inspector/latest/userguide/inspector_supported_os_regions.html#inspector_supported-regions">support Amazon Inspector</a>, at the end of your continuous integration pipeline, you can copy your AMIs to an AWS Region where Amazon Inspector assessments are supported.</p>
+<p><img src="/AMI Inspector Lab/images/TagGoldAMI.png" alt="" /></p>
 
-<p>You can search assessment findings based on golden AMI tags after Amazon Inspector completes an assessment.</p>
+<p>Before we start, you must set this solution in the AWS Region where you build your golden AMIs and have <a href="http://docs.aws.amazon.com/inspector/latest/userguide/inspector_supported_os_regions.html#inspector_supported-regions">Amazon Inspector</a> available. If you don&rsquo;t have any preferance, please choose Sydney Region ( ap-southeast-2) as this lab has been tested in this region.</p>
+
+<p>In this solution you will search assessment findings based on golden AMI tags after Amazon Inspector completes an assessment.</p>
 
 <p>To tag a golden AMI by using the AWS Management Console:</p>
 
@@ -1475,11 +1515,13 @@
 
 <p><img src="/AMI Inspector Lab/images/img002.png" alt="" /></p></li>
 
+<li><p>Click <strong>Cancel and Exit</strong> (Ideally you could use your own golden image but for the purpose of this lab we will be using AWS public AMI as the golden AMI.)</p></li>
+
 <li><p>In the navigation pane, choose <strong>AMIs</strong>.</p></li>
 
 <li><p>In the search ensure the setting is set to <strong>Public Images</strong>.</p></li>
 
-<li><p>In teh search field, search for AMI of the AMI you noted in step 3</p>
+<li><p>In the search field, search for AMI of the AMI you noted in step 3</p>
 
 <p><img src="/AMI Inspector Lab/images/img003.png" alt="" /></p></li>
 
@@ -1490,7 +1532,7 @@
 <p><img src="/AMI Inspector Lab/images/img004.png" alt="" /></p></li>
 </ol>
 
-<p>Now that you have tagged your golden AMIs, you need to create golden AMI metadata, which will be read by the <code>StartContinuousAssessment</code> function to initiate vulnerability assessments. You will store the golden AMI metadata in the Systems Manager Parameter Store.</p>
+<p>Now that you have tagged your golden AMIs, you need to create golden AMI metadata, which will be red by the <code>StartContinuousAssessment</code> Lambda function to initiate vulnerability assessments. You will store the golden AMI metadata in the Systems Manager Parameter Store.</p>
 
 
 <footer class=" footline" >
@@ -2508,6 +2550,38 @@
             
         
                     
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
             
         
                     
@@ -2533,19 +2607,19 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1570675609"></script>
-    <script src="/js/perfect-scrollbar.min.js?1570675609"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1570675609"></script>
-    <script src="/js/jquery.sticky.js?1570675609"></script>
-    <script src="/js/featherlight.min.js?1570675609"></script>
-    <script src="/js/highlight.pack.js?1570675609"></script>
+    <script src="/js/clipboard.min.js?1573045555"></script>
+    <script src="/js/perfect-scrollbar.min.js?1573045555"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1573045555"></script>
+    <script src="/js/jquery.sticky.js?1573045555"></script>
+    <script src="/js/featherlight.min.js?1573045555"></script>
+    <script src="/js/highlight.pack.js?1573045555"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1570675609"></script>
-    <script src="/js/learn.js?1570675609"></script>
-    <script src="/js/hugo-learn.js?1570675609"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1573045555"></script>
+    <script src="/js/learn.js?1573045555"></script>
+    <script src="/js/hugo-learn.js?1573045555"></script>
 
-    <link href="/mermaid/mermaid.css?1570675609" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1570675609"></script>
+    <link href="/mermaid/mermaid.css?1573045555" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1573045555"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

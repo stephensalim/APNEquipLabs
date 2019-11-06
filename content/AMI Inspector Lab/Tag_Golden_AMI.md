@@ -4,9 +4,12 @@ weight: 2
 draft: false
 ---
 
-To deploy this solution, you must set it up in the AWS Region where you build your golden AMIs. If that AWS Region does not [support Amazon Inspector](http://docs.aws.amazon.com/inspector/latest/userguide/inspector_supported_os_regions.html#inspector_supported-regions), at the end of your continuous integration pipeline, you can copy your AMIs to an AWS Region where Amazon Inspector assessments are supported. 
+  ![](/AMI Inspector Lab/images/TagGoldAMI.png)
 
-You can search assessment findings based on golden AMI tags after Amazon Inspector completes an assessment.
+
+Before we start, you must set this solution in the AWS Region where you build your golden AMIs and have [Amazon Inspector](http://docs.aws.amazon.com/inspector/latest/userguide/inspector_supported_os_regions.html#inspector_supported-regions) available. If you don't have any preferance, please choose Sydney Region ( ap-southeast-2) as this lab has been tested in this region.
+
+In this solution you will search assessment findings based on golden AMI tags after Amazon Inspector completes an assessment.
 
 To tag a golden AMI by using the AWS Management Console:
 
@@ -19,16 +22,18 @@ To tag a golden AMI by using the AWS Management Console:
 
     ![](/AMI Inspector Lab/images/img002.png)
 
-4.  In the navigation pane, choose **AMIs**.
-5.  In the search ensure the setting is set to **Public Images**.
-6.  In teh search field, search for AMI of the AMI you noted in step 3
+4.  Click **Cancel and Exit** (Ideally you could use your own golden image but for the purpose of this lab we will be using AWS public AMI as the golden AMI.)
+
+5.  In the navigation pane, choose **AMIs**.
+6.  In the search ensure the setting is set to **Public Images**.
+7.  In the search field, search for AMI of the AMI you noted in step 3
 
     ![](/AMI Inspector Lab/images/img003.png)
 
-3.  Choose your AMI from the list, and then choose **Actions** > **Add/Edit Tags**.
-4.  Choose **Create Tag.** In the **Key** column, type `app-name`. In the **Value** column, type your application name. Following the same steps, create the `app-version` and `app-environment` tags. Choose **Save**.
+8.  Choose your AMI from the list, and then choose **Actions** > **Add/Edit Tags**.
+9.  Choose **Create Tag.** In the **Key** column, type `app-name`. In the **Value** column, type your application name. Following the same steps, create the `app-version` and `app-environment` tags. Choose **Save**.
 
     ![](/AMI Inspector Lab/images/img004.png)
 
-Now that you have tagged your golden AMIs, you need to create golden AMI metadata, which will be read by the `StartContinuousAssessment` function to initiate vulnerability assessments. You will store the golden AMI metadata in the Systems Manager Parameter Store.
+Now that you have tagged your golden AMIs, you need to create golden AMI metadata, which will be red by the `StartContinuousAssessment` Lambda function to initiate vulnerability assessments. You will store the golden AMI metadata in the Systems Manager Parameter Store.
 

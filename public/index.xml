@@ -221,8 +221,8 @@ Sign into your AWS Management Console and choose EC2 from the Services menu. [ ]
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://example.org/ami-inspector-lab/tag_golden_ami/</guid>
-      <description>To deploy this solution, you must set it up in the AWS Region where you build your golden AMIs. If that AWS Region does not support Amazon Inspector, at the end of your continuous integration pipeline, you can copy your AMIs to an AWS Region where Amazon Inspector assessments are supported.
-You can search assessment findings based on golden AMI tags after Amazon Inspector completes an assessment.
+      <description>Before we start, you must set this solution in the AWS Region where you build your golden AMIs and have Amazon Inspector available. If you don&amp;rsquo;t have any preferance, please choose Sydney Region ( ap-southeast-2) as this lab has been tested in this region.
+In this solution you will search assessment findings based on golden AMI tags after Amazon Inspector completes an assessment.
 To tag a golden AMI by using the AWS Management Console:</description>
     </item>
     
@@ -330,7 +330,7 @@ PLEASE NOTE: You must select &amp;ldquo;Amazon Linux AMI&amp;rdquo;, NOT &amp;ld
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://example.org/ami-inspector-lab/store_golden_ami_metadata/</guid>
-      <description>In this solution we will read the golden AMI metadata from a parameter stored in the Systems Manager Parameter Store. The metadata will be in JSON format and must contain the following information for each golden AMI:
+      <description>In this section we will read the golden AMI metadata from a parameter stored in the Systems Manager Parameter Store. The metadata will be in JSON format and must contain the following information for each golden AMI:
  The Ami-Id is the golden AMI id that we tagged in the previous step ( Hopefully you&amp;rsquo;ve taken note of that, otherwise please review the previous step ). The InstanceType is the EC2 instance type our solution will use to launch the golden AMI with and run the inspection on.</description>
     </item>
     
@@ -367,19 +367,6 @@ In this task, you will create a Windows Server 2016 EC2 instance in the us-west-
     </item>
     
     <item>
-      <title>4. Create Automation Functions</title>
-      <link>http://example.org/ami-inspector-lab/create_automation_function/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://example.org/ami-inspector-lab/create_automation_function/</guid>
-      <description>In this section we will create, create a couple of lambda functions to execute the AMI inspection as well as notify users of the findings
-Creating Lambda Execution Role for StartContinuousAssessmentLambdaFunction
- Open your notepad / text editor, create a file named GoldenAMIContinuousAssesment.yml. Reference: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html
- Create a resource named StartContinuousAssessmentLambdaRole of type AWS::IAM::Role.
- In the Properties section add ManagedPolicyArns below to allow the lambda function to do basic execution and have access to Amazon Inspector APIs.</description>
-    </item>
-    
-    <item>
       <title>4. Create IAM Role</title>
       <link>http://example.org/iam-lab/create-iam-role/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -388,6 +375,19 @@ Creating Lambda Execution Role for StartContinuousAssessmentLambdaFunction
       <description>IAM Roles can be assumed by AWS services, IAM users, or applications. They are assigned temporary rather than permanent credentials whenever assumed. Using roles for privileged permissions sets (such as the PowerUserAccess policy) can help improve your security posture since credential exposure is minimized.
  Go to Roles in the sidebar and click on Create Role.
  On the Select type of trusted identity page, you decide who or what will be able to assume this role.</description>
+    </item>
+    
+    <item>
+      <title>4. Create Lambda Execution role.</title>
+      <link>http://example.org/ami-inspector-lab/create_exec_role_for_contasses/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/ami-inspector-lab/create_exec_role_for_contasses/</guid>
+      <description>Creating Lambda Execution Role for StartContinuousAssessmentLambdaFunction
+ Open your notepad / text editor, create a file named GoldenAMIContinuousAssesment.yml. Reference: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html
+ Create a resource named StartContinuousAssessmentLambdaRole of type AWS::IAM::Role.
+ In the Properties section add ManagedPolicyArns below to allow the lambda function to do basic execution and have access to Amazon Inspector APIs.
+ arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole arn:aws:iam::aws:policy/AmazonInspectorFullAccess  In the Properties secion add an AssumeRolePolicyDocument to allow lambda.amazonaws.com service principal role to do an action called sts:AssumeRole.</description>
     </item>
     
     <item>
@@ -436,6 +436,21 @@ Now remaining steps are same as you followed in Create stack.</description>
     </item>
     
     <item>
+      <title>5. Create SNS Topic </title>
+      <link>http://example.org/ami-inspector-lab/create_snstopic_assesmentcomplete/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/ami-inspector-lab/create_snstopic_assesmentcomplete/</guid>
+      <description>Creating the SNS Topic for Assesment completion
+Create Inspection Complete SNS Topic &amp;amp; Policy to allow access for AW Inspector.
+ Open your notepad the file you created in step 1 GoldenAMIContinuousAssesment.yml.
+ Create a resource named ContinuousAssessmentCompleteTopic of type AWS::SNS::Topic.
+ No need to put in any Properties in this resource, keep all empty / default.
+ Create another resource named ContinuousAssessmentCompleteTopicPolicy of type AWS::SNS::TopicPolicy.
+ In the Properties section create a PolicyDocument and allow service inspector.</description>
+    </item>
+    
+    <item>
       <title>5. Delete an Object and Bucket</title>
       <link>http://example.org/s3-lab/delete-an-object-and-bucket/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -455,17 +470,6 @@ If you no longer need to store the objects you uploaded and moved while going th
       <description>In This Section we will monitor the EC2 instance CPU Utilization, and trigger an an Email notification when Utilization is above 60%.
  In the EC2 Console, click the checkbox next to your server name to view details about this EC2 instance. Click the Monitoring tab and then click Enable Detailed Monitoring to provide monitoring data at a 1 minute interval vs. the default of 5 minutes.
  Click the Description tab and copy your &amp;ldquo;Instance ID&amp;rdquo; to the clipboard or other location such as notepad.</description>
-    </item>
-    
-    <item>
-      <title>5. Test Assesment</title>
-      <link>http://example.org/ami-inspector-lab/test_assesment/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://example.org/ami-inspector-lab/test_assesment/</guid>
-      <description>Before you schedule vulnerability assessments, you should test the process by running the StartContinuousAssessment function. In this test, you trigger a security assessment and monitor it. You then receive an email after the assessment has completed, which shows that vulnerability assessments have been successfully set up.
-To start golden AMI vulnerability assessments:
- Sign in to the AWS Management Console and choose Lambda in the Services menu. Choose Functions. In the Functions pane, choose the StartContinuousAssessment function.</description>
     </item>
     
     <item>
@@ -531,6 +535,19 @@ First, you will need to terminate the EC2 instances that are running in the VPC.
  From VPC &amp;ndash; Delete West VPC
  From IAM &amp;ndash; Delete West_Admin user and EC2_West_Only policy
   Done</description>
+    </item>
+    
+    <item>
+      <title>6. Create Lambda Functions</title>
+      <link>http://example.org/ami-inspector-lab/create_continuousassess_lambda/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/ami-inspector-lab/create_continuousassess_lambda/</guid>
+      <description>Creating the Lambda Function to Inspect the AMI
+ Open your notepad the file you created in step 1 GoldenAMIContinuousAssesment.yml
+ Create a resource named StartContinuousAssessmentLambdaFunction of type AWS::Lambda::Function.
+ In the Properties section create a Role property and using the !GetAtt intrinsic function reference the IAM role Arn you created in step 1. Reference : https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-getatt.html
+ In the Properties section create a Code property and specify the lambda function code using in line code instead of specifying the s3 bucket location paste in below.</description>
     </item>
     
     <item>
@@ -630,6 +647,17 @@ If this is the first time you enabled AWS Config, your console will direct you t
  Click Run query and watch the Logs populate as per screenshot below.
  Now going through for these log and locate the invalid user might be a bit of a hassle, let&amp;rsquo;s put in a filter to only see failed SSH attempts.
  Update the query field with this query, and click on Run Query</description>
+    </item>
+    
+    <item>
+      <title>10. Test Assesment</title>
+      <link>http://example.org/ami-inspector-lab/test_assesment/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/ami-inspector-lab/test_assesment/</guid>
+      <description>Before you schedule vulnerability assessments, you should test the process by running the StartContinuousAssessment function. In this test, you trigger a security assessment and monitor it. You then receive an email after the assessment has completed, which shows that vulnerability assessments have been successfully set up.
+To start golden AMI vulnerability assessments:
+ Sign in to the AWS Management Console and choose Lambda in the Services menu. Choose Functions. In the Functions pane, choose the StartContinuousAssessment function.</description>
     </item>
     
   </channel>

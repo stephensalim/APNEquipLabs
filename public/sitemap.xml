@@ -131,11 +131,11 @@
   </url>
   
   <url>
-    <loc>http://example.org/ami-inspector-lab/create_automation_function/</loc>
+    <loc>http://example.org/iam-lab/create-iam-role/</loc>
   </url>
   
   <url>
-    <loc>http://example.org/iam-lab/create-iam-role/</loc>
+    <loc>http://example.org/ami-inspector-lab/create_exec_role_for_contasses/</loc>
   </url>
   
   <url>
@@ -159,15 +159,15 @@
   </url>
   
   <url>
+    <loc>http://example.org/ami-inspector-lab/create_snstopic_assesmentcomplete/</loc>
+  </url>
+  
+  <url>
     <loc>http://example.org/s3-lab/delete-an-object-and-bucket/</loc>
   </url>
   
   <url>
     <loc>http://example.org/monitoring-lab/monitor-ec2-cpu-utilization/</loc>
-  </url>
-  
-  <url>
-    <loc>http://example.org/ami-inspector-lab/test_assesment/</loc>
   </url>
   
   <url>
@@ -196,6 +196,10 @@
   
   <url>
     <loc>http://example.org/ec2-lab-windows/cleanup/</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.org/ami-inspector-lab/create_continuousassess_lambda/</loc>
   </url>
   
   <url>
@@ -244,6 +248,10 @@
   
   <url>
     <loc>http://example.org/security-lab/query-security-log/</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.org/ami-inspector-lab/test_assesment/</loc>
   </url>
   
   <url>
