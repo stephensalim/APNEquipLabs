@@ -85,6 +85,20 @@ Create Inspection Complete SNS Topic &amp;amp; Policy to allow access for AW Ins
     </item>
     
     <item>
+      <title>7. Trigger Lambda from SNS Topic</title>
+      <link>http://example.org/ami-inspector-lab/create_continuousassess_lambda-copy/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/ami-inspector-lab/create_continuousassess_lambda-copy/</guid>
+      <description>Create Lambda Permission to allow SNS service to invoke..
+ Open your notepad the file you created in step 1 GoldenAMIContinuousAssesment.yml
+ Create a resource named LambdaInvokePermission of type AWS::Lambda::Permission.
+ In the Properties section create a FunctionName property and using the !GetAtt intrinsic function reference the AnalyzeInspectorFindingsLambdaRole Arn you created before Reference : https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-getatt.html
+ In the Properties section create a Action property and specify lambda:InvokeFunction
+ In the Properties section create a Principal property and specify sns.</description>
+    </item>
+    
+    <item>
       <title>10. Test Assesment</title>
       <link>http://example.org/ami-inspector-lab/test_assesment/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>

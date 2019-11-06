@@ -140,13 +140,13 @@ In this step, you will create an operating system specific, JSON-compatible user
 
     ```
     Resources:
-    BasicParameter:
-        Type: "AWS::SSM::Parameter"
-        Properties:
-        Name: "ContinuousAssessmentInput_new"
-        Type: "String"
-        Value: "[{ \"instanceType\": \"t2.large\",\"ami-id\": \"ami-0e2b940b603bf07f3\", \"userData\": \"#!/bin/bash \\n wget https://d1wk0tztpsntt1.cloudfront.net/linux/latest/install;bash install;/etc/init.d/awsagent start\" }]"
-        Description: "Continuous golden AMI vulnerability assessment process metadata."
+        GoldenAMIParameter:
+            Type: "AWS::SSM::Parameter"
+            Properties:
+                Name: "ContinuousAssessmentInput_new"
+                Type: "String"
+                Value: "[{ \"instanceType\": \"t2.large\",\"ami-id\": \"ami-0e2b940b603bf07f3\", \"userData\": \"#!/bin/bash \\n wget https://d1wk0tztpsntt1.cloudfront.net/linux/latest/install;bash install;/etc/init.d/awsagent start\" }]"
+                Description: "Continuous golden AMI vulnerability assessment process metadata."
     ```
 
     </p>

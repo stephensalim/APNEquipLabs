@@ -9,7 +9,7 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>6. Additional resources :: APN Equip Labs</title>
+    <title>7. Trigger Lambda from SNS Topic :: APN Equip Labs</title>
 
     
     <link href="/css/nucleus.css?1573074160" rel="stylesheet">
@@ -35,7 +35,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/s3-lab/additional-resources/">
+  <body class="" data-url="/ami-inspector-lab/create_continuousassess_lambda-copy/">
     <nav id="sidebar" class="showVisitedLinks">
 
 
@@ -629,7 +629,7 @@
   
     
     <li data-nav-id="/s3-lab/" title="S3 Lab" class="dd-item 
-        parent
+        
         
         
         ">
@@ -750,7 +750,7 @@
  
   
     
-      <li data-nav-id="/s3-lab/additional-resources/" title="6. Additional resources" class="dd-item active">
+      <li data-nav-id="/s3-lab/additional-resources/" title="6. Additional resources" class="dd-item ">
         <a href="/s3-lab/additional-resources/">
         6. Additional resources
         <i class="fas fa-check read-icon"></i>
@@ -1240,7 +1240,7 @@
   
     
     <li data-nav-id="/ami-inspector-lab/" title="Golden AMI Assessment Lab" class="dd-item 
-        
+        parent
         
         
         ">
@@ -1380,7 +1380,7 @@
  
   
     
-      <li data-nav-id="/ami-inspector-lab/create_continuousassess_lambda-copy/" title="7. Trigger Lambda from SNS Topic" class="dd-item ">
+      <li data-nav-id="/ami-inspector-lab/create_continuousassess_lambda-copy/" title="7. Trigger Lambda from SNS Topic" class="dd-item active">
         <a href="/ami-inspector-lab/create_continuousassess_lambda-copy/">
         7. Trigger Lambda from SNS Topic
         <i class="fas fa-check read-icon"></i>
@@ -1478,7 +1478,7 @@
             
           
           
-            <a href='/'>Welcome</a> > <a href='/s3-lab/'>S3 Lab</a> > 6. Additional resources
+            <a href='/'>Welcome</a> > <a href='/ami-inspector-lab/'>Golden AMI Assessment Lab</a> > 7. Trigger Lambda from SNS Topic
           
          
           
@@ -1507,7 +1507,7 @@
           
             <h1>
               
-              6. Additional resources
+              7. Trigger Lambda from SNS Topic
             </h1>
           
 
@@ -1515,20 +1515,37 @@
 
 
 
-<p>In this lab you have learned the basic operations to manage the
-lifecycle of an S3 object. First, you created a bucket, which is the
-logical container of objects. Then by uploading, viewing, moving an
-object, and enabling versioning, you learned the basic operations of the
-object itself. Finally, you learned how to delete both an object and a
-bucket.</p>
+<p><strong>Create Lambda Permission to allow SNS service to invoke.</strong>.</p>
 
-<p>You should continue exploring more features of S3!</p>
+<ol>
+<li><p>Open your notepad the file you created in step 1 <code>GoldenAMIContinuousAssesment.yml</code></p></li>
 
-<ul>
-<li><em>Did you know you can host a website entirely on S3?</em></li>
-<li><em>Did you know you can define automated lifecycle policies?</em></li>
-<li><em>How about fine-grained access control with Bucket Policy?</em></li>
-</ul>
+<li><p>Create a resource named <code>LambdaInvokePermission</code> of type <code>AWS::Lambda::Permission</code>.</p></li>
+
+<li><p>In the <code>Properties</code> section create a <code>FunctionName</code> property and using the !GetAtt intrinsic function reference the <code>AnalyzeInspectorFindingsLambdaRole</code> Arn you created before
+Reference : <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-getatt.html">https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-getatt.html</a></p></li>
+
+<li><p>In the <code>Properties</code> section create a <code>Action</code> property and specify <code>lambda:InvokeFunction</code></p></li>
+
+<li><p>In the <code>Properties</code> section create a <code>Principal</code> property and specify <code>sns.amazonaws.com</code></p></li>
+
+<li><p>In the <code>Properties</code> section create a <code>SourceArn</code> property and specify a reference to the <code>ContinuousAssessmentCompleteTopic</code> using !Ref intrinsic function</p></li>
+</ol>
+
+<p><details><summary>CLICK HERE ( to see the solution ).</summary></p>
+
+<pre><code>  LambdaInvokePermission: 
+    Properties: 
+      Action: &quot;lambda:InvokeFunction&quot;
+      FunctionName: !GetAtt &quot;AnalyzeInspectorFindingsLambdaFunction.Arn&quot;
+      Principal: sns.amazonaws.com
+      SourceArn: !Ref &quot;ContinuousAssessmentCompleteTopic&quot;
+    Type: &quot;AWS::Lambda::Permission&quot;
+</code></pre>
+
+<p></details></p>
+
+<p><strong>Configure SNS Topic Lambda Function Subscriber</strong>.</p>
 
 
 <footer class=" footline" >
@@ -1986,7 +2003,6 @@ bucket.</p>
             
                 
                     
-                    
                 
                 
 
@@ -1999,9 +2015,6 @@ bucket.</p>
             
             
                 
-                    
-                        
-                        
                     
                 
                 
@@ -2083,7 +2096,6 @@ bucket.</p>
             
                 
                     
-                    
                 
                 
 
@@ -2102,9 +2114,6 @@ bucket.</p>
             
             
                 
-                    
-                        
-                        
                     
                 
                 
@@ -2458,6 +2467,7 @@ bucket.</p>
             
                 
                     
+                    
                 
                 
 
@@ -2470,6 +2480,9 @@ bucket.</p>
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -2567,6 +2580,7 @@ bucket.</p>
             
                 
                     
+                    
                 
                 
 
@@ -2582,6 +2596,9 @@ bucket.</p>
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -2606,10 +2623,10 @@ bucket.</p>
 	 
 	 
 		
-			<a class="nav nav-prev" href="/s3-lab/delete-an-object-and-bucket/" title="5. Delete an Object and Bucket"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/ami-inspector-lab/create_continuousassess_lambda/" title="6. Create Lambda Functions"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/monitoring-lab/" title="Monitoring Lab" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/ami-inspector-lab/test_assesment/" title="10. Test Assesment" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
