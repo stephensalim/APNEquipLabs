@@ -1,5 +1,5 @@
 ---
-title: "7. Connect Analyzer Lambda to Topic"
+title: "7. Connect Analyzer to Topic"
 weight: 7
 draft: false
 ---

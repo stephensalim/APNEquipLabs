@@ -9,7 +9,7 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>1. Solutions Overview :: APN Equip Labs</title>
+    <title>11. Configure CloudWatch events :: APN Equip Labs</title>
 
     
     <link href="/css/nucleus.css?1573115635" rel="stylesheet">
@@ -35,7 +35,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/ami-inspector-lab/solutions_overview/">
+  <body class="" data-url="/ami-inspector-lab/scheduling_the_continuation/">
     <nav id="sidebar" class="showVisitedLinks">
 
 
@@ -1266,7 +1266,7 @@
  
   
     
-      <li data-nav-id="/ami-inspector-lab/solutions_overview/" title="1. Solutions Overview" class="dd-item active">
+      <li data-nav-id="/ami-inspector-lab/solutions_overview/" title="1. Solutions Overview" class="dd-item ">
         <a href="/ami-inspector-lab/solutions_overview/">
         1. Solutions Overview
         <i class="fas fa-check read-icon"></i>
@@ -1418,7 +1418,7 @@
  
   
     
-      <li data-nav-id="/ami-inspector-lab/scheduling_the_continuation/" title="11. Configure CloudWatch events" class="dd-item ">
+      <li data-nav-id="/ami-inspector-lab/scheduling_the_continuation/" title="11. Configure CloudWatch events" class="dd-item active">
         <a href="/ami-inspector-lab/scheduling_the_continuation/">
         11. Configure CloudWatch events
         <i class="fas fa-check read-icon"></i>
@@ -1497,7 +1497,7 @@
             
           
           
-            <a href='/'>Welcome</a> > <a href='/ami-inspector-lab/'>Golden AMI Assessment Lab</a> > 1. Solutions Overview
+            <a href='/'>Welcome</a> > <a href='/ami-inspector-lab/'>Golden AMI Assessment Lab</a> > 11. Configure CloudWatch events
           
          
           
@@ -1510,7 +1510,17 @@
                 
                     <div class="progress">
     <div class="wrapper">
-
+<nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#summary">Summary</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
     </div>
 </div>
 
@@ -1526,7 +1536,7 @@
           
             <h1>
               
-              1. Solutions Overview
+              11. Configure CloudWatch events
             </h1>
           
 
@@ -1534,27 +1544,49 @@
 
 
 
-<p><img src="/AMI Inspector Lab/images/Main.png" alt="" /></p>
 
-<p>Here is the overview on how this solution works :</p>
+
+<p><strong>Set up a CloudWatch Events rule for triggering continuous golden AMI vulnerability assessments</strong></p>
+
+<p><img src="/AMI Inspector Lab/images/CloudWatchRule.png" alt="" /></p>
+
+<p>The last step is to create a CloudWatch Events rule to schedule the execution of the vulnerability assessments on a daily or weekly basis.</p>
+
+<p>To set up a CloudWatch Events rule:</p>
 
 <ol>
-<li><p>A scheduled CloudWatch Events event will trigger the <a href="http://aws.amazon.com/lambda/">AWS Lambda</a> function called <code>StartContinuousAssessment</code>.</p></li>
+<li>Sign in to the <a href="https://console.aws.amazon.com/console/home">AWS Management Console</a> and navigate to the <a href="https://console.aws.amazon.com/cloudwatch/">CloudWatch console</a>.</li>
+<li>In the navigation pane, choose <strong>Rules</strong> &gt; <strong>Create rule</strong>.</li>
+<li>On the <strong>Event Source</strong> page, choose <strong>Schedule</strong>. Choose <strong>Fixed rate of </strong>and specify the interval (for example, 1 day).</li>
+<li>For <strong>Targets</strong>, choose <strong>Add target </strong>and then choose <strong>Lambda function</strong>.</li>
+<li>For <strong>Function</strong>, choose the <strong>StartContinuousAssessment</strong> function.</li>
+<li>Choose <strong>Configure Input</strong>.</li>
+<li>Choose <strong>Constant (JSON text)</strong>.</li>
 
-<li><p>This function will then pulls metadata information containing the golden AMI ID, Instance type, and instructions to prepare the EC2 instance for inspection from <a href="https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-parameter-store.html">AWS Systems Manager Parameter Store</a></p></li>
+<li><p>In the box, paste the following JSON code.</p>
 
-<li><p>For each of the AMI specified in the metadata, <code>StartContinuousAssessment</code> Lambda function will create an EC2 instance.</p></li>
+<div class="hide-language">
 
-<li><p>Levaraging <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html">EC2 User Data</a> It will then runs the instructions to install <a href="https://aws.amazon.com/inspector/">Amazon Inspector</a> agent allowing the instance to to be inspected.</p></li>
+    {
+         "AMIsParamName": "ContinuousAssessmentInput"
+    }
 
-<li><p>The function will then execute the assessment activity from <a href="https://aws.amazon.com/inspector/">Amazon Inspector</a> service towards the instance.</p></li>
+</div></li>
 
-<li><p>After <a href="https://aws.amazon.com/inspector/">Amazon Inspector</a> completes the Inspection, it will then send a notification the the <a href="https://docs.aws.amazon.com/sns/latest/dg/welcome.html">SNS Topic</a> triggering the <code>AnalyzeInspectorFindings</code> <a href="http://aws.amazon.com/lambda/">AWS Lambda</a> function.</p></li>
+<li><p>Choose <strong>Configure details</strong>.</p></li>
 
-<li><p><code>AnalyzeInspectorFindings</code> will then tag the inspection result with relevant information about the AMI, Clean up the EC2 instance used to inspect and finally send an email the user with the total of vunerability findings in the AMI.</p></li>
+<li><p>For <strong>Rule definition</strong>, type <code>ContinuousGoldenAMIAssessmentTrigger</code> for the name, and type as the description, <code>This rule triggers the continuous golden AMI vulnerability assessment process</code>.</p></li>
+
+<li><p>Choose <strong>Create rule</strong>.</p></li>
 </ol>
 
-<p>Now that we know at a high level how this solution works, lets start building them, on to the next page :)</p>
+<p>The vulnerability assessments are executed on the first occurrence of the schedule you chose while setting up the CloudWatch Events rule. After the vulnerability assessment <strong>is</strong> executed, you will receive an email to indicate that your continuous golden AMI vulnerability assessments are set up.</p>
+
+<h3 id="summary">Summary</h3>
+
+<p>To get visibility into the security of your EC2 instances created from your golden AMIs, it is important that you perform security assessments of your golden AMIs on a regular basis. In this blog post, I have demonstrated how to set up vulnerability assessments, and the results of these continuous golden AMI vulnerability assessments can help you keep your environment up to date with security patches. To learn how to patch your golden AMIs, see <a href="https://aws.amazon.com/blogs/aws/streamline-ami-maintenance-and-patching-using-amazon-ec2-systems-manager-automation/">Streamline AMI Maintenance and Patching Using Amazon EC2 Systems Manager</a>.</p>
+
+<p>If you have comments about this blog post, submit them in the “Comments” section below. If you have questions about implementing the solution in this post, start a new thread on the <a href="https://forums.aws.amazon.com/forum.jspa?forumID=205">Amazon Inspector forum</a> or <a href="https://console.aws.amazon.com/support/home">contact AWS Support</a>.</p>
 
 
 <footer class=" footline" >
@@ -2490,23 +2522,6 @@
             
                 
                     
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
                         
                         
                     
@@ -2621,6 +2636,23 @@
             
             
                 
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
                     
                 
                 
@@ -2645,10 +2677,10 @@
 	 
 	 
 		
-			<a class="nav nav-prev" href="/ami-inspector-lab/" title="Golden AMI Assessment Lab"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/ami-inspector-lab/test_assesment/" title="10. Test Assesment"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/ami-inspector-lab/tag_golden_ami/" title="2. Tag your Golden AMI" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/ami-inspector-lab/solutions_overview/" title="1. Solutions Overview" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>

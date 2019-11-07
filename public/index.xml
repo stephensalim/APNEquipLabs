@@ -117,10 +117,10 @@ In this lab, we will be using the VPC Wizard to create a VPC with private and pu
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://example.org/ami-inspector-lab/solutions_overview/</guid>
-      <description>Here’s how this solution works :
- A scheduled CloudWatch Events event triggers the StartContinuousAssessment AWS Lambda function, which starts the security assessment of your golden AMIs. The StartContinuousAssessment Lambda function performs the following actions:
-It reads a JSON parameter stored in the AWS Systems Manager (Systems Manager) Parameter Store. This JSON parameter contains the following metadata for each golden AMI:
- InstanceType – A valid instance-type for launching an EC2 instance of the golden AMI.</description>
+      <description>Here is the overview on how this solution works :
+ A scheduled CloudWatch Events event will trigger the AWS Lambda function called StartContinuousAssessment.
+ This function will then pulls metadata information containing the golden AMI ID, Instance type, and instructions to prepare the EC2 instance for inspection from AWS Systems Manager Parameter Store
+ For each of the AMI specified in the metadata, StartContinuousAssessment Lambda function will create an EC2 instance.</description>
     </item>
     
     <item>
@@ -221,9 +221,7 @@ Sign into your AWS Management Console and choose EC2 from the Services menu. [ ]
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://example.org/ami-inspector-lab/tag_golden_ami/</guid>
-      <description>Before we start, you must set this solution in the AWS Region where you build your golden AMIs and have Amazon Inspector available. If you don&amp;rsquo;t have any preferance, please choose Sydney Region ( ap-southeast-2) as this lab has been tested in this region.
-In this solution you will search assessment findings based on golden AMI tags after Amazon Inspector completes an assessment.
-To tag a golden AMI by using the AWS Management Console:</description>
+      <description>Before we start anything in this solution the first thing we need to do is have the Subject Golden AMI. Now to do this, you can either create your own AMI basing from existing instance running AMI Amazon Linux 2 by following this Guide or you can just use the Amazon public AMI. The following instructions will assume you are using Amazon public AMI. In this part of the lab, we will be applying Tag to the AMI so that our solution can identify information about the AMI.</description>
     </item>
     
     <item>
@@ -330,8 +328,8 @@ PLEASE NOTE: You must select &amp;ldquo;Amazon Linux AMI&amp;rdquo;, NOT &amp;ld
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://example.org/ami-inspector-lab/store_golden_ami_metadata/</guid>
-      <description>In this section we will read the golden AMI metadata from a parameter stored in the Systems Manager Parameter Store. The metadata will be in JSON format and must contain the following information for each golden AMI:
- The Ami-Id is the golden AMI id that we tagged in the previous step ( Hopefully you&amp;rsquo;ve taken note of that, otherwise please review the previous step ). The InstanceType is the EC2 instance type our solution will use to launch the golden AMI with and run the inspection on.</description>
+      <description>In this section we will walk through the process of construction the golden AMI metadata and store them in AWS Systems Manager Parameter Store our metadata will be specified in JSON format and will contain the following information for each golden AMI:
+ The Ami-Id is the golden AMI id that we tagged in the previous step ( Hopefully you&amp;rsquo;ve taken note of that, otherwise please review the previous step ).</description>
     </item>
     
     <item>
@@ -588,7 +586,7 @@ First, you will need to terminate the EC2 instances that are running in the VPC.
     </item>
     
     <item>
-      <title>7. Connect Analyzer Lambda to Topic</title>
+      <title>7. Connect Analyzer to Topic</title>
       <link>http://example.org/ami-inspector-lab/connect_analyzerlambda_sns/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -672,6 +670,18 @@ If this is the first time you enabled AWS Config, your console will direct you t
       <description>Before you schedule vulnerability assessments, you should test the process by running the StartContinuousAssessment function. In this test, you trigger a security assessment and monitor it. You then receive an email after the assessment has completed, which shows that vulnerability assessments have been successfully set up.
 To start golden AMI vulnerability assessments:
  Sign in to the AWS Management Console and choose Lambda in the Services menu. Choose Functions. In the Functions pane, choose the StartContinuousAssessment function.</description>
+    </item>
+    
+    <item>
+      <title>11. Configure CloudWatch events</title>
+      <link>http://example.org/ami-inspector-lab/scheduling_the_continuation/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/ami-inspector-lab/scheduling_the_continuation/</guid>
+      <description>Set up a CloudWatch Events rule for triggering continuous golden AMI vulnerability assessments
+The last step is to create a CloudWatch Events rule to schedule the execution of the vulnerability assessments on a daily or weekly basis.
+To set up a CloudWatch Events rule:
+ Sign in to the AWS Management Console and navigate to the CloudWatch console. In the navigation pane, choose Rules &amp;gt; Create rule. On the Event Source page, choose Schedule.</description>
     </item>
     
   </channel>

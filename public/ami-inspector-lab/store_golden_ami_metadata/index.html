@@ -12,20 +12,20 @@
     <title>3. Store Golden AMI metadata. :: APN Equip Labs</title>
 
     
-    <link href="/css/nucleus.css?1573103715" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1573103715" rel="stylesheet">
-    <link href="/css/hybrid.css?1573103715" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1573103715" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1573103715" rel="stylesheet">
-    <link href="/css/auto-complete.css?1573103715" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1573103715" rel="stylesheet">
-    <link href="/css/theme.css?1573103715" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1573103715" rel="stylesheet">
+    <link href="/css/nucleus.css?1573115635" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1573115635" rel="stylesheet">
+    <link href="/css/hybrid.css?1573115635" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1573115635" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1573115635" rel="stylesheet">
+    <link href="/css/auto-complete.css?1573115635" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1573115635" rel="stylesheet">
+    <link href="/css/theme.css?1573115635" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1573115635" rel="stylesheet">
     
-      <link href="/css/theme-darkblue.css?1573103715" rel="stylesheet">
+      <link href="/css/theme-darkblue.css?1573115635" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1573103715"></script>
+    <script src="/js/jquery-3.3.1.min.js?1573115635"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -51,14 +51,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1573103715"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1573103715"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1573115635"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1573115635"></script>
 <script type="text/javascript">
     
         var baseurl = "http:\/\/example.org\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1573103715"></script>
+<script type="text/javascript" src="/js/search.js?1573115635"></script>
 
     
   </div>
@@ -1380,9 +1380,9 @@
  
   
     
-      <li data-nav-id="/ami-inspector-lab/connect_analyzerlambda_sns/" title="7. Connect Analyzer Lambda to Topic" class="dd-item ">
+      <li data-nav-id="/ami-inspector-lab/connect_analyzerlambda_sns/" title="7. Connect Analyzer to Topic" class="dd-item ">
         <a href="/ami-inspector-lab/connect_analyzerlambda_sns/">
-        7. Connect Analyzer Lambda to Topic
+        7. Connect Analyzer to Topic
         <i class="fas fa-check read-icon"></i>
         </a>
     </li>
@@ -1402,6 +1402,25 @@
       <li data-nav-id="/ami-inspector-lab/test_assesment/" title="10. Test Assesment" class="dd-item ">
         <a href="/ami-inspector-lab/test_assesment/">
         10. Test Assesment
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+ 
+  
+    
+      <li data-nav-id="/ami-inspector-lab/scheduling_the_continuation/" title="11. Configure CloudWatch events" class="dd-item ">
+        <a href="/ami-inspector-lab/scheduling_the_continuation/">
+        11. Configure CloudWatch events
         <i class="fas fa-check read-icon"></i>
         </a>
     </li>
@@ -1517,18 +1536,17 @@
 
 <p><img src="/AMI Inspector Lab/images/StoreMetaParam.png" alt="" /></p>
 
-<p>In this section we will read the golden AMI metadata from a parameter stored in the Systems Manager Parameter Store. The metadata will be in JSON format and must contain the following information for each golden AMI:</p>
+<p>In this section we will walk through the process of construction the golden AMI metadata and store them in <a href="https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-parameter-store.html">AWS Systems Manager Parameter Store</a> our metadata will be specified in JSON format and will contain the following information for each golden AMI:</p>
 
 <ul>
 <li>The <strong>Ami-Id</strong> is the golden AMI id that we tagged in the previous step ( Hopefully you&rsquo;ve taken note of that, otherwise please review the previous step ).</li>
 <li>The <strong>InstanceType</strong> is the EC2 instance type our solution will use to launch the golden AMI with and run the inspection on.</li>
+<li>The <strong>UserData</strong> section will contain our bootstrap instructions to install AWS Inspector Agent.</li>
+</ul>
 
-<li><p>The <strong>UserData</strong> section will contain our bootstrap instructions to install AWS Inspector Agent.</p>
+<hr />
 
-<p><strong>Note:</strong></p>
-
-<p>You must use a compatible InstanceType that is supported by your AMI, to find the compatible <code>InstanceType</code> for your golden AMI follow below steps.
-(But for simplicity you can use t2.large).</p>
+<p><strong>IMPORTANT NOTE:</strong>  You must use a compatible InstanceType that is supported by your AMI, to find the compatible <code>InstanceType</code> for your golden AMI follow below steps. (But for simplicity you can use <strong>t2.large</strong> this has been tested).</p>
 
 <p>Each AMI has a list of compatible <code>InstanceTypes</code>. The <code>InstanceType</code> is a required parameter for launching an EC2 instance from a golden AMI. To find a compatible <code>InstanceType</code> for your golden AMI:</p>
 
@@ -1538,18 +1556,22 @@
 <li>Type the <strong>AMI ID</strong> that you noted in Step A in the <strong>Search my AMIs</strong> box, and then choose <strong>Enter</strong>.</li>
 <li>The search result will contain your golden AMI. To choose it, choose <strong>Select</strong>.</li>
 <li>Locate any available <strong>Instance Type</strong> and then note the corresponding value in the <strong>Type</strong> column.</li>
-<li>Choose <strong>Cancel</strong>.
-Amazon Inspector will launch the chosen <code>InstanceType</code> every time the vulnerability assessment runs.</li>
-</ol></li>
-</ul>
+<li>Choose <strong>Cancel</strong>.</li>
+</ol>
 
-<p>For the UserData section you will need to create a <code>user-data</code> script to install and start the Amazon Inspector agent.
-The <code>user-data</code> script automates the installation of software packages when an EC2 instance launches for the first time.
-In this step, you will create an operating system specific, JSON-compatible user-data script that installs and starts the Amazon Inspector agent.</p>
+<p>The solution will launch the chosen <code>InstanceType</code> every time the vulnerability assessment runs.</p>
+
+<hr />
+
+<p>For the <code>UserData</code> section you will need to create a <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html">User Data</a> script to install and start the <a href="https://docs.aws.amazon.com/inspector/latest/userguide/inspector_agents.html">Amazon Inspector agent</a>.
+The script automates the installation of software packages when an EC2 instance launches for the first time.</p>
+
+<p>In the following steps, we will construct an operating system specific, JSON-compatible user-data script that installs and starts the Amazon Inspector agent.</p>
 
 <ol>
-<li><p><strong>Identify the command that installs the Amazon Inspector agent</strong>
-Based on <a href="http://docs.aws.amazon.com/inspector/latest/userguide/inspector_installing-uninstalling-agents.html">Installing Amazon Inspector Agents</a>, the following shell command installs the Amazon Inspector agent on an Amazon Linux-based EC2 instance.</p>
+<li><p><strong>Identify the command that installs the Amazon Inspector agent</strong></p>
+
+<p>As described in <a href="http://docs.aws.amazon.com/inspector/latest/userguide/inspector_installing-uninstalling-agents.html">Installing Amazon Inspector Agents</a> documentation, the following shell command installs the Amazon Inspector agent on an Amazon Linux-based EC2 instance. This commands essentially downloads a bash installation bashscript from AWS public repository and run a bash install command to execute the script</p>
 
 <pre><code>wget https://d1wk0tztpsntt1.cloudfront.net/linux/latest/install
 bash install
@@ -1557,8 +1579,9 @@ bash install
 
 <p>To find this command for other operating systems, see <a href="http://docs.aws.amazon.com/inspector/latest/userguide/inspector_installing-uninstalling-agents.html">Installing Amazon Inspector Agents</a>.</p></li>
 
-<li><p><strong>Identify the command that starts the Amazon Inspector agent</strong>
-The following shell command starts the Amazon Inspector agent on an Amazon Linux-based EC2 instance.</p>
+<li><p><strong>Identify the command that starts the Amazon Inspector agent</strong></p>
+
+<p>Also described in <a href="http://docs.aws.amazon.com/inspector/latest/userguide/inspector_installing-uninstalling-agents.html">Installing Amazon Inspector Agents</a> documentation, below command starts the Amazon Inspector agent on an Amazon Linux-based EC2 instance.</p>
 
 <pre><code>sudo /etc/init.d/awsagent start
 </code></pre>
@@ -1567,32 +1590,20 @@ The following shell command starts the Amazon Inspector agent on an Amazon Linux
 
 <li><p><strong>Create a script by concatenating the commands from the preceding two steps</strong></p>
 
-<p>The following is a sample concatenated script for the Amazon Linux operating system that installs and starts an Amazon Inspector agent.</p>
+<p>Combining all the commands, you could consturct a script to install and start the <a href="http://docs.aws.amazon.com/inspector/latest/userguide/inspector_agents.html">Amazon Inspector Agents</a>.</p>
 
-<pre><code>wget https://d1wk0tztpsntt1.cloudfront.net/linux/latest/install
-bash install
-sudo /etc/init.d/awsagent start
-</code></pre></li>
-
-<li><p><strong>Make the script user-data compatible</strong></p>
-
-<p>Based on <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html#user-data-api-cli">Running Commands on Your Linux Instance at Launch</a>, you make a Linux shell script user-data compatible by prefixing it with a <code>#!/bin/bash</code>. In this step, you add the <code>#!/bin/bash</code> prefix to the script from the preceding step. The following is the user-data compatible version of the script from the preceding step.</p>
+<p>And to make this script User Data compatible you will need to explicitly specify the shell at the beginning of the script, so in practice your script should look like below</p>
 
 <pre><code>#!/bin/bash
 wget https://d1wk0tztpsntt1.cloudfront.net/linux/latest/install
 bash install
 sudo /etc/init.d/awsagent start
-</code></pre>
-
-<p>To make your script user-data compatible for Windows, see <a href="http://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ec2-windows-user-data.html">Running Commands on Your Windows Instance at Launch</a>.</p>
-
-<p>The <code>user-data</code> script provided in the JSON metadata must be JSON-compatible, which you will do next.</p></li>
+</code></pre></li>
 
 <li><p><strong>Make the user-data script JSON compatible</strong></p>
 
-<p>To make the user-data script JSON compatible, replace all the commands in step 4 into a one line of string.
-You can use third party online tools to escape all the &ldquo; signs and new line characters.
-But to make things easy for you I have created a converted version for you below.</p>
+<p>Now, because we need to specify the user data in JSON, and specifying new line character in JSON is a big hassle, to make it simple we can  replace all the new line characters to <code>;</code>. You can use third party online tools to escape all the &ldquo; signs and new line characters.
+Once you are done, your user data script shoulw look like below. (For simplicity, just use the script below in your JSON).</p>
 
 <p><strong>JSON-compatible-user-data-of-first-AMI</strong></p>
 
@@ -1601,7 +1612,7 @@ But to make things easy for you I have created a converted version for you below
 
 <li><p><strong>Create a JSON document of metadata of all your golden AMIs.</strong></p>
 
-<p>Open your notepad or text editor copy and paste the JSON below and replace</p>
+<p>We are now ready to consturct our JSON metadata, ppen your notepad or text editor copy and paste the JSON below and replace</p>
 
 <ul>
 <li><strong>instance-type-of-first-AMI</strong> with the instance type you will use to launch the AMI to be inspected.</li>
@@ -1631,45 +1642,78 @@ But to make things easy for you I have created a converted version for you below
 ]
 </code></pre></li>
 
-<li><p>Once you have everything setup your JSON needs to be converted into a string.
-This is just a matter of converting your JSON and escaping the &ldquo; signs.
-Again for simplicity you can just copy the string below and replace the ami-0fe2fc7acf5400b25 with your prefered ami.</p>
+<li><p>Once you have everything setup your JSON needs to be converted into a string, because we will need to encapsulate this JSON once again inside a string value of our CloudFormation template ( you will see this in next step.)</p>
+
+<p>This is just a matter of converting your JSON and escaping the &ldquo; signs. You can use use online tools like <a href="https://onlinetexttools.com/json-stringify-text">https://onlinetexttools.com/json-stringify-text</a> or manually do it by hand.</p>
+
+<p>Again for simplicity you can just copy the string below and <strong>replace</strong> the <code>ami-0fe2fc7acf5400b25</code> with your <strong>prefered ami</strong>.</p>
 
 <pre><code>&quot;[{ \&quot;instanceType\&quot;: \&quot;t2.large\&quot;,\&quot;ami-id\&quot;: \&quot;ami-0fe2fc7acf5400b25\&quot;, \&quot;userData\&quot;: \&quot;#!/bin/bash \\n wget https://d1wk0tztpsntt1.cloudfront.net/linux/latest/install;bash install;/etc/init.d/awsagent start\&quot; }]&quot;
 </code></pre>
 
-<p>Now that you have created the JSON document of your golden AMIs, you will store the JSON document in a Systems Manager parameter. The <code>StartContinuousAssessment</code> Lambda function will read the metadata from this parameter.</p></li>
+<p>Now that you have created the Stringified JSON of your golden AMI metadata, we will store this JSON document in a Systems Manager parameter. But instead of specifying the parameter store through the console, we will be using <a href="https://aws.amazon.com/cloudformation/">AWS CloudFormation</a> to allow us to make this process repeatable in the future.. Why do we do this? Because we are AWSome ! Follow below steps to do so.</p></li>
 
 <li><p><strong>Create an AWS Systems Manager parameter using CloudFormation</strong></p>
 
 <p>Open your notepad / text editor, create a file named <code>GoldenAMIParameters.yml</code></p>
 
-<p>Reference : <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ssm-parameter.html">https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ssm-parameter.html</a></p>
+<hr />
+
+<p><strong>IMPORTANT NOTE:</strong>
+In the following steps you will be constructing your CloudFormation template in YML format.
+YML format allows you to put comments in the template by placing in # in front of the line, so it&rsquo;s quite handy.
+On the flip side however, it is indent sensitive, so make sure you specify the Key and values at the right level of the indentation.</p>
+
+<p>Practice makes perfect, therefore when building CloudFormation template in this lab, we will be providing a high level instruction on how to construct the template, along with the reference guide in the public documentation. The intent is so that you could get used to exploring the public documentation and get acustomed with the syntax.</p>
+
+<p>Having said that, if you are completely stuck, don&rsquo;t hesitate to get help from Lab instructor or, take a peek at the <strong>SOLUTION</strong> section if you have to.</p>
+
+<hr />
+
+<p>To find information about the properties of the resource refer to this doc: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ssm-parameter.html">https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ssm-parameter.html</a></p>
 
 <ul>
-<li>Create a resource named <code>AMIMetadata</code> of type <code>AWS::SSM::Parameter</code>.</li>
-<li>The name properties of the parameter store should be called <code>ContinuousAssessmentInput</code></li>
+<li>Create a <code>Resource:</code> template section <a href="https://docs.aws.amazon.com/en_pv/AWSCloudFormation/latest/UserGuide/template-anatomy.html">Reference</a></li>
+<li>Create a resource under the section named <code>AMIMetadata</code> of type <code>AWS::SSM::Parameter</code>.</li>
+<li>The name properties of the parameter store is to be called <code>ContinuousAssessmentInput</code></li>
 <li>The type properties of the parameter store is <code>String</code></li>
-<li>The value properties of the parameter store is the String you&rsquo;ve created in step 7 above.</li>
+<li>The value properties of the parameter store is the String you&rsquo;ve created in step 6 above.</li>
 <li>The Description properties is <code>Continuous golden AMI vulnerability assessment process metadata.</code></li>
 </ul>
 
-<p><details><summary>CLICK HERE to see the solution</summary>
+<p><details><summary> <strong>ARE YOU STUCK ? :(</strong> - It&rsquo;s OK CLICK HERE to see the solution</summary>
 <p></p>
 
 <pre><code>Resources:
     GoldenAMIParameter:
         Type: &quot;AWS::SSM::Parameter&quot;
         Properties:
-            Name: &quot;ContinuousAssessmentInput_new&quot;
+            Name: &quot;ContinuousAssessmentInput&quot;
             Type: &quot;String&quot;
             Value: &quot;[{ \&quot;instanceType\&quot;: \&quot;t2.large\&quot;,\&quot;ami-id\&quot;: \&quot;ami-0e2b940b603bf07f3\&quot;, \&quot;userData\&quot;: \&quot;#!/bin/bash \\n wget https://d1wk0tztpsntt1.cloudfront.net/linux/latest/install;bash install;/etc/init.d/awsagent start\&quot; }]&quot;
             Description: &quot;Continuous golden AMI vulnerability assessment process metadata.&quot;
 </code></pre>
 
+<p>Copy and paste this into the <code>GoldenAMIParameters.yml</code></p>
+
 <p></p>
 </detail></p></li>
+
+<li><p><strong>Deploys the CloudFormation Template</strong></p>
+
+<p>Now that you&rsquo;ve construct the template, it&rsquo;s time to deploy the stack, do do that please follow the <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cfn-console-create-stack.html">Creating a Stack on the AWS CloudFormation Console</a> guide to create your stack.</p>
+
+<p>Specify Stack <code>GoldenAMIParameters</code> as the stack name for simplicity.</p>
+
+<p>Once you&rsquo;ve launched your stack review the <code>Resources</code> Tab of the launch stack to identify the resouce it&rsquo;s created. You should see an entry with  GoldenAMIParameter in Logical ID and ContinuousAssessmentInput in Physical ID.</p>
+
+<p><a href="https://ap-southeast-2.console.aws.amazon.com/systems-manager/parameters?region=ap-southeast-2">Click here</a> to go to the Systems Manager Parameter Store console, and confirm you see the ContinuousAssesmentInput.</p></li>
 </ol>
+
+<p><strong>Congratulations !!!</strong></p>
+
+<p>You have built a template from scratch ! Not Bad !
+But we are just about to get started, let&rsquo;s move on to next stage to implement the actual solution stack.</p>
 
 
 <footer class=" footline" >
@@ -2735,6 +2779,22 @@ Again for simplicity you can just copy the string below and replace the ami-0fe2
             
         
                     
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
             
         
                     
@@ -2760,19 +2820,19 @@ Again for simplicity you can just copy the string below and replace the ami-0fe2
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1573103715"></script>
-    <script src="/js/perfect-scrollbar.min.js?1573103715"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1573103715"></script>
-    <script src="/js/jquery.sticky.js?1573103715"></script>
-    <script src="/js/featherlight.min.js?1573103715"></script>
-    <script src="/js/highlight.pack.js?1573103715"></script>
+    <script src="/js/clipboard.min.js?1573115635"></script>
+    <script src="/js/perfect-scrollbar.min.js?1573115635"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1573115635"></script>
+    <script src="/js/jquery.sticky.js?1573115635"></script>
+    <script src="/js/featherlight.min.js?1573115635"></script>
+    <script src="/js/highlight.pack.js?1573115635"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1573103715"></script>
-    <script src="/js/learn.js?1573103715"></script>
-    <script src="/js/hugo-learn.js?1573103715"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1573115635"></script>
+    <script src="/js/learn.js?1573115635"></script>
+    <script src="/js/hugo-learn.js?1573115635"></script>
 
-    <link href="/mermaid/mermaid.css?1573103715" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1573103715"></script>
+    <link href="/mermaid/mermaid.css?1573115635" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1573115635"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
