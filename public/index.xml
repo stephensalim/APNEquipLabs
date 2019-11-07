@@ -376,7 +376,7 @@ In this task, you will create a Windows Server 2016 EC2 instance in the us-west-
     </item>
     
     <item>
-      <title>4. Create Lambda Execution role</title>
+      <title>4. Create IAM roles for Lambda</title>
       <link>http://example.org/ami-inspector-lab/create_exec_role_for_contasses/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
