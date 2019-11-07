@@ -67,7 +67,7 @@ In this part of the lab, we will walk through how to construct / package [AWS La
         if len(existingTemplates['assessmentTemplateArns'])==0:
             resGroup = inspector.create_resource_group(resourceGroupTags=[{'key': 'continuous-assessment-instance','value': 'true'}])
             target = inspector.create_assessment_target(assessmentTargetName='ContinuousAssessment',resourceGroupArn=resGroup['resourceGroupArn'])
-            template = inspector.create_assessment_template(assessmentTargetArn=target['assessmentTargetArn'],assessmentTemplateName='ContinuousAssessment', durationInSeconds=3600,rulesPackageArns=rules['rulesPackageArns'])
+            template = inspector.create_assessment_template(assessmentTargetArn=target['assessmentTargetArn'],assessmentTemplateName='ContinuousAssessment', durationInSeconds=300,rulesPackageArns=rules['rulesPackageArns'])
             assessmentTemplateArn=template['assessmentTemplateArn']
             response = inspector.subscribe_to_event(event='ASSESSMENT_RUN_COMPLETED',resourceArn=template['assessmentTemplateArn'],topicArn=os.environ['AssesmentCompleteTopicArn']) 
             print('Template Created:'+template['assessmentTemplateArn'])
@@ -117,7 +117,7 @@ In this part of the lab, we will walk through how to construct / package [AWS La
                 if len(existingTemplates['assessmentTemplateArns'])==0:
                     resGroup = inspector.create_resource_group(resourceGroupTags=[{'key': 'continuous-assessment-instance','value': 'true'}])
                     target = inspector.create_assessment_target(assessmentTargetName='ContinuousAssessment',resourceGroupArn=resGroup['resourceGroupArn'])
-                    template = inspector.create_assessment_template(assessmentTargetArn=target['assessmentTargetArn'],assessmentTemplateName='ContinuousAssessment', durationInSeconds=3600,rulesPackageArns=rules['rulesPackageArns'])
+                    template = inspector.create_assessment_template(assessmentTargetArn=target['assessmentTargetArn'],assessmentTemplateName='ContinuousAssessment', durationInSeconds=300,rulesPackageArns=rules['rulesPackageArns'])
                     assessmentTemplateArn=template['assessmentTemplateArn']
                     response = inspector.subscribe_to_event(event='ASSESSMENT_RUN_COMPLETED',resourceArn=template['assessmentTemplateArn'],topicArn=os.environ['AssesmentCompleteTopicArn']) 
                     print('Template Created:'+template['assessmentTemplateArn'])
@@ -173,6 +173,7 @@ In this part of the lab, we will walk through how to construct / package [AWS La
                 import collections
                 import ast
                 def lambda_handler(event, context): 
+                    print(event)
                     message = event['Records'][0]['Sns']['Message'] 
                     jsonVal = json.loads(message);
                     assessmentArn =jsonVal['run']  
@@ -200,8 +201,6 @@ In this part of the lab, we will walk through how to construct / package [AWS La
                                 aggregateData[instanceId]['findings'][severity]=0
                             aggregateData[instanceId]['findings'][severity]=aggregateData[instanceId]['findings'][severity]+1; 
                             inspector.add_attributes_to_findings(findingArns=[result['arn']],attributes=aggregateData[instanceId]['tags'])
-                            print(findingArns=[result['arn']])
-                            print(attributes=aggregateData[instanceId]['tags'])
                     tagsList=[]
                     for key  in aggregateData: 
                         outputJson=[] 
@@ -237,7 +236,8 @@ In this part of the lab, we will walk through how to construct / package [AWS La
             import boto3
             import collections
             import ast
-            def lambda_handler(event, context): 
+            def lambda_handler(event, context):
+                print(event) 
                 message = event['Records'][0]['Sns']['Message'] 
                 jsonVal = json.loads(message);
                 assessmentArn =jsonVal['run']  
@@ -265,8 +265,6 @@ In this part of the lab, we will walk through how to construct / package [AWS La
                             aggregateData[instanceId]['findings'][severity]=0
                         aggregateData[instanceId]['findings'][severity]=aggregateData[instanceId]['findings'][severity]+1; 
                         inspector.add_attributes_to_findings(findingArns=[result['arn']],attributes=aggregateData[instanceId]['tags'])
-                        print(findingArns=[result['arn']])
-                        print(attributes=aggregateData[instanceId]['tags'])
                 tagsList=[]
                 for key  in aggregateData: 
                     outputJson=[] 

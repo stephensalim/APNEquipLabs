@@ -12,20 +12,20 @@
     <title>6. Create Lambda Functions :: APN Equip Labs</title>
 
     
-    <link href="/css/nucleus.css?1573163377" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1573163377" rel="stylesheet">
-    <link href="/css/hybrid.css?1573163377" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1573163377" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1573163377" rel="stylesheet">
-    <link href="/css/auto-complete.css?1573163377" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1573163377" rel="stylesheet">
-    <link href="/css/theme.css?1573163377" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1573163377" rel="stylesheet">
+    <link href="/css/nucleus.css?1573168455" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1573168455" rel="stylesheet">
+    <link href="/css/hybrid.css?1573168455" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1573168455" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1573168455" rel="stylesheet">
+    <link href="/css/auto-complete.css?1573168455" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1573168455" rel="stylesheet">
+    <link href="/css/theme.css?1573168455" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1573168455" rel="stylesheet">
     
-      <link href="/css/theme-darkblue.css?1573163377" rel="stylesheet">
+      <link href="/css/theme-darkblue.css?1573168455" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1573163377"></script>
+    <script src="/js/jquery-3.3.1.min.js?1573168455"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -51,14 +51,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1573163377"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1573163377"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1573168455"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1573168455"></script>
 <script type="text/javascript">
     
         var baseurl = "http:\/\/example.org\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1573163377"></script>
+<script type="text/javascript" src="/js/search.js?1573168455"></script>
 
     
   </div>
@@ -1598,7 +1598,7 @@ def lambda_handler(event, context):
     if len(existingTemplates['assessmentTemplateArns'])==0:
         resGroup = inspector.create_resource_group(resourceGroupTags=[{'key': 'continuous-assessment-instance','value': 'true'}])
         target = inspector.create_assessment_target(assessmentTargetName='ContinuousAssessment',resourceGroupArn=resGroup['resourceGroupArn'])
-        template = inspector.create_assessment_template(assessmentTargetArn=target['assessmentTargetArn'],assessmentTemplateName='ContinuousAssessment', durationInSeconds=3600,rulesPackageArns=rules['rulesPackageArns'])
+        template = inspector.create_assessment_template(assessmentTargetArn=target['assessmentTargetArn'],assessmentTemplateName='ContinuousAssessment', durationInSeconds=300,rulesPackageArns=rules['rulesPackageArns'])
         assessmentTemplateArn=template['assessmentTemplateArn']
         response = inspector.subscribe_to_event(event='ASSESSMENT_RUN_COMPLETED',resourceArn=template['assessmentTemplateArn'],topicArn=os.environ['AssesmentCompleteTopicArn']) 
         print('Template Created:'+template['assessmentTemplateArn'])
@@ -1651,7 +1651,7 @@ def lambda_handler(event, context):
                 if len(existingTemplates['assessmentTemplateArns'])==0:
                     resGroup = inspector.create_resource_group(resourceGroupTags=[{'key': 'continuous-assessment-instance','value': 'true'}])
                     target = inspector.create_assessment_target(assessmentTargetName='ContinuousAssessment',resourceGroupArn=resGroup['resourceGroupArn'])
-                    template = inspector.create_assessment_template(assessmentTargetArn=target['assessmentTargetArn'],assessmentTemplateName='ContinuousAssessment', durationInSeconds=3600,rulesPackageArns=rules['rulesPackageArns'])
+                    template = inspector.create_assessment_template(assessmentTargetArn=target['assessmentTargetArn'],assessmentTemplateName='ContinuousAssessment', durationInSeconds=300,rulesPackageArns=rules['rulesPackageArns'])
                     assessmentTemplateArn=template['assessmentTemplateArn']
                     response = inspector.subscribe_to_event(event='ASSESSMENT_RUN_COMPLETED',resourceArn=template['assessmentTemplateArn'],topicArn=os.environ['AssesmentCompleteTopicArn']) 
                     print('Template Created:'+template['assessmentTemplateArn'])
@@ -1709,6 +1709,7 @@ The purpose of this is so that you could get used to exploring CloudFormation do
             import collections
             import ast
             def lambda_handler(event, context): 
+                print(event)
                 message = event['Records'][0]['Sns']['Message'] 
                 jsonVal = json.loads(message);
                 assessmentArn =jsonVal['run']  
@@ -1736,8 +1737,6 @@ The purpose of this is so that you could get used to exploring CloudFormation do
                             aggregateData[instanceId]['findings'][severity]=0
                         aggregateData[instanceId]['findings'][severity]=aggregateData[instanceId]['findings'][severity]+1; 
                         inspector.add_attributes_to_findings(findingArns=[result['arn']],attributes=aggregateData[instanceId]['tags'])
-                        print(findingArns=[result['arn']])
-                        print(attributes=aggregateData[instanceId]['tags'])
                 tagsList=[]
                 for key  in aggregateData: 
                     outputJson=[] 
@@ -1774,7 +1773,8 @@ The purpose of this is so that you could get used to exploring CloudFormation do
             import boto3
             import collections
             import ast
-            def lambda_handler(event, context): 
+            def lambda_handler(event, context):
+                print(event) 
                 message = event['Records'][0]['Sns']['Message'] 
                 jsonVal = json.loads(message);
                 assessmentArn =jsonVal['run']  
@@ -1802,8 +1802,6 @@ The purpose of this is so that you could get used to exploring CloudFormation do
                             aggregateData[instanceId]['findings'][severity]=0
                         aggregateData[instanceId]['findings'][severity]=aggregateData[instanceId]['findings'][severity]+1; 
                         inspector.add_attributes_to_findings(findingArns=[result['arn']],attributes=aggregateData[instanceId]['tags'])
-                        print(findingArns=[result['arn']])
-                        print(attributes=aggregateData[instanceId]['tags'])
                 tagsList=[]
                 for key  in aggregateData: 
                     outputJson=[] 
@@ -2948,19 +2946,19 @@ The purpose of this is so that you could get used to exploring CloudFormation do
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1573163377"></script>
-    <script src="/js/perfect-scrollbar.min.js?1573163377"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1573163377"></script>
-    <script src="/js/jquery.sticky.js?1573163377"></script>
-    <script src="/js/featherlight.min.js?1573163377"></script>
-    <script src="/js/highlight.pack.js?1573163377"></script>
+    <script src="/js/clipboard.min.js?1573168455"></script>
+    <script src="/js/perfect-scrollbar.min.js?1573168455"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1573168455"></script>
+    <script src="/js/jquery.sticky.js?1573168455"></script>
+    <script src="/js/featherlight.min.js?1573168455"></script>
+    <script src="/js/highlight.pack.js?1573168455"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1573163377"></script>
-    <script src="/js/learn.js?1573163377"></script>
-    <script src="/js/hugo-learn.js?1573163377"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1573168455"></script>
+    <script src="/js/learn.js?1573168455"></script>
+    <script src="/js/hugo-learn.js?1573168455"></script>
 
-    <link href="/mermaid/mermaid.css?1573163377" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1573163377"></script>
+    <link href="/mermaid/mermaid.css?1573168455" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1573168455"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
