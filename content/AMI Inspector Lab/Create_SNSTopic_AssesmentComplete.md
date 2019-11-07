@@ -5,7 +5,7 @@ draft: false
 ---
 
 Now that we have our IAM role defined in our Stack, we shall move on to our next resources.
-In this solutin we will be levaraging a number of [SNS](https://docs.aws.amazon.com/sns/latest/dg/welcome.html) Topics. These topics will be used to notify our users about the state if the Golden AMI inspection, as well as act as a decoupling structure to connect our `StartContinousAssesment` function and `AnalyzeInspectorFindings` Function.
+In this solutin we will be levaraging a number of [SNS](https://docs.aws.amazon.com/sns/latest/dg/welcome.html) Topics. These topics will be used to notify our users about the state if the Golden AMI inspection, as well as act as a decoupling structure to connect our `StartContinousAssesment` function and `AnalyzeInspectorFindings` Function. With SNS Topic Policy, you can define which service on AWS is allowed to publish to the SNS topic.
 
 ![](/AMI Inspector Lab/images/Role&ContinuousAsssesmentSNSTopic_Full.png)
 

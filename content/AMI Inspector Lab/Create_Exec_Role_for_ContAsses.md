@@ -1,5 +1,5 @@
 ---
-title: "4. Create Lambda Execution role."
+title: "4. Create Lambda Execution role"
 weight: 4
 draft: false
 ---

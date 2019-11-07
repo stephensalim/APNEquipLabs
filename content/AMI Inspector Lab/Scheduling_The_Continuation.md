@@ -1,37 +1,63 @@
 ---
-title: "11. Configure CloudWatch events"
-weight: 11
+title: "9. Configure CloudWatch events"
+weight: 9
 draft: false
 ---
 
-**Set up a CloudWatch Events rule for triggering continuous golden AMI vulnerability assessments**
+This will be the last piece of the puzzle.
+In this part of the Lab we will be extending our CloudFormation template to add a CloudWatch Events scheduler to allow our Lambda Functions to continusously asses Golden AMIs.
 
 ![](/AMI Inspector Lab/images/CloudWatchRule.png)
 
-The last step is to create a CloudWatch Events rule to schedule the execution of the vulnerability assessments on a daily or weekly basis.
+1. **Set up a CloudWatch Events rule for triggering continuous golden AMI vulnerability assessments**
 
-To set up a CloudWatch Events rule:
 
-1.  Sign in to the [AWS Management Console](https://console.aws.amazon.com/console/home) and navigate to the [CloudWatch console](https://console.aws.amazon.com/cloudwatch/).
-2.  In the navigation pane, choose **Rules** > **Create rule**.
-3.  On the **Event Source** page, choose **Schedule**. Choose **Fixed rate of **and specify the interval (for example, 1 day).
-4.  For **Targets**, choose **Add target **and then choose **Lambda function**.
-5.  For **Function**, choose the **StartContinuousAssessment** function.
-6.  Choose **Configure Input**.
-7.  Choose **Constant (JSON text)**.
-8.  In the box, paste the following JSON code.
+    Open your notepad / text editor, create a file named `GoldenAMIContinuousAssesment.yml`.
 
-    <div class="hide-language">
+    ---
 
-        {
-             "AMIsParamName": "ContinuousAssessmentInput"
-        }
+    **IMPORTANT NOTE:**
+    In the following steps you will be constructing your CloudFormation template in YML format.
+    YML format allows you to put comments in the template by placing in # in front of the line, so it's quite handy.
+    On the flip side however, it is indent sensitive, so make sure you specify the Key and values at the right level of the indentation.
 
-    </div>
+    Practice makes perfect, therefore when building CloudFormation template in this lab, we will be providing a high level instruction on how to construct the template, along with the reference guide in the public documentation. The intent is so that you could get used to exploring the public documentation and get acustomed with the syntax.
 
-9.  Choose **Configure details**.
-10.  For **Rule definition**, type `ContinuousGoldenAMIAssessmentTrigger` for the name, and type as the description, `This rule triggers the continuous golden AMI vulnerability assessment process`.
-11.  Choose **Create rule**.
+    Having said that, if you are completely stuck, don't hesitate to get help from Lab instructor or, take a peek at the **SOLUTION** section if you have to.
+
+    ---
+
+    To find information about the properties of the resource refer to this doc: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-events-rule.html
+
+   * Create a `Resource:` template section [Reference](https://docs.aws.amazon.com/en_pv/AWSCloudFormation/latest/UserGuide/template-anatomy.html) 
+    * Create a resource named `ContinuousGoldenAMIAssessmentTrigger` of type `AWS::Events::Rule`.
+    * In the `Properties` section add `Name` property and specify `ContinuousGoldenAMIAssessmentTrigger` as it's value.
+    * In the `Properties` section add `ScheduleExpression` property and specify `"cron(0 6 * * ? *)"` as it's value.
+    * In the `Properties` secion add an `State` and specify `ENABLED` as it's value.
+    * In the `Properties` secion add an `Targets` property and using the !GetAtt intrinsic function reference the `StartContinuousAssessment` Arn you created in previous step Reference : https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-getatt.html
+    * In same section as your `Targets` entries and specify `Inputs` and specify `'{"AMIsParamName": "ContinuousAssessmentInput"}'` as it's value.
+       
+<details><summary> **ARE YOU STUCK ? :(** - It's OK CLICK HERE to see the solution</summary>
+
+**READ >>** Below snippet must be specified within `Resources:` section of the cloudformation template.
+
+```
+  ContinuousGoldenAMIAssessmentTrigger:
+    Type: AWS::Events::Rule
+    Properties:
+      Name: ContinuousGoldenAMIAssessmentTrigger
+      ScheduleExpression: "cron(0 6 * * ? *)"
+      State: ENABLED
+      Targets:
+        -
+          Arn:
+            Fn::GetAtt:
+              - "StartContinuousAssessment"
+              - "Arn"
+          Input: '{"AMIsParamName": "ContinuousAssessmentInput"}'
+```
+</details>
+
 
 The vulnerability assessments are executed on the first occurrence of the schedule you chose while setting up the CloudWatch Events rule. After the vulnerability assessment **is** executed, you will receive an email to indicate that your continuous golden AMI vulnerability assessments are set up.
 

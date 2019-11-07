@@ -4,23 +4,39 @@ weight: 6
 draft: false
 ---
 
-**Creating the Lambda Function to Inspect the AMI**
+Alright, now for the meaty part !
+In this part of the lab, we will walk through how to construct / package [AWS Lambda](https://docs.aws.amazon.com/lambda/latest/dg/welcome.html) Function and attach it to the IAM roles we created in previous step. We will be creating 2 Lambda Functions `StartContinuousAssesment` &  `AnalyzeInspectorFindings` Each of this Lambda Functions will also have a connection to SNS Topics we created in previous steps through a Lambda Environment variable we defined in the function.
 
-![](/AMI Inspector Lab/images/ContinuousAssesmentLambdaFunction01.png)
+![](/AMI Inspector Lab/images/ContinuousAssesmentLambdaFunction02.png)
 
-1. Open your notepad the file you created in step 1 `GoldenAMIContinuousAssesment.yml`
 
-2. Create a resource named `StartContinuousAssessmentLambdaFunction` of type `AWS::Lambda::Function`.
+1. **Creating the Lambda Function StartContinuousAssessment**
 
-3. In the `Properties` section create a `Role` property and using the !GetAtt intrinsic function reference the IAM role Arn you created in step 1.
-Reference : https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-getatt.html
+    Open your notepad / text editor, edit the file named  `GoldenAMIContinuousAssesment.yml`.
 
-4. In the `Properties` section create a `Code` property and specify the lambda function code using in line code instead of specifying the s3 bucket location paste in below.
-To place in multiple line, in yaml you can use the | sign then place the remaining code below it.
+    ---
 
-    Example : https://aws.amazon.com/blogs/infrastructure-and-automation/deploying-aws-lambda-functions-using-aws-cloudformation-the-portable-way/
+    **IMPORTANT NOTE:**
+    In the following steps you will be constructing your CloudFormation template in YML format.
+    YML format allows you to put comments in the template by placing in # in front of the line, so it's quite handy.
+    On the flip side however, it is indent sensitive, so make sure you specify the Key and values at the right level of the indentation.
+
+    Practice makes perfect, therefore when building CloudFormation template in this lab, we will be providing a high level instruction on how to construct the template, along with the reference guide in the public documentation. The intent is so that you could get used to exploring the public documentation and get acustomed with the syntax.
+
+    Having said that, if you are completely stuck, don't hesitate to get help from Lab instructor or, take a peek at the **SOLUTION** section if you have to.
+
+    ---
+
+    To find information about the properties of the resource refer to this doc: 
+    https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-function.html
+
+    * Right under the previous resource, still inside the `Resources:` section do the following.
+    * Create a resource named `StartContinuousAssessmentLambdaFunction` of type `AWS::Lambda::Function`.
+    * In the `Properties` section create a `Role` property and using the !GetAtt intrinsic function reference the IAM role Arn you created in previous step Reference : https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-getatt.html
+    * In the `Properties` section create a `Code` property and specify the lambda function code using in line code, copu & paste below. To place in multiple line, in yaml you can use the | sign then place the remaining code below it. Example : https://aws.amazon.com/blogs/infrastructure-and-automation/deploying-aws-lambda-functions-using-aws-cloudformation-the-portable-way/
 
     Code 
+
     ```
     import json
     import urllib.parse
@@ -61,12 +77,12 @@ To place in multiple line, in yaml you can use the | sign then place the remaini
         return 'Done'
     ```
 
-5. In the `Properties` section create a `Environment` property and specify an environment variable named `AssesmentCompleteTopicArn` and reference the SNS topic resource created in step 2. 
-To do this, you can use !Ref intrinsic function.
-
-    Reference : https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-ref.html
+    * In the `Properties` section create a `Environment` property and specify an environment variable named `AssesmentCompleteTopicArn` and reference the SNS topic resource created in previous step  To do this, you can use !Ref intrinsic function. Reference : https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-ref.html
         
-<details><summary>CLICK HERE ( to see the solution ).</summary>
+<details><summary> **ARE YOU STUCK ? :(** - It's OK CLICK HERE to see the solution</summary>
+
+**READ >>** Below snippet must be specified within `Resources:` section of the cloudformation template.
+
 ```
   StartContinuousAssessmentLambdaFunction: 
     Properties: 
@@ -117,91 +133,98 @@ To do this, you can use !Ref intrinsic function.
       Role: !GetAtt "StartContinuousAssessmentLambdaRole.Arn"
       Runtime: python3.6
       Timeout: 300
+      FunctionName: "StartContinuousAssessment"
     Type: "AWS::Lambda::Function"
 ```
+
 </details>
 
-Once this is set up, the next thing to do is to set up the SNS Topic that AWS Inspector will trigger upon completion of the inspection. Below steps to create the resources.
+
+2. **Create Lambda Function to AnalyzeInspectorFindings**.
 
 
+    Open your notepad / text editor, edit the file named  `GoldenAMIContinuousAssesment.yml`.
 
-**Create Lambda Function to AnalyzeInspectorFindings**.
+    ---
 
-![](/AMI Inspector Lab/images/ContinuousAssesmentLambdaFunction02.png)
+    **IMPORTANT NOTE:**
+    In the following steps you will be constructing your CloudFormation template in YML format.
+    YML format allows you to put comments in the template by placing in # in front of the line, so it's quite handy.
+    On the flip side however, it is indent sensitive, so make sure you specify the Key and values at the right level of the indentation.
 
-1. Open your notepad the file you created in step 1 `GoldenAMIContinuousAssesment.yml`
+    Practice makes perfect, therefore when building CloudFormation template in this lab, we will be providing a high level instruction on how to construct the template, along with the reference guide in the public documentation. The intent is so that you could get used to exploring the public documentation and get acustomed with the syntax.
 
-2. Create a resource named `AnalyzeInspectorFindingsLambdaFunction` of type `AWS::Lambda::Function`.
+    Having said that, if you are completely stuck, don't hesitate to get help from Lab instructor or, take a peek at the **SOLUTION** section if you have to.
 
-3. In the `Properties` section create a `Role` property and using the !GetAtt intrinsic function reference the IAM role Arn you created for `AnalyzeInspectorFindingsLambdaRole`.
-Reference : https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-getatt.html
+    ---
 
-4. In the `Properties` section create a `Code` property and specify the lambda function code using in line code instead of specifying the s3 bucket location paste in below.
-To place in multiple line, in yaml you can use the | sign then place the remaining code below it.
-
-    Example : https://aws.amazon.com/blogs/infrastructure-and-automation/deploying-aws-lambda-functions-using-aws-cloudformation-the-portable-way/
+    * Right under the previous resource, still inside the `Resources:` section do the following.
+    * Create a resource named `AnalyzeInspectorFindingsLambdaFunction` of type `AWS::Lambda::Function`.
+    * In the `Properties` section create a `Role` property and using the !GetAtt intrinsic function reference the IAM role Arn you created for `AnalyzeInspectorFindingsLambdaRole`. Reference : https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-getatt.html
+    * In the `Properties` section create a `Code` property and specify the lambda function code using in line code, copu & paste below. To place in multiple line, in yaml you can use the | sign then place the remaining code below it. Example : https://aws.amazon.com/blogs/infrastructure-and-automation/deploying-aws-lambda-functions-using-aws-cloudformation-the-portable-way/
 
     Code 
-```
-            import json 
-            import os
-            import boto3
-            import collections
-            import ast
-            def lambda_handler(event, context): 
-                message = event['Records'][0]['Sns']['Message'] 
-                jsonVal = json.loads(message);
-                assessmentArn =jsonVal['run']  
-                region=os.environ['AWS_DEFAULT_REGION']
-                ec2 = boto3.client('ec2',region) 
-                sns = boto3.client('sns',region) 
-                inspector = boto3.client('inspector',region) 
-                findingArns = inspector.list_findings(assessmentRunArns=[jsonVal['run']],maxResults=5000)
-                aggregateData={}
-                for findingArn in findingArns['findingArns']:
-                    finding = inspector.describe_findings(findingArns=[findingArn]) 
-                    for result in finding['findings']: 
-                        instanceId =result['assetAttributes']['agentId']
-                        severity =result['severity']
-                        cveName=result['id']
-                        if not (instanceId) in aggregateData:
-                            aggregateData[instanceId]={}
-                            aggregateData[instanceId]['findings']={}
-                            aggregateData[instanceId]['findings'][severity]=0
-                            instance=ec2.describe_instances(InstanceIds=[instanceId]);
-                            tagsStr=str(instance['Reservations'][0]['Instances'][0]['Tags']) 
-                            tagsStr =tagsStr.replace('Key','key').replace('Value','value')  
-                            aggregateData[instanceId]['tags']= ast.literal_eval(tagsStr)
-                        elif not (severity) in aggregateData[instanceId]['findings']:
-                            aggregateData[instanceId]['findings'][severity]=0
-                        aggregateData[instanceId]['findings'][severity]=aggregateData[instanceId]['findings'][severity]+1; 
-                        inspector.add_attributes_to_findings(findingArns=[result['arn']],attributes=aggregateData[instanceId]['tags'])
-                        print(findingArns=[result['arn']])
-                        print(attributes=aggregateData[instanceId]['tags'])
-                tagsList=[]
-                for key  in aggregateData: 
-                    outputJson=[] 
-                    for tag in aggregateData[key]['tags']:
-                        if tag['key'] != 'continuous-assessment-instance':
-                            outputJson.append("\""+tag['key']+"\""+":"+"\""+tag['value']+"\"")
-                    for sev in aggregateData[key]['findings']:
-                        outputJson.append("\"Finding-Severity-"+sev+"-Count\""+":"+"\""+str(aggregateData[key]['findings'][sev])+"\"")
-                    outputJson.sort()
-                    print(outputJson)
-                    tagsList.append('{'+', '.join(outputJson)+'}')
-                    print('Terminating:'+key)
-                    ec2.terminate_instances(InstanceIds=[key],DryRun=False)
-                sns.publish(TopicArn=os.environ['ContinuousAssessmentResultsTopic'],Message='['+', '.join(tagsList)+']')
-                return jsonVal['run']
-```
+    ```
+                import json 
+                import os
+                import boto3
+                import collections
+                import ast
+                def lambda_handler(event, context): 
+                    message = event['Records'][0]['Sns']['Message'] 
+                    jsonVal = json.loads(message);
+                    assessmentArn =jsonVal['run']  
+                    region=os.environ['AWS_DEFAULT_REGION']
+                    ec2 = boto3.client('ec2',region) 
+                    sns = boto3.client('sns',region) 
+                    inspector = boto3.client('inspector',region) 
+                    findingArns = inspector.list_findings(assessmentRunArns=[jsonVal['run']],maxResults=5000)
+                    aggregateData={}
+                    for findingArn in findingArns['findingArns']:
+                        finding = inspector.describe_findings(findingArns=[findingArn]) 
+                        for result in finding['findings']: 
+                            instanceId =result['assetAttributes']['agentId']
+                            severity =result['severity']
+                            cveName=result['id']
+                            if not (instanceId) in aggregateData:
+                                aggregateData[instanceId]={}
+                                aggregateData[instanceId]['findings']={}
+                                aggregateData[instanceId]['findings'][severity]=0
+                                instance=ec2.describe_instances(InstanceIds=[instanceId]);
+                                tagsStr=str(instance['Reservations'][0]['Instances'][0]['Tags']) 
+                                tagsStr =tagsStr.replace('Key','key').replace('Value','value')  
+                                aggregateData[instanceId]['tags']= ast.literal_eval(tagsStr)
+                            elif not (severity) in aggregateData[instanceId]['findings']:
+                                aggregateData[instanceId]['findings'][severity]=0
+                            aggregateData[instanceId]['findings'][severity]=aggregateData[instanceId]['findings'][severity]+1; 
+                            inspector.add_attributes_to_findings(findingArns=[result['arn']],attributes=aggregateData[instanceId]['tags'])
+                            print(findingArns=[result['arn']])
+                            print(attributes=aggregateData[instanceId]['tags'])
+                    tagsList=[]
+                    for key  in aggregateData: 
+                        outputJson=[] 
+                        for tag in aggregateData[key]['tags']:
+                            if tag['key'] != 'continuous-assessment-instance':
+                                outputJson.append("\""+tag['key']+"\""+":"+"\""+tag['value']+"\"")
+                        for sev in aggregateData[key]['findings']:
+                            outputJson.append("\"Finding-Severity-"+sev+"-Count\""+":"+"\""+str(aggregateData[key]['findings'][sev])+"\"")
+                        outputJson.sort()
+                        print(outputJson)
+                        tagsList.append('{'+', '.join(outputJson)+'}')
+                        print('Terminating:'+key)
+                        ec2.terminate_instances(InstanceIds=[key],DryRun=False)
+                    sns.publish(TopicArn=os.environ['ContinuousAssessmentResultsTopic'],Message='['+', '.join(tagsList)+']')
+                    return jsonVal['run']
+    ```
 
 
-5. In the `Properties` section create a `Environment` property and specify an environment variable named `ContinuousAssessmentResultsTopic` and reference the SNS topic resource `ContinuousAssessmentCompleteTopic` 
-To do this, you can use !Ref intrinsic function.
-
-    Reference : https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-ref.html
+    * In the `Properties` section create a `Environment` property and specify an environment variable named `ContinuousAssessmentResultsTopic` and reference the SNS topic resource `ContinuousAssessmentCompleteTopic`. To do this, you can use !Ref intrinsic function. Reference : https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-ref.html
         
-<details><summary>CLICK HERE ( to see the solution ).</summary>
+<details><summary> **ARE YOU STUCK ? :(** - It's OK CLICK HERE to see the solution</summary>
+
+**READ >>** Below snippet must be specified within `Resources:` section of the cloudformation template.
+
+
 ```
   AnalyzeInspectorFindingsLambdaFunction: 
     Properties: 
@@ -265,6 +288,15 @@ To do this, you can use !Ref intrinsic function.
       Role: !GetAtt "AnalyzeInspectorFindingsLambdaRole.Arn"
       Runtime: python3.6
       Timeout: 300
+      FunctionName: "AnalyzeInspectorFindings"
     Type: "AWS::Lambda::Function"
 ```
 </details>
+
+3.  **Deploys the CloudFormation Template**
+
+    Now that you've construct the template, it's time to update the stack, do do that please follow the [Update a Stack's Template (Console)](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-get-template.html#using-cfn-updating-stacks-get-stack.CON) guide to create your stack.
+
+    Specify Stack `GoldenAMIContinuousAssesment` as the stack name for simplicity.
+
+    Once you've launched your stack review the `Resources` Tab of the launch stack to identify the resouce it's created. You should see an entry with in Logical ID and in Physical ID of the Lambda Functions, you can click on the corresponding link under Physical ID to go to the Lambda Functions console.

@@ -1,5 +1,5 @@
 ---
-title: "3. Store Golden AMI metadata."
+title: "3. Store Golden AMI metadata"
 weight: 3
 draft: false
 ---
