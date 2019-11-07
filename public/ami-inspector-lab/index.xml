@@ -47,11 +47,8 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://example.org/ami-inspector-lab/create_exec_role_for_contasses/</guid>
-      <description>Creating Lambda Execution Role for StartContinuousAssessmentLambdaFunction
- Open your notepad / text editor, create a file named GoldenAMIContinuousAssesment.yml. Reference: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html
- Create a resource named StartContinuousAssessmentLambdaRole of type AWS::IAM::Role.
- In the Properties section add ManagedPolicyArns below to allow the lambda function to do basic execution and have access to Amazon Inspector APIs.
- arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole arn:aws:iam::aws:policy/AmazonInspectorFullAccess  In the Properties secion add an AssumeRolePolicyDocument to allow lambda.amazonaws.com service principal role to do an action called sts:AssumeRole.</description>
+      <description>In AWS Security is at highest priority, through working directly with CloudFormation, you will discover layers of security construct that you could customize to secure your resource. One of it is IAM role, for cross service interactions AWS will levarage security services to create isolation and security boundaries on the service executed.
+In this part of the Lab we will be defining an IAM role that we will attach to our AWS Lambda function and specify permissions for the Lambda function to access only the services and resource we allow it to.</description>
     </item>
     
     <item>
@@ -60,13 +57,9 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://example.org/ami-inspector-lab/create_snstopic_assesmentcomplete/</guid>
-      <description>Creating the SNS Topic for Assesment completion
-Create Inspection Complete SNS Topic &amp;amp; Policy to allow access for AW Inspector.
- Open your notepad the file you created in step 1 GoldenAMIContinuousAssesment.yml.
- Create a resource named ContinuousAssessmentCompleteTopic of type AWS::SNS::Topic.
- No need to put in any Properties in this resource, keep all empty / default.
- Create another resource named ContinuousAssessmentCompleteTopicPolicy of type AWS::SNS::TopicPolicy.
- In the Properties section create a PolicyDocument and allow service inspector.</description>
+      <description>Now that we have our IAM role defined in our Stack, we shall move on to our next resources. In this solutin we will be levaraging a number of SNS Topics. These topics will be used to notify our users about the state if the Golden AMI inspection, as well as act as a decoupling structure to connect our StartContinousAssesment function and AnalyzeInspectorFindings Function.
+Let&amp;rsquo;s follow below steps.
+ Creating the SNS Topic for StartContinousAssesment Completion</description>
     </item>
     
     <item>
