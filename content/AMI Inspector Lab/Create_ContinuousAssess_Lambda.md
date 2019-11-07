@@ -6,7 +6,7 @@ draft: false
 
 **Creating the Lambda Function to Inspect the AMI**
 
-![](/AMI Inspector Lab/images/ContinuousAssesmentLambdaFunction.png)
+![](/AMI Inspector Lab/images/ContinuousAssesmentLambdaFunction01.png)
 
 1. Open your notepad the file you created in step 1 `GoldenAMIContinuousAssesment.yml`
 
@@ -126,6 +126,8 @@ Once this is set up, the next thing to do is to set up the SNS Topic that AWS In
 
 
 **Create Lambda Function to AnalyzeInspectorFindings**.
+
+![](/AMI Inspector Lab/images/ContinuousAssesmentLambdaFunction02.png)
 
 1. Open your notepad the file you created in step 1 `GoldenAMIContinuousAssesment.yml`
 

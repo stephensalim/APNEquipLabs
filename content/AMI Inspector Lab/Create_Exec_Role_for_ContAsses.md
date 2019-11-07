@@ -6,7 +6,7 @@ draft: false
 
 **Creating Lambda Execution Role for StartContinuousAssessmentLambdaFunction**
 
-![](/AMI Inspector Lab/images/StartContinuousAssesmentLambdaRole.png)
+![](/AMI Inspector Lab/images/ContinuousAssesmentLambdaRole_Full.png)
 
 1. Open your notepad / text editor, create a file named `GoldenAMIContinuousAssesment.yml`.
    Reference: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html
@@ -67,8 +67,6 @@ draft: false
 
 **Creating Lambda Execution Role for AnalyzeInspectorFindingsLambdaFunction**
 
-![](/AMI Inspector Lab/images/AnalyzeInspectorFindingsLambdaRole.png)
-
 1. Open your notepad / text editor, create a file named `GoldenAMIContinuousAssesment.yml`
     Reference : https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html
 
@@ -121,3 +119,5 @@ draft: false
     Type: "AWS::IAM::Role"
 ```
 </details>
+
+

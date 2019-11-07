@@ -4,7 +4,7 @@ weight: 1
 draft: false
 ---
 
-![Solution diagram showing how this post's solution works](https://d2908q01vomqb2.cloudfront.net/22d200f8670dbdb3e253a90eee5098477c95c23d/2017/12/15/KW_1217_diagram.png "Solution diagram showing how this post's solution works")
+![](/AMI Inspector Lab/images/Main.png)
 
 Here’s how this solution works :
 

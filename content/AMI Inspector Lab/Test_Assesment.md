@@ -27,6 +27,13 @@ To start golden AMI vulnerability assessments:
 The `StartContinuousAssessment` function runs for approximately five minutes and then displays the following message.  
 ![Message showing the function has run successfully](https://d2908q01vomqb2.cloudfront.net/22d200f8670dbdb3e253a90eee5098477c95c23d/2017/12/15/KW_1_1217.png "Message showing the function has run successfully")
 
+
+![](/AMI Inspector Lab/images/Testing01.png)
+
+![](/AMI Inspector Lab/images/Testing02.png)
+
+
+
 Next, open Amazon Inspector and monitor the progress of the assessment:
 
 1.  Sign in to the [AWS Management Console](https://console.aws.amazon.com/console/home) and navigate to the [Amazon Inspector console](https://console.aws.amazon.com/inspector/).
@@ -38,12 +45,14 @@ To see the findings in Amazon Inspector’s **Findings** section:
 
 1.  Sign in to the [AWS Management Console](https://console.aws.amazon.com/console/home) and navigate to the [Amazon Inspector console](https://console.aws.amazon.com/inspector/home).
 2.  In the navigation pane, choose **Assessment Runs**. In the table on the **Amazon Inspector – Assessment Runs** page**,** choose the findings of the latest assessment run.
-3.  Choose the settings (![Gear icon](https://d2908q01vomqb2.cloudfront.net/22d200f8670dbdb3e253a90eee5098477c95c23d/2017/12/15/KW_3_1217.png "Gear icon")) icon and choose the appropriate tags to see the details of findings, as shown in the following screenshot. The findings also contain information about how you can address each underlying vulnerability.  
+3.  Choose the settings icon and choose the appropriate tags to see the details of findings, as shown in the following screenshot. The findings also contain information about how you can address each underlying vulnerability.  
     ![Screenshot showing details of findings](https://d2908q01vomqb2.cloudfront.net/22d200f8670dbdb3e253a90eee5098477c95c23d/2017/12/15/KW_2_1217.png "Screenshot showing details of findings")
 
 Having verified that you have successfully set up all components of golden AMI vulnerability assessments, you now will schedule the vulnerability assessments to run on a regular basis to give you continual insight into the health of instances created from your golden AMIs.
 
 ### 5.  Set up a CloudWatch Events rule for triggering continuous golden AMI vulnerability assessments
+
+![](/AMI Inspector Lab/images/CloudWatchRule.png)
 
 The last step is to create a CloudWatch Events rule to schedule the execution of the vulnerability assessments on a daily or weekly basis.
 

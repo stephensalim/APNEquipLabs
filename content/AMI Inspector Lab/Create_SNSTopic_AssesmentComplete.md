@@ -6,7 +6,7 @@ draft: false
 
 **Creating the SNS Topic for Assesment completion**
 
-![](/AMI Inspector Lab/images/ContinuousAsssesmentCompleteTopicSNS.png)
+![](/AMI Inspector Lab/images/Role&ContinuousAsssesmentSNSTopic_Full.png)
 
 **Create Inspection Complete SNS Topic & Policy to allow access for AW Inspector**.
 
@@ -48,3 +48,19 @@ draft: false
     Type: "AWS::SNS::TopicPolicy"
 ```
 </details>
+
+**Creating the SNS Topic for Assesment Result**
+
+1. Open your notepad the file you created in step 1 `GoldenAMIContinuousAssesment.yml`.
+
+2. Create a resource named `ContinuousAssessmentResultsTopic` of type `AWS::SNS::Topic`.
+
+3. No need to put in any `Properties` in this resource, keep all empty / default.
+
+<details><summary>CLICK HERE ( to see the solution ).</summary>
+```
+  ContinuousAssessmentResultsTopic: 
+    Type: "AWS::SNS::Topic"
+```
+</details>
+

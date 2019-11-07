@@ -588,6 +588,20 @@ First, you will need to terminate the EC2 instances that are running in the VPC.
     </item>
     
     <item>
+      <title>7. Connect Analyzer Lambda to Topic</title>
+      <link>http://example.org/ami-inspector-lab/connect_analyzerlambda_sns/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/ami-inspector-lab/connect_analyzerlambda_sns/</guid>
+      <description>Create Lambda Permission to allow SNS service to invoke..
+ Open your notepad the file you created in step 1 GoldenAMIContinuousAssesment.yml
+ Create a resource named LambdaInvokePermission of type AWS::Lambda::Permission.
+ In the Properties section create a FunctionName property and using the !GetAtt intrinsic function reference the AnalyzeInspectorFindingsLambdaRole Arn you created before Reference : https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-getatt.html
+ In the Properties section create a Action property and specify lambda:InvokeFunction
+ In the Properties section create a Principal property and specify sns.</description>
+    </item>
+    
+    <item>
       <title>7. Create Alarm For Security Log</title>
       <link>http://example.org/security-lab/create-alarm-for-security-log/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -610,20 +624,6 @@ First, you will need to terminate the EC2 instances that are running in the VPC.
       <description>In this scenario, you create an AWS Config rule, that will monitor your EC2 instance resources in the region for a tag named &amp;ldquo;CostCenter&amp;rdquo; and value &amp;ldquo;1000&amp;rdquo; to signify that the cost of this instance is being tracked. If the EC2 instance does not have CostCenter tag, You can then set up reconfig-mediation using AWS-StopEC2Instance AWS Systems Manager Automation.
  From the AWS console click Services &amp;gt; Config.
 If this is the first time you enabled AWS Config, your console will direct you to the &amp;ldquo;Get Started Page&amp;rdquo;.</description>
-    </item>
-    
-    <item>
-      <title>7. Trigger Lambda from SNS Topic</title>
-      <link>http://example.org/ami-inspector-lab/create_continuousassess_lambda-copy/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://example.org/ami-inspector-lab/create_continuousassess_lambda-copy/</guid>
-      <description>Create Lambda Permission to allow SNS service to invoke..
- Open your notepad the file you created in step 1 GoldenAMIContinuousAssesment.yml
- Create a resource named LambdaInvokePermission of type AWS::Lambda::Permission.
- In the Properties section create a FunctionName property and using the !GetAtt intrinsic function reference the AnalyzeInspectorFindingsLambdaRole Arn you created before Reference : https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-getatt.html
- In the Properties section create a Action property and specify lambda:InvokeFunction
- In the Properties section create a Principal property and specify sns.</description>
     </item>
     
     <item>
