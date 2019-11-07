@@ -12,20 +12,20 @@
     <title>7. Connect Analyzer to Topic :: APN Equip Labs</title>
 
     
-    <link href="/css/nucleus.css?1573126458" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1573126458" rel="stylesheet">
-    <link href="/css/hybrid.css?1573126458" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1573126458" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1573126458" rel="stylesheet">
-    <link href="/css/auto-complete.css?1573126458" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1573126458" rel="stylesheet">
-    <link href="/css/theme.css?1573126458" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1573126458" rel="stylesheet">
+    <link href="/css/nucleus.css?1573162801" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1573162801" rel="stylesheet">
+    <link href="/css/hybrid.css?1573162801" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1573162801" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1573162801" rel="stylesheet">
+    <link href="/css/auto-complete.css?1573162801" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1573162801" rel="stylesheet">
+    <link href="/css/theme.css?1573162801" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1573162801" rel="stylesheet">
     
-      <link href="/css/theme-darkblue.css?1573126458" rel="stylesheet">
+      <link href="/css/theme-darkblue.css?1573162801" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1573126458"></script>
+    <script src="/js/jquery-3.3.1.min.js?1573162801"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -51,14 +51,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1573126458"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1573126458"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1573162801"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1573162801"></script>
 <script type="text/javascript">
     
         var baseurl = "http:\/\/example.org\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1573126458"></script>
+<script type="text/javascript" src="/js/search.js?1573162801"></script>
 
     
   </div>
@@ -1541,24 +1541,26 @@
 <ol>
 <li><p><strong>Create Lambda Permission to allow SNS service to invoke.</strong>.</p>
 
-<p>Open your notepad / text editor, edit the file named  <code>GoldenAMIContinuousAssesment.yml</code>.</p>
+<hr />
+
+<p><strong>IMPORTANT NOTE:</strong></p>
+
+<p>In the following steps you will need to construct your CloudFormation template in YAML format.
+YAML format allows you to put comments in the template by placing in # in front of the line, so it&rsquo;s quite handy.
+On the flip side however, it is indent sensitive, so make sure you specify the Key and values at the right level of indentation.</p>
+
+<p>Practice makes perfect, therefore when building the template, we will be providing a high level instruction on how to construct it.
+We will also provide reference guide / example from public documentation to help you.
+The purpose of this is so that you could get used to exploring CloudFormation documentation and get acustomed with the syntax.</p>
+
+<p>However if you are completely stuck, don&rsquo;t hesitate to get help from Lab instructor or take a peek at the <strong>ARE YOU STUCK?</strong> section to peek on the solution.</p>
 
 <hr />
 
-<p><strong>IMPORTANT NOTE:</strong>
-In the following steps you will be constructing your CloudFormation template in YML format.
-YML format allows you to put comments in the template by placing in # in front of the line, so it&rsquo;s quite handy.
-On the flip side however, it is indent sensitive, so make sure you specify the Key and values at the right level of the indentation.</p>
-
-<p>Practice makes perfect, therefore when building CloudFormation template in this lab, we will be providing a high level instruction on how to construct the template, along with the reference guide in the public documentation. The intent is so that you could get used to exploring the public documentation and get acustomed with the syntax.</p>
-
-<p>Having said that, if you are completely stuck, don&rsquo;t hesitate to get help from Lab instructor or, take a peek at the <strong>SOLUTION</strong> section if you have to.</p>
-
-<hr />
-
-<p>To find information about the properties of the resource refer to this doc: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-permission.html">https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-permission.html</a></p>
+<p>Reference: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-permission.html">https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-permission.html</a></p>
 
 <ul>
+<li>Open your notepad / text editor, edit the file named  <code>GoldenAMIContinuousAssesment.yml</code>.</li>
 <li>Right under the previous resource, still inside the <code>Resources:</code> section do the following.</li>
 <li>Create a resource named <code>LambdaInvokePermission</code> of type <code>AWS::Lambda::Permission</code>.</li>
 <li>In the <code>Properties</code> section create a <code>FunctionName</code> property and using the !GetAtt intrinsic function reference the <code>AnalyzeInspectorFindingsLambdaRole</code> Arn you created before Reference : <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-getatt.html">https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-getatt.html</a></li>
@@ -1584,24 +1586,26 @@ On the flip side however, it is indent sensitive, so make sure you specify the K
 
 <li><p><strong>Configure SNS Topic Lambda Function Subscriber</strong>.</p>
 
-<p>Open your notepad / text editor, edit the file named  <code>GoldenAMIContinuousAssesment.yml</code>.</p>
+<hr />
+
+<p><strong>IMPORTANT NOTE:</strong></p>
+
+<p>In the following steps you will need to construct your CloudFormation template in YAML format.
+YAML format allows you to put comments in the template by placing in # in front of the line, so it&rsquo;s quite handy.
+On the flip side however, it is indent sensitive, so make sure you specify the Key and values at the right level of indentation.</p>
+
+<p>Practice makes perfect, therefore when building the template, we will be providing a high level instruction on how to construct it.
+We will also provide reference guide / example from public documentation to help you.
+The purpose of this is so that you could get used to exploring CloudFormation documentation and get acustomed with the syntax.</p>
+
+<p>However if you are completely stuck, don&rsquo;t hesitate to get help from Lab instructor or take a peek at the <strong>ARE YOU STUCK?</strong> section to peek on the solution.</p>
 
 <hr />
 
-<p><strong>IMPORTANT NOTE:</strong>
-In the following steps you will be constructing your CloudFormation template in YML format.
-YML format allows you to put comments in the template by placing in # in front of the line, so it&rsquo;s quite handy.
-On the flip side however, it is indent sensitive, so make sure you specify the Key and values at the right level of the indentation.</p>
-
-<p>Practice makes perfect, therefore when building CloudFormation template in this lab, we will be providing a high level instruction on how to construct the template, along with the reference guide in the public documentation. The intent is so that you could get used to exploring the public documentation and get acustomed with the syntax.</p>
-
-<p>Having said that, if you are completely stuck, don&rsquo;t hesitate to get help from Lab instructor or, take a peek at the <strong>SOLUTION</strong> section if you have to.</p>
-
-<hr />
-
-<p>To find information about the properties of the resource refer to this doc: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sns-subscription.html">https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sns-subscription.html</a></p>
+<p>Reference: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sns-subscription.html">https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sns-subscription.html</a></p>
 
 <ul>
+<li>Open your notepad / text editor, edit the file named  <code>GoldenAMIContinuousAssesment.yml</code>.</li>
 <li>Right under the previous resource, still inside the <code>Resources:</code> section do the following.</li>
 <li>Create a resource named <code>ContinuousAssessmentCompleteTopicSubscription</code> of type <code>AWS::SNS::Subscription</code>.</li>
 <li>In the <code>Properties</code> section create a <code>Endpoint</code> property and using the !GetAtt intrinsic function reference the <code>AnalyzeInspectorFindingsLambdaFunction</code> Arn you created before. Reference : <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-getatt.html">https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-getatt.html</a></li>
@@ -2744,19 +2748,19 @@ On the flip side however, it is indent sensitive, so make sure you specify the K
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1573126458"></script>
-    <script src="/js/perfect-scrollbar.min.js?1573126458"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1573126458"></script>
-    <script src="/js/jquery.sticky.js?1573126458"></script>
-    <script src="/js/featherlight.min.js?1573126458"></script>
-    <script src="/js/highlight.pack.js?1573126458"></script>
+    <script src="/js/clipboard.min.js?1573162801"></script>
+    <script src="/js/perfect-scrollbar.min.js?1573162801"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1573162801"></script>
+    <script src="/js/jquery.sticky.js?1573162801"></script>
+    <script src="/js/featherlight.min.js?1573162801"></script>
+    <script src="/js/highlight.pack.js?1573162801"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1573126458"></script>
-    <script src="/js/learn.js?1573126458"></script>
-    <script src="/js/hugo-learn.js?1573126458"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1573162801"></script>
+    <script src="/js/learn.js?1573162801"></script>
+    <script src="/js/hugo-learn.js?1573162801"></script>
 
-    <link href="/mermaid/mermaid.css?1573126458" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1573126458"></script>
+    <link href="/mermaid/mermaid.css?1573162801" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1573162801"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

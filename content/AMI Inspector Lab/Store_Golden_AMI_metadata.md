@@ -13,9 +13,9 @@ In this section we will walk through the process of construction the golden AMI 
 * The **UserData** section will contain our bootstrap instructions to install AWS Inspector Agent.
 
 ---
-**IMPORTANT NOTE:**  You must use a compatible InstanceType that is supported by your AMI, to find the compatible `InstanceType` for your golden AMI follow below steps. (But for simplicity you can use **t2.large** this has been tested). 
+**IMPORTANT NOTE:**  
 
-Each AMI has a list of compatible `InstanceTypes`. The `InstanceType` is a required parameter for launching an EC2 instance from a golden AMI. To find a compatible `InstanceType` for your golden AMI:
+You must use a compatible InstanceType that is supported by your AMI, to find the compatible `InstanceType` for your golden AMI follow below steps. Or just use t2.large for simplicity. To find a compatible `InstanceType` for your golden AMI:
 
 1. Sign in to the [AWS Management Console](https://console.aws.amazon.com/console/home) and navigate to the [EC2 console](https://console.aws.amazon.com/ec2/).
 2.  Choose **Launch Instance**. On the **Choose an Amazon Machine Image** (**AMI**) page, choose **My AMIs**.
@@ -118,24 +118,26 @@ In the following steps, we will construct an operating system specific, JSON-com
     Now that you have created the Stringified JSON of your golden AMI metadata, we will store this JSON document in a Systems Manager parameter. But instead of specifying the parameter store through the console, we will be using [AWS CloudFormation](https://aws.amazon.com/cloudformation/) to allow us to make this process repeatable in the future.. Why do we do this? Because we are AWSome ! Follow below steps to do so.
 
 7.  **Create an AWS Systems Manager parameter using CloudFormation**
-    
-    Open your notepad / text editor, create a file named `GoldenAMIParameters.yml`
-    
+
     ---
 
     **IMPORTANT NOTE:**
-    In the following steps you will be constructing your CloudFormation template in YML format.
-    YML format allows you to put comments in the template by placing in # in front of the line, so it's quite handy.
-    On the flip side however, it is indent sensitive, so make sure you specify the Key and values at the right level of the indentation.
 
-    Practice makes perfect, therefore when building CloudFormation template in this lab, we will be providing a high level instruction on how to construct the template, along with the reference guide in the public documentation. The intent is so that you could get used to exploring the public documentation and get acustomed with the syntax.
+    In the following steps you will need to construct your CloudFormation template in YAML format.
+    YAML format allows you to put comments in the template by placing in # in front of the line, so it's quite handy.
+    On the flip side however, it is indent sensitive, so make sure you specify the Key and values at the right level of indentation.
 
-    Having said that, if you are completely stuck, don't hesitate to get help from Lab instructor or, take a peek at the **SOLUTION** section if you have to.
+    Practice makes perfect, therefore when building the template, we will be providing a high level instruction on how to construct it.
+    We will also provide reference guide / example from public documentation to help you. 
+    The purpose of this is so that you could get used to exploring CloudFormation documentation and get acustomed with the syntax.
+
+    However if you are completely stuck, don't hesitate to get help from Lab instructor or take a peek at the **ARE YOU STUCK?** section to peek on the solution.
 
     ---
 
-    To find information about the properties of the resource refer to this doc: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ssm-parameter.html
-
+    Reference: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ssm-parameter.html
+    
+    * Open your notepad / text editor, create a file named `GoldenAMIParameters.yml`
     * Create a `Resource:` template section [Reference](https://docs.aws.amazon.com/en_pv/AWSCloudFormation/latest/UserGuide/template-anatomy.html) 
     * Create a resource under the section named `AMIMetadata` of type `AWS::SSM::Parameter`.
     * The name properties of the parameter store is to be called `ContinuousAssessmentInput`

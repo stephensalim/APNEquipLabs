@@ -12,20 +12,20 @@
     <title>8. Test Assesment :: APN Equip Labs</title>
 
     
-    <link href="/css/nucleus.css?1573126458" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1573126458" rel="stylesheet">
-    <link href="/css/hybrid.css?1573126458" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1573126458" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1573126458" rel="stylesheet">
-    <link href="/css/auto-complete.css?1573126458" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1573126458" rel="stylesheet">
-    <link href="/css/theme.css?1573126458" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1573126458" rel="stylesheet">
+    <link href="/css/nucleus.css?1573162801" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1573162801" rel="stylesheet">
+    <link href="/css/hybrid.css?1573162801" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1573162801" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1573162801" rel="stylesheet">
+    <link href="/css/auto-complete.css?1573162801" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1573162801" rel="stylesheet">
+    <link href="/css/theme.css?1573162801" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1573162801" rel="stylesheet">
     
-      <link href="/css/theme-darkblue.css?1573126458" rel="stylesheet">
+      <link href="/css/theme-darkblue.css?1573162801" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1573126458"></script>
+    <script src="/js/jquery-3.3.1.min.js?1573162801"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -51,14 +51,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1573126458"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1573126458"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1573162801"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1573162801"></script>
 <script type="text/javascript">
     
         var baseurl = "http:\/\/example.org\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1573126458"></script>
+<script type="text/javascript" src="/js/search.js?1573162801"></script>
 
     
   </div>
@@ -1596,17 +1596,23 @@ In this test, you trigger a security assessment and monitor it.</p>
 
 <p>For subsequent assessments, the <code>StartContinuousAssessment</code> function reuses the target and the template created during the first run of <code>StartContinuousAssessment</code> function.</p>
 
-<p><strong>Note:</strong> Amazon Inspector can start an assessment only after it finds at least one running Amazon Inspector agent. To allow EC2 instances to boot and the Amazon inspector agent to start, the Lambda function waits four minutes. Because the assessment runs for approximately one hour and boot time for EC2 instances typically takes a few minutes, all Amazon Inspector agents start before the assessment ends.</p>
+<hr />
 
-<p>The EC2 instance is successfully launched you should see below message in your Lambda execution indicating that the process is complete.</p>
+<p><strong>Note:</strong></p>
+
+<p>Amazon Inspector can start an assessment only after it finds at least one running Amazon Inspector agent. To allow EC2 instances to boot and the Amazon inspector agent to start, the Lambda function waits four minutes. Because the assessment runs for approximately one hour and boot time for EC2 instances typically takes a few minutes, all Amazon Inspector agents start before the assessment ends.</p>
+
+<hr />
+
+<p>Once the EC2 instance is successfully launched you should see below message in your Lambda execution indicating that the process is complete.</p>
 
 <p><img src="https://d2908q01vomqb2.cloudfront.net/22d200f8670dbdb3e253a90eee5098477c95c23d/2017/12/15/KW_1_1217.png" alt="Message showing the function has run successfully" title="Message showing the function has run successfully" /></p>
 
-<p>The next thing that will happen is below :</p>
+<p>The next thing that will happen are below :</p>
 
 <p><img src="/AMI Inspector Lab/images/Testing02.png" alt="" /></p></li>
 
-<li><p>After the Lambda function completes the assessment, Amazon Inspector publishes an assessment-completion notification message to an <a href="https://aws.amazon.com/sns/">Amazon SNS</a> topic called <code>ContinuousAssessmentCompleteTopic</code>. SNS uses <em>topics</em>, which are communication channels for sending messages and subscribing to notifications.</p>
+<li><p>After the Lambda function completes the assessment, Amazon Inspector publishes an assessment-completion notification message to an <a href="https://aws.amazon.com/sns/">Amazon SNS</a> topic called <code>ContinuousAssessmentCompleteTopic</code>. SNS uses <em>topics</em>, which are communication channels for sending messages and subscribing to notifications. This includes the <code>AnalyzeInspectorFindings</code> and the email address you specified.</p>
 
 <p>Amazon Inspector agents collect behavior and configuration data, and pass it to Amazon Inspector. Amazon Inspector analyzes the data and generates <a href="http://docs.aws.amazon.com/inspector/latest/userguide/inspector_findings.html">Amazon Inspector findings</a>, which are possible security findings you may need to address.</p>
 
@@ -1614,9 +1620,12 @@ In this test, you trigger a security assessment and monitor it.</p>
 
 <ul>
 <li>Sign in to the <a href="https://console.aws.amazon.com/console/home">AWS Management Console</a> and navigate to the <a href="https://console.aws.amazon.com/inspector/">Amazon Inspector console</a>.</li>
+<li>On <strong>Dashboard</strong> under <strong>Recent Assessment Runs</strong>, you will see an entry with the status, <strong>Collecting Data</strong>. This status indicates that Amazon Inspector agents are collecting data from instances running your golden AMIs. The agents collect data for an hour and then Amazon Inspector analyzes the collected data.</li>
+</ul>
 
-<li><p>On <strong>Dashboard</strong> under <strong>Recent Assessment Runs</strong>, you will see an entry with the status, <strong>Collecting Data</strong>. This status indicates that Amazon Inspector agents are collecting data from instances running your golden AMIs. The agents collect data for an hour and then Amazon Inspector analyzes the collected data.</p></li>
+<p><img src="/AMI Inspector Lab/images/InspectorCollectingData.png" alt="" /></p>
 
+<ul>
 <li><p>After Amazon Inspector completes the assessment, the status in the console changes to <strong>Analysis complete</strong>. Amazon Inspector then publishes an SNS message that triggers the <code>AnalyzeInspectorFindings</code> Lambda function. When <code>AnalyzeInspectorFindings</code> publishes results, you will receive an email containing consolidated assessment results. You also will be able to see the findings.</p></li>
 
 <li><p>To see the findings in Amazon Inspector’s <strong>Findings</strong> section:</p>
@@ -2747,19 +2756,19 @@ In this test, you trigger a security assessment and monitor it.</p>
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1573126458"></script>
-    <script src="/js/perfect-scrollbar.min.js?1573126458"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1573126458"></script>
-    <script src="/js/jquery.sticky.js?1573126458"></script>
-    <script src="/js/featherlight.min.js?1573126458"></script>
-    <script src="/js/highlight.pack.js?1573126458"></script>
+    <script src="/js/clipboard.min.js?1573162801"></script>
+    <script src="/js/perfect-scrollbar.min.js?1573162801"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1573162801"></script>
+    <script src="/js/jquery.sticky.js?1573162801"></script>
+    <script src="/js/featherlight.min.js?1573162801"></script>
+    <script src="/js/highlight.pack.js?1573162801"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1573126458"></script>
-    <script src="/js/learn.js?1573126458"></script>
-    <script src="/js/hugo-learn.js?1573126458"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1573162801"></script>
+    <script src="/js/learn.js?1573162801"></script>
+    <script src="/js/hugo-learn.js?1573162801"></script>
 
-    <link href="/mermaid/mermaid.css?1573126458" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1573126458"></script>
+    <link href="/mermaid/mermaid.css?1573162801" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1573162801"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

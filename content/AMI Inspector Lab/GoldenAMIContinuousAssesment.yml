@@ -1,3 +1,7 @@
+Parameters: 
+  Email: 
+    Type: String
+    
 Resources:
   StartContinuousAssessmentLambdaRole: 
     Properties: 
@@ -228,6 +232,9 @@ Resources:
     Type: "AWS::SNS::Topic"
     Properties:
       TopicName: ContinuousAssessmentCompleteTopic
+      Subscription:
+        - Endpoint: !Ref Email
+          Protocol: "email"
   ContinuousAssessmentCompleteTopicPolicy: 
     Properties: 
       PolicyDocument: 
@@ -248,3 +255,7 @@ Resources:
     Type: "AWS::SNS::Topic"
     Properties:
       TopicName: ContinuousAssessmentResultsTopic
+      Subscription:
+        - Endpoint: !Ref Email
+          Protocol: "email"
+

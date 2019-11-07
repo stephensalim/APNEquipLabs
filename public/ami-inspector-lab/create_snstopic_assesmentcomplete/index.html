@@ -12,20 +12,20 @@
     <title>5. Create SNS Topic  :: APN Equip Labs</title>
 
     
-    <link href="/css/nucleus.css?1573126458" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1573126458" rel="stylesheet">
-    <link href="/css/hybrid.css?1573126458" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1573126458" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1573126458" rel="stylesheet">
-    <link href="/css/auto-complete.css?1573126458" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1573126458" rel="stylesheet">
-    <link href="/css/theme.css?1573126458" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1573126458" rel="stylesheet">
+    <link href="/css/nucleus.css?1573162801" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1573162801" rel="stylesheet">
+    <link href="/css/hybrid.css?1573162801" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1573162801" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1573162801" rel="stylesheet">
+    <link href="/css/auto-complete.css?1573162801" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1573162801" rel="stylesheet">
+    <link href="/css/theme.css?1573162801" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1573162801" rel="stylesheet">
     
-      <link href="/css/theme-darkblue.css?1573126458" rel="stylesheet">
+      <link href="/css/theme-darkblue.css?1573162801" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1573126458"></script>
+    <script src="/js/jquery-3.3.1.min.js?1573162801"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -51,14 +51,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1573126458"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1573126458"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1573162801"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1573162801"></script>
 <script type="text/javascript">
     
         var baseurl = "http:\/\/example.org\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1573126458"></script>
+<script type="text/javascript" src="/js/search.js?1573162801"></script>
 
     
   </div>
@@ -1544,29 +1544,36 @@ In this solutin we will be levaraging a number of <a href="https://docs.aws.amaz
 <ol>
 <li><p><strong>Creating the SNS Topic for StartContinousAssesment Completion</strong></p>
 
-<p>Open your notepad / text editor, edit the file named  <code>GoldenAMIContinuousAssesment.yml</code>.</p>
+<hr />
+
+<p><strong>IMPORTANT NOTE:</strong></p>
+
+<p>In the following steps you will need to construct your CloudFormation template in YAML format.
+YAML format allows you to put comments in the template by placing in # in front of the line, so it&rsquo;s quite handy.
+On the flip side however, it is indent sensitive, so make sure you specify the Key and values at the right level of indentation.</p>
+
+<p>Practice makes perfect, therefore when building the template, we will be providing a high level instruction on how to construct it.
+We will also provide reference guide / example from public documentation to help you.
+The purpose of this is so that you could get used to exploring CloudFormation documentation and get acustomed with the syntax.</p>
+
+<p>However if you are completely stuck, don&rsquo;t hesitate to get help from Lab instructor or take a peek at the <strong>ARE YOU STUCK?</strong> section to peek on the solution.</p>
 
 <hr />
 
-<p><strong>IMPORTANT NOTE:</strong>
-In the following steps you will be constructing your CloudFormation template in YML format.
-YML format allows you to put comments in the template by placing in # in front of the line, so it&rsquo;s quite handy.
-On the flip side however, it is indent sensitive, so make sure you specify the Key and values at the right level of the indentation.</p>
+<p>Reference:</p>
 
-<p>Practice makes perfect, therefore when building CloudFormation template in this lab, we will be providing a high level instruction on how to construct the template, along with the reference guide in the public documentation. The intent is so that you could get used to exploring the public documentation and get acustomed with the syntax.</p>
-
-<p>Having said that, if you are completely stuck, don&rsquo;t hesitate to get help from Lab instructor or, take a peek at the <strong>SOLUTION</strong> section if you have to.</p>
-
-<hr />
-
-<p>To find information about the properties of the resource refer to this doc:
-<a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sns-topic.html">https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sns-topic.html</a>
+<p><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sns-topic.html">https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sns-topic.html</a>
 <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sns-policy.html">https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sns-policy.html</a></p>
 
 <ul>
+<li>Open your notepad / text editor, edit the file named  <code>GoldenAMIContinuousAssesment.yml</code>.</li>
+<li>Create a <code>Parameters</code> section, and under it create a new parameter named <code>Email</code> with type <code>String</code>.</li>
 <li>Right under the previous resource, still inside the <code>Resources:</code> section do the following.</li>
 <li>Create a resource named <code>ContinuousAssessmentCompleteTopic</code> of type <code>AWS::SNS::Topic</code>.</li>
-<li>In the <code>Properties</code> section create a <code>TopicName</code> and put in <code>ContinuousAssessmentCompleteTopic</code> as it&rsquo;s value</li>
+<li>In the <code>Properties</code> section create a <code>TopicName</code> and put in <code>ContinuousAssessmentCompleteTopic</code> as it&rsquo;s value.</li>
+<li>In the <code>Properties</code> section create a <code>Subscription</code> and create a Item with key named <code>Protocol</code> and <code>email</code> as it&rsquo;s value.</li>
+<li>Under the same Item, create a new key called <code>Endpoint</code> and reference the <code>Email</code> Parameters you crated earlier in the step using !Ref intrinsic function.
+Reference : <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-ref.html">https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-ref.html</a></li>
 <li>Create another resource named <code>ContinuousAssessmentCompleteTopicPolicy</code> of type <code>AWS::SNS::TopicPolicy</code>.<br /></li>
 <li>In the <code>Properties</code> section create a <code>PolicyDocument</code> and allow service <code>inspector.amazonaws.com</code> to do action <code>sns:Publish</code> on all resource.
 Reference : <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sns-policy.html">https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sns-policy.html</a></li>
@@ -1580,10 +1587,18 @@ Reference : <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGu
 
 <p><strong>READ &gt;&gt;</strong> Below snippet must be specified within <code>Resources:</code> section of the cloudformation template</p>
 
+<pre><code>Parameters: 
+  Email: 
+    Type: String
+</code></pre>
+
 <pre><code>  ContinuousAssessmentCompleteTopic: 
     Type: &quot;AWS::SNS::Topic&quot;
     Properties:
       TopicName: ContinuousAssessmentCompleteTopic
+      Subscription:
+        - Endpoint: !Ref Email
+          Protocol: &quot;email&quot;
   ContinuousAssessmentCompleteTopicPolicy: 
     Properties: 
       PolicyDocument: 
@@ -1606,28 +1621,33 @@ Reference : <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGu
 
 <li><p><strong>Creating the SNS Topic for AnalyzeInspectorFindings Result.</strong></p>
 
-<p>Open your notepad / text editor, edit the file named  <code>GoldenAMIContinuousAssesment.yml</code>.</p>
+<hr />
+
+<p><strong>IMPORTANT NOTE:</strong></p>
+
+<p>In the following steps you will need to construct your CloudFormation template in YAML format.
+YAML format allows you to put comments in the template by placing in # in front of the line, so it&rsquo;s quite handy.
+On the flip side however, it is indent sensitive, so make sure you specify the Key and values at the right level of indentation.</p>
+
+<p>Practice makes perfect, therefore when building the template, we will be providing a high level instruction on how to construct it.
+We will also provide reference guide / example from public documentation to help you.
+The purpose of this is so that you could get used to exploring CloudFormation documentation and get acustomed with the syntax.</p>
+
+<p>However if you are completely stuck, don&rsquo;t hesitate to get help from Lab instructor or take a peek at the <strong>ARE YOU STUCK?</strong> section to peek on the solution.</p>
 
 <hr />
 
-<p><strong>IMPORTANT NOTE:</strong>
-In the following steps you will be constructing your CloudFormation template in YML format.
-YML format allows you to put comments in the template by placing in # in front of the line, so it&rsquo;s quite handy.
-On the flip side however, it is indent sensitive, so make sure you specify the Key and values at the right level of the indentation.</p>
-
-<p>Practice makes perfect, therefore when building CloudFormation template in this lab, we will be providing a high level instruction on how to construct the template, along with the reference guide in the public documentation. The intent is so that you could get used to exploring the public documentation and get acustomed with the syntax.</p>
-
-<p>Having said that, if you are completely stuck, don&rsquo;t hesitate to get help from Lab instructor or, take a peek at the <strong>SOLUTION</strong> section if you have to.</p>
-
-<hr />
-
-<p>To find information about the properties of the resource refer to this doc:
+<p>Reference:
 <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sns-topic.html">https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sns-topic.html</a></p>
 
 <ul>
+<li>Open your notepad / text editor, edit the file named  <code>GoldenAMIContinuousAssesment.yml</code>.</li>
 <li>Right under the previous resource, still inside the <code>Resources:</code> section do the following.</li>
 <li>Create a resource named <code>ContinuousAssessmentResultsTopic</code> of type <code>AWS::SNS::Topic</code>.</li>
 <li>In the <code>Properties</code> section create a <code>TopicName</code> and put in <code>ContinuousAssessmentResultsTopic</code> as it&rsquo;s value</li>
+<li>In the <code>Properties</code> section create a <code>Subscription</code> and create a Item with key named <code>Protocol</code> and <code>email</code> as it&rsquo;s value.</li>
+<li>Under the same Item, create a new key called <code>Endpoint</code> and reference the <code>Email</code> Parameters you crated earlier in the previous step using !Ref intrinsic function.
+Reference : <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-ref.html">https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-ref.html</a></li>
 </ul>
 
 <p><details><summary> <strong>ARE YOU STUCK ? :(</strong> - It&rsquo;s OK CLICK HERE to see the solution</summary></p>
@@ -1638,17 +1658,32 @@ On the flip side however, it is indent sensitive, so make sure you specify the K
     Type: &quot;AWS::SNS::Topic&quot;
     Properties:
       TopicName: ContinuousAssessmentResultsTopic
+      Subscription:
+        - Endpoint: !Ref Email
+          Protocol: &quot;email&quot;
 </code></pre>
 
 <p></details></p></li>
 
 <li><p><strong>Deploys the CloudFormation Template</strong></p>
 
-<p>Now that you&rsquo;ve construct the template, it&rsquo;s time to update the stack, do do that please follow the <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-get-template.html#using-cfn-updating-stacks-get-stack.CON">Update a Stack&rsquo;s Template (Console)</a> guide to create your stack.</p>
+<p>Now that you&rsquo;ve construct the template, it&rsquo;s time to update the stack.</p>
 
-<p>Specify Stack <code>GoldenAMIContinuousAssesment</code> as the stack name for simplicity.</p>
+<ul>
+<li>To do that please follow the <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-get-template.html#using-cfn-updating-stacks-get-stack.CON">Update a Stack&rsquo;s Template (Console)</a> guide to create your stack.</li>
+<li>Specify Stack <code>GoldenAMIContinuousAssesment</code> as the stack name for simplicity.</li>
+<li>Specify your email address as the Email parameter in the wizard.
+<br /></li>
+</ul>
 
-<p>Once you&rsquo;ve launched your stack review the <code>Resources</code> Tab of the launch stack to identify the resouce it&rsquo;s created. You should see an entry with in Logical ID and in Physical ID of the SNS Topic.</p></li>
+<p>Once you&rsquo;ve launched your stack :</p>
+
+<ul>
+<li>Review the <code>Resources</code> Tab of the launch stack to identify the resouce it&rsquo;s created.</li>
+<li>You should see an entry with in Logical ID and in Physical ID of the SNS Topic.</li>
+<li>Check your email address you specified before, you should see 2 email subscription confirmation request from the 2 SNS Topics.</li>
+<li>Click on the link to confirm them.</li>
+</ul></li>
 </ol>
 
 <p>Let&rsquo;s now move to creating our Lambda Function.</p>
@@ -2758,19 +2793,19 @@ On the flip side however, it is indent sensitive, so make sure you specify the K
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1573126458"></script>
-    <script src="/js/perfect-scrollbar.min.js?1573126458"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1573126458"></script>
-    <script src="/js/jquery.sticky.js?1573126458"></script>
-    <script src="/js/featherlight.min.js?1573126458"></script>
-    <script src="/js/highlight.pack.js?1573126458"></script>
+    <script src="/js/clipboard.min.js?1573162801"></script>
+    <script src="/js/perfect-scrollbar.min.js?1573162801"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1573162801"></script>
+    <script src="/js/jquery.sticky.js?1573162801"></script>
+    <script src="/js/featherlight.min.js?1573162801"></script>
+    <script src="/js/highlight.pack.js?1573162801"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1573126458"></script>
-    <script src="/js/learn.js?1573126458"></script>
-    <script src="/js/hugo-learn.js?1573126458"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1573162801"></script>
+    <script src="/js/learn.js?1573162801"></script>
+    <script src="/js/hugo-learn.js?1573162801"></script>
 
-    <link href="/mermaid/mermaid.css?1573126458" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1573126458"></script>
+    <link href="/mermaid/mermaid.css?1573162801" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1573162801"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

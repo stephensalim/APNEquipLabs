@@ -580,8 +580,8 @@ First, you will need to terminate the EC2 instances that are running in the VPC.
       <guid>http://example.org/ami-inspector-lab/connect_analyzerlambda_sns/</guid>
       <description>Now that we have created our Lambda Functions the next thing to do is to connect the ContinuousAssesmentCompleteTopic SNS Topic to the AnalyzeInspectorFindings Lambda function, levaraging the subscribtion mechanism. This is to basically allow AnalyzeInspectorFindings to be triggered once Amazon Inspector completes inspection and send the message notification
  Create Lambda Permission to allow SNS service to invoke..
-Open your notepad / text editor, edit the file named GoldenAMIContinuousAssesment.yml.
-IMPORTANT NOTE: In the following steps you will be constructing your CloudFormation template in YML format.</description>
+IMPORTANT NOTE:
+In the following steps you will need to construct your CloudFormation template in YAML format.</description>
     </item>
     
     <item>
@@ -651,8 +651,8 @@ If this is the first time you enabled AWS Config, your console will direct you t
       <guid>http://example.org/ami-inspector-lab/scheduling_the_continuation/</guid>
       <description>This will be the last piece of the puzzle. In this part of the Lab we will be extending our CloudFormation template to add a CloudWatch Events scheduler to allow our Lambda Functions to continusously asses Golden AMIs.
  Set up a CloudWatch Events rule for triggering continuous golden AMI vulnerability assessments
-Open your notepad / text editor, create a file named GoldenAMIContinuousAssesment.yml.
-IMPORTANT NOTE: In the following steps you will be constructing your CloudFormation template in YML format.</description>
+IMPORTANT NOTE:
+In the following steps you will need to construct your CloudFormation template in YAML format. YAML format allows you to put comments in the template by placing in # in front of the line, so it&amp;rsquo;s quite handy.</description>
     </item>
     
     <item>

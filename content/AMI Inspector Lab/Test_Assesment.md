@@ -56,17 +56,23 @@ In this test, you trigger a security assessment and monitor it.
 
         For subsequent assessments, the `StartContinuousAssessment` function reuses the target and the template created during the first run of `StartContinuousAssessment` function.
 
-        **Note:** Amazon Inspector can start an assessment only after it finds at least one running Amazon Inspector agent. To allow EC2 instances to boot and the Amazon inspector agent to start, the Lambda function waits four minutes. Because the assessment runs for approximately one hour and boot time for EC2 instances typically takes a few minutes, all Amazon Inspector agents start before the assessment ends.
+        ---
 
-        The EC2 instance is successfully launched you should see below message in your Lambda execution indicating that the process is complete.
+        **Note:** 
+        
+        Amazon Inspector can start an assessment only after it finds at least one running Amazon Inspector agent. To allow EC2 instances to boot and the Amazon inspector agent to start, the Lambda function waits four minutes. Because the assessment runs for approximately one hour and boot time for EC2 instances typically takes a few minutes, all Amazon Inspector agents start before the assessment ends.
+
+        ---
+
+        Once the EC2 instance is successfully launched you should see below message in your Lambda execution indicating that the process is complete.
 
         ![Message showing the function has run successfully](https://d2908q01vomqb2.cloudfront.net/22d200f8670dbdb3e253a90eee5098477c95c23d/2017/12/15/KW_1_1217.png "Message showing the function has run successfully")
 
-        The next thing that will happen is below :
+        The next thing that will happen are below :
 
         ![](/AMI Inspector Lab/images/Testing02.png)
 
-    5. After the Lambda function completes the assessment, Amazon Inspector publishes an assessment-completion notification message to an [Amazon SNS](https://aws.amazon.com/sns/) topic called `ContinuousAssessmentCompleteTopic`. SNS uses _topics_, which are communication channels for sending messages and subscribing to notifications.
+    5. After the Lambda function completes the assessment, Amazon Inspector publishes an assessment-completion notification message to an [Amazon SNS](https://aws.amazon.com/sns/) topic called `ContinuousAssessmentCompleteTopic`. SNS uses _topics_, which are communication channels for sending messages and subscribing to notifications. This includes the `AnalyzeInspectorFindings` and the email address you specified.
 
         Amazon Inspector agents collect behavior and configuration data, and pass it to Amazon Inspector. Amazon Inspector analyzes the data and generates [Amazon Inspector findings](http://docs.aws.amazon.com/inspector/latest/userguide/inspector_findings.html), which are possible security findings you may need to address.
 
@@ -74,7 +80,9 @@ In this test, you trigger a security assessment and monitor it.
 
         * Sign in to the [AWS Management Console](https://console.aws.amazon.com/console/home) and navigate to the [Amazon Inspector console](https://console.aws.amazon.com/inspector/).
         * On **Dashboard** under **Recent Assessment Runs**, you will see an entry with the status, **Collecting Data**. This status indicates that Amazon Inspector agents are collecting data from instances running your golden AMIs. The agents collect data for an hour and then Amazon Inspector analyzes the collected data.
-        
+
+        ![](/AMI Inspector Lab/images/InspectorCollectingData.png)
+    
         * After Amazon Inspector completes the assessment, the status in the console changes to **Analysis complete**. Amazon Inspector then publishes an SNS message that triggers the `AnalyzeInspectorFindings` Lambda function. When `AnalyzeInspectorFindings` publishes results, you will receive an email containing consolidated assessment results. You also will be able to see the findings.
 
         * To see the findings in Amazon Inspector’s **Findings** section:

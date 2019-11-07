@@ -12,25 +12,27 @@ Not only that, we will also specify this inside our CloudFormation template, so 
 
 ![](/AMI Inspector Lab/images/ContinuousAssesmentLambdaRole_Full.png)
 
-1. **Creating Lambda Execution Role for StartContinuousAssessment Function**
-
-    Open your notepad / text editor, create a file named `GoldenAMIContinuousAssesment.yml`.
+1. **Creating IAM Role for StartContinuousAssessment Function execution**
 
     ---
 
     **IMPORTANT NOTE:**
-    In the following steps you will be constructing your CloudFormation template in YML format.
-    YML format allows you to put comments in the template by placing in # in front of the line, so it's quite handy.
-    On the flip side however, it is indent sensitive, so make sure you specify the Key and values at the right level of the indentation.
 
-    Practice makes perfect, therefore when building CloudFormation template in this lab, we will be providing a high level instruction on how to construct the template, along with the reference guide in the public documentation. The intent is so that you could get used to exploring the public documentation and get acustomed with the syntax.
+    In the following steps you will need to construct your CloudFormation template in YAML format.
+    YAML format allows you to put comments in the template by placing in # in front of the line, so it's quite handy.
+    On the flip side however, it is indent sensitive, so make sure you specify the Key and values at the right level of indentation.
 
-    Having said that, if you are completely stuck, don't hesitate to get help from Lab instructor or, take a peek at the **SOLUTION** section if you have to.
+    Practice makes perfect, therefore when building the template, we will be providing a high level instruction on how to construct it.
+    We will also provide reference guide / example from public documentation to help you. 
+    The purpose of this is so that you could get used to exploring CloudFormation documentation and get acustomed with the syntax.
+
+    However if you are completely stuck, don't hesitate to get help from Lab instructor or take a peek at the **ARE YOU STUCK?** section to peek on the solution.
 
     ---
 
-    To find information about the properties of the resource refer to this doc: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html
-    
+    Reference: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html
+
+    * Open your notepad / text editor, create a file named `GoldenAMIContinuousAssesment.yml`.
     * Create a `Resource:` template section [Reference](https://docs.aws.amazon.com/en_pv/AWSCloudFormation/latest/UserGuide/template-anatomy.html) 
     * Create a resource named `StartContinuousAssessmentLambdaRole` of type `AWS::IAM::Role`.
     * In the `Properties` section add `ManagedPolicyArns` below to allow the lambda function to do basic execution and have access to Amazon Inspector APIs.
@@ -87,23 +89,25 @@ Not only that, we will also specify this inside our CloudFormation template, so 
 
 2. **Creating Lambda Execution Role for AnalyzeInspectorFindings**
 
-    Open your notepad / text editor, edit the file named `GoldenAMIContinuousAssesment.yml`
-
     ---
 
     **IMPORTANT NOTE:**
-    In the following steps you will be constructing your CloudFormation template in YML format.
-    YML format allows you to put comments in the template by placing in # in front of the line, so it's quite handy.
-    On the flip side however, it is indent sensitive, so make sure you specify the Key and values at the right level of the indentation.
 
-    Practice makes perfect, therefore when building CloudFormation template in this lab, we will be providing a high level instruction on how to construct the template, along with the reference guide in the public documentation. The intent is so that you could get used to exploring the public documentation and get acustomed with the syntax.
+    In the following steps you will need to construct your CloudFormation template in YAML format.
+    YAML format allows you to put comments in the template by placing in # in front of the line, so it's quite handy.
+    On the flip side however, it is indent sensitive, so make sure you specify the Key and values at the right level of indentation.
 
-    Having said that, if you are completely stuck, don't hesitate to get help from Lab instructor or, take a peek at the **SOLUTION** section if you have to.
+    Practice makes perfect, therefore when building the template, we will be providing a high level instruction on how to construct it.
+    We will also provide reference guide / example from public documentation to help you. 
+    The purpose of this is so that you could get used to exploring CloudFormation documentation and get acustomed with the syntax.
+
+    However if you are completely stuck, don't hesitate to get help from Lab instructor or take a peek at the **ARE YOU STUCK?** section to peek on the solution.
 
     ---
 
-    To find information about the properties of the resource refer to this doc: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html
-
+    Reference: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html
+    
+  * Open your notepad / text editor, edit the file named `GoldenAMIContinuousAssesment.yml`
   * Right under the previous resource, still inside the `Resources:` section do the following.
   * Create a resource named `AnalyzeInspectorFindingsLambdaRole` of type `AWS::IAM::Role`.
   * In the `Properties` section add `ManagedPolicyArns` below to allow the lambda function to do basic execution and have access to Amazon Inspector APIs 
@@ -122,7 +126,7 @@ Not only that, we will also specify this inside our CloudFormation template, so 
 
     **READ >>** Below snippet must be specified within `Resources:` section of the cloudformation template.
 
-    
+
     ```
       AnalyzeInspectorFindingsLambdaRole: 
         Properties:

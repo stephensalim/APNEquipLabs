@@ -13,28 +13,35 @@ Let's follow below steps.
 
 1. **Creating the SNS Topic for StartContinousAssesment Completion**
 
-    Open your notepad / text editor, edit the file named  `GoldenAMIContinuousAssesment.yml`.
-
     ---
 
     **IMPORTANT NOTE:**
-    In the following steps you will be constructing your CloudFormation template in YML format.
-    YML format allows you to put comments in the template by placing in # in front of the line, so it's quite handy.
-    On the flip side however, it is indent sensitive, so make sure you specify the Key and values at the right level of the indentation.
 
-    Practice makes perfect, therefore when building CloudFormation template in this lab, we will be providing a high level instruction on how to construct the template, along with the reference guide in the public documentation. The intent is so that you could get used to exploring the public documentation and get acustomed with the syntax.
+    In the following steps you will need to construct your CloudFormation template in YAML format.
+    YAML format allows you to put comments in the template by placing in # in front of the line, so it's quite handy.
+    On the flip side however, it is indent sensitive, so make sure you specify the Key and values at the right level of indentation.
 
-    Having said that, if you are completely stuck, don't hesitate to get help from Lab instructor or, take a peek at the **SOLUTION** section if you have to.
+    Practice makes perfect, therefore when building the template, we will be providing a high level instruction on how to construct it.
+    We will also provide reference guide / example from public documentation to help you. 
+    The purpose of this is so that you could get used to exploring CloudFormation documentation and get acustomed with the syntax.
+
+    However if you are completely stuck, don't hesitate to get help from Lab instructor or take a peek at the **ARE YOU STUCK?** section to peek on the solution.
 
     ---
 
-    To find information about the properties of the resource refer to this doc: 
+    Reference: 
+
     https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sns-topic.html
     https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sns-policy.html
 
+    * Open your notepad / text editor, edit the file named  `GoldenAMIContinuousAssesment.yml`.
+    * Create a `Parameters` section, and under it create a new parameter named `Email` with type `String`.
     * Right under the previous resource, still inside the `Resources:` section do the following.
     * Create a resource named `ContinuousAssessmentCompleteTopic` of type `AWS::SNS::Topic`.
-    * In the `Properties` section create a `TopicName` and put in `ContinuousAssessmentCompleteTopic` as it's value
+    * In the `Properties` section create a `TopicName` and put in `ContinuousAssessmentCompleteTopic` as it's value.
+    * In the `Properties` section create a `Subscription` and create a Item with key named `Protocol` and `email` as it's value.
+    * Under the same Item, create a new key called `Endpoint` and reference the `Email` Parameters you crated earlier in the step using !Ref intrinsic function.
+      Reference : https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-ref.html
     * Create another resource named `ContinuousAssessmentCompleteTopicPolicy` of type `AWS::SNS::TopicPolicy`.  
     * In the `Properties` section create a `PolicyDocument` and allow service `inspector.amazonaws.com` to do action `sns:Publish` on all resource.
       Reference : https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sns-policy.html
@@ -46,12 +53,21 @@ Let's follow below steps.
     <details><summary> **ARE YOU STUCK ? :(** - It's OK CLICK HERE to see the solution</summary>
 
     **READ >>** Below snippet must be specified within `Resources:` section of the cloudformation template
+    
+    ```
+    Parameters: 
+      Email: 
+        Type: String
+    ```
 
     ```
       ContinuousAssessmentCompleteTopic: 
         Type: "AWS::SNS::Topic"
         Properties:
           TopicName: ContinuousAssessmentCompleteTopic
+          Subscription:
+            - Endpoint: !Ref Email
+              Protocol: "email"
       ContinuousAssessmentCompleteTopicPolicy: 
         Properties: 
           PolicyDocument: 
@@ -69,31 +85,37 @@ Let's follow below steps.
             - !Ref "ContinuousAssessmentCompleteTopic"
         Type: "AWS::SNS::TopicPolicy"
     ```
+
     </details>
 
 2. **Creating the SNS Topic for AnalyzeInspectorFindings Result.**
 
-    Open your notepad / text editor, edit the file named  `GoldenAMIContinuousAssesment.yml`.
-
     ---
 
     **IMPORTANT NOTE:**
-    In the following steps you will be constructing your CloudFormation template in YML format.
-    YML format allows you to put comments in the template by placing in # in front of the line, so it's quite handy.
-    On the flip side however, it is indent sensitive, so make sure you specify the Key and values at the right level of the indentation.
 
-    Practice makes perfect, therefore when building CloudFormation template in this lab, we will be providing a high level instruction on how to construct the template, along with the reference guide in the public documentation. The intent is so that you could get used to exploring the public documentation and get acustomed with the syntax.
+    In the following steps you will need to construct your CloudFormation template in YAML format.
+    YAML format allows you to put comments in the template by placing in # in front of the line, so it's quite handy.
+    On the flip side however, it is indent sensitive, so make sure you specify the Key and values at the right level of indentation.
 
-    Having said that, if you are completely stuck, don't hesitate to get help from Lab instructor or, take a peek at the **SOLUTION** section if you have to.
+    Practice makes perfect, therefore when building the template, we will be providing a high level instruction on how to construct it.
+    We will also provide reference guide / example from public documentation to help you. 
+    The purpose of this is so that you could get used to exploring CloudFormation documentation and get acustomed with the syntax.
+
+    However if you are completely stuck, don't hesitate to get help from Lab instructor or take a peek at the **ARE YOU STUCK?** section to peek on the solution.
 
     ---
 
-    To find information about the properties of the resource refer to this doc: 
+    Reference: 
     https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sns-topic.html
 
+    * Open your notepad / text editor, edit the file named  `GoldenAMIContinuousAssesment.yml`.
     * Right under the previous resource, still inside the `Resources:` section do the following.
     * Create a resource named `ContinuousAssessmentResultsTopic` of type `AWS::SNS::Topic`.
     * In the `Properties` section create a `TopicName` and put in `ContinuousAssessmentResultsTopic` as it's value
+    * In the `Properties` section create a `Subscription` and create a Item with key named `Protocol` and `email` as it's value.
+    * Under the same Item, create a new key called `Endpoint` and reference the `Email` Parameters you crated earlier in the previous step using !Ref intrinsic function.
+      Reference : https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-ref.html
 
     <details><summary> **ARE YOU STUCK ? :(** - It's OK CLICK HERE to see the solution</summary>
 
@@ -104,15 +126,25 @@ Let's follow below steps.
         Type: "AWS::SNS::Topic"
         Properties:
           TopicName: ContinuousAssessmentResultsTopic
+          Subscription:
+            - Endpoint: !Ref Email
+              Protocol: "email"
     ```
     </details>
 
 3.  **Deploys the CloudFormation Template**
 
-    Now that you've construct the template, it's time to update the stack, do do that please follow the [Update a Stack's Template (Console)](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-get-template.html#using-cfn-updating-stacks-get-stack.CON) guide to create your stack.
+    Now that you've construct the template, it's time to update the stack. 
+    
+    * To do that please follow the [Update a Stack's Template (Console)](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-get-template.html#using-cfn-updating-stacks-get-stack.CON) guide to create your stack.
+    * Specify Stack `GoldenAMIContinuousAssesment` as the stack name for simplicity.
+    * Specify your email address as the Email parameter in the wizard.
+    
+    Once you've launched your stack :
 
-    Specify Stack `GoldenAMIContinuousAssesment` as the stack name for simplicity.
-
-    Once you've launched your stack review the `Resources` Tab of the launch stack to identify the resouce it's created. You should see an entry with in Logical ID and in Physical ID of the SNS Topic.
+    * Review the `Resources` Tab of the launch stack to identify the resouce it's created. 
+    * You should see an entry with in Logical ID and in Physical ID of the SNS Topic.
+    * Check your email address you specified before, you should see 2 email subscription confirmation request from the 2 SNS Topics. 
+    * Click on the link to confirm them.
 
 Let's now move to creating our Lambda Function.

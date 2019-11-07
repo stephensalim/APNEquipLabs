@@ -10,23 +10,25 @@ Now that we have created our Lambda Functions the next thing to do is to connect
 
 1. **Create Lambda Permission to allow SNS service to invoke.**.
 
-    Open your notepad / text editor, edit the file named  `GoldenAMIContinuousAssesment.yml`.
-
     ---
 
     **IMPORTANT NOTE:**
-    In the following steps you will be constructing your CloudFormation template in YML format.
-    YML format allows you to put comments in the template by placing in # in front of the line, so it's quite handy.
-    On the flip side however, it is indent sensitive, so make sure you specify the Key and values at the right level of the indentation.
 
-    Practice makes perfect, therefore when building CloudFormation template in this lab, we will be providing a high level instruction on how to construct the template, along with the reference guide in the public documentation. The intent is so that you could get used to exploring the public documentation and get acustomed with the syntax.
+    In the following steps you will need to construct your CloudFormation template in YAML format.
+    YAML format allows you to put comments in the template by placing in # in front of the line, so it's quite handy.
+    On the flip side however, it is indent sensitive, so make sure you specify the Key and values at the right level of indentation.
 
-    Having said that, if you are completely stuck, don't hesitate to get help from Lab instructor or, take a peek at the **SOLUTION** section if you have to.
+    Practice makes perfect, therefore when building the template, we will be providing a high level instruction on how to construct it.
+    We will also provide reference guide / example from public documentation to help you. 
+    The purpose of this is so that you could get used to exploring CloudFormation documentation and get acustomed with the syntax.
+
+    However if you are completely stuck, don't hesitate to get help from Lab instructor or take a peek at the **ARE YOU STUCK?** section to peek on the solution.
 
     ---
 
-    To find information about the properties of the resource refer to this doc: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-permission.html
+    Reference: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-permission.html
 
+    * Open your notepad / text editor, edit the file named  `GoldenAMIContinuousAssesment.yml`.
     * Right under the previous resource, still inside the `Resources:` section do the following.
     * Create a resource named `LambdaInvokePermission` of type `AWS::Lambda::Permission`.
     * In the `Properties` section create a `FunctionName` property and using the !GetAtt intrinsic function reference the `AnalyzeInspectorFindingsLambdaRole` Arn you created before Reference : https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-getatt.html
@@ -50,23 +52,25 @@ Now that we have created our Lambda Functions the next thing to do is to connect
 
 2. **Configure SNS Topic Lambda Function Subscriber**.
 
-    Open your notepad / text editor, edit the file named  `GoldenAMIContinuousAssesment.yml`.
-
     ---
 
     **IMPORTANT NOTE:**
-    In the following steps you will be constructing your CloudFormation template in YML format.
-    YML format allows you to put comments in the template by placing in # in front of the line, so it's quite handy.
-    On the flip side however, it is indent sensitive, so make sure you specify the Key and values at the right level of the indentation.
 
-    Practice makes perfect, therefore when building CloudFormation template in this lab, we will be providing a high level instruction on how to construct the template, along with the reference guide in the public documentation. The intent is so that you could get used to exploring the public documentation and get acustomed with the syntax.
+    In the following steps you will need to construct your CloudFormation template in YAML format.
+    YAML format allows you to put comments in the template by placing in # in front of the line, so it's quite handy.
+    On the flip side however, it is indent sensitive, so make sure you specify the Key and values at the right level of indentation.
 
-    Having said that, if you are completely stuck, don't hesitate to get help from Lab instructor or, take a peek at the **SOLUTION** section if you have to.
+    Practice makes perfect, therefore when building the template, we will be providing a high level instruction on how to construct it.
+    We will also provide reference guide / example from public documentation to help you. 
+    The purpose of this is so that you could get used to exploring CloudFormation documentation and get acustomed with the syntax.
+
+    However if you are completely stuck, don't hesitate to get help from Lab instructor or take a peek at the **ARE YOU STUCK?** section to peek on the solution.
 
     ---
 
-    To find information about the properties of the resource refer to this doc: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sns-subscription.html
+    Reference: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sns-subscription.html
 
+    * Open your notepad / text editor, edit the file named  `GoldenAMIContinuousAssesment.yml`.
     * Right under the previous resource, still inside the `Resources:` section do the following.
     * Create a resource named `ContinuousAssessmentCompleteTopicSubscription` of type `AWS::SNS::Subscription`.
     * In the `Properties` section create a `Endpoint` property and using the !GetAtt intrinsic function reference the `AnalyzeInspectorFindingsLambdaFunction` Arn you created before. Reference : https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-getatt.html

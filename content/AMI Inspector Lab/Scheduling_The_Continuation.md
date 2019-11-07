@@ -11,25 +11,26 @@ In this part of the Lab we will be extending our CloudFormation template to add 
 
 1. **Set up a CloudWatch Events rule for triggering continuous golden AMI vulnerability assessments**
 
-
-    Open your notepad / text editor, create a file named `GoldenAMIContinuousAssesment.yml`.
-
     ---
 
     **IMPORTANT NOTE:**
-    In the following steps you will be constructing your CloudFormation template in YML format.
-    YML format allows you to put comments in the template by placing in # in front of the line, so it's quite handy.
-    On the flip side however, it is indent sensitive, so make sure you specify the Key and values at the right level of the indentation.
 
-    Practice makes perfect, therefore when building CloudFormation template in this lab, we will be providing a high level instruction on how to construct the template, along with the reference guide in the public documentation. The intent is so that you could get used to exploring the public documentation and get acustomed with the syntax.
+    In the following steps you will need to construct your CloudFormation template in YAML format.
+    YAML format allows you to put comments in the template by placing in # in front of the line, so it's quite handy.
+    On the flip side however, it is indent sensitive, so make sure you specify the Key and values at the right level of indentation.
 
-    Having said that, if you are completely stuck, don't hesitate to get help from Lab instructor or, take a peek at the **SOLUTION** section if you have to.
+    Practice makes perfect, therefore when building the template, we will be providing a high level instruction on how to construct it.
+    We will also provide reference guide / example from public documentation to help you. 
+    The purpose of this is so that you could get used to exploring CloudFormation documentation and get acustomed with the syntax.
+
+    However if you are completely stuck, don't hesitate to get help from Lab instructor or take a peek at the **ARE YOU STUCK?** section to peek on the solution.
 
     ---
 
-    To find information about the properties of the resource refer to this doc: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-events-rule.html
+    Reference: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-events-rule.html
 
-   * Create a `Resource:` template section [Reference](https://docs.aws.amazon.com/en_pv/AWSCloudFormation/latest/UserGuide/template-anatomy.html) 
+    * Open your notepad / text editor, create a file named `GoldenAMIContinuousAssesment.yml`.
+    * Create a `Resource:` template section [Reference](https://docs.aws.amazon.com/en_pv/AWSCloudFormation/latest/UserGuide/template-anatomy.html) 
     * Create a resource named `ContinuousGoldenAMIAssessmentTrigger` of type `AWS::Events::Rule`.
     * In the `Properties` section add `Name` property and specify `ContinuousGoldenAMIAssessmentTrigger` as it's value.
     * In the `Properties` section add `ScheduleExpression` property and specify `"cron(0 6 * * ? *)"` as it's value.
