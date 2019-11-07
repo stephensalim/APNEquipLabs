@@ -11,7 +11,9 @@ Before we start anything in this solution the first thing we need to do is have 
 
 ---
 
-**IMPORTANT NOTE:** You must set this solution in the AWS Region where you build your golden AMIs and have [Amazon Inspector](http://docs.aws.amazon.com/inspector/latest/userguide/inspector_supported_os_regions.html#inspector_supported-regions) available. If you don't have any preferance, please choose Sydney Region **( ap-southeast-2)** as this lab has been tested in this region. In this solution you will search assessment findings based on golden AMI tags after Amazon Inspector completes an assessment.
+**IMPORTANT NOTE:** 
+
+You must set this solution in the AWS Region where you build your golden AMIs and have [Amazon Inspector](http://docs.aws.amazon.com/inspector/latest/userguide/inspector_supported_os_regions.html#inspector_supported-regions) available. If you don't have any preferance, please choose Sydney Region **( ap-southeast-2)** as this lab has been tested in this region. In this solution you will search assessment findings based on golden AMI tags after Amazon Inspector completes an assessment.
 
 ---
 
