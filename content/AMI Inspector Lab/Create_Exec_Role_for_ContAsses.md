@@ -42,13 +42,15 @@ Not only that, we will also specify this inside our CloudFormation template, so 
       * `ec2:DescribeImages`
       * `ec2:RunInstances`
       * `ec2:CreateTags`
+    * In the `Properties` section create `RoleName` and specify `StartContinuousAssessmentRole` as it's value
 
     <details><summary> **ARE YOU STUCK ? :(** - It's OK CLICK HERE to see the solution</summary>
 
     ```
     Resources:
       StartContinuousAssessmentLambdaRole: 
-        Properties: 
+        Properties:
+          RoleName: "StartContinuousAssessmentRole"
           AssumeRolePolicyDocument: 
             Statement: 
               - 
@@ -114,6 +116,7 @@ Not only that, we will also specify this inside our CloudFormation template, so 
     * `inspector:AddAttributesToFindings`
     * `inspector:DescribeFindings`
     * `inspector:ListFindings`
+    * In the `Properties` section create `RoleName` and specify `AnalyzeInspectorFindingsRole` as it's value
 
     <details><summary> **ARE YOU STUCK ? :(** - It's OK CLICK HERE to see the solution</summary>
 
@@ -121,7 +124,8 @@ Not only that, we will also specify this inside our CloudFormation template, so 
 
     ```
       AnalyzeInspectorFindingsLambdaRole: 
-        Properties: 
+        Properties:
+          RoleName: "AnalyzeInspectorFindingsRole"
           AssumeRolePolicyDocument: 
             Statement: 
               - 

@@ -12,20 +12,20 @@
     <title>5. Create SNS Topic  :: APN Equip Labs</title>
 
     
-    <link href="/css/nucleus.css?1573125699" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1573125699" rel="stylesheet">
-    <link href="/css/hybrid.css?1573125699" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1573125699" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1573125699" rel="stylesheet">
-    <link href="/css/auto-complete.css?1573125699" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1573125699" rel="stylesheet">
-    <link href="/css/theme.css?1573125699" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1573125699" rel="stylesheet">
+    <link href="/css/nucleus.css?1573126458" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1573126458" rel="stylesheet">
+    <link href="/css/hybrid.css?1573126458" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1573126458" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1573126458" rel="stylesheet">
+    <link href="/css/auto-complete.css?1573126458" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1573126458" rel="stylesheet">
+    <link href="/css/theme.css?1573126458" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1573126458" rel="stylesheet">
     
-      <link href="/css/theme-darkblue.css?1573125699" rel="stylesheet">
+      <link href="/css/theme-darkblue.css?1573126458" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1573125699"></script>
+    <script src="/js/jquery-3.3.1.min.js?1573126458"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -51,14 +51,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1573125699"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1573125699"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1573126458"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1573126458"></script>
 <script type="text/javascript">
     
         var baseurl = "http:\/\/example.org\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1573125699"></script>
+<script type="text/javascript" src="/js/search.js?1573126458"></script>
 
     
   </div>
@@ -1566,7 +1566,7 @@ On the flip side however, it is indent sensitive, so make sure you specify the K
 <ul>
 <li>Right under the previous resource, still inside the <code>Resources:</code> section do the following.</li>
 <li>Create a resource named <code>ContinuousAssessmentCompleteTopic</code> of type <code>AWS::SNS::Topic</code>.</li>
-<li>No need to put in any <code>Properties</code> in this resource, keep all empty / default.</li>
+<li>In the <code>Properties</code> section create a <code>TopicName</code> and put in <code>ContinuousAssessmentCompleteTopic</code> as it&rsquo;s value</li>
 <li>Create another resource named <code>ContinuousAssessmentCompleteTopicPolicy</code> of type <code>AWS::SNS::TopicPolicy</code>.<br /></li>
 <li>In the <code>Properties</code> section create a <code>PolicyDocument</code> and allow service <code>inspector.amazonaws.com</code> to do action <code>sns:Publish</code> on all resource.
 Reference : <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sns-policy.html">https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sns-policy.html</a></li>
@@ -1582,6 +1582,8 @@ Reference : <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGu
 
 <pre><code>  ContinuousAssessmentCompleteTopic: 
     Type: &quot;AWS::SNS::Topic&quot;
+    Properties:
+      TopicName: ContinuousAssessmentCompleteTopic
   ContinuousAssessmentCompleteTopicPolicy: 
     Properties: 
       PolicyDocument: 
@@ -1625,7 +1627,7 @@ On the flip side however, it is indent sensitive, so make sure you specify the K
 <ul>
 <li>Right under the previous resource, still inside the <code>Resources:</code> section do the following.</li>
 <li>Create a resource named <code>ContinuousAssessmentResultsTopic</code> of type <code>AWS::SNS::Topic</code>.</li>
-<li>No need to put in any <code>Properties</code> in this resource for now, keep all empty / default.</li>
+<li>In the <code>Properties</code> section create a <code>TopicName</code> and put in <code>ContinuousAssessmentResultsTopic</code> as it&rsquo;s value</li>
 </ul>
 
 <p><details><summary> <strong>ARE YOU STUCK ? :(</strong> - It&rsquo;s OK CLICK HERE to see the solution</summary></p>
@@ -1634,6 +1636,8 @@ On the flip side however, it is indent sensitive, so make sure you specify the K
 
 <pre><code>  ContinuousAssessmentResultsTopic: 
     Type: &quot;AWS::SNS::Topic&quot;
+    Properties:
+      TopicName: ContinuousAssessmentResultsTopic
 </code></pre>
 
 <p></details></p></li>
@@ -2754,19 +2758,19 @@ On the flip side however, it is indent sensitive, so make sure you specify the K
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1573125699"></script>
-    <script src="/js/perfect-scrollbar.min.js?1573125699"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1573125699"></script>
-    <script src="/js/jquery.sticky.js?1573125699"></script>
-    <script src="/js/featherlight.min.js?1573125699"></script>
-    <script src="/js/highlight.pack.js?1573125699"></script>
+    <script src="/js/clipboard.min.js?1573126458"></script>
+    <script src="/js/perfect-scrollbar.min.js?1573126458"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1573126458"></script>
+    <script src="/js/jquery.sticky.js?1573126458"></script>
+    <script src="/js/featherlight.min.js?1573126458"></script>
+    <script src="/js/highlight.pack.js?1573126458"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1573125699"></script>
-    <script src="/js/learn.js?1573125699"></script>
-    <script src="/js/hugo-learn.js?1573125699"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1573126458"></script>
+    <script src="/js/learn.js?1573126458"></script>
+    <script src="/js/hugo-learn.js?1573126458"></script>
 
-    <link href="/mermaid/mermaid.css?1573125699" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1573125699"></script>
+    <link href="/mermaid/mermaid.css?1573126458" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1573126458"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

@@ -34,7 +34,7 @@ Let's follow below steps.
 
     * Right under the previous resource, still inside the `Resources:` section do the following.
     * Create a resource named `ContinuousAssessmentCompleteTopic` of type `AWS::SNS::Topic`.
-    * No need to put in any `Properties` in this resource, keep all empty / default.
+    * In the `Properties` section create a `TopicName` and put in `ContinuousAssessmentCompleteTopic` as it's value
     * Create another resource named `ContinuousAssessmentCompleteTopicPolicy` of type `AWS::SNS::TopicPolicy`.  
     * In the `Properties` section create a `PolicyDocument` and allow service `inspector.amazonaws.com` to do action `sns:Publish` on all resource.
       Reference : https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sns-policy.html
@@ -50,6 +50,8 @@ Let's follow below steps.
     ```
       ContinuousAssessmentCompleteTopic: 
         Type: "AWS::SNS::Topic"
+        Properties:
+          TopicName: ContinuousAssessmentCompleteTopic
       ContinuousAssessmentCompleteTopicPolicy: 
         Properties: 
           PolicyDocument: 
@@ -91,7 +93,7 @@ Let's follow below steps.
 
     * Right under the previous resource, still inside the `Resources:` section do the following.
     * Create a resource named `ContinuousAssessmentResultsTopic` of type `AWS::SNS::Topic`.
-    * No need to put in any `Properties` in this resource for now, keep all empty / default.
+    * In the `Properties` section create a `TopicName` and put in `ContinuousAssessmentResultsTopic` as it's value
 
     <details><summary> **ARE YOU STUCK ? :(** - It's OK CLICK HERE to see the solution</summary>
 
@@ -100,6 +102,8 @@ Let's follow below steps.
     ```
       ContinuousAssessmentResultsTopic: 
         Type: "AWS::SNS::Topic"
+        Properties:
+          TopicName: ContinuousAssessmentResultsTopic
     ```
     </details>
 
