@@ -222,7 +222,8 @@ Resources:
         -
           Arn:
             Fn::GetAtt:
-              - "StartContinuousAssessment"
+              - "StartContinuousAssessmentLambdaFunction"
               - "Arn"
           Input: '{"AMIsParamName": "ContinuousAssessmentInput"}'
+
 

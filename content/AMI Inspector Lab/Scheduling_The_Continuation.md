@@ -52,17 +52,10 @@ In this part of the Lab we will be extending our CloudFormation template to add 
         -
           Arn:
             Fn::GetAtt:
-              - "StartContinuousAssessment"
+              - "StartContinuousAssessmentLambdaFunction"
               - "Arn"
           Input: '{"AMIsParamName": "ContinuousAssessmentInput"}'
 ```
 </details>
 
-
-The vulnerability assessments are executed on the first occurrence of the schedule you chose while setting up the CloudWatch Events rule. After the vulnerability assessment **is** executed, you will receive an email to indicate that your continuous golden AMI vulnerability assessments are set up.
-
-### Summary
-
-To get visibility into the security of your EC2 instances created from your golden AMIs, it is important that you perform security assessments of your golden AMIs on a regular basis. In this blog post, I have demonstrated how to set up vulnerability assessments, and the results of these continuous golden AMI vulnerability assessments can help you keep your environment up to date with security patches. To learn how to patch your golden AMIs, see [Streamline AMI Maintenance and Patching Using Amazon EC2 Systems Manager](https://aws.amazon.com/blogs/aws/streamline-ami-maintenance-and-patching-using-amazon-ec2-systems-manager-automation/).
-
-If you have comments about this blog post, submit them in the “Comments” section below. If you have questions about implementing the solution in this post, start a new thread on the [Amazon Inspector forum](https://forums.aws.amazon.com/forum.jspa?forumID=205) or [contact AWS Support](https://console.aws.amazon.com/support/home).
+CONGRATS !!!! You are now a Ninja
