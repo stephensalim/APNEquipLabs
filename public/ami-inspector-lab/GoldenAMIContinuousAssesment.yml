@@ -84,6 +84,19 @@ Resources:
     Type: "AWS::SNS::TopicPolicy"
   ContinuousAssessmentResultsTopic: 
     Type: "AWS::SNS::Topic"
+  LambdaInvokePermission: 
+    Properties: 
+      Action: "lambda:InvokeFunction"
+      FunctionName: !GetAtt "AnalyzeInspectorFindingsLambdaFunction.Arn"
+      Principal: sns.amazonaws.com
+      SourceArn: !Ref "ContinuousAssessmentCompleteTopic"
+    Type: "AWS::Lambda::Permission"
+  ContinuousAssessmentCompleteTopicSubscription: 
+    Properties: 
+      Endpoint: !GetAtt "AnalyzeInspectorFindingsLambdaFunction.Arn"
+      Protocol: lambda
+      TopicArn: !Ref "ContinuousAssessmentCompleteTopic"
+    Type: "AWS::SNS::Subscription"
   StartContinuousAssessmentLambdaFunction: 
     Properties: 
       Code: 
@@ -133,6 +146,7 @@ Resources:
       Role: !GetAtt "StartContinuousAssessmentLambdaRole.Arn"
       Runtime: python3.6
       Timeout: 300
+      FunctionName: "StartContinuousAssessment"
     Type: "AWS::Lambda::Function"
   AnalyzeInspectorFindingsLambdaFunction: 
     Properties: 
@@ -196,17 +210,22 @@ Resources:
       Role: !GetAtt "AnalyzeInspectorFindingsLambdaRole.Arn"
       Runtime: python3.6
       Timeout: 300
+      FunctionName: "AnalyzeInspectorFindings"
     Type: "AWS::Lambda::Function"
-  LambdaInvokePermission: 
-    Properties: 
-      Action: "lambda:InvokeFunction"
-      FunctionName: !GetAtt "AnalyzeInspectorFindingsLambdaFunction.Arn"
-      Principal: sns.amazonaws.com
-      SourceArn: !Ref "ContinuousAssessmentCompleteTopic"
-    Type: "AWS::Lambda::Permission"
-  ContinuousAssessmentCompleteTopicSubscription: 
-    Properties: 
-      Endpoint: !GetAtt "AnalyzeInspectorFindingsLambdaFunction.Arn"
-      Protocol: lambda
-      TopicArn: !Ref "ContinuousAssessmentCompleteTopic"
-    Type: "AWS::SNS::Subscription"
+  ContinuousGoldenAMIAssessmentTrigger:
+    Type: AWS::Events::Rule
+    Properties:
+      Name: ContinuousGoldenAMIAssessmentTrigger
+      ScheduleExpression: "cron(0 6 * * ? *)"
+      State: ENABLED
+      Targets:
+        -
+          Arn:
+            Fn::GetAtt:
+              - "StartContinuousAssessmentLambdaFunction"
+              - "Arn"
+          Input: '{"AMIsParamName": "ContinuousAssessmentInput"}'
+          Id: ContinuousGoldenAMIAssessmentTrigger
+
+
+

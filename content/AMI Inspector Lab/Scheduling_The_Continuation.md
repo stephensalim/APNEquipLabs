@@ -36,7 +36,8 @@ In this part of the Lab we will be extending our CloudFormation template to add 
     * In the `Properties` secion add an `State` and specify `ENABLED` as it's value.
     * In the `Properties` secion add an `Targets` property and using the !GetAtt intrinsic function reference the `StartContinuousAssessment` Arn you created in previous step Reference : https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-getatt.html
     * In same section as your `Targets` entries and specify `Inputs` and specify `'{"AMIsParamName": "ContinuousAssessmentInput"}'` as it's value.
-       
+    * In same section as your `Targets` entries and specify `Id` and specify `ContinuousGoldenAMIAssessmentTrigger` as it's value.
+    
 <details><summary> **ARE YOU STUCK ? :(** - It's OK CLICK HERE to see the solution</summary>
 
 **READ >>** Below snippet must be specified within `Resources:` section of the cloudformation template.
@@ -55,7 +56,9 @@ In this part of the Lab we will be extending our CloudFormation template to add 
               - "StartContinuousAssessmentLambdaFunction"
               - "Arn"
           Input: '{"AMIsParamName": "ContinuousAssessmentInput"}'
+          Id: ContinuousGoldenAMIAssessmentTrigger
 ```
 </details>
 
-CONGRATS !!!! You are now a Ninja
+CONGRATS ! You have completed the Lab.
+Hopefully by now you have caputred some insights on how to package your solutions and make it repeatable.

@@ -9,23 +9,23 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>10. Test Assesment :: APN Equip Labs</title>
+    <title>8. Test Assesment :: APN Equip Labs</title>
 
     
-    <link href="/css/nucleus.css?1573119431" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1573119431" rel="stylesheet">
-    <link href="/css/hybrid.css?1573119431" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1573119431" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1573119431" rel="stylesheet">
-    <link href="/css/auto-complete.css?1573119431" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1573119431" rel="stylesheet">
-    <link href="/css/theme.css?1573119431" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1573119431" rel="stylesheet">
+    <link href="/css/nucleus.css?1573125699" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1573125699" rel="stylesheet">
+    <link href="/css/hybrid.css?1573125699" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1573125699" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1573125699" rel="stylesheet">
+    <link href="/css/auto-complete.css?1573125699" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1573125699" rel="stylesheet">
+    <link href="/css/theme.css?1573125699" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1573125699" rel="stylesheet">
     
-      <link href="/css/theme-darkblue.css?1573119431" rel="stylesheet">
+      <link href="/css/theme-darkblue.css?1573125699" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1573119431"></script>
+    <script src="/js/jquery-3.3.1.min.js?1573125699"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -51,14 +51,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1573119431"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1573119431"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1573125699"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1573125699"></script>
 <script type="text/javascript">
     
         var baseurl = "http:\/\/example.org\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1573119431"></script>
+<script type="text/javascript" src="/js/search.js?1573125699"></script>
 
     
   </div>
@@ -1304,9 +1304,9 @@
  
   
     
-      <li data-nav-id="/ami-inspector-lab/store_golden_ami_metadata/" title="3. Store Golden AMI metadata." class="dd-item ">
+      <li data-nav-id="/ami-inspector-lab/store_golden_ami_metadata/" title="3. Store Golden AMI metadata" class="dd-item ">
         <a href="/ami-inspector-lab/store_golden_ami_metadata/">
-        3. Store Golden AMI metadata.
+        3. Store Golden AMI metadata
         <i class="fas fa-check read-icon"></i>
         </a>
     </li>
@@ -1323,9 +1323,9 @@
  
   
     
-      <li data-nav-id="/ami-inspector-lab/create_exec_role_for_contasses/" title="4. Create Lambda Execution role." class="dd-item ">
+      <li data-nav-id="/ami-inspector-lab/create_exec_role_for_contasses/" title="4. Create Lambda Execution role" class="dd-item ">
         <a href="/ami-inspector-lab/create_exec_role_for_contasses/">
-        4. Create Lambda Execution role.
+        4. Create Lambda Execution role
         <i class="fas fa-check read-icon"></i>
         </a>
     </li>
@@ -1399,9 +1399,9 @@
  
   
     
-      <li data-nav-id="/ami-inspector-lab/test_assesment/" title="10. Test Assesment" class="dd-item active">
+      <li data-nav-id="/ami-inspector-lab/test_assesment/" title="8. Test Assesment" class="dd-item active">
         <a href="/ami-inspector-lab/test_assesment/">
-        10. Test Assesment
+        8. Test Assesment
         <i class="fas fa-check read-icon"></i>
         </a>
     </li>
@@ -1418,9 +1418,9 @@
  
   
     
-      <li data-nav-id="/ami-inspector-lab/scheduling_the_continuation/" title="11. Configure CloudWatch events" class="dd-item ">
+      <li data-nav-id="/ami-inspector-lab/scheduling_the_continuation/" title="9. Configure CloudWatch events" class="dd-item ">
         <a href="/ami-inspector-lab/scheduling_the_continuation/">
-        11. Configure CloudWatch events
+        9. Configure CloudWatch events
         <i class="fas fa-check read-icon"></i>
         </a>
     </li>
@@ -1497,7 +1497,7 @@
             
           
           
-            <a href='/'>Welcome</a> > <a href='/ami-inspector-lab/'>Golden AMI Assessment Lab</a> > 10. Test Assesment
+            <a href='/'>Welcome</a> > <a href='/ami-inspector-lab/'>Golden AMI Assessment Lab</a> > 8. Test Assesment
           
          
           
@@ -1526,7 +1526,7 @@
           
             <h1>
               
-              10. Test Assesment
+              8. Test Assesment
             </h1>
           
 
@@ -1534,9 +1534,12 @@
 
 
 
-<p>Before you schedule vulnerability assessments, you should test the process by running the <code>StartContinuousAssessment</code> function. In this test, you trigger a security assessment and monitor it. You then receive an email after the assessment has completed, which shows that vulnerability assessments have been successfully set up.</p>
+<p>As I mentioned before, the main part of our solution is done !
+In this section we will test the execution of our solution by passing in manual invocation to the <code>StartContinuousAssessment</code> Lambda Function.
+In this test, you trigger a security assessment and monitor it.</p>
 
-<p>To start golden AMI vulnerability assessments:</p>
+<ol>
+<li><p><strong>To start golden AMI vulnerability assessments:</strong></p>
 
 <ol>
 <li>Sign in to the <a href="https://console.aws.amazon.com/console/home">AWS Management Console</a> and choose <strong>Lambda</strong> in the <strong>Services </strong>menu.</li>
@@ -1557,16 +1560,16 @@
 <li><p>Choose <strong>Create</strong>. Choose <strong>Test</strong>.</p></li>
 </ol>
 
-<p>The <code>StartContinuousAssessment</code> function runs for approximately five minutes.
-Now while you wait, here&rsquo;s the explanation on what occurs in the background.</p>
+<p>The <code>StartContinuousAssessment</code> function runs for approximately five minutes.</p>
+
+<p>while you wait, here&rsquo;s the explanation on what occurs in the background.</p>
 
 <p><img src="/AMI Inspector Lab/images/Testing01.png" alt="" /></p>
 
 <ol>
-<li><p>The first thing that will happen is <code>StartContinuousAssessment</code> Lambda function will pull down the metadata information you created in step tree of this lab. This metadata will contain the <code>InstanceType</code>, <code>Ami-Id</code>, and <code>UserData</code> information that the Lambda function needs to execute the next activity.</p></li>
+<li><p>What&rsquo;s happening is <code>StartContinuousAssessment</code> Lambda function will pull down the metadata information you created in this Lab. This metadata will contain the <code>InstanceType</code>, <code>Ami-Id</code>, and <code>UserData</code> information that the function needs to execute the next activity.</p></li>
 
-<li><p>The next step, it will use the <code>Ami-Id</code> to launch an EC2 Instance with the <code>Instance Type</code> you specified, and put in the <code>UserData</code> information.
-It reads a JSON parameter stored in the <a href="http://docs.aws.amazon.com/systems-manager/latest/userguide/what-is-systems-manager.html">AWS Systems Manager</a> (Systems Manager) Parameter Store. This JSON parameter contains the following metadata for each golden AMI:</p>
+<li><p>Next, it will use the <code>Ami-Id</code> to launch an EC2 Instance with the <code>Instance Type</code> you specified, and put in the <code>UserData</code> information. It reads the JSON parameter stored in the <a href="http://docs.aws.amazon.com/systems-manager/latest/userguide/what-is-systems-manager.html">AWS Systems Manager</a> (Systems Manager) Parameter Store. As you know, this JSON parameter contains the following metadata for each golden AMI:</p>
 
 <ul>
 <li><code>InstanceType</code> – A valid instance-type for launching an EC2 instance of the golden AMI.</li>
@@ -1574,76 +1577,70 @@ It reads a JSON parameter stored in the <a href="http://docs.aws.amazon.com/syst
 <li><code>UserData</code> – An operating system–compatible <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html">user-data script</a> for installing the <a href="http://docs.aws.amazon.com/inspector/latest/userguide/inspector_agents.html">Amazon Inspector agent</a>.</li>
 </ul></li>
 
-<li><p>The <code>UserData</code> will bootstrap the EC2 instance with Amazon Inspector Agent that is required for Amazon Inspector to query and investigate the EC2 instance launched.</p>
+<li><p>When each instance starts, it installs the Amazon Inspector agent by using the user-data script provided in the JSON. The Lambda function then copies each golden AMI’s <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html">tags</a> (you will assign custom metadata in the form of tags to each golden AMI when you set up the solution) to the corresponding EC2 instance.</p>
 
-<p>When each instance starts, it installs the Amazon Inspector agent by using the user-data script provided in the JSON. The Lambda function then copies each golden AMI’s <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html">tags</a> (you will assign custom metadata in the form of tags to each golden AMI when you set up the solution) to the corresponding EC2 instance. The function also adds a tag with the <code>key</code> of <code>continuous-assessment-instance</code> and <code>value</code> as <code>true</code>. This tag identifies EC2 instances that require regular security assessments. The Lambda function copies the AMI’s tags to the instance (and later, to the security findings found for the instance) to help you identify the golden AMIs for each security finding. After you analyze security findings, you can patch your golden AMIs.</p></li>
+<p>The function also adds a tag with the <code>key</code> of <code>continuous-assessment-instance</code> and <code>value</code> as <code>true</code>. This tag identifies EC2 instances that require the security assessments.</p>
 
-<li><p>The Function will wait for the instance to launch and execute Amazon Inspector to inspect the EC2 instance.</p>
+<p>The Lambda function copies the AMI’s tags to the instance (and later, to the security findings found for the instance) to help you identify the golden AMIs for each security finding. After you analyze security findings, you can patch your golden AMIs.</p></li>
 
-<p>The first time the <code>StartContinuousAssessment</code> function runs, it creates:</p>
+<li><p>The Function will wait for the instance to launch and execute Amazon Inspector to inspect the EC2 instance. The first time the <code>StartContinuousAssessment</code> function runs, it creates:</p>
 
 <ul>
 <li>An <a href="http://docs.aws.amazon.com/inspector/latest/userguide/inspector_applications.html">Amazon Inspector assessment target</a>: The target identifies EC2 instances to assess by using the <code>continuous-assessment-instance</code> tag.</li>
-<li>An <a href="http://docs.aws.amazon.com/inspector/latest/userguide/inspector_assessments.html#inspector-assessment-templates">Amazon Inspector assessment template</a>: The template contains a reference to the Amazon Inspector assessment target created in the preceding step and the following AWS managed rules packages to evaluate:
-
-<ul>
+<li>An <a href="http://docs.aws.amazon.com/inspector/latest/userguide/inspector_assessments.html#inspector-assessment-templates">Amazon Inspector assessment template</a>: The template contains a reference to the Amazon Inspector assessment target created in the preceding step and the following AWS managed rules packages to evaluate:</li>
 <li><a href="http://docs.aws.amazon.com/inspector/latest/userguide/inspector_cves.html">Common Vulnerabilities and Exposures</a> (CVEs)</li>
 <li><a href="http://docs.aws.amazon.com/inspector/latest/userguide/inspector_cis.html">Center for Internet Security (CIS) Benchmarks</a></li>
 <li><a href="http://docs.aws.amazon.com/inspector/latest/userguide/inspector_security-best-practices.html">AWS Security Best Practices</a></li>
 <li><a href="http://docs.aws.amazon.com/inspector/latest/userguide/inspector_runtime-behavior-analysis.html">Runtime Behavior Analysis</a></li>
-</ul></li>
 </ul>
 
 <p>For subsequent assessments, the <code>StartContinuousAssessment</code> function reuses the target and the template created during the first run of <code>StartContinuousAssessment</code> function.</p>
 
-<p><strong>Note:</strong> Amazon Inspector can start an assessment only after it finds at least one running Amazon Inspector agent. To allow EC2 instances to boot and the Amazon inspector agent to start, the Lambda function waits four minutes. Because the assessment runs for approximately one hour and boot time for EC2 instances typically takes a few minutes, all Amazon Inspector agents start before the assessment ends.</p></li>
-</ol>
+<p><strong>Note:</strong> Amazon Inspector can start an assessment only after it finds at least one running Amazon Inspector agent. To allow EC2 instances to boot and the Amazon inspector agent to start, the Lambda function waits four minutes. Because the assessment runs for approximately one hour and boot time for EC2 instances typically takes a few minutes, all Amazon Inspector agents start before the assessment ends.</p>
 
-<p>Once all those steps complete the system you should see below message in your Lambda execution indicating that the process is complete.</p>
+<p>The EC2 instance is successfully launched you should see below message in your Lambda execution indicating that the process is complete.</p>
 
 <p><img src="https://d2908q01vomqb2.cloudfront.net/22d200f8670dbdb3e253a90eee5098477c95c23d/2017/12/15/KW_1_1217.png" alt="Message showing the function has run successfully" title="Message showing the function has run successfully" /></p>
 
 <p>The next thing that will happen is below :</p>
 
-<p><img src="/AMI Inspector Lab/images/Testing02.png" alt="" /></p>
+<p><img src="/AMI Inspector Lab/images/Testing02.png" alt="" /></p></li>
 
-<ol>
-<li><p>Once Amazon Inspector completes it&rsquo;s inspection, the service will send a message to the <code>ContinuousAssesmentCompleteTopic</code> SNS Topic. which will then trigger the <code>AnalyzeInspectorFindingsLambdaFunction</code></p>
-
-<p>After the Lambda function completes the assessment, Amazon Inspector publishes an assessment-completion notification message to an <a href="https://aws.amazon.com/sns/">Amazon SNS</a> topic called <code>ContinuousAssessmentCompleteTopic</code>. SNS uses <em>topics</em>, which are communication channels for sending messages and subscribing to notifications.</p>
+<li><p>After the Lambda function completes the assessment, Amazon Inspector publishes an assessment-completion notification message to an <a href="https://aws.amazon.com/sns/">Amazon SNS</a> topic called <code>ContinuousAssessmentCompleteTopic</code>. SNS uses <em>topics</em>, which are communication channels for sending messages and subscribing to notifications.</p>
 
 <p>Amazon Inspector agents collect behavior and configuration data, and pass it to Amazon Inspector. Amazon Inspector analyzes the data and generates <a href="http://docs.aws.amazon.com/inspector/latest/userguide/inspector_findings.html">Amazon Inspector findings</a>, which are possible security findings you may need to address.</p>
 
-<p>To open Amazon Inspector and monitor the progress of the assessment you can do below :</p>
+<p>You can open Amazon Inspector and monitor the progress of the assessment you can do below :</p>
 
 <ul>
 <li>Sign in to the <a href="https://console.aws.amazon.com/console/home">AWS Management Console</a> and navigate to the <a href="https://console.aws.amazon.com/inspector/">Amazon Inspector console</a>.</li>
 
 <li><p>On <strong>Dashboard</strong> under <strong>Recent Assessment Runs</strong>, you will see an entry with the status, <strong>Collecting Data</strong>. This status indicates that Amazon Inspector agents are collecting data from instances running your golden AMIs. The agents collect data for an hour and then Amazon Inspector analyzes the collected data.</p></li>
 
-<li><p>After Amazon Inspector completes the assessment, the status in the console changes to <strong>Analysis complete</strong>. Amazon Inspector then publishes an SNS message that triggers the <code>AnalyzeInspectionReports</code> Lambda function. When <code>AnalyzeInspectionReports</code> publishes results, you will receive an email containing consolidated assessment results. You also will be able to see the findings.</p></li>
+<li><p>After Amazon Inspector completes the assessment, the status in the console changes to <strong>Analysis complete</strong>. Amazon Inspector then publishes an SNS message that triggers the <code>AnalyzeInspectorFindings</code> Lambda function. When <code>AnalyzeInspectorFindings</code> publishes results, you will receive an email containing consolidated assessment results. You also will be able to see the findings.</p></li>
 
-<li><p>To see the findings in Amazon Inspector’s <strong>Findings</strong> section:</p></li>
+<li><p>To see the findings in Amazon Inspector’s <strong>Findings</strong> section:</p>
 
-<li><p>Sign in to the <a href="https://console.aws.amazon.com/console/home">AWS Management Console</a> and navigate to the <a href="https://console.aws.amazon.com/inspector/home">Amazon Inspector console</a>.</p></li>
-
-<li><p>In the navigation pane, choose <strong>Assessment Runs</strong>. In the table on the <strong>Amazon Inspector – Assessment Runs</strong> page<strong>,</strong> choose the findings of the latest assessment run.</p></li>
-
-<li><p>Choose the settings icon and choose the appropriate tags to see the details of findings, as shown in the following screenshot. The findings also contain information about how you can address each underlying vulnerability.</p></li>
+<ul>
+<li>Sign in to the <a href="https://console.aws.amazon.com/console/home">AWS Management Console</a> and navigate to the <a href="https://console.aws.amazon.com/inspector/home">Amazon Inspector console</a>.</li>
+<li>In the navigation pane, choose <strong>Assessment Runs</strong>. In the table on the <strong>Amazon Inspector – Assessment Runs</strong> page<strong>,</strong> choose the findings of the latest assessment run.</li>
+<li>Choose the settings icon and choose the appropriate tags to see the details of findings, as shown in the following screenshot. The findings also contain information about how you can address each underlying vulnerability.</li>
 </ul>
 
 <p><img src="https://d2908q01vomqb2.cloudfront.net/22d200f8670dbdb3e253a90eee5098477c95c23d/2017/12/15/KW_2_1217.png" alt="Screenshot showing details of findings" title="Screenshot showing details of findings" /></p></li>
+</ul></li>
 
-<li><p>Once these process are completed, <code>AnalyzeInspectorFindingsLambdaFunction</code> will then do the cleanup and delete the EC2 instance.</p>
-
-<p>The notification message published to SNS triggers the <code>AnalyzeInspectorFindings</code> Lambda function, which performs the following actions:</p>
+<li><p>Along with the above,<code>AnalyzeInspectorFindings</code> will do the following:</p>
 
 <ul>
 <li>Associates the tags of each EC2 instance with security findings found for that EC2 instance. This enables you to identify the security findings using the <code>app-name</code> tag you specified for your golden AMIs. You can use the information provided in the findings to patch your golden AMIs.</li>
 <li>Terminates all instances associated with the <code>continuous-assessment-instance=true</code> tag.</li>
 <li>Aggregates the number of findings found for each EC2 instance by severity and then publishes a consolidated result to an SNS topic called <code>ContinuousAssessmentResultsTopic</code>.</li>
 </ul></li>
+</ol></li>
 </ol>
+
+<p>Now that We have succesfully Test our Solution, we are ready to create the schedule Task for our stack</p>
 
 
 <footer class=" footline" >
@@ -2740,7 +2737,7 @@ It reads a JSON parameter stored in the <a href="http://docs.aws.amazon.com/syst
 			<a class="nav nav-prev" href="/ami-inspector-lab/connect_analyzerlambda_sns/" title="7. Connect Analyzer to Topic"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/ami-inspector-lab/scheduling_the_continuation/" title="11. Configure CloudWatch events" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/ami-inspector-lab/scheduling_the_continuation/" title="9. Configure CloudWatch events" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -2750,19 +2747,19 @@ It reads a JSON parameter stored in the <a href="http://docs.aws.amazon.com/syst
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1573119431"></script>
-    <script src="/js/perfect-scrollbar.min.js?1573119431"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1573119431"></script>
-    <script src="/js/jquery.sticky.js?1573119431"></script>
-    <script src="/js/featherlight.min.js?1573119431"></script>
-    <script src="/js/highlight.pack.js?1573119431"></script>
+    <script src="/js/clipboard.min.js?1573125699"></script>
+    <script src="/js/perfect-scrollbar.min.js?1573125699"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1573125699"></script>
+    <script src="/js/jquery.sticky.js?1573125699"></script>
+    <script src="/js/featherlight.min.js?1573125699"></script>
+    <script src="/js/highlight.pack.js?1573125699"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1573119431"></script>
-    <script src="/js/learn.js?1573119431"></script>
-    <script src="/js/hugo-learn.js?1573119431"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1573125699"></script>
+    <script src="/js/learn.js?1573125699"></script>
+    <script src="/js/hugo-learn.js?1573125699"></script>
 
-    <link href="/mermaid/mermaid.css?1573119431" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1573119431"></script>
+    <link href="/mermaid/mermaid.css?1573125699" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1573125699"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

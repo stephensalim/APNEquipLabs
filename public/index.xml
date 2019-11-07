@@ -323,7 +323,7 @@ PLEASE NOTE: You must select &amp;ldquo;Amazon Linux AMI&amp;rdquo;, NOT &amp;ld
     </item>
     
     <item>
-      <title>3. Store Golden AMI metadata.</title>
+      <title>3. Store Golden AMI metadata</title>
       <link>http://example.org/ami-inspector-lab/store_golden_ami_metadata/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -376,7 +376,7 @@ In this task, you will create a Windows Server 2016 EC2 instance in the us-west-
     </item>
     
     <item>
-      <title>4. Create Lambda Execution role.</title>
+      <title>4. Create Lambda Execution role</title>
       <link>http://example.org/ami-inspector-lab/create_exec_role_for_contasses/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -436,9 +436,7 @@ Now remaining steps are same as you followed in Create stack.</description>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://example.org/ami-inspector-lab/create_snstopic_assesmentcomplete/</guid>
-      <description>Now that we have our IAM role defined in our Stack, we shall move on to our next resources. In this solutin we will be levaraging a number of SNS Topics. These topics will be used to notify our users about the state if the Golden AMI inspection, as well as act as a decoupling structure to connect our StartContinousAssesment function and AnalyzeInspectorFindings Function.
-Let&amp;rsquo;s follow below steps.
- Creating the SNS Topic for StartContinousAssesment Completion</description>
+      <description>Now that we have our IAM role defined in our Stack, we shall move on to our next resources. In this solutin we will be levaraging a number of SNS Topics. These topics will be used to notify our users about the state if the Golden AMI inspection, as well as act as a decoupling structure to connect our StartContinousAssesment function and AnalyzeInspectorFindings Function. With SNS Topic Policy, you can define which service on AWS is allowed to publish to the SNS topic.</description>
     </item>
     
     <item>
@@ -534,11 +532,7 @@ First, you will need to terminate the EC2 instances that are running in the VPC.
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://example.org/ami-inspector-lab/create_continuousassess_lambda/</guid>
-      <description>Creating the Lambda Function to Inspect the AMI
- Open your notepad the file you created in step 1 GoldenAMIContinuousAssesment.yml
- Create a resource named StartContinuousAssessmentLambdaFunction of type AWS::Lambda::Function.
- In the Properties section create a Role property and using the !GetAtt intrinsic function reference the IAM role Arn you created in step 1. Reference : https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-getatt.html
- In the Properties section create a Code property and specify the lambda function code using in line code instead of specifying the s3 bucket location paste in below.</description>
+      <description>Alright, now for the meaty part ! In this part of the lab, we will walk through how to construct / package AWS Lambda Function and attach it to the IAM roles we created in previous step. We will be creating 2 Lambda Functions StartContinuousAssesment &amp;amp; AnalyzeInspectorFindings Each of this Lambda Functions will also have a connection to SNS Topics we created in previous steps through a Lambda Environment variable we defined in the function.</description>
     </item>
     
     <item>
@@ -584,12 +578,10 @@ First, you will need to terminate the EC2 instances that are running in the VPC.
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://example.org/ami-inspector-lab/connect_analyzerlambda_sns/</guid>
-      <description>Create Lambda Permission to allow SNS service to invoke..
- Open your notepad the file you created in step 1 GoldenAMIContinuousAssesment.yml
- Create a resource named LambdaInvokePermission of type AWS::Lambda::Permission.
- In the Properties section create a FunctionName property and using the !GetAtt intrinsic function reference the AnalyzeInspectorFindingsLambdaRole Arn you created before Reference : https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-getatt.html
- In the Properties section create a Action property and specify lambda:InvokeFunction
- In the Properties section create a Principal property and specify sns.</description>
+      <description>Now that we have created our Lambda Functions the next thing to do is to connect the ContinuousAssesmentCompleteTopic SNS Topic to the AnalyzeInspectorFindings Lambda function, levaraging the subscribtion mechanism. This is to basically allow AnalyzeInspectorFindings to be triggered once Amazon Inspector completes inspection and send the message notification
+ Create Lambda Permission to allow SNS service to invoke..
+Open your notepad / text editor, edit the file named GoldenAMIContinuousAssesment.yml.
+IMPORTANT NOTE: In the following steps you will be constructing your CloudFormation template in YML format.</description>
     </item>
     
     <item>
@@ -627,6 +619,17 @@ If this is the first time you enabled AWS Config, your console will direct you t
     </item>
     
     <item>
+      <title>8. Test Assesment</title>
+      <link>http://example.org/ami-inspector-lab/test_assesment/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/ami-inspector-lab/test_assesment/</guid>
+      <description>As I mentioned before, the main part of our solution is done ! In this section we will test the execution of our solution by passing in manual invocation to the StartContinuousAssessment Lambda Function. In this test, you trigger a security assessment and monitor it.
+ To start golden AMI vulnerability assessments:
+ Sign in to the AWS Management Console and choose Lambda in the Services menu. Choose Functions. In the Functions pane, choose the StartContinuousAssessment function.</description>
+    </item>
+    
+    <item>
       <title>8. Test Security Alarm</title>
       <link>http://example.org/security-lab/test-security-alarm/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -641,6 +644,18 @@ If this is the first time you enabled AWS Config, your console will direct you t
     </item>
     
     <item>
+      <title>9. Configure CloudWatch events</title>
+      <link>http://example.org/ami-inspector-lab/scheduling_the_continuation/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/ami-inspector-lab/scheduling_the_continuation/</guid>
+      <description>This will be the last piece of the puzzle. In this part of the Lab we will be extending our CloudFormation template to add a CloudWatch Events scheduler to allow our Lambda Functions to continusously asses Golden AMIs.
+ Set up a CloudWatch Events rule for triggering continuous golden AMI vulnerability assessments
+Open your notepad / text editor, create a file named GoldenAMIContinuousAssesment.yml.
+IMPORTANT NOTE: In the following steps you will be constructing your CloudFormation template in YML format.</description>
+    </item>
+    
+    <item>
       <title>10. Query Security Log</title>
       <link>http://example.org/security-lab/query-security-log/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -652,29 +667,6 @@ If this is the first time you enabled AWS Config, your console will direct you t
  Click Run query and watch the Logs populate as per screenshot below.
  Now going through for these log and locate the invalid user might be a bit of a hassle, let&amp;rsquo;s put in a filter to only see failed SSH attempts.
  Update the query field with this query, and click on Run Query</description>
-    </item>
-    
-    <item>
-      <title>10. Test Assesment</title>
-      <link>http://example.org/ami-inspector-lab/test_assesment/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://example.org/ami-inspector-lab/test_assesment/</guid>
-      <description>Before you schedule vulnerability assessments, you should test the process by running the StartContinuousAssessment function. In this test, you trigger a security assessment and monitor it. You then receive an email after the assessment has completed, which shows that vulnerability assessments have been successfully set up.
-To start golden AMI vulnerability assessments:
- Sign in to the AWS Management Console and choose Lambda in the Services menu. Choose Functions. In the Functions pane, choose the StartContinuousAssessment function.</description>
-    </item>
-    
-    <item>
-      <title>11. Configure CloudWatch events</title>
-      <link>http://example.org/ami-inspector-lab/scheduling_the_continuation/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://example.org/ami-inspector-lab/scheduling_the_continuation/</guid>
-      <description>Set up a CloudWatch Events rule for triggering continuous golden AMI vulnerability assessments
-The last step is to create a CloudWatch Events rule to schedule the execution of the vulnerability assessments on a daily or weekly basis.
-To set up a CloudWatch Events rule:
- Sign in to the AWS Management Console and navigate to the CloudWatch console. In the navigation pane, choose Rules &amp;gt; Create rule. On the Event Source page, choose Schedule.</description>
     </item>
     
   </channel>

@@ -9,23 +9,23 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>11. Configure CloudWatch events :: APN Equip Labs</title>
+    <title>9. Configure CloudWatch events :: APN Equip Labs</title>
 
     
-    <link href="/css/nucleus.css?1573119431" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1573119431" rel="stylesheet">
-    <link href="/css/hybrid.css?1573119431" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1573119431" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1573119431" rel="stylesheet">
-    <link href="/css/auto-complete.css?1573119431" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1573119431" rel="stylesheet">
-    <link href="/css/theme.css?1573119431" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1573119431" rel="stylesheet">
+    <link href="/css/nucleus.css?1573125699" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1573125699" rel="stylesheet">
+    <link href="/css/hybrid.css?1573125699" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1573125699" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1573125699" rel="stylesheet">
+    <link href="/css/auto-complete.css?1573125699" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1573125699" rel="stylesheet">
+    <link href="/css/theme.css?1573125699" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1573125699" rel="stylesheet">
     
-      <link href="/css/theme-darkblue.css?1573119431" rel="stylesheet">
+      <link href="/css/theme-darkblue.css?1573125699" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1573119431"></script>
+    <script src="/js/jquery-3.3.1.min.js?1573125699"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -51,14 +51,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1573119431"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1573119431"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1573125699"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1573125699"></script>
 <script type="text/javascript">
     
         var baseurl = "http:\/\/example.org\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1573119431"></script>
+<script type="text/javascript" src="/js/search.js?1573125699"></script>
 
     
   </div>
@@ -1304,9 +1304,9 @@
  
   
     
-      <li data-nav-id="/ami-inspector-lab/store_golden_ami_metadata/" title="3. Store Golden AMI metadata." class="dd-item ">
+      <li data-nav-id="/ami-inspector-lab/store_golden_ami_metadata/" title="3. Store Golden AMI metadata" class="dd-item ">
         <a href="/ami-inspector-lab/store_golden_ami_metadata/">
-        3. Store Golden AMI metadata.
+        3. Store Golden AMI metadata
         <i class="fas fa-check read-icon"></i>
         </a>
     </li>
@@ -1323,9 +1323,9 @@
  
   
     
-      <li data-nav-id="/ami-inspector-lab/create_exec_role_for_contasses/" title="4. Create Lambda Execution role." class="dd-item ">
+      <li data-nav-id="/ami-inspector-lab/create_exec_role_for_contasses/" title="4. Create Lambda Execution role" class="dd-item ">
         <a href="/ami-inspector-lab/create_exec_role_for_contasses/">
-        4. Create Lambda Execution role.
+        4. Create Lambda Execution role
         <i class="fas fa-check read-icon"></i>
         </a>
     </li>
@@ -1399,9 +1399,9 @@
  
   
     
-      <li data-nav-id="/ami-inspector-lab/test_assesment/" title="10. Test Assesment" class="dd-item ">
+      <li data-nav-id="/ami-inspector-lab/test_assesment/" title="8. Test Assesment" class="dd-item ">
         <a href="/ami-inspector-lab/test_assesment/">
-        10. Test Assesment
+        8. Test Assesment
         <i class="fas fa-check read-icon"></i>
         </a>
     </li>
@@ -1418,9 +1418,9 @@
  
   
     
-      <li data-nav-id="/ami-inspector-lab/scheduling_the_continuation/" title="11. Configure CloudWatch events" class="dd-item active">
+      <li data-nav-id="/ami-inspector-lab/scheduling_the_continuation/" title="9. Configure CloudWatch events" class="dd-item active">
         <a href="/ami-inspector-lab/scheduling_the_continuation/">
-        11. Configure CloudWatch events
+        9. Configure CloudWatch events
         <i class="fas fa-check read-icon"></i>
         </a>
     </li>
@@ -1497,7 +1497,7 @@
             
           
           
-            <a href='/'>Welcome</a> > <a href='/ami-inspector-lab/'>Golden AMI Assessment Lab</a> > 11. Configure CloudWatch events
+            <a href='/'>Welcome</a> > <a href='/ami-inspector-lab/'>Golden AMI Assessment Lab</a> > 9. Configure CloudWatch events
           
          
           
@@ -1510,17 +1510,7 @@
                 
                     <div class="progress">
     <div class="wrapper">
-<nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li>
-<ul>
-<li><a href="#summary">Summary</a></li>
-</ul></li>
-</ul></li>
-</ul>
-</nav>
+
     </div>
 </div>
 
@@ -1536,7 +1526,7 @@
           
             <h1>
               
-              11. Configure CloudWatch events
+              9. Configure CloudWatch events
             </h1>
           
 
@@ -1544,49 +1534,68 @@
 
 
 
-
-
-<p><strong>Set up a CloudWatch Events rule for triggering continuous golden AMI vulnerability assessments</strong></p>
+<p>This will be the last piece of the puzzle.
+In this part of the Lab we will be extending our CloudFormation template to add a CloudWatch Events scheduler to allow our Lambda Functions to continusously asses Golden AMIs.</p>
 
 <p><img src="/AMI Inspector Lab/images/CloudWatchRule.png" alt="" /></p>
 
-<p>The last step is to create a CloudWatch Events rule to schedule the execution of the vulnerability assessments on a daily or weekly basis.</p>
-
-<p>To set up a CloudWatch Events rule:</p>
-
 <ol>
-<li>Sign in to the <a href="https://console.aws.amazon.com/console/home">AWS Management Console</a> and navigate to the <a href="https://console.aws.amazon.com/cloudwatch/">CloudWatch console</a>.</li>
-<li>In the navigation pane, choose <strong>Rules</strong> &gt; <strong>Create rule</strong>.</li>
-<li>On the <strong>Event Source</strong> page, choose <strong>Schedule</strong>. Choose <strong>Fixed rate of </strong>and specify the interval (for example, 1 day).</li>
-<li>For <strong>Targets</strong>, choose <strong>Add target </strong>and then choose <strong>Lambda function</strong>.</li>
-<li>For <strong>Function</strong>, choose the <strong>StartContinuousAssessment</strong> function.</li>
-<li>Choose <strong>Configure Input</strong>.</li>
-<li>Choose <strong>Constant (JSON text)</strong>.</li>
+<li><p><strong>Set up a CloudWatch Events rule for triggering continuous golden AMI vulnerability assessments</strong></p>
 
-<li><p>In the box, paste the following JSON code.</p>
+<p>Open your notepad / text editor, create a file named <code>GoldenAMIContinuousAssesment.yml</code>.</p>
 
-<div class="hide-language">
+<hr />
 
-    {
-         "AMIsParamName": "ContinuousAssessmentInput"
-    }
+<p><strong>IMPORTANT NOTE:</strong>
+In the following steps you will be constructing your CloudFormation template in YML format.
+YML format allows you to put comments in the template by placing in # in front of the line, so it&rsquo;s quite handy.
+On the flip side however, it is indent sensitive, so make sure you specify the Key and values at the right level of the indentation.</p>
 
-</div></li>
+<p>Practice makes perfect, therefore when building CloudFormation template in this lab, we will be providing a high level instruction on how to construct the template, along with the reference guide in the public documentation. The intent is so that you could get used to exploring the public documentation and get acustomed with the syntax.</p>
 
-<li><p>Choose <strong>Configure details</strong>.</p></li>
+<p>Having said that, if you are completely stuck, don&rsquo;t hesitate to get help from Lab instructor or, take a peek at the <strong>SOLUTION</strong> section if you have to.</p>
 
-<li><p>For <strong>Rule definition</strong>, type <code>ContinuousGoldenAMIAssessmentTrigger</code> for the name, and type as the description, <code>This rule triggers the continuous golden AMI vulnerability assessment process</code>.</p></li>
+<hr />
 
-<li><p>Choose <strong>Create rule</strong>.</p></li>
+<p>To find information about the properties of the resource refer to this doc: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-events-rule.html">https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-events-rule.html</a></p>
+
+<ul>
+<li>Create a <code>Resource:</code> template section <a href="https://docs.aws.amazon.com/en_pv/AWSCloudFormation/latest/UserGuide/template-anatomy.html">Reference</a></li>
+<li>Create a resource named <code>ContinuousGoldenAMIAssessmentTrigger</code> of type <code>AWS::Events::Rule</code>.</li>
+<li>In the <code>Properties</code> section add <code>Name</code> property and specify <code>ContinuousGoldenAMIAssessmentTrigger</code> as it&rsquo;s value.</li>
+<li>In the <code>Properties</code> section add <code>ScheduleExpression</code> property and specify <code>&quot;cron(0 6 * * ? *)&quot;</code> as it&rsquo;s value.</li>
+<li>In the <code>Properties</code> secion add an <code>State</code> and specify <code>ENABLED</code> as it&rsquo;s value.</li>
+<li>In the <code>Properties</code> secion add an <code>Targets</code> property and using the !GetAtt intrinsic function reference the <code>StartContinuousAssessment</code> Arn you created in previous step Reference : <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-getatt.html">https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-getatt.html</a></li>
+<li>In same section as your <code>Targets</code> entries and specify <code>Inputs</code> and specify <code>'{&quot;AMIsParamName&quot;: &quot;ContinuousAssessmentInput&quot;}'</code> as it&rsquo;s value.</li>
+<li>In same section as your <code>Targets</code> entries and specify <code>Id</code> and specify <code>ContinuousGoldenAMIAssessmentTrigger</code> as it&rsquo;s value.
+<br /></li>
+</ul></li>
 </ol>
 
-<p>The vulnerability assessments are executed on the first occurrence of the schedule you chose while setting up the CloudWatch Events rule. After the vulnerability assessment <strong>is</strong> executed, you will receive an email to indicate that your continuous golden AMI vulnerability assessments are set up.</p>
+<p><details><summary> <strong>ARE YOU STUCK ? :(</strong> - It&rsquo;s OK CLICK HERE to see the solution</summary></p>
 
-<h3 id="summary">Summary</h3>
+<p><strong>READ &gt;&gt;</strong> Below snippet must be specified within <code>Resources:</code> section of the cloudformation template.</p>
 
-<p>To get visibility into the security of your EC2 instances created from your golden AMIs, it is important that you perform security assessments of your golden AMIs on a regular basis. In this blog post, I have demonstrated how to set up vulnerability assessments, and the results of these continuous golden AMI vulnerability assessments can help you keep your environment up to date with security patches. To learn how to patch your golden AMIs, see <a href="https://aws.amazon.com/blogs/aws/streamline-ami-maintenance-and-patching-using-amazon-ec2-systems-manager-automation/">Streamline AMI Maintenance and Patching Using Amazon EC2 Systems Manager</a>.</p>
+<pre><code>  ContinuousGoldenAMIAssessmentTrigger:
+    Type: AWS::Events::Rule
+    Properties:
+      Name: ContinuousGoldenAMIAssessmentTrigger
+      ScheduleExpression: &quot;cron(0 6 * * ? *)&quot;
+      State: ENABLED
+      Targets:
+        -
+          Arn:
+            Fn::GetAtt:
+              - &quot;StartContinuousAssessmentLambdaFunction&quot;
+              - &quot;Arn&quot;
+          Input: '{&quot;AMIsParamName&quot;: &quot;ContinuousAssessmentInput&quot;}'
+          Id: ContinuousGoldenAMIAssessmentTrigger
+</code></pre>
 
-<p>If you have comments about this blog post, submit them in the “Comments” section below. If you have questions about implementing the solution in this post, start a new thread on the <a href="https://forums.aws.amazon.com/forum.jspa?forumID=205">Amazon Inspector forum</a> or <a href="https://console.aws.amazon.com/support/home">contact AWS Support</a>.</p>
+<p></details></p>
+
+<p>CONGRATS ! You have completed the Lab.
+Hopefully by now you have caputred some insights on how to package your solutions and make it repeatable.</p>
 
 
 <footer class=" footline" >
@@ -2677,7 +2686,7 @@
 	 
 	 
 		
-			<a class="nav nav-prev" href="/ami-inspector-lab/test_assesment/" title="10. Test Assesment"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/ami-inspector-lab/test_assesment/" title="8. Test Assesment"> <i class="fa fa-chevron-left"></i></a>
 		
 		
 			<a class="nav nav-next" href="/ami-inspector-lab/solutions_overview/" title="1. Solutions Overview" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
@@ -2690,19 +2699,19 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1573119431"></script>
-    <script src="/js/perfect-scrollbar.min.js?1573119431"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1573119431"></script>
-    <script src="/js/jquery.sticky.js?1573119431"></script>
-    <script src="/js/featherlight.min.js?1573119431"></script>
-    <script src="/js/highlight.pack.js?1573119431"></script>
+    <script src="/js/clipboard.min.js?1573125699"></script>
+    <script src="/js/perfect-scrollbar.min.js?1573125699"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1573125699"></script>
+    <script src="/js/jquery.sticky.js?1573125699"></script>
+    <script src="/js/featherlight.min.js?1573125699"></script>
+    <script src="/js/highlight.pack.js?1573125699"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1573119431"></script>
-    <script src="/js/learn.js?1573119431"></script>
-    <script src="/js/hugo-learn.js?1573119431"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1573125699"></script>
+    <script src="/js/learn.js?1573125699"></script>
+    <script src="/js/hugo-learn.js?1573125699"></script>
 
-    <link href="/mermaid/mermaid.css?1573119431" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1573119431"></script>
+    <link href="/mermaid/mermaid.css?1573125699" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1573125699"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

@@ -239,6 +239,10 @@
   </url>
   
   <url>
+    <loc>http://example.org/ami-inspector-lab/test_assesment/</loc>
+  </url>
+  
+  <url>
     <loc>http://example.org/security-lab/test-security-alarm/</loc>
   </url>
   
@@ -251,15 +255,11 @@
   </url>
   
   <url>
-    <loc>http://example.org/security-lab/query-security-log/</loc>
-  </url>
-  
-  <url>
-    <loc>http://example.org/ami-inspector-lab/test_assesment/</loc>
-  </url>
-  
-  <url>
     <loc>http://example.org/ami-inspector-lab/scheduling_the_continuation/</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.org/security-lab/query-security-log/</loc>
   </url>
   
   <url>

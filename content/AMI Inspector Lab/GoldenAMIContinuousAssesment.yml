@@ -225,5 +225,7 @@ Resources:
               - "StartContinuousAssessmentLambdaFunction"
               - "Arn"
           Input: '{"AMIsParamName": "ContinuousAssessmentInput"}'
+          Id: ContinuousGoldenAMIAssessmentTrigger
+
 
 
