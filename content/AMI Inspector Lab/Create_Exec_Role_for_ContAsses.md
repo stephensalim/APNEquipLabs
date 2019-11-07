@@ -122,6 +122,7 @@ Not only that, we will also specify this inside our CloudFormation template, so 
 
     **READ >>** Below snippet must be specified within `Resources:` section of the cloudformation template.
 
+    
     ```
       AnalyzeInspectorFindingsLambdaRole: 
         Properties:
