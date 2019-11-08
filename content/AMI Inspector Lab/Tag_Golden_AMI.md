@@ -1,23 +1,18 @@
 ---
-title: "2. Tag your Golden AMI"
+title: "2. Tagging the Golden AMI"
 weight: 2
 draft: false
 ---
 
-  ![](/AMI Inspector Lab/images/TagGoldAMI.png)
+Before we begin, the first thing we need have is a **Golden AMI**. the subject of our Continous Assessment solution.
+To do this, you can create your own Golden AMI from EC2 instance as discribed in this [Guide](https://docs.aws.amazon.com/toolkit-for-visual-studio/latest/user-guide/tkv-create-ami-from-instance.html). Alternatively, to keep it simple, you can choose to use Amazon Public AMI as your Golden AMI. But please note that AWS may retract access to the AMI in the future, and when this happen, you wont have access to it anymore. As a best practice, it is always recommended to use your created own AMI as your **Golden AMI**. 
+But for the purpose of simplicity in this lab, we will be using Amazon Public AMI as your Golden AMI. 
 
+In this part of the lab we will be **Tagging our Golden AMI** to put context around what application / version / environment the AMI is based on. These tag will later be transfered to the temporary EC2 instance during assesment and to the Amazon Inspector result, to provide AMI context around the findings. 
 
-Before we start anything in this solution the first thing we need to do is have the Subject Golden AMI. Now to do this, you can either create your own AMI basing from existing instance running AMI Amazon Linux 2 by following this [Guide](https://docs.aws.amazon.com/toolkit-for-visual-studio/latest/user-guide/tkv-create-ami-from-instance.html) or you can just use the Amazon public AMI. The following instructions will assume you are using Amazon public AMI.
+![](/AMI Inspector Lab/images/TagGoldAMI.png)
 
----
-
-**IMPORTANT NOTE:** 
-
-You must set this solution in the AWS Region where you build your golden AMIs and have [Amazon Inspector](http://docs.aws.amazon.com/inspector/latest/userguide/inspector_supported_os_regions.html#inspector_supported-regions) available. If you don't have any preferance, please choose Sydney Region **( ap-southeast-2)** as this lab has been tested in this region. In this solution you will search assessment findings based on golden AMI tags after Amazon Inspector completes an assessment.
-
----
-
-Follow below instructions to tag a golden AMI by using the AWS Management Console:
+Follow below instructions to **Tag the Golden AMI** using the AWS Management Console:
 
 1.  Sign in to the [AWS Management Console](https://console.aws.amazon.com/console/home) and then navigate to the [EC2 console](https://console.aws.amazon.com/ec2/v2/home).
 2.  In the navigation page, choose Instances then click **Launch Instance**.
@@ -41,5 +36,6 @@ Follow below instructions to tag a golden AMI by using the AWS Management Consol
 
     ![](/AMI Inspector Lab/images/img004.png)
 
-Once you've completed these steps, you now have tagged your Golden AMI with information so the context of the AMI can be easily spotted.
-The next thing to do is to create the Golden AMI metadata, and store them inside [AWS Systems Manager Parameter Store](https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-parameter-store.html) This will allow our solution to pull in instructions and execute the activity towards the AMI we created. Go to next step to create this metadata.
+Once you've completed these steps, you now have tagged your Golden AMI with contextual information. Let's move on to the next step.
+
+**~[`^0^]~**

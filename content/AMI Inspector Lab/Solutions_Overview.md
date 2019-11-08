@@ -6,6 +6,16 @@ draft: false
 
 ![](/AMI Inspector Lab/images/Main.png)
 
+---
+
+**IMPORTANT NOTE:** 
+
+For this solution to work, you must deploy all resouces AWS Region where you build your golden AMIs. 
+This region must have [Amazon Inspector](http://docs.aws.amazon.com/inspector/latest/userguide/inspector_supported_os_regions.html#inspector_supported-regions) available. 
+For best lab experience, please choose Sydney Region **( ap-southeast-2)**.
+
+---
+
 Here an overview on how our solutions works:
 
 1.  A scheduled [CloudWatch Events](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/WhatIsCloudWatchEvents.html) will trigger the [AWS Lambda](http://aws.amazon.com/lambda/) function called `StartContinuousAssessment` every morning at 6 AM. This will essentially acts like your cron task (Linux) or scheduled task (Windows) that will executes on a regular basis.
@@ -22,6 +32,6 @@ Here an overview on how our solutions works:
 
 7. `AnalyzeInspectorFindings` function will tag [Amazon Inspector](https://aws.amazon.com/inspector/) result with relevant information about the AMI & EC2 Instance for context. It will then also clean up the temporary EC2 instance that was launched and used by Amazon Inspector as a medium to inspect the GoldenAMI posture.
 
-Now that weare clear about this, lets start building them !
- 
-On to the next page [`^0^]/ >>>
+Now that weare clear about this, lets start building them ! On to the next page !
+
+**[`^0^]/** 

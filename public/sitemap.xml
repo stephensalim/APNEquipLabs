@@ -95,6 +95,10 @@
   </url>
   
   <url>
+    <loc>http://example.org/ami-inspector-lab/create_golden_ami_metadata/</loc>
+  </url>
+  
+  <url>
     <loc>http://example.org/vpc-lab/create-ec2-instance/</loc>
   </url>
   
@@ -108,10 +112,6 @@
   
   <url>
     <loc>http://example.org/s3-lab/move-s3-object/</loc>
-  </url>
-  
-  <url>
-    <loc>http://example.org/ami-inspector-lab/store_golden_ami_metadata/</loc>
   </url>
   
   <url>

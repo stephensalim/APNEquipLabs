@@ -117,9 +117,10 @@ In this lab, we will be using the VPC Wizard to create a VPC with private and pu
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://example.org/ami-inspector-lab/solutions_overview/</guid>
-      <description>Here an overview on how our solutions works:
- A scheduled CloudWatch Events will trigger the AWS Lambda function called StartContinuousAssessment every morning at 6 AM. This will essentially acts like your cron task (Linux) or scheduled task (Windows) that will executes on a regular basis.
- StartContinuousAssessment AWS Lambda function will first gather information about which Golden AMI it should asses. This is done by downloading metadata information about the GoldenAMI that we store inside AWS Systems Manager Parameter Store.</description>
+      <description>IMPORTANT NOTE:
+For this solution to work, you must deploy all resouces AWS Region where you build your golden AMIs. This region must have Amazon Inspector available. For best lab experience, please choose Sydney Region ( ap-southeast-2).
+Here an overview on how our solutions works:
+ A scheduled CloudWatch Events will trigger the AWS Lambda function called StartContinuousAssessment every morning at 6 AM. This will essentially acts like your cron task (Linux) or scheduled task (Windows) that will executes on a regular basis.</description>
     </item>
     
     <item>
@@ -215,14 +216,12 @@ Sign into your AWS Management Console and choose EC2 from the Services menu. [ ]
     </item>
     
     <item>
-      <title>2. Tag your Golden AMI</title>
+      <title>2. Tagging the Golden AMI</title>
       <link>http://example.org/ami-inspector-lab/tag_golden_ami/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://example.org/ami-inspector-lab/tag_golden_ami/</guid>
-      <description>Before we start anything in this solution the first thing we need to do is have the Subject Golden AMI. Now to do this, you can either create your own AMI basing from existing instance running AMI Amazon Linux 2 by following this Guide or you can just use the Amazon public AMI. The following instructions will assume you are using Amazon public AMI.
-IMPORTANT NOTE:
-You must set this solution in the AWS Region where you build your golden AMIs and have Amazon Inspector available.</description>
+      <description>Before we begin, the first thing we need have is a Golden AMI. the subject of our Continous Assessment solution. To do this, you can create your own Golden AMI from EC2 instance as discribed in this Guide. Alternatively, to keep it simple, you can choose to use Amazon Public AMI as your Golden AMI. But please note that AWS may retract access to the AMI in the future, and when this happen, you wont have access to it anymore.</description>
     </item>
     
     <item>
@@ -269,6 +268,16 @@ Click below to look at the solution CloudFormation template.</description>
  Click Create Policy
  In the Create Policy page, click the JSON tab.
  Copy the following following text and replace all of the text in the JSON tab:</description>
+    </item>
+    
+    <item>
+      <title>3. Create Golden AMI metadata</title>
+      <link>http://example.org/ami-inspector-lab/create_golden_ami_metadata/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/ami-inspector-lab/create_golden_ami_metadata/</guid>
+      <description>Now that we have tagged our Golden AMI for context, the next thing we need to do is to create a metadata containing information about our Golden AMI, so that our solution knows which GoldenAMI they should regularly inspect.
+In this part of the lab, we will construct a metadata containing information of our Golden AMI metadata and store it in AWS Systems Manager Parameter Store. The metadata will be specified in JSON format and will contain th Ami-Id of the Golden AMI id that we tagged in the previous step, the InstanceType of the temporary EC2 instance we will launch to use as medium for our inspection, the UserData instructions, used to bootstrap Amazon Inspector agent to the temporary EC2 instance, so that Amazon Inspector can run the assesment towards the EC2.</description>
     </item>
     
     <item>
@@ -321,16 +330,6 @@ PLEASE NOTE: You must select &amp;ldquo;Amazon Linux AMI&amp;rdquo;, NOT &amp;ld
  In the Amazon S3 console, create a new bucket (reference earlier section for details).
  Select the first bucket you created and view the list of objects.
  Select the object(s) you want to move by clicking the selection box to their left. You can ignore the info box that opens when you select an object.</description>
-    </item>
-    
-    <item>
-      <title>3. Store Golden AMI metadata</title>
-      <link>http://example.org/ami-inspector-lab/store_golden_ami_metadata/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://example.org/ami-inspector-lab/store_golden_ami_metadata/</guid>
-      <description>In this section we will walk through the process of construction the golden AMI metadata and store them in AWS Systems Manager Parameter Store our metadata will be specified in JSON format and will contain the following information for each golden AMI:
- The Ami-Id is the golden AMI id that we tagged in the previous step ( Hopefully you&amp;rsquo;ve taken note of that, otherwise please review the previous step ).</description>
     </item>
     
     <item>
