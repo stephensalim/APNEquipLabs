@@ -28,7 +28,9 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://example.org/ami-inspector-lab/tag_golden_ami/</guid>
-      <description>Before we start anything in this solution the first thing we need to do is have the Subject Golden AMI. Now to do this, you can either create your own AMI basing from existing instance running AMI Amazon Linux 2 by following this Guide or you can just use the Amazon public AMI. The following instructions will assume you are using Amazon public AMI. In this part of the lab, we will be applying Tag to the AMI so that our solution can identify information about the AMI.</description>
+      <description>Before we start anything in this solution the first thing we need to do is have the Subject Golden AMI. Now to do this, you can either create your own AMI basing from existing instance running AMI Amazon Linux 2 by following this Guide or you can just use the Amazon public AMI. The following instructions will assume you are using Amazon public AMI.
+IMPORTANT NOTE:
+You must set this solution in the AWS Region where you build your golden AMIs and have Amazon Inspector available.</description>
     </item>
     
     <item>

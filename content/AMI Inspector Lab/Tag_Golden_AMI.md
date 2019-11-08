@@ -7,7 +7,7 @@ draft: false
   ![](/AMI Inspector Lab/images/TagGoldAMI.png)
 
 
-Before we start anything in this solution the first thing we need to do is have the Subject Golden AMI. Now to do this, you can either create your own AMI basing from existing instance running AMI Amazon Linux 2 by following this [Guide](https://docs.aws.amazon.com/toolkit-for-visual-studio/latest/user-guide/tkv-create-ami-from-instance.html) or you can just use the Amazon public AMI. The following instructions will assume you are using Amazon public AMI. In this part of the lab, we will be applying Tag to the AMI so that our solution can identify information about the AMI.
+Before we start anything in this solution the first thing we need to do is have the Subject Golden AMI. Now to do this, you can either create your own AMI basing from existing instance running AMI Amazon Linux 2 by following this [Guide](https://docs.aws.amazon.com/toolkit-for-visual-studio/latest/user-guide/tkv-create-ami-from-instance.html) or you can just use the Amazon public AMI. The following instructions will assume you are using Amazon public AMI.
 
 ---
 
