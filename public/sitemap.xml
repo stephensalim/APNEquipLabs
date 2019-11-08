@@ -59,10 +59,6 @@
   </url>
   
   <url>
-    <loc>http://example.org/vpc-lab/what-did-vpc-wizard-create-/</loc>
-  </url>
-  
-  <url>
     <loc>http://example.org/ec2-lab/</loc>
   </url>
   
@@ -103,11 +99,11 @@
   </url>
   
   <url>
-    <loc>http://example.org/iam-lab/create-iam-role/</loc>
+    <loc>http://example.org/ec2-lab-windows/create-windows-ec2-instance/</loc>
   </url>
   
   <url>
-    <loc>http://example.org/ec2-lab-windows/create-windows-ec2-instance/</loc>
+    <loc>http://example.org/iam-lab/create-iam-role/</loc>
   </url>
   
   <url>
@@ -204,12 +200,10 @@
   
   <url>
     <loc>http://example.org/categories/</loc>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>http://example.org/tags/</loc>
-    <priority>0</priority>
   </url>
   
   <url>

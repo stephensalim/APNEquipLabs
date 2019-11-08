@@ -179,16 +179,6 @@ Sign into your AWS Management Console and choose EC2 from the Services menu. [ ]
     </item>
     
     <item>
-      <title>2. What Did VPC Wizard Create ?</title>
-      <link>http://example.org/vpc-lab/what-did-vpc-wizard-create-/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://example.org/vpc-lab/what-did-vpc-wizard-create-/</guid>
-      <description>Let&amp;rsquo;s walk through the VPC Console and explain each component that the wizard created.
-From the last step, you should now be on the Your VPCs dashboard looking at all of your VPCs in this region. Select the VPC that you just created, and look at the Summary tab. If you can&amp;rsquo;t see everything in the pane, you can pull the pane up by dragging on the pane&amp;rsquo;s top line.</description>
-    </item>
-    
-    <item>
       <title>3. Browse your Web Server</title>
       <link>http://example.org/ec2-lab/browse-your-web-server/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -286,17 +276,6 @@ PLEASE NOTE: You must select &amp;ldquo;Amazon Linux AMI&amp;rdquo;, NOT &amp;ld
     </item>
     
     <item>
-      <title>4. Create IAM Role</title>
-      <link>http://example.org/iam-lab/create-iam-role/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://example.org/iam-lab/create-iam-role/</guid>
-      <description>IAM Roles can be assumed by AWS services, IAM users, or applications. They are assigned temporary rather than permanent credentials whenever assumed. Using roles for privileged permissions sets (such as the PowerUserAccess policy) can help improve your security posture since credential exposure is minimized.
- Go to Roles in the sidebar and click on Create Role.
- On the Select type of trusted identity page, you decide who or what will be able to assume this role.</description>
-    </item>
-    
-    <item>
       <title>4. Create a Windows EC2 Instance</title>
       <link>http://example.org/ec2-lab-windows/create-windows-ec2-instance/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -306,6 +285,17 @@ PLEASE NOTE: You must select &amp;ldquo;Amazon Linux AMI&amp;rdquo;, NOT &amp;ld
 In this task, you will create a Windows Server 2016 EC2 instance in the us-west-1 (N.California) region. You will perform the following steps as the newly created &amp;ldquo;West_Admin&amp;rdquo; user.
  In a new browser session (Private browsing or from another maching) log in as West_Admin
  Ensure that you are working in the us-west-1 region (N.</description>
+    </item>
+    
+    <item>
+      <title>4. Create IAM Role</title>
+      <link>http://example.org/iam-lab/create-iam-role/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/iam-lab/create-iam-role/</guid>
+      <description>IAM Roles can be assumed by AWS services, IAM users, or applications. They are assigned temporary rather than permanent credentials whenever assumed. Using roles for privileged permissions sets (such as the PowerUserAccess policy) can help improve your security posture since credential exposure is minimized.
+ Go to Roles in the sidebar and click on Create Role.
+ On the Select type of trusted identity page, you decide who or what will be able to assume this role.</description>
     </item>
     
     <item>
