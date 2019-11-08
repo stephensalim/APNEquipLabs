@@ -27,7 +27,15 @@
   </url>
   
   <url>
+    <loc>http://example.org/cloudformation-lab/explore_template/</loc>
+  </url>
+  
+  <url>
     <loc>http://example.org/vpc-lab/navigate-the-vpc-dashboard/</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.org/ami-inspector-lab/solutions_overview/</loc>
   </url>
   
   <url>
@@ -55,7 +63,19 @@
   </url>
   
   <url>
+    <loc>http://example.org/cloudformation-lab/create_stack/</loc>
+  </url>
+  
+  <url>
     <loc>http://example.org/ec2-lab/launch-ec2-web-server/</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.org/ami-inspector-lab/tag_golden_ami/</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.org/vpc-lab/what-did-vpc-wizard-create/</loc>
   </url>
   
   <url>
@@ -67,7 +87,15 @@
   </url>
   
   <url>
+    <loc>http://example.org/cloudformation-lab/change_stack/</loc>
+  </url>
+  
+  <url>
     <loc>http://example.org/ec2-lab-windows/configure-an-iam-user-and-policy/</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.org/ami-inspector-lab/create_golden_ami_metadata/</loc>
   </url>
   
   <url>
@@ -107,6 +135,10 @@
   </url>
   
   <url>
+    <loc>http://example.org/ami-inspector-lab/create_exec_role_for_contasses/</loc>
+  </url>
+  
+  <url>
     <loc>http://example.org/s3-lab/enable-bucket-versioning/</loc>
   </url>
   
@@ -115,11 +147,19 @@
   </url>
   
   <url>
+    <loc>http://example.org/cloudformation-lab/update_stack/</loc>
+  </url>
+  
+  <url>
     <loc>http://example.org/iam-lab/</loc>
   </url>
   
   <url>
     <loc>http://example.org/iam-lab/clean-up-resources/</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.org/ami-inspector-lab/create_snstopic_assesmentcomplete/</loc>
   </url>
   
   <url>
@@ -159,6 +199,10 @@
   </url>
   
   <url>
+    <loc>http://example.org/ami-inspector-lab/create_continuousassess_lambda/</loc>
+  </url>
+  
+  <url>
     <loc>http://example.org/security-lab/monitor-ec2-security-log/</loc>
   </url>
   
@@ -183,6 +227,10 @@
   </url>
   
   <url>
+    <loc>http://example.org/ami-inspector-lab/connect_analyzerlambda_sns/</loc>
+  </url>
+  
+  <url>
     <loc>http://example.org/security-lab/</loc>
   </url>
   
@@ -191,7 +239,23 @@
   </url>
   
   <url>
+    <loc>http://example.org/ami-inspector-lab/test_assesment/</loc>
+  </url>
+  
+  <url>
     <loc>http://example.org/security-lab/test-security-alarm/</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.org/cloudformation-lab/</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.org/ami-inspector-lab/</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.org/ami-inspector-lab/scheduling_the_continuation/</loc>
   </url>
   
   <url>

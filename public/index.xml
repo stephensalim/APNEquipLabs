@@ -88,6 +88,19 @@
     </item>
     
     <item>
+      <title>1. Exploring the template</title>
+      <link>http://example.org/cloudformation-lab/explore_template/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/cloudformation-lab/explore_template/</guid>
+      <description>Please download the Source CloudFormation Template file. You can use any text editor to explore the different elements of the VPC defined by the template. To make it easy for you, can copy and paste the entire template into any YAML friendly text editor and collapse/expand the sections as required.
+Some suggested editors:
+ Notepad++ (https://notepad-plus-plus.org/downloads/) VisualStudioCode. (https://code.visualstudio.com/)  Source CloudFormation Template
+Copy this template for the next section.
+CLICK HERE</description>
+    </item>
+    
+    <item>
       <title>1. Navigate the VPC Dashboard</title>
       <link>http://example.org/vpc-lab/navigate-the-vpc-dashboard/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -96,6 +109,18 @@
       <description>To get started, let&amp;rsquo;s take a look at the VPC Dashboard.
 In every region, a default VPC has already been created for you. So, even if you haven&amp;rsquo;t created anything in your account yet, you will see some VPC resources already there.
 In this lab, we will be using the VPC Wizard to create a VPC with private and public subnets pre-configured. Once you&amp;rsquo;re more familiar with AWS networking, you can create VPCs and subnets without the Wizard to create custom networking configurations.</description>
+    </item>
+    
+    <item>
+      <title>1. Solutions Overview</title>
+      <link>http://example.org/ami-inspector-lab/solutions_overview/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/ami-inspector-lab/solutions_overview/</guid>
+      <description>IMPORTANT NOTE:
+For this solution to work, you must deploy all resouces AWS Region where you build your golden AMIs. This region must have Amazon Inspector available. For best lab experience, please choose Sydney Region ( ap-southeast-2).
+Here an overview on how our solutions works:
+ A scheduled CloudWatch Events will trigger the AWS Lambda function called StartContinuousAssessment every morning at 6 AM. This will essentially acts like your cron task (Linux) or scheduled task (Windows) that will executes on a regular basis.</description>
     </item>
     
     <item>
@@ -166,6 +191,18 @@ Enter a unique name as the User name. In this walkthrough, I chose Emily as the 
     </item>
     
     <item>
+      <title>2. Create the Stack</title>
+      <link>http://example.org/cloudformation-lab/create_stack/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/cloudformation-lab/create_stack/</guid>
+      <description>Copy and paste the Sample CloudFormation Template from the previous section to a text file called Sample_VPC_CloudFormation.yml
+Log into the AWS Console, and click on CloudFormation and the following screen will be displayed:
+Now click on Create new stack, choose the option to upload a template, and browse to your initial template:
+Click Next and provide a stack name. Make sure your stack name is unique within your account. Leave all other options as defaults:</description>
+    </item>
+    
+    <item>
       <title>2. Launch EC2 Web Server</title>
       <link>http://example.org/ec2-lab/launch-ec2-web-server/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -176,6 +213,25 @@ Sign into your AWS Management Console and choose EC2 from the Services menu. [ ]
  Click on Launch Instance
  In the Quick Start section, select the first Amazon Linux 2 AMI and click Select.
  In the Choose Instance Type tab, select the t2.</description>
+    </item>
+    
+    <item>
+      <title>2. Tagging the Golden AMI</title>
+      <link>http://example.org/ami-inspector-lab/tag_golden_ami/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/ami-inspector-lab/tag_golden_ami/</guid>
+      <description>Before we begin, the first thing we need have is a Golden AMI. the subject of our Continous Assessment solution. To do this, you can create your own Golden AMI from EC2 instance as discribed in this Guide. Alternatively, to keep it simple, you can choose to use Amazon Public AMI as your Golden AMI. But please note that AWS may retract access to the AMI in the future, and when this happen, you wont have access to it anymore.</description>
+    </item>
+    
+    <item>
+      <title>2. What Did VPC Wizard Create ?</title>
+      <link>http://example.org/vpc-lab/what-did-vpc-wizard-create/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/vpc-lab/what-did-vpc-wizard-create/</guid>
+      <description>Let&amp;rsquo;s walk through the VPC Console and explain each component that the wizard created.
+From the last step, you should now be on the Your VPCs dashboard looking at all of your VPCs in this region. Select the VPC that you just created, and look at the Summary tab. If you can&amp;rsquo;t see everything in the pane, you can pull the pane up by dragging on the pane&amp;rsquo;s top line.</description>
     </item>
     
     <item>
@@ -190,6 +246,17 @@ You should see a website that looks like the following:</description>
     </item>
     
     <item>
+      <title>3. Change the Stack</title>
+      <link>http://example.org/cloudformation-lab/change_stack/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/cloudformation-lab/change_stack/</guid>
+      <description>Now that you have explored and deployed your VPC stack, let&amp;rsquo;s modify the template and then update the stack to change the live environment.
+ Go back to the source CloudFormation template you created before. Modify the sections of the source CloudFormation template as described, and save the changes as a new template file, for example Sample_VPC_CloudFormation_Updated.yml.  Solution CloudFormation Template
+Click below to look at the solution CloudFormation template.</description>
+    </item>
+    
+    <item>
       <title>3. Configure an IAM User and Policy</title>
       <link>http://example.org/ec2-lab-windows/configure-an-iam-user-and-policy/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -201,6 +268,16 @@ You should see a website that looks like the following:</description>
  Click Create Policy
  In the Create Policy page, click the JSON tab.
  Copy the following following text and replace all of the text in the JSON tab:</description>
+    </item>
+    
+    <item>
+      <title>3. Create Golden AMI metadata</title>
+      <link>http://example.org/ami-inspector-lab/create_golden_ami_metadata/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/ami-inspector-lab/create_golden_ami_metadata/</guid>
+      <description>Now that we have tagged our Golden AMI for context, the next thing we need to do is to create a metadata containing information about our Golden AMI, so that our solution knows which GoldenAMI they should regularly inspect.
+In this part of the lab, we will construct a metadata containing information of our Golden AMI metadata and store it in AWS Systems Manager Parameter Store. The metadata will be specified in JSON format and will contain th Ami-Id of the Golden AMI id that we tagged in the previous step, the InstanceType of the temporary EC2 instance we will launch to use as medium for our inspection, the UserData instructions, used to bootstrap Amazon Inspector agent to the temporary EC2 instance, so that Amazon Inspector can run the assesment towards the EC2.</description>
     </item>
     
     <item>
@@ -299,6 +376,16 @@ In this task, you will create a Windows Server 2016 EC2 instance in the us-west-
     </item>
     
     <item>
+      <title>4. Create IAM roles for Lambda</title>
+      <link>http://example.org/ami-inspector-lab/create_exec_role_for_contasses/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/ami-inspector-lab/create_exec_role_for_contasses/</guid>
+      <description>In AWS Security is at highest priority, through working directly with CloudFormation, you will discover layers of security construct that you could customize to secure your resource. One of it is IAM role, for cross service interactions AWS will levarage security services to create isolation and security boundaries on the service executed.
+In this part of the Lab we will be defining an IAM role that we will attach to our AWS Lambda function and specify permissions for the Lambda function to access only the services and resource we allow it to.</description>
+    </item>
+    
+    <item>
       <title>4. Enable Bucket Versioning</title>
       <link>http://example.org/s3-lab/enable-bucket-versioning/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -321,6 +408,16 @@ You should be on the EC2 Instances dashboard from the last section, looking at a
     </item>
     
     <item>
+      <title>4. Update the Stack</title>
+      <link>http://example.org/cloudformation-lab/update_stack/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/cloudformation-lab/update_stack/</guid>
+      <description>Once you have modified your template, you can use the Update Stack option to update your stack. To start the update, your stack and click on Actions drop down and you will find the Update Stack option. (Your console version may appear different from the image below, if so, after selecting your stack, just click Update.)
+In the Update stack screen, select the option to upload a new template. If you have not yet created a solution, download the reference template below.</description>
+    </item>
+    
+    <item>
       <title>5. Clean Up Resources</title>
       <link>http://example.org/iam-lab/clean-up-resources/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -329,6 +426,15 @@ You should be on the EC2 Instances dashboard from the last section, looking at a
       <description>If you want to clean up your account to get rid of everything we created during this lab, follow the instructions in this section. You can also leave your lab environment running if you want to test other AWS IAM concepts.
  Go to Groups in the sidebar. Select the Power_Users group and go to the Group Actions dropdown. Select Delete Group and then Yes, Delete.
  Go to Users in the sidebar.</description>
+    </item>
+    
+    <item>
+      <title>5. Create SNS Topic </title>
+      <link>http://example.org/ami-inspector-lab/create_snstopic_assesmentcomplete/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/ami-inspector-lab/create_snstopic_assesmentcomplete/</guid>
+      <description>Now that we have our IAM role defined in our Stack, we shall move on to our next resources. In this solutin we will be levaraging a number of SNS Topics. These topics will be used to notify our users about the state if the Golden AMI inspection, as well as act as a decoupling structure to connect our StartContinousAssesment function and AnalyzeInspectorFindings Function. With SNS Topic Policy, you can define which service on AWS is allowed to publish to the SNS topic.</description>
     </item>
     
     <item>
@@ -419,6 +525,15 @@ First, you will need to terminate the EC2 instances that are running in the VPC.
     </item>
     
     <item>
+      <title>6. Create Lambda Functions</title>
+      <link>http://example.org/ami-inspector-lab/create_continuousassess_lambda/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/ami-inspector-lab/create_continuousassess_lambda/</guid>
+      <description>Alright, now for the meaty part ! In this part of the lab, we will walk through how to construct / package AWS Lambda Function and attach it to the IAM roles we created in previous step. We will be creating 2 Lambda Functions StartContinuousAssesment &amp;amp; AnalyzeInspectorFindings Each of this Lambda Functions will also have a connection to SNS Topics we created in previous steps through a Lambda Environment variable we defined in the function.</description>
+    </item>
+    
+    <item>
       <title>6. Monitor EC2 Security Log</title>
       <link>http://example.org/security-lab/monitor-ec2-security-log/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -481,12 +596,33 @@ If this is the first time you enabled AWS Config, your console will direct you t
     </item>
     
     <item>
+      <title>7. Subscribe Lambda to SNS Topic</title>
+      <link>http://example.org/ami-inspector-lab/connect_analyzerlambda_sns/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/ami-inspector-lab/connect_analyzerlambda_sns/</guid>
+      <description>Now that we have created our Lambda Functions the next thing to do is to connect the ContinuousAssesmentCompleteTopic SNS Topic to the AnalyzeInspectorFindings Lambda function, levaraging the subscribtion mechanism. This is to basically allow AnalyzeInspectorFindings to be triggered once Amazon Inspector completes the inspection and send the message notification to users.
+IMPORTANT NOTE:
+In the following steps you will need to construct your CloudFormation template in YAML format. YAML format allows you to put comments in the template by placing in # in front of the line.</description>
+    </item>
+    
+    <item>
       <title>8. Monitor Estimated Charges</title>
       <link>http://example.org/monitoring-lab/monitor-estimated-charges/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://example.org/monitoring-lab/monitor-estimated-charges/</guid>
       <description>In this scenario, you create an Amazon CloudWatch alarm that will monitor your estimated Amazon Web Services (AWS) charges. When you enable the monitoring of estimated charges for your AWS account, the estimated charges are calculated and sent several times daily to CloudWatch as metric data that is stored for 14 days. Billing metric data is stored in the US East (N. Virginia) Region and represents worldwide charges. This data includes the estimated charges for every service in AWS that you use, as well as the estimated overall total of your AWS charges.</description>
+    </item>
+    
+    <item>
+      <title>8. Test Assesment</title>
+      <link>http://example.org/ami-inspector-lab/test_assesment/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/ami-inspector-lab/test_assesment/</guid>
+      <description>The main part of our solution is done ! In this section we will test the execution of our solution by passing in manual invocation to the StartContinuousAssessment Lambda Function. This will then kick off the GoldenAMI assessment process on the AMI ID we specified in our metadata, and you should see the solutions in full effect.
+Manually Start golden AMI vulnerability assessments  Sign in to the AWS Management Console and choose Lambda in the Services menu.</description>
     </item>
     
     <item>
@@ -501,6 +637,17 @@ If this is the first time you enabled AWS Config, your console will direct you t
  Under the Description Tab take note of the Public IP address of the instance.
  Locate the Security Group Section, and click on the Security group name you&amp;rsquo;ve attached to the instance.
  You should now be taken to the Security Group console as below.</description>
+    </item>
+    
+    <item>
+      <title>9. Configure CloudWatch Event Rule</title>
+      <link>http://example.org/ami-inspector-lab/scheduling_the_continuation/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/ami-inspector-lab/scheduling_the_continuation/</guid>
+      <description>This will be the last piece of the puzzle ! In this part of the Lab we will be extending our CloudFormation template to add a CloudWatch Events scheduler allowing our Lambda Functions to regularly asses Golden AMIs.
+IMPORTANT NOTE:
+In the following steps you will need to construct your CloudFormation template in YAML format. YAML format allows you to put comments in the template by placing in # in front of the line.</description>
     </item>
     
     <item>
