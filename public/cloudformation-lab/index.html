@@ -12,20 +12,20 @@
     <title>CloudFormation Lab :: APN Equip Labs</title>
 
     
-    <link href="/css/nucleus.css?1573203652" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1573203652" rel="stylesheet">
-    <link href="/css/hybrid.css?1573203652" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1573203652" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1573203652" rel="stylesheet">
-    <link href="/css/auto-complete.css?1573203652" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1573203652" rel="stylesheet">
-    <link href="/css/theme.css?1573203652" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1573203652" rel="stylesheet">
+    <link href="/css/nucleus.css?1573203740" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1573203740" rel="stylesheet">
+    <link href="/css/hybrid.css?1573203740" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1573203740" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1573203740" rel="stylesheet">
+    <link href="/css/auto-complete.css?1573203740" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1573203740" rel="stylesheet">
+    <link href="/css/theme.css?1573203740" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1573203740" rel="stylesheet">
     
-      <link href="/css/theme-darkblue.css?1573203652" rel="stylesheet">
+      <link href="/css/theme-darkblue.css?1573203740" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1573203652"></script>
+    <script src="/js/jquery-3.3.1.min.js?1573203740"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -51,14 +51,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1573203652"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1573203652"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1573203740"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1573203740"></script>
 <script type="text/javascript">
     
         var baseurl = "http:\/\/example.org\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1573203652"></script>
+<script type="text/javascript" src="/js/search.js?1573203740"></script>
 
     
   </div>
@@ -1156,9 +1156,9 @@
  
   
     
-      <li data-nav-id="/cloudformation-lab/explore_template/" title="1. Exploring the templates" class="dd-item ">
+      <li data-nav-id="/cloudformation-lab/explore_template/" title="1. Exploring the template" class="dd-item ">
         <a href="/cloudformation-lab/explore_template/">
-        1. Exploring the templates
+        1. Exploring the template
         <i class="fas fa-check read-icon"></i>
         </a>
     </li>
@@ -1175,9 +1175,9 @@
  
   
     
-      <li data-nav-id="/cloudformation-lab/create_stack/" title="2. Create Stack" class="dd-item ">
+      <li data-nav-id="/cloudformation-lab/create_stack/" title="2. Create the Stack" class="dd-item ">
         <a href="/cloudformation-lab/create_stack/">
-        2. Create Stack
+        2. Create the Stack
         <i class="fas fa-check read-icon"></i>
         </a>
     </li>
@@ -1194,9 +1194,9 @@
  
   
     
-      <li data-nav-id="/cloudformation-lab/change_stack/" title="3. Change Your Stack" class="dd-item ">
+      <li data-nav-id="/cloudformation-lab/change_stack/" title="3. Change the Stack" class="dd-item ">
         <a href="/cloudformation-lab/change_stack/">
-        3. Change Your Stack
+        3. Change the Stack
         <i class="fas fa-check read-icon"></i>
         </a>
     </li>
@@ -1213,9 +1213,9 @@
  
   
     
-      <li data-nav-id="/cloudformation-lab/update_stack/" title="4. Update Stack" class="dd-item ">
+      <li data-nav-id="/cloudformation-lab/update_stack/" title="4. Update the Stack" class="dd-item ">
         <a href="/cloudformation-lab/update_stack/">
-        4. Update Stack
+        4. Update the Stack
         <i class="fas fa-check read-icon"></i>
         </a>
     </li>
@@ -1517,26 +1517,32 @@
 
 
 
-	<p>This lab will walk the user through using the AWS CloudFormation to
-create a VPC with public and private subnets, describe each of the
-objects created by the AWS CloudFormation, and launch VPC with the
-public and private VPC subnets, RouteTable, Elastic IP NAT Gateway, and
-S3 bucket.</p>
+	<p>This lab will walk the user through using AWS CloudFormation to
+create a VPC with public and private subnets. Then, each of the objects
+created by the AWS CloudFormation template will be described, and you will
+be guided through the process of launching an AWS CloudFormation Stack from
+the template, to create a VPC with public and private VPC subnets,
+a RouteTable, an Elastic IP NAT Gateway, and an S3 bucket.</p>
 
-<p>The following is a high-level overview of this lab:
--   Explore the initial AWS CloudFormation template
--   Explore the different VPC objects and what they mean
--   Launch AWS CloudFormation by creating Stack from Console.
--   Export VPC ID, NAT Gateway ID and S3 bucket URL to output tab</p>
+<p>The lab is broken down into the following high-level steps:</p>
 
-<p>The lab will provide an initial template for users to explore . after
-creating VPC stack from an initial template, users need to complete
-provided objective to achieve the final solution.</p>
+<ul>
+<li>Explore the initial AWS CloudFormation template<br /></li>
+<li>Explore the different VPC objects and what they mean</li>
+<li>Launch an AWS CloudFormation template by creating a Stack from Console</li>
+<li>Export the VPC ID, the NAT Gateway ID and the S3 bucket URL to AWS CloudFormation Stack outputs tab</li>
+</ul>
+
+<p>The lab will provide an initial template for users to explore. After
+creating the VPC stack from an initial template, users will need to
+complete the required steps to reach the final objective.</p>
 
 <p><strong>Note:</strong> Screenshots are provided to guide you through the steps in the
 lab. The elements that you will create (e.g. VPC, NAT Gateway, EIP) will
-be unique to your account, so things such as VPC ID that you see in the
-console will not necessarily mirror what&rsquo;s seen in the screenshot.</p>
+be unique to your account, so please bear in mind that resources such as
+the VPC ID that you see in the console will not necessarily match the
+screenshots. Also, please be aware that the console may appear slightly
+different from the screenshots, but the the steps remain the same.</p>
 
 
 
@@ -2633,7 +2639,7 @@ console will not necessarily mirror what&rsquo;s seen in the screenshot.</p>
 			<a class="nav nav-prev" href="/security-lab/query-security-log/" title="10. Query Security Log"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/cloudformation-lab/explore_template/" title="1. Exploring the templates" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/cloudformation-lab/explore_template/" title="1. Exploring the template" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -2643,19 +2649,19 @@ console will not necessarily mirror what&rsquo;s seen in the screenshot.</p>
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1573203652"></script>
-    <script src="/js/perfect-scrollbar.min.js?1573203652"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1573203652"></script>
-    <script src="/js/jquery.sticky.js?1573203652"></script>
-    <script src="/js/featherlight.min.js?1573203652"></script>
-    <script src="/js/highlight.pack.js?1573203652"></script>
+    <script src="/js/clipboard.min.js?1573203740"></script>
+    <script src="/js/perfect-scrollbar.min.js?1573203740"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1573203740"></script>
+    <script src="/js/jquery.sticky.js?1573203740"></script>
+    <script src="/js/featherlight.min.js?1573203740"></script>
+    <script src="/js/highlight.pack.js?1573203740"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1573203652"></script>
-    <script src="/js/learn.js?1573203652"></script>
-    <script src="/js/hugo-learn.js?1573203652"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1573203740"></script>
+    <script src="/js/learn.js?1573203740"></script>
+    <script src="/js/hugo-learn.js?1573203740"></script>
 
-    <link href="/mermaid/mermaid.css?1573203652" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1573203652"></script>
+    <link href="/mermaid/mermaid.css?1573203740" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1573203740"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

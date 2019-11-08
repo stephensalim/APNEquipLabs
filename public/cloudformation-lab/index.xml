@@ -11,51 +11,49 @@
     
     
     <item>
-      <title>1. Exploring the templates</title>
+      <title>1. Exploring the template</title>
       <link>http://example.org/cloudformation-lab/explore_template/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://example.org/cloudformation-lab/explore_template/</guid>
-      <description>Please collapse the Source CloudFormation Template file, You can use any text editor to explore the different elements of VPC mentioned in the template. To make it easy for you can copy and paste the entire template into any YAML friendly text editor and collapse / expand the section.
-Some Recommendations :
+      <description>Please download the Source CloudFormation Template file. You can use any text editor to explore the different elements of the VPC defined by the template. To make it easy for you, can copy and paste the entire template into any YAML friendly text editor and collapse/expand the sections as required.
+Some suggested editors:
  Notepad++ (https://notepad-plus-plus.org/downloads/) VisualStudioCode. (https://code.visualstudio.com/)  Source CloudFormation Template
 Copy this template for the next section.
 CLICK HERE</description>
     </item>
     
     <item>
-      <title>2. Create Stack</title>
+      <title>2. Create the Stack</title>
       <link>http://example.org/cloudformation-lab/create_stack/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://example.org/cloudformation-lab/create_stack/</guid>
       <description>Copy and paste the Sample CloudFormation Template from the previous section to a text file called Sample_VPC_CloudFormation.yml
-Log into the AWS Console, and click on CloudFormation and below screen will open:
-Now click on Create new stack and browse your initial template to against choose a template option :
-Click Next and give stack name. Make sure your stack name should be unique to your account. Leave all other option as default</description>
+Log into the AWS Console, and click on CloudFormation and the following screen will be displayed:
+Now click on Create new stack, choose the option to upload a template, and browse to your initial template:
+Click Next and provide a stack name. Make sure your stack name is unique within your account. Leave all other options as defaults:</description>
     </item>
     
     <item>
-      <title>3. Change Your Stack</title>
+      <title>3. Change the Stack</title>
       <link>http://example.org/cloudformation-lab/change_stack/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://example.org/cloudformation-lab/change_stack/</guid>
-      <description>Now that you have explored and deployed your VPC stack, lets modify the template and update the stack to change the environment.
- Go back to the Source Cloudformation template you created before. Modify Section of the Source CloudFormation temoplate, and save the change into a new template file e.g: CloudFormation_Updated.yml.  Solution CloudFormation Template
-Click below to look at the Solution CloudFormation template, you can copy and paste this into a new file and update the stack following the next section.</description>
+      <description>Now that you have explored and deployed your VPC stack, let&amp;rsquo;s modify the template and then update the stack to change the live environment.
+ Go back to the source CloudFormation template you created before. Modify the sections of the source CloudFormation template as described, and save the changes as a new template file, for example Sample_VPC_CloudFormation_Updated.yml.  Solution CloudFormation Template
+Click below to look at the solution CloudFormation template.</description>
     </item>
     
     <item>
-      <title>4. Update Stack</title>
+      <title>4. Update the Stack</title>
       <link>http://example.org/cloudformation-lab/update_stack/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://example.org/cloudformation-lab/update_stack/</guid>
-      <description>Once you modified your existing template , you can use Update Stack option to update your stack. To update select your Stack and click on Actions drop down and you will find Update Stack option.
-In Update, Stack screen select browse your updated template. If you have not figured out a solution yet Follow instruction in appendix section to get template
-Lab_Solution_CloudFormation_Module_General_ImmersionDay.json.
-Now remaining steps are same as you followed in Create stack.</description>
+      <description>Once you have modified your template, you can use the Update Stack option to update your stack. To start the update, your stack and click on Actions drop down and you will find the Update Stack option. (Your console version may appear different from the image below, if so, after selecting your stack, just click Update.)
+In the Update stack screen, select the option to upload a new template. If you have not yet created a solution, download the reference template below.</description>
     </item>
     
   </channel>

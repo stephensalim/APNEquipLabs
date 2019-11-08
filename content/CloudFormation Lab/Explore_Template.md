@@ -1,14 +1,15 @@
 ---
-title: "1. Exploring the templates"
+title: "1. Exploring the template"
 weight: 1
 draft: false
 ---
 
-Please collapse the **Source CloudFormation Template** file, You can use
-any text editor to explore the different elements of VPC mentioned in
-the template. To make it easy for you can copy and paste the entire template into any YAML friendly text editor and collapse / expand the section.
+Please download the **Source CloudFormation Template** file. You can use
+any text editor to explore the different elements of the VPC defined by
+the template. To make it easy for you, can copy and paste the entire template 
+into any YAML friendly text editor and collapse/expand the sections as required.
 
-Some Recommendations :
+Some suggested editors:
 
 * Notepad++ (https://notepad-plus-plus.org/downloads/)
 * VisualStudioCode. (https://code.visualstudio.com/)
@@ -183,7 +184,7 @@ Resources:
 
 
 
-You will notice following resources in Initial AWS CloudFormation
+You will notice following resources in the initial AWS CloudFormation
 Template:
 
 -   VPC
@@ -322,7 +323,7 @@ Template:
 ```
 
 
--   Two Elastic IP
+-   Two Elastic IP addresses
     ```
     ...
     EIPNatGWA:
@@ -337,7 +338,7 @@ Template:
         Domain: vpc
     ...
     ```
--   Two NAT Gateway
+-   Two NAT Gateways
     ```
     ...
     NatGatewayA:
