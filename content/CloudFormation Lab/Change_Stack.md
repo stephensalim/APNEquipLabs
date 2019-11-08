@@ -1,20 +1,21 @@
 ---
-title: "3. Change Your Stack"
+title: "3. Change the Stack"
 weight: 3
 draft: false
 ---
 
-Now that you have explored and deployed your VPC stack, lets modify the template and update the stack to change the environment.
+Now that you have explored and deployed your VPC stack, 
+let's modify the template and then update the stack to change the live environment.
 
-1. Go back to the Source Cloudformation template you created before.
-2. Modify Section of the Source CloudFormation temoplate, and save the change into a new template file e.g: CloudFormation_Updated.yml.
-
+1. Go back to the source CloudFormation template you created before.
+2. Modify the sections of the source CloudFormation template as described, 
+and save the changes as a new template file, for example Sample_VPC_CloudFormation_Updated.yml.
 
 
 **Solution CloudFormation Template**
 
-Click below to look at the Solution CloudFormation template, you can copy and paste this into a new file and update the stack following the next section.
-But for best experience on building the lab, we recommend for you to build the change manually following the instructions below.
+Click below to look at the solution CloudFormation template. If you like, you can simply copy and paste this into
+a new file and update the stack. However, we recommend that in order to get the most out of this lab, you make the changes manually, following the instructions below.
 
 <details><summary>CLICK HERE</summary>
 <p>
@@ -216,38 +217,40 @@ Outputs:
 </details>
 
 
-1.  **Add Parameter Constraint :**
+1.  **Add Parameter Constraints:**
 
     -   Vpccidr
         -   Minimum length should be set to 9
         -   Maximum length should be set to 18
         -   Allowed pattern should be:
-            `((\d{1,3})\.){3}\d{1,3}/\d{1,2}`
+            `(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})/(\\d{1,2})`
         -   Add a constraint description
     -   Psharedacidr
         -   Minimum length should be set to 9
         -   Maximum length should be set to 18
         -   Allowed pattern should be:
-            `((\d{1,3})\.){3}\d{1,3}/\d{1,2}`
+            `(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})/(\\d{1,2})`
         -   Add a constraint description
 
     -   Psharedbcidr
         -   Minimum length should be set to 9
         -   Maximum length should be set to 18
         -   Allowed pattern should be:
-            `((\d{1,3})\.){3}\d{1,3}/\d{1,2}`
+            `(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})/(\\d{1,2})`
         -   Add a constraint description
+
     -   Pvsharedacidr
         -   Minimum length should be set to 9
         -   Maximum length should be set to 18
         -   Allowed pattern should be:
-            `((\d{1,3})\.){3}\d{1,3}/\d{1,2}`
+            `(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})/(\\d{1,2})`
         -   Add a constraint description
+
     -   Pvsharedbcidr
         -   Minimum length should be set to 9
         -   Maximum length should be set to 18
         -   Allowed pattern should be:
-            `((\d{1,3})\.){3}\d{1,3}/\d{1,2}`
+            `(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})/(\\d{1,2})`
         -   Add a constraint description
 
         Reference :<https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/parameters-section-structure.html>
@@ -313,10 +316,9 @@ Outputs:
             Default: 10.20.3.0/24
         ```
 
-2.  **Add delete policy constraint :**
+2.  **Add a deletion policy:**
 
-    -   Create a Deletion Policy for your S3 bucket to be Retained at
-        deletion
+    -   Create a Deletion Policy for your S3 bucket, so that it will be retained on the stack being deleted.
 
         Reference : <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-attribute-deletionpolicy.html>
 
@@ -345,30 +347,30 @@ Outputs:
                 IndexDocument: index.html
         ```
 
-3.  **Add Outputs section to show value in Output tab:**
+3.  **Add an Outputs section, so that stack values are visible on the AWS CloudFormation Outputs tab:**
 
-    -   Vpc id
+    -   vpcid
         -   Create a description of your output
-        -   Reference your VPC as the value using !Ref
+        -   Reference your VPC, by using !Ref to obtain the value of the VPC ID
 
-    -   NATGWA
+    -   natgatewayaid
         -   Create a description of your output
-        -   Reference your NAT gateway A as the value using !Ref
+        -   Reference your NAT gateway A, using !Ref
 
-    -   NATGWB
+    -   natgatewaybid
         -   Create a description of your output
-        -   Reference your NAT gateway B as the value using !Ref
+        -   Reference your NAT gateway B, using !Ref
 
-    -   App bucket URL
+    -   appbucketurl
         -   Create a description of your output
-        -   Reference your S3 bucket URL as the value using !Ref
+        -   Use the !GetAtt intrinsic function with the WebsiteURL attribute to obtain the bucket URL from the bucket resource
 
     Reference : <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/outputs-section-structure.html>
 
     Before :
     
     ```
-    No Outputs is defined in source.
+    No Outputs are defined in the source template.
     ```
 
     After :
@@ -391,10 +393,10 @@ Outputs:
 
 4.  **Add export values in Outputs section for Cross-Stack Reference:**
 
-    -   Vpc id
-        -   Export your vpcid Name as 'sharedinf-vpc'
-    -   App bucket URL
-        -   Export your appbucketurl Name as 'sharedinf-appbucketurl'
+    -   vpcid
+        -   Export your vpcid as 'sharedinf-vpc'
+    -   appbucketurl
+        -   Export your bucket URL as 'sharedinf-appbucketurl'
 
         Reference : <https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/outputs-section-structure.html>
 
@@ -431,7 +433,7 @@ Outputs:
             natgatewaybid:
                 Description: ID of NAT Gateway B
                 Value: !Ref NatGatewayB
-            appbucketurl:
+            vpcid:
                 Description: Shared Infrastructure App Bucket
                 Value: !GetAtt S3AppBucket.WebsiteURL
                 Export: # added to export

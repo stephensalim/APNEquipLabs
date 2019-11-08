@@ -7,7 +7,7 @@ draft: false
 
 The Lab assumes you already have an AWS account setup, and have direct unrestricted access to your AWS console.<br>
 If you don't have AWS account set up, please follow this [Link](https://aws.amazon.com/premiumsupport/knowledge-center/create-and-activate-aws-account/) to set one up.
-Each Lab are built independently of each other so you can pick and choose your module as preffered 
+The labs are built independently of each other so you can pick and choose your module as preferred. 
 
 <br>
 
