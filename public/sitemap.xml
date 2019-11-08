@@ -219,15 +219,15 @@
   </url>
   
   <url>
-    <loc>http://example.org/ami-inspector-lab/connect_analyzerlambda_sns/</loc>
-  </url>
-  
-  <url>
     <loc>http://example.org/security-lab/create-alarm-for-security-log/</loc>
   </url>
   
   <url>
     <loc>http://example.org/monitoring-lab/monitor-ec2-tag/</loc>
+  </url>
+  
+  <url>
+    <loc>http://example.org/ami-inspector-lab/connect_analyzerlambda_sns/</loc>
   </url>
   
   <url>

@@ -12,20 +12,20 @@
     <title>8. Test Assesment :: APN Equip Labs</title>
 
     
-    <link href="/css/nucleus.css?1573210433" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1573210433" rel="stylesheet">
-    <link href="/css/hybrid.css?1573210433" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1573210433" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1573210433" rel="stylesheet">
-    <link href="/css/auto-complete.css?1573210433" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1573210433" rel="stylesheet">
-    <link href="/css/theme.css?1573210433" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1573210433" rel="stylesheet">
+    <link href="/css/nucleus.css?1573224023" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1573224023" rel="stylesheet">
+    <link href="/css/hybrid.css?1573224023" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1573224023" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1573224023" rel="stylesheet">
+    <link href="/css/auto-complete.css?1573224023" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1573224023" rel="stylesheet">
+    <link href="/css/theme.css?1573224023" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1573224023" rel="stylesheet">
     
-      <link href="/css/theme-darkblue.css?1573210433" rel="stylesheet">
+      <link href="/css/theme-darkblue.css?1573224023" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1573210433"></script>
+    <script src="/js/jquery-3.3.1.min.js?1573224023"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -51,14 +51,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1573210433"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1573210433"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1573224023"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1573224023"></script>
 <script type="text/javascript">
     
         var baseurl = "http:\/\/example.org\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1573210433"></script>
+<script type="text/javascript" src="/js/search.js?1573224023"></script>
 
     
   </div>
@@ -1380,9 +1380,9 @@
  
   
     
-      <li data-nav-id="/ami-inspector-lab/connect_analyzerlambda_sns/" title="7. Connect Analyzer to Topic" class="dd-item ">
+      <li data-nav-id="/ami-inspector-lab/connect_analyzerlambda_sns/" title="7. Subscribe Lambda to SNS Topic" class="dd-item ">
         <a href="/ami-inspector-lab/connect_analyzerlambda_sns/">
-        7. Connect Analyzer to Topic
+        7. Subscribe Lambda to SNS Topic
         <i class="fas fa-check read-icon"></i>
         </a>
     </li>
@@ -1418,9 +1418,9 @@
  
   
     
-      <li data-nav-id="/ami-inspector-lab/scheduling_the_continuation/" title="9. Configure CloudWatch events" class="dd-item ">
+      <li data-nav-id="/ami-inspector-lab/scheduling_the_continuation/" title="9. Configure CloudWatch Event Rule" class="dd-item ">
         <a href="/ami-inspector-lab/scheduling_the_continuation/">
-        9. Configure CloudWatch events
+        9. Configure CloudWatch Event Rule
         <i class="fas fa-check read-icon"></i>
         </a>
     </li>
@@ -1510,7 +1510,17 @@
                 
                     <div class="progress">
     <div class="wrapper">
-
+<nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#manually-start-golden-ami-vulnerability-assessments">Manually Start golden AMI vulnerability assessments</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
     </div>
 </div>
 
@@ -1534,12 +1544,11 @@
 
 
 
-<p>As I mentioned before, the main part of our solution is done !
-In this section we will test the execution of our solution by passing in manual invocation to the <code>StartContinuousAssessment</code> Lambda Function.
-In this test, you trigger a security assessment and monitor it.</p>
 
-<ol>
-<li><p><strong>To start golden AMI vulnerability assessments:</strong></p>
+
+<p>The main part of our solution is done ! In this section we will test the execution of our solution by passing in manual invocation to the <code>StartContinuousAssessment</code> Lambda Function. This will then kick off the GoldenAMI assessment process on the AMI ID we specified in our metadata, and you should see the solutions in full effect.</p>
+
+<h3 id="manually-start-golden-ami-vulnerability-assessments">Manually Start golden AMI vulnerability assessments</h3>
 
 <ol>
 <li>Sign in to the <a href="https://console.aws.amazon.com/console/home">AWS Management Console</a> and choose <strong>Lambda</strong> in the <strong>Services </strong>menu.</li>
@@ -1550,11 +1559,9 @@ In this test, you trigger a security assessment and monitor it.</p>
 <li><p>Paste the following JSON in the editor box.</p>
 
 <div class="hide-language">
-
     {
     "AMIsParamName": "ContinuousAssessmentInput"
     }
-
 </div></li>
 
 <li><p>Choose <strong>Create</strong>. Choose <strong>Test</strong>.</p></li>
@@ -1562,7 +1569,7 @@ In this test, you trigger a security assessment and monitor it.</p>
 
 <p>The <code>StartContinuousAssessment</code> function runs for approximately five minutes.</p>
 
-<p>while you wait, here&rsquo;s the explanation on what occurs in the background.</p>
+<p>While you wait, here&rsquo;s the explanation on what occurs in the background.</p>
 
 <p><img src="/AMI Inspector Lab/images/Testing01.png" alt="" /></p>
 
@@ -1646,7 +1653,6 @@ In this test, you trigger a security assessment and monitor it.</p>
 <li>Terminates all instances associated with the <code>continuous-assessment-instance=true</code> tag.</li>
 <li>Aggregates the number of findings found for each EC2 instance by severity and then publishes a consolidated result to an SNS topic called <code>ContinuousAssessmentResultsTopic</code>.</li>
 </ul></li>
-</ol></li>
 </ol>
 
 <p>Now that We have succesfully Test our Solution, we are ready to create the schedule Task for our stack</p>
@@ -2743,10 +2749,10 @@ In this test, you trigger a security assessment and monitor it.</p>
 	 
 	 
 		
-			<a class="nav nav-prev" href="/ami-inspector-lab/connect_analyzerlambda_sns/" title="7. Connect Analyzer to Topic"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/ami-inspector-lab/connect_analyzerlambda_sns/" title="7. Subscribe Lambda to SNS Topic"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/ami-inspector-lab/scheduling_the_continuation/" title="9. Configure CloudWatch events" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/ami-inspector-lab/scheduling_the_continuation/" title="9. Configure CloudWatch Event Rule" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -2756,19 +2762,19 @@ In this test, you trigger a security assessment and monitor it.</p>
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1573210433"></script>
-    <script src="/js/perfect-scrollbar.min.js?1573210433"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1573210433"></script>
-    <script src="/js/jquery.sticky.js?1573210433"></script>
-    <script src="/js/featherlight.min.js?1573210433"></script>
-    <script src="/js/highlight.pack.js?1573210433"></script>
+    <script src="/js/clipboard.min.js?1573224023"></script>
+    <script src="/js/perfect-scrollbar.min.js?1573224023"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1573224023"></script>
+    <script src="/js/jquery.sticky.js?1573224023"></script>
+    <script src="/js/featherlight.min.js?1573224023"></script>
+    <script src="/js/highlight.pack.js?1573224023"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1573210433"></script>
-    <script src="/js/learn.js?1573210433"></script>
-    <script src="/js/hugo-learn.js?1573210433"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1573224023"></script>
+    <script src="/js/learn.js?1573224023"></script>
+    <script src="/js/hugo-learn.js?1573224023"></script>
 
-    <link href="/mermaid/mermaid.css?1573210433" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1573210433"></script>
+    <link href="/mermaid/mermaid.css?1573224023" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1573224023"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

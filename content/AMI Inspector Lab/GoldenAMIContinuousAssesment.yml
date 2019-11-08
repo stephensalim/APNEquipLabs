@@ -1,7 +1,6 @@
 Parameters: 
   Email: 
     Type: String
-    
 Resources:
   StartContinuousAssessmentLambdaRole: 
     Properties: 

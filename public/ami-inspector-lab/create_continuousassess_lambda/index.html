@@ -12,20 +12,20 @@
     <title>6. Create Lambda Functions :: APN Equip Labs</title>
 
     
-    <link href="/css/nucleus.css?1573210433" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1573210433" rel="stylesheet">
-    <link href="/css/hybrid.css?1573210433" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1573210433" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1573210433" rel="stylesheet">
-    <link href="/css/auto-complete.css?1573210433" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1573210433" rel="stylesheet">
-    <link href="/css/theme.css?1573210433" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1573210433" rel="stylesheet">
+    <link href="/css/nucleus.css?1573224023" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1573224023" rel="stylesheet">
+    <link href="/css/hybrid.css?1573224023" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1573224023" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1573224023" rel="stylesheet">
+    <link href="/css/auto-complete.css?1573224023" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1573224023" rel="stylesheet">
+    <link href="/css/theme.css?1573224023" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1573224023" rel="stylesheet">
     
-      <link href="/css/theme-darkblue.css?1573210433" rel="stylesheet">
+      <link href="/css/theme-darkblue.css?1573224023" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1573210433"></script>
+    <script src="/js/jquery-3.3.1.min.js?1573224023"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -51,14 +51,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1573210433"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1573210433"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1573224023"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1573224023"></script>
 <script type="text/javascript">
     
         var baseurl = "http:\/\/example.org\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1573210433"></script>
+<script type="text/javascript" src="/js/search.js?1573224023"></script>
 
     
   </div>
@@ -1380,9 +1380,9 @@
  
   
     
-      <li data-nav-id="/ami-inspector-lab/connect_analyzerlambda_sns/" title="7. Connect Analyzer to Topic" class="dd-item ">
+      <li data-nav-id="/ami-inspector-lab/connect_analyzerlambda_sns/" title="7. Subscribe Lambda to SNS Topic" class="dd-item ">
         <a href="/ami-inspector-lab/connect_analyzerlambda_sns/">
-        7. Connect Analyzer to Topic
+        7. Subscribe Lambda to SNS Topic
         <i class="fas fa-check read-icon"></i>
         </a>
     </li>
@@ -1418,9 +1418,9 @@
  
   
     
-      <li data-nav-id="/ami-inspector-lab/scheduling_the_continuation/" title="9. Configure CloudWatch events" class="dd-item ">
+      <li data-nav-id="/ami-inspector-lab/scheduling_the_continuation/" title="9. Configure CloudWatch Event Rule" class="dd-item ">
         <a href="/ami-inspector-lab/scheduling_the_continuation/">
-        9. Configure CloudWatch events
+        9. Configure CloudWatch Event Rule
         <i class="fas fa-check read-icon"></i>
         </a>
     </li>
@@ -1510,7 +1510,19 @@
                 
                     <div class="progress">
     <div class="wrapper">
-
+<nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#creating-the-lambda-function-startcontinuousassessment">Creating the Lambda Function StartContinuousAssessment</a></li>
+<li><a href="#create-lambda-function-to-analyzeinspectorfindings">Create Lambda Function to AnalyzeInspectorFindings</a></li>
+<li><a href="#deploys-the-cloudformation-template">Deploys the CloudFormation Template</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
     </div>
 </div>
 
@@ -1534,88 +1546,113 @@
 
 
 
+
+
 <p>Alright, now for the meaty part !
-In this part of the lab, we will walk through how to construct / package <a href="https://docs.aws.amazon.com/lambda/latest/dg/welcome.html">AWS Lambda</a> Function and attach it to the IAM roles we created in previous step. We will be creating 2 Lambda Functions <code>StartContinuousAssesment</code> &amp;  <code>AnalyzeInspectorFindings</code> Each of this Lambda Functions will also have a connection to SNS Topics we created in previous steps through a Lambda Environment variable we defined in the function.</p>
+In this part of the lab, we will walk through how to construct / package <a href="https://docs.aws.amazon.com/lambda/latest/dg/welcome.html">AWS Lambda</a> Function and attach it to the IAM roles we created in previous step. We will be creating 2 Lambda Functions <code>StartContinuousAssesment</code> &amp; <code>AnalyzeInspectorFindings</code> Each of this Lambda Functions will also have a connection to SNS Topics we created in previous steps through a Lambda Environment variable we defined in the function.</p>
 
 <p><img src="/AMI Inspector Lab/images/ContinuousAssesmentLambdaFunction02.png" alt="" /></p>
-
-<ol>
-<li><p><strong>Creating the Lambda Function StartContinuousAssessment</strong></p>
 
 <hr />
 
 <p><strong>IMPORTANT NOTE:</strong></p>
 
 <p>In the following steps you will need to construct your CloudFormation template in YAML format.
-YAML format allows you to put comments in the template by placing in # in front of the line, so it&rsquo;s quite handy.
-On the flip side however, it is indent sensitive, so make sure you specify the Key and values at the right level of indentation.</p>
+YAML format allows you to put comments in the template by placing in # in front of the line.
+YAML format is indent sensitive syntax, therefore make sure to specify the key and values at the right indent level in the template.</p>
 
-<p>Practice makes perfect, therefore when building the template, we will be providing a high level instruction on how to construct it.
-We will also provide reference guide / example from public documentation to help you.
-The purpose of this is so that you could get used to exploring CloudFormation documentation and get acustomed with the syntax.</p>
+<p>When building a cloudformation template, it is recommended to always refer back to the extensive CloudFormation documentation.
+In the folloing steps for smooth lab experience, we will be providing the template snippet for the specific resource.
+Alternatively, we will also be providing a high level instruction on how to construct the template if you coose to build them manually. We will also provide reference guide / example from public documentation to help you.</p>
 
-<p>However if you are completely stuck, don&rsquo;t hesitate to get help from Lab instructor or take a peek at the <strong>ARE YOU STUCK?</strong> section to peek on the solution.</p>
+<p>The purpose of this is get acustomed towards exploring CloudFormation documentation and syntax.
+That being said, at any point in time you are stuck reach out to the lab support team.</p>
 
 <hr />
 
-<p>Reference: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-function.html">https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-function.html</a></p>
+<h3 id="creating-the-lambda-function-startcontinuousassessment">Creating the Lambda Function StartContinuousAssessment</h3>
+
+<p>In this step we will be <strong>creating a Lambda Function</strong> with below criteria :</p>
+
+<ul>
+<li>FunctionName called <code>StartContinuousAssessment</code></li>
+<li>Handler to the function is <code>index.lambda_handler</code>.</li>
+<li>MemorySize is 512, and timeout is 5 mins.</li>
+<li>Create Environment variable named <code>AssesmentCompleteTopicArn</code> and reference the arn of <code>ContinuousAssessmentCompleteTopic</code> SNS Topic.</li>
+<li>Specify Roles, and reference the ARN of IAM role called <code>StartContinuousAssessmentLambdaRole</code>.</li>
+<li>Specify the code inline within the template, Code for this function is available below.</li>
+</ul>
+
+<p>You can refer here for properties reference: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-function.html">https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-function.html</a></p>
+
+<p><strong>Code</strong></p>
+
+<pre><code>    import json
+    import urllib.parse
+    import boto3
+    import time
+    import os
+    def lambda_handler(event, context):
+        AMIsParamName = event['AMIsParamName'];
+        region=os.environ['AWS_DEFAULT_REGION']
+        ec2 = boto3.client('ec2',region)
+        ssm = boto3.client('ssm',region)
+        inspector = boto3.client('inspector',region)
+        AmiJson =  ssm.get_parameter(Name=AMIsParamName)['Parameter']['Value']
+        print(AmiJson)
+        items = json.loads(AmiJson)
+        for entry in items:
+            images= ec2.describe_images(ImageIds=[entry['ami-id']],DryRun=False)
+            tags = images['Images'][0]['Tags']
+            tags.append({'Key': 'continuous-assessment-instance', 'Value': 'true'})
+            ec2.run_instances(ImageId=entry['ami-id'],InstanceType=entry['instanceType'],UserData=entry['userData'],DryRun=False,MaxCount=1,MinCount=1,TagSpecifications=[{'ResourceType': 'instance','Tags': tags}])
+        assessmentTemplateArn='';
+        rules = inspector.list_rules_packages();
+        
+        millis = int(round(time.time() * 1000))
+        existingTemplates = inspector.list_assessment_templates(filter={'namePattern': 'ContinuousAssessment'})
+        print('Total templates found:'+str(len(existingTemplates['assessmentTemplateArns'])))
+        if len(existingTemplates['assessmentTemplateArns'])==0:
+            resGroup = inspector.create_resource_group(resourceGroupTags=[{'key': 'continuous-assessment-instance','value': 'true'}])
+            target = inspector.create_assessment_target(assessmentTargetName='ContinuousAssessment',resourceGroupArn=resGroup['resourceGroupArn'])
+            template = inspector.create_assessment_template(assessmentTargetArn=target['assessmentTargetArn'],assessmentTemplateName='ContinuousAssessment', durationInSeconds=300,rulesPackageArns=rules['rulesPackageArns'])
+            assessmentTemplateArn=template['assessmentTemplateArn']
+            response = inspector.subscribe_to_event(event='ASSESSMENT_RUN_COMPLETED',resourceArn=template['assessmentTemplateArn'],topicArn=os.environ['AssesmentCompleteTopicArn']) 
+            print('Template Created:'+template['assessmentTemplateArn'])
+        else:
+            assessmentTemplateArn=existingTemplates.get('assessmentTemplateArns')[0]
+        time.sleep(240)
+        run = inspector.start_assessment_run(assessmentTemplateArn=assessmentTemplateArn,assessmentRunName='ContinuousAssessment'+'-'+str(millis))
+        return 'Done'
+</code></pre>
+
+<p>Choose one of the option below on how you want to build the resource.</p>
+
+<p><details><summary><strong>Option 1 - Build the resouce manually with step by step instructions.</strong></summary>
+<p></p>
 
 <ul>
 <li>Open your notepad / text editor, edit the file named  <code>GoldenAMIContinuousAssesment.yml</code>.</li>
 <li>Right under the previous resource, still inside the <code>Resources:</code> section do the following.</li>
 <li>Create a resource named <code>StartContinuousAssessmentLambdaFunction</code> of type <code>AWS::Lambda::Function</code>.</li>
-<li>In the <code>Properties</code> section create a <code>Role</code> property and using the !GetAtt intrinsic function reference the IAM role Arn you created in previous step Reference : <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-getatt.html">https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-getatt.html</a></li>
+<li>Under <code>Properties</code> section create <code>FunctionName</code> with <code>StartContinuousAssessment</code> as the value.</li>
+<li>Under <code>Properties</code> create <code>Handler</code> with <code>index.lambda_handler</code> as the value.</li>
+<li>Under <code>Properties</code> create <code>MemorySize</code> with <code>512</code> as the value.</li>
+<li>Under <code>Properties</code> create <code>Runtime</code> with <code>python3.6</code> as the value.</li>
+<li>Under <code>Properties</code> create <code>Timeout</code> with <code>300</code> as the value.</li>
+<li>Under <code>Properties</code> create <code>Environment</code> under it, following after that, create <code>Variables</code> under <code>Environment</code>.
+
+<ul>
+<li>Under <code>Variables</code> then create a key called <code>AssesmentCompleteTopicArn</code> and reference the value <code>ContinuousAssessmentCompleteTopic</code> using !Ref intrinsic function. Reference: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-ref.html">https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-ref.html</a></li>
+</ul></li>
+<li>In the <code>Properties</code> section create a <code>Role</code> property and using the !GetAtt intrinsic function reference the IAM role Arn you created in previous step called <code>StartContinuousAssessmentLambdaRole</code> Reference: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-getatt.html">https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-getatt.html</a></li>
 <li>In the <code>Properties</code> section create a <code>Code</code> property and specify the lambda function code using in line code, copu &amp; paste below. To place in multiple line, in yaml you can use the | sign then place the remaining code below it. Example : <a href="https://aws.amazon.com/blogs/infrastructure-and-automation/deploying-aws-lambda-functions-using-aws-cloudformation-the-portable-way/">https://aws.amazon.com/blogs/infrastructure-and-automation/deploying-aws-lambda-functions-using-aws-cloudformation-the-portable-way/</a></li>
 </ul>
 
-<p>Code</p>
+<p></p>
+</details></p>
 
-<pre><code>import json
-import urllib.parse
-import boto3
-import time
-import os
-def lambda_handler(event, context):
-    AMIsParamName = event['AMIsParamName'];
-    region=os.environ['AWS_DEFAULT_REGION']
-    ec2 = boto3.client('ec2',region)
-    ssm = boto3.client('ssm',region)
-    inspector = boto3.client('inspector',region)
-    AmiJson =  ssm.get_parameter(Name=AMIsParamName)['Parameter']['Value']
-    print(AmiJson)
-    items = json.loads(AmiJson)
-    for entry in items:
-        images= ec2.describe_images(ImageIds=[entry['ami-id']],DryRun=False)
-        tags = images['Images'][0]['Tags']
-        tags.append({'Key': 'continuous-assessment-instance', 'Value': 'true'})
-        ec2.run_instances(ImageId=entry['ami-id'],InstanceType=entry['instanceType'],UserData=entry['userData'],DryRun=False,MaxCount=1,MinCount=1,TagSpecifications=[{'ResourceType': 'instance','Tags': tags}])
-    assessmentTemplateArn='';
-    rules = inspector.list_rules_packages();
-        
-    millis = int(round(time.time() * 1000))
-    existingTemplates = inspector.list_assessment_templates(filter={'namePattern': 'ContinuousAssessment'})
-    print('Total templates found:'+str(len(existingTemplates['assessmentTemplateArns'])))
-    if len(existingTemplates['assessmentTemplateArns'])==0:
-        resGroup = inspector.create_resource_group(resourceGroupTags=[{'key': 'continuous-assessment-instance','value': 'true'}])
-        target = inspector.create_assessment_target(assessmentTargetName='ContinuousAssessment',resourceGroupArn=resGroup['resourceGroupArn'])
-        template = inspector.create_assessment_template(assessmentTargetArn=target['assessmentTargetArn'],assessmentTemplateName='ContinuousAssessment', durationInSeconds=300,rulesPackageArns=rules['rulesPackageArns'])
-        assessmentTemplateArn=template['assessmentTemplateArn']
-        response = inspector.subscribe_to_event(event='ASSESSMENT_RUN_COMPLETED',resourceArn=template['assessmentTemplateArn'],topicArn=os.environ['AssesmentCompleteTopicArn']) 
-        print('Template Created:'+template['assessmentTemplateArn'])
-    else:
-        assessmentTemplateArn=existingTemplates.get('assessmentTemplateArns')[0]
-    time.sleep(240)
-    run = inspector.start_assessment_run(assessmentTemplateArn=assessmentTemplateArn,assessmentRunName='ContinuousAssessment'+'-'+str(millis))
-    return 'Done'
-</code></pre>
-
-<ul>
-<li>In the <code>Properties</code> section create a <code>Environment</code> property and specify an environment variable named <code>AssesmentCompleteTopicArn</code> and reference the SNS topic resource created in previous step  To do this, you can use !Ref intrinsic function. Reference : <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-ref.html">https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-ref.html</a>
-<br /></li>
-</ul></li>
-</ol>
-
-<p><details><summary> <strong>ARE YOU STUCK ? :(</strong> - It&rsquo;s OK CLICK HERE to see the solution</summary></p>
+<p><details><summary><strong>Option 2 - CloudFormation template snippet</strong></summary></p>
 
 <p><strong>READ &gt;&gt;</strong> Below snippet must be specified within <code>Resources:</code> section of the cloudformation template.</p>
 
@@ -1674,93 +1711,101 @@ def lambda_handler(event, context):
 
 <p></details></p>
 
-<ol>
-<li><p><strong>Create Lambda Function to AnalyzeInspectorFindings</strong>.</p>
+<h3 id="create-lambda-function-to-analyzeinspectorfindings">Create Lambda Function to AnalyzeInspectorFindings</h3>
 
-<hr />
+<p>In this step we will be <strong>creating a Lambda Function</strong> with below criteria :</p>
 
-<p><strong>IMPORTANT NOTE:</strong></p>
+<ul>
+<li>FunctionName called <code>AnalyzeInspectorFindings</code></li>
+<li>Handler to the function is <code>index.lambda_handler</code>.</li>
+<li>MemorySize is 512, and timeout is 5 mins.</li>
+<li>Create Environment variable named <code>ContinuousAssessmentResultsTopic</code> and reference the arn of <code>ContinuousAssessmentResultsTopic</code> SNS Topic.</li>
+<li>Specify Roles, and reference the ARN of IAM role called <code>AnalyzeInspectorFindingsLambdaRole</code>.</li>
+<li>Specify the code inline within the template, Code for this function is available below.</li>
+</ul>
 
-<p>In the following steps you will need to construct your CloudFormation template in YAML format.
-YAML format allows you to put comments in the template by placing in # in front of the line, so it&rsquo;s quite handy.
-On the flip side however, it is indent sensitive, so make sure you specify the Key and values at the right level of indentation.</p>
+<p>You can refer here for properties reference: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-function.html">https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-function.html</a></p>
 
-<p>Practice makes perfect, therefore when building the template, we will be providing a high level instruction on how to construct it.
-We will also provide reference guide / example from public documentation to help you.
-The purpose of this is so that you could get used to exploring CloudFormation documentation and get acustomed with the syntax.</p>
+<p><strong>Code</strong></p>
 
-<p>However if you are completely stuck, don&rsquo;t hesitate to get help from Lab instructor or take a peek at the <strong>ARE YOU STUCK?</strong> section to peek on the solution.</p>
+<pre><code>                import json 
+                import os
+                import boto3
+                import collections
+                import ast
+                def lambda_handler(event, context): 
+                    print(event)
+                    message = event['Records'][0]['Sns']['Message'] 
+                    jsonVal = json.loads(message);
+                    assessmentArn =jsonVal['run']  
+                    region=os.environ['AWS_DEFAULT_REGION']
+                    ec2 = boto3.client('ec2',region) 
+                    sns = boto3.client('sns',region) 
+                    inspector = boto3.client('inspector',region) 
+                    findingArns = inspector.list_findings(assessmentRunArns=[jsonVal['run']],maxResults=5000)
+                    aggregateData={}
+                    for findingArn in findingArns['findingArns']:
+                        finding = inspector.describe_findings(findingArns=[findingArn]) 
+                        for result in finding['findings']: 
+                            instanceId =result['assetAttributes']['agentId']
+                            severity =result['severity']
+                            cveName=result['id']
+                            if not (instanceId) in aggregateData:
+                                aggregateData[instanceId]={}
+                                aggregateData[instanceId]['findings']={}
+                                aggregateData[instanceId]['findings'][severity]=0
+                                instance=ec2.describe_instances(InstanceIds=[instanceId]);
+                                tagsStr=str(instance['Reservations'][0]['Instances'][0]['Tags']) 
+                                tagsStr =tagsStr.replace('Key','key').replace('Value','value')  
+                                aggregateData[instanceId]['tags']= ast.literal_eval(tagsStr)
+                            elif not (severity) in aggregateData[instanceId]['findings']:
+                                aggregateData[instanceId]['findings'][severity]=0
+                            aggregateData[instanceId]['findings'][severity]=aggregateData[instanceId]['findings'][severity]+1; 
+                            inspector.add_attributes_to_findings(findingArns=[result['arn']],attributes=aggregateData[instanceId]['tags'])
+                    tagsList=[]
+                    for key  in aggregateData: 
+                        outputJson=[] 
+                        for tag in aggregateData[key]['tags']:
+                            if tag['key'] != 'continuous-assessment-instance':
+                                outputJson.append(&quot;\&quot;&quot;+tag['key']+&quot;\&quot;&quot;+&quot;:&quot;+&quot;\&quot;&quot;+tag['value']+&quot;\&quot;&quot;)
+                        for sev in aggregateData[key]['findings']:
+                            outputJson.append(&quot;\&quot;Finding-Severity-&quot;+sev+&quot;-Count\&quot;&quot;+&quot;:&quot;+&quot;\&quot;&quot;+str(aggregateData[key]['findings'][sev])+&quot;\&quot;&quot;)
+                        outputJson.sort()
+                        print(outputJson)
+                        tagsList.append('{'+', '.join(outputJson)+'}')
+                        print('Terminating:'+key)
+                        ec2.terminate_instances(InstanceIds=[key],DryRun=False)
+                    sns.publish(TopicArn=os.environ['ContinuousAssessmentResultsTopic'],Message='['+', '.join(tagsList)+']')
+                    return jsonVal['run']
+</code></pre>
 
-<hr />
+<p>Choose one of the option below on how you want to build the resource.</p>
+
+<p><details><summary><strong>Option 1 - Build the resouce manually with step by step instructions.</strong></summary>
+<p></p>
 
 <ul>
 <li>Open your notepad / text editor, edit the file named  <code>GoldenAMIContinuousAssesment.yml</code>.</li>
 <li>Right under the previous resource, still inside the <code>Resources:</code> section do the following.</li>
 <li>Create a resource named <code>AnalyzeInspectorFindingsLambdaFunction</code> of type <code>AWS::Lambda::Function</code>.</li>
-<li>In the <code>Properties</code> section create a <code>Role</code> property and using the !GetAtt intrinsic function reference the IAM role Arn you created for <code>AnalyzeInspectorFindingsLambdaRole</code>. Reference : <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-getatt.html">https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-getatt.html</a></li>
+<li>Under <code>Properties</code> section create <code>FunctionName</code> with <code>AnalyzeInspectorFindings</code> as the value.</li>
+<li>Under <code>Properties</code> create <code>Handler</code> with <code>index.lambda_handler</code> as the value.</li>
+<li>Under <code>Properties</code> create <code>MemorySize</code> with <code>512</code> as the value.</li>
+<li>Under <code>Properties</code> create <code>Runtime</code> with <code>python3.6</code> as the value.</li>
+<li>Under <code>Properties</code> create <code>Timeout</code> with <code>300</code> as the value.</li>
+<li>Under <code>Properties</code> create <code>Environment</code> under it, following after that, create <code>Variables</code> under <code>Environment</code>.
+
+<ul>
+<li>Under <code>Variables</code> then create a key called <code>ContinuousAssessmentResultsTopic</code> and reference the value <code>ContinuousAssessmentResultsTopic</code> using !Ref intrinsic function. Reference: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-ref.html">https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-ref.html</a></li>
+</ul></li>
+<li>In the <code>Properties</code> section create a <code>Role</code> property and using the !GetAtt intrinsic function reference the IAM role Arn you created in previous step called <code>AnalyzeInspectorFindingsLambdaRole</code> Reference: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-getatt.html">https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-getatt.html</a></li>
 <li>In the <code>Properties</code> section create a <code>Code</code> property and specify the lambda function code using in line code, copu &amp; paste below. To place in multiple line, in yaml you can use the | sign then place the remaining code below it. Example : <a href="https://aws.amazon.com/blogs/infrastructure-and-automation/deploying-aws-lambda-functions-using-aws-cloudformation-the-portable-way/">https://aws.amazon.com/blogs/infrastructure-and-automation/deploying-aws-lambda-functions-using-aws-cloudformation-the-portable-way/</a></li>
 </ul>
 
-<p>Code</p>
+<p></p>
+</details></p>
 
-<pre><code>            import json 
-            import os
-            import boto3
-            import collections
-            import ast
-            def lambda_handler(event, context): 
-                print(event)
-                message = event['Records'][0]['Sns']['Message'] 
-                jsonVal = json.loads(message);
-                assessmentArn =jsonVal['run']  
-                region=os.environ['AWS_DEFAULT_REGION']
-                ec2 = boto3.client('ec2',region) 
-                sns = boto3.client('sns',region) 
-                inspector = boto3.client('inspector',region) 
-                findingArns = inspector.list_findings(assessmentRunArns=[jsonVal['run']],maxResults=5000)
-                aggregateData={}
-                for findingArn in findingArns['findingArns']:
-                    finding = inspector.describe_findings(findingArns=[findingArn]) 
-                    for result in finding['findings']: 
-                        instanceId =result['assetAttributes']['agentId']
-                        severity =result['severity']
-                        cveName=result['id']
-                        if not (instanceId) in aggregateData:
-                            aggregateData[instanceId]={}
-                            aggregateData[instanceId]['findings']={}
-                            aggregateData[instanceId]['findings'][severity]=0
-                            instance=ec2.describe_instances(InstanceIds=[instanceId]);
-                            tagsStr=str(instance['Reservations'][0]['Instances'][0]['Tags']) 
-                            tagsStr =tagsStr.replace('Key','key').replace('Value','value')  
-                            aggregateData[instanceId]['tags']= ast.literal_eval(tagsStr)
-                        elif not (severity) in aggregateData[instanceId]['findings']:
-                            aggregateData[instanceId]['findings'][severity]=0
-                        aggregateData[instanceId]['findings'][severity]=aggregateData[instanceId]['findings'][severity]+1; 
-                        inspector.add_attributes_to_findings(findingArns=[result['arn']],attributes=aggregateData[instanceId]['tags'])
-                tagsList=[]
-                for key  in aggregateData: 
-                    outputJson=[] 
-                    for tag in aggregateData[key]['tags']:
-                        if tag['key'] != 'continuous-assessment-instance':
-                            outputJson.append(&quot;\&quot;&quot;+tag['key']+&quot;\&quot;&quot;+&quot;:&quot;+&quot;\&quot;&quot;+tag['value']+&quot;\&quot;&quot;)
-                    for sev in aggregateData[key]['findings']:
-                        outputJson.append(&quot;\&quot;Finding-Severity-&quot;+sev+&quot;-Count\&quot;&quot;+&quot;:&quot;+&quot;\&quot;&quot;+str(aggregateData[key]['findings'][sev])+&quot;\&quot;&quot;)
-                    outputJson.sort()
-                    print(outputJson)
-                    tagsList.append('{'+', '.join(outputJson)+'}')
-                    print('Terminating:'+key)
-                    ec2.terminate_instances(InstanceIds=[key],DryRun=False)
-                sns.publish(TopicArn=os.environ['ContinuousAssessmentResultsTopic'],Message='['+', '.join(tagsList)+']')
-                return jsonVal['run']
-</code></pre>
-
-<ul>
-<li>In the <code>Properties</code> section create a <code>Environment</code> property and specify an environment variable named <code>ContinuousAssessmentResultsTopic</code> and reference the SNS topic resource <code>ContinuousAssessmentCompleteTopic</code>. To do this, you can use !Ref intrinsic function. Reference : <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-ref.html">https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-ref.html</a>
-<br /></li>
-</ul></li>
-</ol>
-
-<p><details><summary> <strong>ARE YOU STUCK ? :(</strong> - It&rsquo;s OK CLICK HERE to see the solution</summary></p>
+<p><details><summary><strong>Option 2 - CloudFormation template snippet</strong></summary></p>
 
 <p><strong>READ &gt;&gt;</strong> Below snippet must be specified within <code>Resources:</code> section of the cloudformation template.</p>
 
@@ -1831,15 +1876,13 @@ The purpose of this is so that you could get used to exploring CloudFormation do
 
 <p></details></p>
 
-<ol>
-<li><p><strong>Deploys the CloudFormation Template</strong></p>
+<h3 id="deploys-the-cloudformation-template">Deploys the CloudFormation Template</h3>
 
 <p>Now that you&rsquo;ve construct the template, it&rsquo;s time to update the stack, do do that please follow the <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-get-template.html#using-cfn-updating-stacks-get-stack.CON">Update a Stack&rsquo;s Template (Console)</a> guide to create your stack.</p>
 
 <p>Specify Stack <code>GoldenAMIContinuousAssesment</code> as the stack name for simplicity.</p>
 
-<p>Once you&rsquo;ve launched your stack review the <code>Resources</code> Tab of the launch stack to identify the resouce it&rsquo;s created. You should see an entry with in Logical ID and in Physical ID of the Lambda Functions, you can click on the corresponding link under Physical ID to go to the Lambda Functions console.</p></li>
-</ol>
+<p>Once you&rsquo;ve launched your stack review the <code>Resources</code> Tab of the launch stack to identify the resouce it&rsquo;s created. You should see an entry with in Logical ID and in Physical ID of the Lambda Functions, you can click on the corresponding link under Physical ID to go to the Lambda Functions console.</p>
 
 
 <footer class=" footline" >
@@ -2936,7 +2979,7 @@ The purpose of this is so that you could get used to exploring CloudFormation do
 			<a class="nav nav-prev" href="/ami-inspector-lab/create_snstopic_assesmentcomplete/" title="5. Create SNS Topic "> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/ami-inspector-lab/connect_analyzerlambda_sns/" title="7. Connect Analyzer to Topic" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/ami-inspector-lab/connect_analyzerlambda_sns/" title="7. Subscribe Lambda to SNS Topic" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -2946,19 +2989,19 @@ The purpose of this is so that you could get used to exploring CloudFormation do
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1573210433"></script>
-    <script src="/js/perfect-scrollbar.min.js?1573210433"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1573210433"></script>
-    <script src="/js/jquery.sticky.js?1573210433"></script>
-    <script src="/js/featherlight.min.js?1573210433"></script>
-    <script src="/js/highlight.pack.js?1573210433"></script>
+    <script src="/js/clipboard.min.js?1573224023"></script>
+    <script src="/js/perfect-scrollbar.min.js?1573224023"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1573224023"></script>
+    <script src="/js/jquery.sticky.js?1573224023"></script>
+    <script src="/js/featherlight.min.js?1573224023"></script>
+    <script src="/js/highlight.pack.js?1573224023"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1573210433"></script>
-    <script src="/js/learn.js?1573210433"></script>
-    <script src="/js/hugo-learn.js?1573210433"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1573224023"></script>
+    <script src="/js/learn.js?1573224023"></script>
+    <script src="/js/hugo-learn.js?1573224023"></script>
 
-    <link href="/mermaid/mermaid.css?1573210433" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1573210433"></script>
+    <link href="/mermaid/mermaid.css?1573224023" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1573224023"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
