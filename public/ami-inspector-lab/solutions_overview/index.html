@@ -12,20 +12,20 @@
     <title>1. Solutions Overview :: APN Equip Labs</title>
 
     
-    <link href="/css/nucleus.css?1573184031" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1573184031" rel="stylesheet">
-    <link href="/css/hybrid.css?1573184031" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1573184031" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1573184031" rel="stylesheet">
-    <link href="/css/auto-complete.css?1573184031" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1573184031" rel="stylesheet">
-    <link href="/css/theme.css?1573184031" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1573184031" rel="stylesheet">
+    <link href="/css/nucleus.css?1573203607" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1573203607" rel="stylesheet">
+    <link href="/css/hybrid.css?1573203607" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1573203607" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1573203607" rel="stylesheet">
+    <link href="/css/auto-complete.css?1573203607" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1573203607" rel="stylesheet">
+    <link href="/css/theme.css?1573203607" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1573203607" rel="stylesheet">
     
-      <link href="/css/theme-darkblue.css?1573184031" rel="stylesheet">
+      <link href="/css/theme-darkblue.css?1573203607" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1573184031"></script>
+    <script src="/js/jquery-3.3.1.min.js?1573203607"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -51,14 +51,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1573184031"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1573184031"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1573203607"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1573203607"></script>
 <script type="text/javascript">
     
         var baseurl = "http:\/\/example.org\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1573184031"></script>
+<script type="text/javascript" src="/js/search.js?1573203607"></script>
 
     
   </div>
@@ -1536,25 +1536,27 @@
 
 <p><img src="/AMI Inspector Lab/images/Main.png" alt="" /></p>
 
-<p>Here is the overview on how this solution works :</p>
+<p>Here an overview on how our solutions works:</p>
 
 <ol>
-<li><p>A scheduled CloudWatch Events event will trigger the <a href="http://aws.amazon.com/lambda/">AWS Lambda</a> function called <code>StartContinuousAssessment</code>.</p></li>
+<li><p>A scheduled <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/WhatIsCloudWatchEvents.html">CloudWatch Events</a> will trigger the <a href="http://aws.amazon.com/lambda/">AWS Lambda</a> function called <code>StartContinuousAssessment</code> every morning at 6 AM. This will essentially acts like your cron task (Linux) or scheduled task (Windows) that will executes on a regular basis.</p></li>
 
-<li><p>This function will then pulls metadata information containing the golden AMI ID, Instance type, and instructions to prepare the EC2 instance for inspection from <a href="https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-parameter-store.html">AWS Systems Manager Parameter Store</a></p></li>
+<li><p><code>StartContinuousAssessment</code> <a href="http://aws.amazon.com/lambda/">AWS Lambda</a> function will first gather information about which Golden AMI it should asses. This is done by downloading metadata information about the GoldenAMI that we store inside <a href="https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-parameter-store.html">AWS Systems Manager Parameter Store</a>. AWS Systems Manager Parameter Store provides secure, hierarchical storage for configuration data management and secrets management.</p></li>
 
-<li><p>For each of the AMI specified in the metadata, <code>StartContinuousAssessment</code> Lambda function will create an EC2 instance.</p></li>
+<li><p>For each of the GoldenAMI specified in the metadata, <code>StartContinuousAssessment</code> function will then launch an EC2 Instance from the AMI.</p></li>
 
-<li><p>Levaraging <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html">EC2 User Data</a> It will then runs the instructions to install <a href="https://aws.amazon.com/inspector/">Amazon Inspector</a> agent allowing the instance to to be inspected.</p></li>
+<li><p>This EC2 instance will then levarage <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html">EC2 User Data</a> to bootstrap installation &amp; starting of <a href="https://aws.amazon.com/inspector/">Amazon Inspector</a> agent. This agent is needed for Amazon Inspector Service to inspect the EC2 at the Operating system layer.</p></li>
 
-<li><p>The function will then execute the assessment activity from <a href="https://aws.amazon.com/inspector/">Amazon Inspector</a> service towards the instance.</p></li>
+<li><p><code>StartContinuousAssessment</code> function will then execute the activity from <a href="https://aws.amazon.com/inspector/">Amazon Inspector</a> to kick off the inspection of the EC2 instance security posture according to <a href="https://docs.aws.amazon.com/inspector/latest/userguide/inspector_cis.html">CIS</a> and <a href="https://docs.aws.amazon.com/inspector/latest/userguide/inspector_cves.html">CVE</a></p></li>
 
-<li><p>After <a href="https://aws.amazon.com/inspector/">Amazon Inspector</a> completes the Inspection, it will then send a notification the the <a href="https://docs.aws.amazon.com/sns/latest/dg/welcome.html">SNS Topic</a> triggering the <code>AnalyzeInspectorFindings</code> <a href="http://aws.amazon.com/lambda/">AWS Lambda</a> function.</p></li>
+<li><p>Once <a href="https://aws.amazon.com/inspector/">Amazon Inspector</a> completes the Inspection, a notification will then be sent to the <a href="https://docs.aws.amazon.com/sns/latest/dg/welcome.html">SNS Topic</a> forwarding message to the email subscriber of the topic, as well as triggering the <code>AnalyzeInspectorFindings</code> <a href="http://aws.amazon.com/lambda/">AWS Lambda</a> function where the next activity will takes place.</p></li>
 
-<li><p><code>AnalyzeInspectorFindings</code> will then tag the inspection result with relevant information about the AMI, Clean up the EC2 instance used to inspect and finally send an email the user with the total of vunerability findings in the AMI.</p></li>
+<li><p><code>AnalyzeInspectorFindings</code> function will tag <a href="https://aws.amazon.com/inspector/">Amazon Inspector</a> result with relevant information about the AMI &amp; EC2 Instance for context. It will then also clean up the temporary EC2 instance that was launched and used by Amazon Inspector as a medium to inspect the GoldenAMI posture.</p></li>
 </ol>
 
-<p>Now that we know at a high level how this solution works, lets start building them, on to the next page :)</p>
+<p>Now that weare clear about this, lets start building them !</p>
+
+<p>On to the next page [`^0^]/ &gt;&gt;&gt;</p>
 
 
 <footer class=" footline" >
@@ -2658,19 +2660,19 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1573184032"></script>
-    <script src="/js/perfect-scrollbar.min.js?1573184032"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1573184032"></script>
-    <script src="/js/jquery.sticky.js?1573184032"></script>
-    <script src="/js/featherlight.min.js?1573184032"></script>
-    <script src="/js/highlight.pack.js?1573184032"></script>
+    <script src="/js/clipboard.min.js?1573203607"></script>
+    <script src="/js/perfect-scrollbar.min.js?1573203607"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1573203607"></script>
+    <script src="/js/jquery.sticky.js?1573203607"></script>
+    <script src="/js/featherlight.min.js?1573203607"></script>
+    <script src="/js/highlight.pack.js?1573203607"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1573184032"></script>
-    <script src="/js/learn.js?1573184032"></script>
-    <script src="/js/hugo-learn.js?1573184032"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1573203607"></script>
+    <script src="/js/learn.js?1573203607"></script>
+    <script src="/js/hugo-learn.js?1573203607"></script>
 
-    <link href="/mermaid/mermaid.css?1573184032" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1573184032"></script>
+    <link href="/mermaid/mermaid.css?1573203607" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1573203607"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

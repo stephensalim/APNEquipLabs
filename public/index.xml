@@ -117,10 +117,9 @@ In this lab, we will be using the VPC Wizard to create a VPC with private and pu
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://example.org/ami-inspector-lab/solutions_overview/</guid>
-      <description>Here is the overview on how this solution works :
- A scheduled CloudWatch Events event will trigger the AWS Lambda function called StartContinuousAssessment.
- This function will then pulls metadata information containing the golden AMI ID, Instance type, and instructions to prepare the EC2 instance for inspection from AWS Systems Manager Parameter Store
- For each of the AMI specified in the metadata, StartContinuousAssessment Lambda function will create an EC2 instance.</description>
+      <description>Here an overview on how our solutions works:
+ A scheduled CloudWatch Events will trigger the AWS Lambda function called StartContinuousAssessment every morning at 6 AM. This will essentially acts like your cron task (Linux) or scheduled task (Windows) that will executes on a regular basis.
+ StartContinuousAssessment AWS Lambda function will first gather information about which Golden AMI it should asses. This is done by downloading metadata information about the GoldenAMI that we store inside AWS Systems Manager Parameter Store.</description>
     </item>
     
     <item>

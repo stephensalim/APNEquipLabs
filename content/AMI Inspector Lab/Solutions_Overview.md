@@ -6,20 +6,22 @@ draft: false
 
 ![](/AMI Inspector Lab/images/Main.png)
 
-Here is the overview on how this solution works :
+Here an overview on how our solutions works:
 
-1.  A scheduled CloudWatch Events event will trigger the [AWS Lambda](http://aws.amazon.com/lambda/) function called `StartContinuousAssessment`.
+1.  A scheduled [CloudWatch Events](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/WhatIsCloudWatchEvents.html) will trigger the [AWS Lambda](http://aws.amazon.com/lambda/) function called `StartContinuousAssessment` every morning at 6 AM. This will essentially acts like your cron task (Linux) or scheduled task (Windows) that will executes on a regular basis.
 
-2.  This function will then pulls metadata information containing the golden AMI ID, Instance type, and instructions to prepare the EC2 instance for inspection from [AWS Systems Manager Parameter Store](https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-parameter-store.html)
+2.  `StartContinuousAssessment` [AWS Lambda](http://aws.amazon.com/lambda/) function will first gather information about which Golden AMI it should asses. This is done by downloading metadata information about the GoldenAMI that we store inside [AWS Systems Manager Parameter Store](https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-parameter-store.html). AWS Systems Manager Parameter Store provides secure, hierarchical storage for configuration data management and secrets management. 
 
-3.  For each of the AMI specified in the metadata, `StartContinuousAssessment` Lambda function will create an EC2 instance.
+3.  For each of the GoldenAMI specified in the metadata, `StartContinuousAssessment` function will then launch an EC2 Instance from the AMI.
 
-4.  Levaraging [EC2 User Data](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html) It will then runs the instructions to install [Amazon Inspector](https://aws.amazon.com/inspector/) agent allowing the instance to to be inspected.
+4.  This EC2 instance will then levarage [EC2 User Data](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html) to bootstrap installation & starting of [Amazon Inspector](https://aws.amazon.com/inspector/) agent. This agent is needed for Amazon Inspector Service to inspect the EC2 at the Operating system layer.
 
-5.  The function will then execute the assessment activity from [Amazon Inspector](https://aws.amazon.com/inspector/) service towards the instance.
+5.  `StartContinuousAssessment` function will then execute the activity from [Amazon Inspector](https://aws.amazon.com/inspector/) to kick off the inspection of the EC2 instance security posture according to [CIS](https://docs.aws.amazon.com/inspector/latest/userguide/inspector_cis.html) and [CVE](https://docs.aws.amazon.com/inspector/latest/userguide/inspector_cves.html)
         
-6.  After [Amazon Inspector](https://aws.amazon.com/inspector/) completes the Inspection, it will then send a notification the the [SNS Topic](https://docs.aws.amazon.com/sns/latest/dg/welcome.html) triggering the `AnalyzeInspectorFindings` [AWS Lambda](http://aws.amazon.com/lambda/) function.
+6.  Once [Amazon Inspector](https://aws.amazon.com/inspector/) completes the Inspection, a notification will then be sent to the [SNS Topic](https://docs.aws.amazon.com/sns/latest/dg/welcome.html) forwarding message to the email subscriber of the topic, as well as triggering the `AnalyzeInspectorFindings` [AWS Lambda](http://aws.amazon.com/lambda/) function where the next activity will takes place.
 
-7. `AnalyzeInspectorFindings` will then tag the inspection result with relevant information about the AMI, Clean up the EC2 instance used to inspect and finally send an email the user with the total of vunerability findings in the AMI.
+7. `AnalyzeInspectorFindings` function will tag [Amazon Inspector](https://aws.amazon.com/inspector/) result with relevant information about the AMI & EC2 Instance for context. It will then also clean up the temporary EC2 instance that was launched and used by Amazon Inspector as a medium to inspect the GoldenAMI posture.
 
-Now that we know at a high level how this solution works, lets start building them, on to the next page :)
+Now that weare clear about this, lets start building them !
+ 
+On to the next page [`^0^]/ >>>
