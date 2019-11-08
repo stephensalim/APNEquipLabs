@@ -1,46 +1,53 @@
 ---
-title: "4. Update Stack"
+title: "4. Update the Stack"
 weight: 4
 draft: false
 ---
 
-Once you modified your existing template , you can use **Update Stack**
-option to update your stack. To update select your Stack and click on
-**Actions drop down and you will find Update Stack** option**.**
+Once you have modified your template, you can use the **Update Stack**
+option to update your stack. To start the update, your stack and click on
+**Actions** drop down and you will find the **Update Stack** option. 
+(Your console version may appear different from the image below, if so,
+after selecting your stack, just click **Update**.)
 
 ![](/CloudFormation Lab/images/media/image11.png)
 
-In **Update**, Stack screen select browse your updated template. If you
-have not figured out a solution yet Follow instruction in appendix
-section to get template
+In the **Update** stack screen, select the option to upload a new 
+template. If you have not yet created a solution, download the 
+reference template below.
 
-*Lab\_Solution\_CloudFormation\_Module\_General\_ImmersionDay.json*.
+[Reference template](/downloads/CloudFormation_Lab_Reference_Template.yml)
 
 ![](/CloudFormation Lab/images/media/image12.png)
 
-Now remaining steps are same as you followed in Create stack. Click Next
-couple of time and you will land up to review summary screen, where you
-need to click on **Update** button :
+The remaining steps are same as you followed when creating your stack. 
+Click **Next** until you come to the review summary screen, where you
+need to click on the **Update** button :
 
 ![](/CloudFormation Lab/images/media/image13.png)
 
-Now you will find your stack status changed to **UPDATE\_IN\_PROGRESS**
-and **Events** tab showing the activity performed using update stack.
+You should see your stack's status change to **UPDATE\_IN\_PROGRESS**
+and the **Events** tab will show the activities performed while updating your stack.
 
 ![](/CloudFormation Lab/images/media/image14.png)
 
-Once stack status changed to UPDATE\_COMPLETE status, you can browse to
-**Outputs** tab and find out our changes has reflected now Outputs tab
-has four values compare to earlier it was empty :
+Once your stack's status has changed to **UPDATE\_COMPLETE**, you can browse to the
+**Outputs** tab and see how your changes have been applied. The four values you have
+configured in the template's **Outputs** section are now reflected in the **Outputs** tab, where
+previously it was empty:
 
 ![](/CloudFormation Lab/images/media/image15.png)
 
-Also, click on **CloudFormation** icon on the right top corner of the
-screen and select **Exports** option**,** you will find two exported
-value shown in here which can be utilized for cross-stack reference.
+Next, click on **CloudFormation** icon on the right top corner of the
+screen, and select **Exports** option** (or if your console has been updated, click on **Exports** in left column),
+and you will find the two values you have exported from your stack which can be utilized as cross-stack references.
 
 ![](/CloudFormation Lab/images/media/image16.png)
 
-To create a cross-stack reference, use the **Export** output field to
-flag the value of a resource-output for export. Then, use the **Fn::
-ImportValue** intrinsic function to import the value.
+To create a cross-stack reference, in a second stack you can use the field in the **Exports** output and the **Fn::
+ImportValue** intrinsic function to import the value you have exported from the first stack.
+
+See the AWS CloudFormation documentation for more information:
+
+<https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-importvalue.html>
+
