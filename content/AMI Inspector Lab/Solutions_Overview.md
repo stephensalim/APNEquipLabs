@@ -1,5 +1,5 @@
 ---
-title: "1. Solutions Overview"
+title: "1. Solution Overview"
 weight: 1
 draft: false
 ---
@@ -10,41 +10,37 @@ draft: false
 
 **IMPORTANT NOTE:** 
 
-For this solution to work, you must deploy all resouces AWS Region where you build your golden AMIs. 
-This region must have [Amazon Inspector](http://docs.aws.amazon.com/inspector/latest/userguide/inspector_supported_os_regions.html#inspector_supported-regions) available. 
-For best lab experience, please choose Sydney Region **( ap-southeast-2)**.
+For this solution to work, you must deploy all the resources in the AWS Region where you build your golden AMIs. 
+The region must have [Amazon Inspector](http://docs.aws.amazon.com/inspector/latest/userguide/inspector_supported_os_regions.html#inspector_supported-regions) available. 
+For the best lab experience, please choose the Sydney Region **(ap-southeast-2)**.
 
 ---
 
-Here an overview on how our solutions works:
+Here is an overview of how the solutions works:
 
-1.  A scheduled [CloudWatch Events](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/WhatIsCloudWatchEvents.html) will trigger the [AWS Lambda](http://aws.amazon.com/lambda/) function called `StartContinuousAssessment` every morning at 6 AM. This will essentially acts like your cron task (Linux) or scheduled task (Windows) that will executes on a regular basis.
+1.  A scheduled [CloudWatch Event](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/WhatIsCloudWatchEvents.html) will trigger the [AWS Lambda](http://aws.amazon.com/lambda/) function called `StartContinuousAssessment` every morning at 6 AM. This essentially acts like a cron job (on Linux) or a scheduled task (on Windows) that will run on a regular basis.
 
-2.  `StartContinuousAssessment` [AWS Lambda](http://aws.amazon.com/lambda/) function will first gather information about which Golden AMI it should asses. This is done by downloading metadata information about the GoldenAMI that we store inside [AWS Systems Manager Parameter Store](https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-parameter-store.html). AWS Systems Manager Parameter Store provides secure, hierarchical storage for configuration data management and secrets management. 
+2.  The `StartContinuousAssessment` [AWS Lambda](http://aws.amazon.com/lambda/) function will first gather information about which Golden AMI it should asses. This is done by downloading the metadata information about the Golden AMI that we store inside [AWS Systems Manager Parameter Store](https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-parameter-store.html). AWS Systems Manager Parameter Store provides secure, hierarchical storage for configuration data and secrets management. 
 
-3.  For each of the GoldenAMI specified in the metadata, `StartContinuousAssessment` function will then launch an EC2 Instance from the AMI.
+3.  For each of the Golden AMIs specified in the metadata, the `StartContinuousAssessment` function will launch an EC2 instance using that specific AMI.
 
-4.  This EC2 instance will then levarage [EC2 User Data](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html) to bootstrap installation & starting of [Amazon Inspector](https://aws.amazon.com/inspector/) agent. This agent is needed for Amazon Inspector Service to inspect the EC2 at the Operating system layer.
+4.  The EC2 instances will then use [EC2 User Data](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html) to bootstrap the installation and start up of the [Amazon Inspector](https://aws.amazon.com/inspector/) agent. This agent is needed for the Amazon Inspector Service to inspect the EC2 AMI image at the operating system level.
 
-5.  `StartContinuousAssessment` function will then execute the activity from [Amazon Inspector](https://aws.amazon.com/inspector/) to kick off the inspection of the EC2 instance security posture according to [CIS](https://docs.aws.amazon.com/inspector/latest/userguide/inspector_cis.html) and [CVE](https://docs.aws.amazon.com/inspector/latest/userguide/inspector_cves.html)
+5.  The `StartContinuousAssessment` function will trigger [Amazon Inspector's](https://aws.amazon.com/inspector/) inspection of the EC2 instance's security posture according to [CIS](https://docs.aws.amazon.com/inspector/latest/userguide/inspector_cis.html) and [CVE](https://docs.aws.amazon.com/inspector/latest/userguide/inspector_cves.html).
         
-6.  Once [Amazon Inspector](https://aws.amazon.com/inspector/) completes the Inspection, a notification will then be sent to the [SNS Topic](https://docs.aws.amazon.com/sns/latest/dg/welcome.html) forwarding message to the email subscriber of the topic, as well as triggering the `AnalyzeInspectorFindings` [AWS Lambda](http://aws.amazon.com/lambda/) function where the next activity will takes place.
+6.  Once [Amazon Inspector](https://aws.amazon.com/inspector/) completes the inspection, a notification will be sent to an [SNS Topic](https://docs.aws.amazon.com/sns/latest/dg/welcome.html) which will then forward a message to the email subscribers to the topic, as well as triggering the `AnalyzeInspectorFindings` [AWS Lambda](http://aws.amazon.com/lambda/) function where the next activity takes place.
 
-7. `AnalyzeInspectorFindings` function will tag [Amazon Inspector](https://aws.amazon.com/inspector/) result with relevant information about the AMI & EC2 Instance for context. It will then also clean up the temporary EC2 instance that was launched and used by Amazon Inspector as a medium to inspect the GoldenAMI posture.
+7. The `AnalyzeInspectorFindings` function will tag [Amazon Inspector's](https://aws.amazon.com/inspector/) result with relevant information from the AMI & EC2 Instance for context. It will then also clean up the temporary EC2 instance that was launched in order to be used by Amazon Inspector to analyze the Golden AMI's security posture.
 
-Now that weare clear about this, lets start building them ! On to the next page ! **[`^0^]/** 
+Now that the steps are clear, lets start building! On to the next page! **[`^0^]/** 
 
 ---
 
 **NOTE:**
 
-To give you a perspective on what we are going to build today. 
+In order to provide a reference and to give context on what you will be building, the **final state of the CloudFormation template** can be found below. Feel free to check your progress against this template, or, test the outcome by copying the template source into a YAML text file and create the stack.
 
-Below is the **end state of the CloudFormation template** we will be building.
-
-Feel free to test out the outcome by copy/pasting this template to a yml text file and create the stack.
-
-<details><summary>**[Expand to view template]**</summary>
+<details><summary>**[Expand to view the template]**</summary>
 <p>    
 
 

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Welcome on APN Equip Labs</title>
@@ -112,15 +112,15 @@ In this lab, we will be using the VPC Wizard to create a VPC with private and pu
     </item>
     
     <item>
-      <title>1. Solutions Overview</title>
+      <title>1. Solution Overview</title>
       <link>http://example.org/ami-inspector-lab/solutions_overview/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://example.org/ami-inspector-lab/solutions_overview/</guid>
       <description>IMPORTANT NOTE:
-For this solution to work, you must deploy all resouces AWS Region where you build your golden AMIs. This region must have Amazon Inspector available. For best lab experience, please choose Sydney Region ( ap-southeast-2).
-Here an overview on how our solutions works:
- A scheduled CloudWatch Events will trigger the AWS Lambda function called StartContinuousAssessment every morning at 6 AM. This will essentially acts like your cron task (Linux) or scheduled task (Windows) that will executes on a regular basis.</description>
+For this solution to work, you must deploy all the resources in the AWS Region where you build your golden AMIs. The region must have Amazon Inspector available. For the best lab experience, please choose the Sydney Region (ap-southeast-2).
+Here is an overview of how the solutions works:
+ A scheduled CloudWatch Event will trigger the AWS Lambda function called StartContinuousAssessment every morning at 6 AM. This essentially acts like a cron job (on Linux) or a scheduled task (on Windows) that will run on a regular basis.</description>
     </item>
     
     <item>
@@ -221,7 +221,7 @@ Sign into your AWS Management Console and choose EC2 from the Services menu. [ ]
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://example.org/ami-inspector-lab/tag_golden_ami/</guid>
-      <description>Before we begin, the first thing we need have is a Golden AMI. the subject of our Continous Assessment solution. To do this, you can create your own Golden AMI from EC2 instance as discribed in this Guide. Alternatively, to keep it simple, you can choose to use Amazon Public AMI as your Golden AMI. But please note that AWS may retract access to the AMI in the future, and when this happen, you wont have access to it anymore.</description>
+      <description>Before we begin, the first thing we need to have is a Golden AMI, the subject of our continuous assessment solution. To do this, you can create your own Golden AMI from an EC2 instance as described in this guide. Alternatively, to keep it simple, you can choose to use an Amazon Public AMI as your Golden AMI. But please note, AWS may retract access to the public AMI in the future, and should this happen, it will no longer be accessible to you.</description>
     </item>
     
     <item>
@@ -276,8 +276,8 @@ Click below to look at the solution CloudFormation template.</description>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://example.org/ami-inspector-lab/create_golden_ami_metadata/</guid>
-      <description>Now that we have tagged our Golden AMI for context, the next thing we need to do is to create a metadata containing information about our Golden AMI, so that our solution knows which GoldenAMI they should regularly inspect.
-In this part of the lab, we will construct a metadata containing information of our Golden AMI metadata and store it in AWS Systems Manager Parameter Store. The metadata will be specified in JSON format and will contain th Ami-Id of the Golden AMI id that we tagged in the previous step, the InstanceType of the temporary EC2 instance we will launch to use as medium for our inspection, the UserData instructions, used to bootstrap Amazon Inspector agent to the temporary EC2 instance, so that Amazon Inspector can run the assesment towards the EC2.</description>
+      <description>Now that we have tagged our Golden AMI for context, the next thing we need to do is to create metadata containing information about our Golden AMI, so that our solution knows which Golden AMIs they should regularly inspect.
+In this part of the lab, we will construct metadata containing information about our Golden AMI and store it in the AWS Systems Manager Parameter Store. The metadata will be specified in JSON format and will contain the AMI ID of the Golden AMI that we tagged in the previous step, the Instance Type of the temporary EC2 instance we will launch to use as medium for our inspection, and the User Data instructions needed to bootstrap Amazon Inspector agent, so that Amazon Inspector can run the security posture assessment against the EC2 instance.</description>
     </item>
     
     <item>
@@ -381,8 +381,8 @@ In this task, you will create a Windows Server 2016 EC2 instance in the us-west-
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://example.org/ami-inspector-lab/create_exec_role_for_contasses/</guid>
-      <description>In AWS Security is at highest priority, through working directly with CloudFormation, you will discover layers of security construct that you could customize to secure your resource. One of it is IAM role, for cross service interactions AWS will levarage security services to create isolation and security boundaries on the service executed.
-In this part of the Lab we will be defining an IAM role that we will attach to our AWS Lambda function and specify permissions for the Lambda function to access only the services and resource we allow it to.</description>
+      <description>In AWS, security is the highest priority. By working directly with CloudFormation, you will discover layers of security constructs that you can customize to secure your resources. One of these is the IAM role. For cross service interactions, AWS will leverage security services to create isolation and security boundaries for the actions executed.
+In this part of the Lab we will be defining an IAM role that we will attach to our AWS Lambda function to specify permissions for the Lambda function.</description>
     </item>
     
     <item>
@@ -434,7 +434,7 @@ In the Update stack screen, select the option to upload a new template. If you h
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://example.org/ami-inspector-lab/create_snstopic_assesmentcomplete/</guid>
-      <description>Now that we have our IAM role defined in our Stack, we shall move on to our next resources. In this solutin we will be levaraging a number of SNS Topics. These topics will be used to notify our users about the state if the Golden AMI inspection, as well as act as a decoupling structure to connect our StartContinousAssesment function and AnalyzeInspectorFindings Function. With SNS Topic Policy, you can define which service on AWS is allowed to publish to the SNS topic.</description>
+      <description>Now that we have our IAM role defined in our stack, we shall move on to the next resources. In this solution we will be using a number of SNS Topics. These topics will be used to notify our users about the state of the Golden AMI inspection. They will also be used to decouple the StartContinousAssesment and AnalyzeInspectorFindings AWS Lambda functions. With an SNS Topic IAM Policy, you can define which AWS service is allowed to publish to the SNS topic.</description>
     </item>
     
     <item>
@@ -530,7 +530,7 @@ First, you will need to terminate the EC2 instances that are running in the VPC.
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://example.org/ami-inspector-lab/create_continuousassess_lambda/</guid>
-      <description>Alright, now for the meaty part ! In this part of the lab, we will walk through how to construct / package AWS Lambda Function and attach it to the IAM roles we created in previous step. We will be creating 2 Lambda Functions StartContinuousAssesment &amp;amp; AnalyzeInspectorFindings Each of this Lambda Functions will also have a connection to SNS Topics we created in previous steps through a Lambda Environment variable we defined in the function.</description>
+      <description>All right, now for the exciting part! In this section of the lab, we will walk through how to construct and package AWS Lambda Functions and attach them to the IAM roles we created in the previous step. We will be creating 2 Lambda Functions StartContinuousAssesment and AnalyzeInspectorFindings. We will be providing references to the SNS Topics you created in the previous steps to each of these Lambda functions through an environment variable.</description>
     </item>
     
     <item>
@@ -601,9 +601,9 @@ If this is the first time you enabled AWS Config, your console will direct you t
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://example.org/ami-inspector-lab/connect_analyzerlambda_sns/</guid>
-      <description>Now that we have created our Lambda Functions the next thing to do is to connect the ContinuousAssesmentCompleteTopic SNS Topic to the AnalyzeInspectorFindings Lambda function, levaraging the subscribtion mechanism. This is to basically allow AnalyzeInspectorFindings to be triggered once Amazon Inspector completes the inspection and send the message notification to users.
+      <description>Now that we have created our Lambda functions the next thing to do is to connect the ContinuousAssesmentCompleteTopic SNS Topic to the AnalyzeInspectorFindings Lambda function, leveraging the subscription mechanism. This is to allow AnalyzeInspectorFindings to be triggered once Amazon Inspector completes the inspection and to send the notification message to users.
 IMPORTANT NOTE:
-In the following steps you will need to construct your CloudFormation template in YAML format. YAML format allows you to put comments in the template by placing in # in front of the line.</description>
+In the following steps you will need to construct your CloudFormation template in YAML format. YAML allows you to put comments in the template by placing a # in front of the comment line.</description>
     </item>
     
     <item>
@@ -616,13 +616,13 @@ In the following steps you will need to construct your CloudFormation template i
     </item>
     
     <item>
-      <title>8. Test Assesment</title>
+      <title>8. Test Assessment</title>
       <link>http://example.org/ami-inspector-lab/test_assesment/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://example.org/ami-inspector-lab/test_assesment/</guid>
-      <description>The main part of our solution is done ! In this section we will test the execution of our solution by passing in manual invocation to the StartContinuousAssessment Lambda Function. This will then kick off the GoldenAMI assessment process on the AMI ID we specified in our metadata, and you should see the solutions in full effect.
-Manually Start golden AMI vulnerability assessments  Sign in to the AWS Management Console and choose Lambda in the Services menu.</description>
+      <description>The main part of our solution is now complete! In this section we will test the execution by manually invoking the StartContinuousAssessment Lambda function. This will then kick off the Golden AMI assessment process on the AMI ID we specified in our metadata, and you should see the solution in full effect.
+Manually Start Golden AMI vulnerability assessment  Sign in to the AWS Management Console and choose Lambda in the Services menu.</description>
     </item>
     
     <item>
@@ -645,9 +645,9 @@ Manually Start golden AMI vulnerability assessments  Sign in to the AWS Manageme
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://example.org/ami-inspector-lab/scheduling_the_continuation/</guid>
-      <description>This will be the last piece of the puzzle ! In this part of the Lab we will be extending our CloudFormation template to add a CloudWatch Events scheduler allowing our Lambda Functions to regularly asses Golden AMIs.
+      <description>This will be the last piece of the puzzle! In this section of the Lab we will be extending our CloudFormation template to add a CloudWatch Events scheduler, which will allow Lambda functions to regularly assess Golden AMIs.
 IMPORTANT NOTE:
-In the following steps you will need to construct your CloudFormation template in YAML format. YAML format allows you to put comments in the template by placing in # in front of the line.</description>
+In the following steps you will need to construct your CloudFormation template in YAML format. YAML allows you to put comments in the template by placing a # in front of the comment line.</description>
     </item>
     
     <item>

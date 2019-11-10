@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="generator" content="Hugo 0.57.2" />
+    <meta name="generator" content="Hugo 0.59.1" />
     <meta name="description" content="">
 
 
@@ -12,20 +12,20 @@
     <title>4. Create IAM roles for Lambda :: APN Equip Labs</title>
 
     
-    <link href="/css/nucleus.css?1573355714" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1573355714" rel="stylesheet">
-    <link href="/css/hybrid.css?1573355714" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1573355714" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1573355714" rel="stylesheet">
-    <link href="/css/auto-complete.css?1573355714" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1573355714" rel="stylesheet">
-    <link href="/css/theme.css?1573355714" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1573355714" rel="stylesheet">
+    <link href="/css/nucleus.css?1573370684" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1573370684" rel="stylesheet">
+    <link href="/css/hybrid.css?1573370684" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1573370684" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1573370684" rel="stylesheet">
+    <link href="/css/auto-complete.css?1573370684" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1573370684" rel="stylesheet">
+    <link href="/css/theme.css?1573370684" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1573370684" rel="stylesheet">
     
-      <link href="/css/theme-darkblue.css?1573355714" rel="stylesheet">
+      <link href="/css/theme-darkblue.css?1573370684" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1573355714"></script>
+    <script src="/js/jquery-3.3.1.min.js?1573370684"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -51,14 +51,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1573355714"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1573355714"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1573370684"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1573370684"></script>
 <script type="text/javascript">
     
         var baseurl = "http:\/\/example.org\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1573355714"></script>
+<script type="text/javascript" src="/js/search.js?1573370684"></script>
 
     
   </div>
@@ -1266,9 +1266,9 @@
  
   
     
-      <li data-nav-id="/ami-inspector-lab/solutions_overview/" title="1. Solutions Overview" class="dd-item ">
+      <li data-nav-id="/ami-inspector-lab/solutions_overview/" title="1. Solution Overview" class="dd-item ">
         <a href="/ami-inspector-lab/solutions_overview/">
-        1. Solutions Overview
+        1. Solution Overview
         <i class="fas fa-check read-icon"></i>
         </a>
     </li>
@@ -1399,9 +1399,9 @@
  
   
     
-      <li data-nav-id="/ami-inspector-lab/test_assesment/" title="8. Test Assesment" class="dd-item ">
+      <li data-nav-id="/ami-inspector-lab/test_assesment/" title="8. Test Assessment" class="dd-item ">
         <a href="/ami-inspector-lab/test_assesment/">
-        8. Test Assesment
+        8. Test Assessment
         <i class="fas fa-check read-icon"></i>
         </a>
     </li>
@@ -1516,9 +1516,9 @@
 <ul>
 <li>
 <ul>
-<li><a href="#creating-iam-role-for-startcontinuousassessment-function-execution">Creating IAM Role for StartContinuousAssessment Function execution</a></li>
-<li><a href="#creating-lambda-execution-role-for-analyzeinspectorfindings">Creating Lambda Execution Role for AnalyzeInspectorFindings</a></li>
-<li><a href="#deploys-the-cloudformation-template">Deploys the CloudFormation Template</a></li>
+<li><a href="#create-an-iam-role-for-the-startcontinuousassessment-function-execution">Create an IAM Role for the StartContinuousAssessment function execution</a></li>
+<li><a href="#create-a-lambda-execution-role-for-analyzeinspectorfindings">Create a Lambda Execution Role for AnalyzeInspectorFindings</a></li>
+<li><a href="#deploy-the-cloudformation-template">Deploy the CloudFormation template</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -1548,11 +1548,11 @@
 
 
 
-<p>In AWS Security is at highest priority, through working directly with CloudFormation, you will discover layers of security construct that you could customize to secure your resource. One of it is IAM role, for cross service interactions AWS will levarage security services to create isolation and security boundaries on the service executed.</p>
+<p>In AWS, security is the highest priority. By working directly with CloudFormation, you will discover layers of security constructs that you can customize to secure your resources. One of these is the <strong>IAM role</strong>. For cross service interactions, AWS will leverage security services to create isolation and security boundaries for the actions executed.</p>
 
-<p>In this part of the Lab we will be defining an <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html">IAM role</a> that we will attach to our <a href="https://aws.amazon.com/lambda/">AWS Lambda</a> function and specify permissions for the Lambda function to access only the services and resource we allow it to.</p>
+<p>In this part of the Lab we will be defining an <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html">IAM role</a> that we will attach to our <a href="https://aws.amazon.com/lambda/">AWS Lambda</a> function to specify permissions for the Lambda function. This means that the Lambda function can access only the services and resources that we will allow it to.</p>
 
-<p>Not only that, we will also specify this inside our CloudFormation template, so we are ensured that when we deploy these function using our CloudFormation, the security permission is consistent.</p>
+<p>Not only that, we will specify these permissions using our CloudFormation template. This ensures that when we deploy out function using the AWS CloudFormation service, the security permissions are consistent.</p>
 
 <p><img src="/AMI Inspector Lab/images/ContinuousAssesmentLambdaRole_Full.png" alt="" /></p>
 
@@ -1561,49 +1561,49 @@
 <p><strong>IMPORTANT NOTE:</strong></p>
 
 <p>In the following steps you will need to construct your CloudFormation template in YAML format.
-YAML format allows you to put comments in the template by placing in # in front of the line.
-YAML format is indent sensitive syntax, therefore make sure to specify the key and values at the right indent level in the template.</p>
+YAML allows you to put comments in the template by placing a <code>#</code> in front of the comment line.
+YAML is an indentation sensitive syntax, therefore make sure to specify the key and values at the right indent level in the template.</p>
 
-<p>When building a cloudformation template, it is recommended to always refer back to the extensive CloudFormation documentation.
-In the folloing steps for smooth lab experience, we will be providing the template snippet for the specific resource.
-Alternatively, we will also be providing a high level instruction on how to construct the template if you coose to build them manually. We will also provide reference guide / example from public documentation to help you.</p>
+<p>When building a CloudFormation template, it is always recommended to refer back to the extensive CloudFormation documentation.
+In the following steps we will be providing the template snippets for the specific resource for a smooth lab experience.
+Alternatively, we will also be providing high level instructions on how to construct the template if you choose to build them manually. We will also provide reference guides and examples from the documentation to help you.</p>
 
-<p>The purpose of this is get acustomed towards exploring CloudFormation documentation and syntax.
-That being said, at any point in time you are stuck reach out to the lab support team.</p>
+<p>The purpose of this lab is get accustomed to exploring CloudFormation documentation and syntax.
+That being said, if at any point you get stuck, do reach out to the lab support team, or consult the reference template from the solution overview.</p>
 
 <hr />
 
-<h3 id="creating-iam-role-for-startcontinuousassessment-function-execution">Creating IAM Role for StartContinuousAssessment Function execution</h3>
+<h3 id="create-an-iam-role-for-the-startcontinuousassessment-function-execution">Create an IAM Role for the StartContinuousAssessment function execution</h3>
 
-<p>In this step we will be <strong>creating a IAM role resource</strong> with below criteria :</p>
+<p>In this step we will be <strong>creating an IAM role resource</strong> with the following criteria :</p>
 
 <ul>
-<li>IAM Role can be assumed by AWS Lambda Function</li>
-<li>Contains policy that is needed for Lambda Function Basic executions</li>
-<li>Contains policy that is needed for Full access to Amazon Inspector service</li>
-<li>Contains policy that allows you to Get Systems Manager parameter store</li>
-<li>Contains policy that allows you to describe, run instance, and create tags.</li>
+<li>The IAM Role can be <em>assumed</em> by the AWS Lambda function</li>
+<li>It contains a policy that is needed for Lambda Function basic execution</li>
+<li>It contains a policy that is needed for full access to the Amazon Inspector service</li>
+<li>It contains a policy that allows it to access the AWS Systems Manager parameter store</li>
+<li>It contains a policy that allows it to describe and run EC2 instances, and create tags</li>
 </ul>
 
-<p>You can refer here for properties reference: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html">https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html</a></p>
+<p>You can read more about the IAM role resource in the CloudFormation documentation here: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html">https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html</a></p>
 
-<p>Choose one of the option below on how you want to build the resource.</p>
+<p>Choose how you would like to build the resource from the options below:</p>
 
-<p><details><summary><strong>Option 1 - Build the resouce manually with step by step instructions.</strong></summary>
+<p><details><summary> <strong>Option 1 - Build the resource manually with step-by-step instructions.</strong></summary>
 <p></p>
 
 <ul>
-<li>Open your notepad / text editor, create a file named <code>GoldenAMIContinuousAssesment.yml</code>.</li>
-<li>Create a <code>Resource:</code> template section <a href="https://docs.aws.amazon.com/en_pv/AWSCloudFormation/latest/UserGuide/template-anatomy.html">Reference</a></li>
+<li>Open your text editor, create a file named <code>GoldenAMIContinuousAssesment.yml</code>.</li>
+<li>Create a <code>Resource:</code> template section <a href="https://docs.aws.amazon.com/en_pv/AWSCloudFormation/latest/UserGuide/template-anatomy.html">Reference</a> .</li>
 <li>Create a resource named <code>StartContinuousAssessmentLambdaRole</code> of type <code>AWS::IAM::Role</code>.</li>
-<li>In the <code>Properties</code> section add <code>ManagedPolicyArns</code> below to allow the lambda function to do basic execution and have access to Amazon Inspector APIs.
+<li>In the <code>Properties</code> section add <code>ManagedPolicyArns</code> and list the following Arns to allow the lambda function to do basic execution and have access to Amazon Inspector APIs:
 
 <ul>
 <li><code>arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole</code></li>
 <li><code>arn:aws:iam::aws:policy/AmazonInspectorFullAccess</code></li>
 </ul></li>
-<li>In the <code>Properties</code> secion add an <code>AssumeRolePolicyDocument</code> to allow <code>lambda.amazonaws.com</code> service principal role to do an action called <code>sts:AssumeRole</code>.</li>
-<li>In the <code>Properties</code> section create a policy under <code>Policies</code> to allow access to below APIs<br />
+<li>In the <code>Properties</code> section add an <code>AssumeRolePolicyDocument</code> to allow the <code>lambda.amazonaws.com</code> service principal role to perform the <code>sts:AssumeRole</code> action.</li>
+<li>In the <code>Properties</code> section create a policy under <code>Policies</code> to allow access to the following APIs:<br />
 
 <ul>
 <li><code>ssm:GetParameter</code></li>
@@ -1611,7 +1611,7 @@ That being said, at any point in time you are stuck reach out to the lab support
 <li><code>ec2:RunInstances</code></li>
 <li><code>ec2:CreateTags</code></li>
 </ul></li>
-<li>In the <code>Properties</code> section create <code>RoleName</code> and specify <code>StartContinuousAssessmentRole</code> as it&rsquo;s value</li>
+<li>In the <code>Properties</code> section, create <code>RoleName</code> and specify <code>StartContinuousAssessmentRole</code> as its value.</li>
 </ul>
 
 <p></p>
@@ -1657,37 +1657,37 @@ That being said, at any point in time you are stuck reach out to the lab support
 
 <p></details></p>
 
-<h3 id="creating-lambda-execution-role-for-analyzeinspectorfindings">Creating Lambda Execution Role for AnalyzeInspectorFindings</h3>
+<h3 id="create-a-lambda-execution-role-for-analyzeinspectorfindings">Create a Lambda Execution Role for AnalyzeInspectorFindings</h3>
 
-<p>In this step we will be <strong>creating a IAM role resource</strong> with below criteria :</p>
+<p>In this step we will be <strong>creating a IAM role resource</strong> with the criteria below:</p>
 
 <ul>
-<li>IAM Role can be assumed by AWS Lambda Function</li>
-<li>Contains policy that is needed for Lambda Function Basic executions</li>
-<li>Contains policy that allows you to publish sns topic</li>
-<li>Contains policy that allows you to describe, terminate instance</li>
-<li>Contains policy that allows you to describe findings, list findings, add attributes to findings on amazon inspector.
+<li>The IAM Role can be assumed by AWS the Lambda Function</li>
+<li>It contains a policy that is needed for Lambda Function basic execution</li>
+<li>It contains a policy that allows it to publish to an SNS topic</li>
+<li>It contains a policy that allows it to describe and terminate an EC2 instance</li>
+<li>It contains a policy that allows it to describe and list findings, and add attributes to findings on the Amazon Inspector service
 <br /></li>
 </ul>
 
 <p>You can refer here for properties reference: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html">https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html</a></p>
 
-<p>Choose one of the option below on how you want to build the resource.</p>
+<p>Choose how you would like to build the resource from the options below:</p>
 
-<p><details><summary><strong>Option 1 - Build the resouce manually with step by step instructions.</strong></summary>
+<p><details><summary> <strong>Option 1 - Build the resource manually with step-by-step instructions.</strong></summary>
 <p></p>
 
 <ul>
-<li>Open your notepad / text editor, edit the file named <code>GoldenAMIContinuousAssesment.yml</code></li>
-<li>Right under the previous resource, still inside the <code>Resources:</code> section do the following.</li>
+<li>Open your text editor, and edit the file named <code>GoldenAMIContinuousAssesment.yml</code>.</li>
+<li>Right under the previous resource, still inside the <code>Resources:</code> section, follow the next steps:</li>
 <li>Create a resource named <code>AnalyzeInspectorFindingsLambdaRole</code> of type <code>AWS::IAM::Role</code>.</li>
-<li>In the <code>Properties</code> section add <code>ManagedPolicyArns</code> below to allow the lambda function to do basic execution and have access to Amazon Inspector APIs
+<li>In the <code>Properties</code> section add to <code>ManagedPolicyArns</code> the following Arn to allow the lambda function to do basic execution:
 
 <ul>
 <li><code>arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole</code></li>
 </ul></li>
-<li>In the <code>Properties</code> secion add an <code>AssumeRolePolicyDocument</code> to allow <code>lambda.amazonaws.com</code> service principal role to do an action called <code>sts:AssumeRole</code></li>
-<li>In the <code>Properties</code> section create a policy under <code>Policies</code> to allow access to below APIs<br />
+<li>In the <code>Properties</code> section add an <code>AssumeRolePolicyDocument</code> to allow the <code>lambda.amazonaws.com</code> service principal role to perform the <code>sts:AssumeRole</code> action.</li>
+<li>In the <code>Properties</code> section, create a policy under <code>Policies</code> to allow access to the following APIs:<br />
 
 <ul>
 <li><code>sns:Publish</code></li>
@@ -1696,7 +1696,7 @@ That being said, at any point in time you are stuck reach out to the lab support
 <li><code>inspector:AddAttributesToFindings</code></li>
 <li><code>inspector:DescribeFindings</code></li>
 <li><code>inspector:ListFindings</code></li>
-<li>In the <code>Properties</code> section create <code>RoleName</code> and specify <code>AnalyzeInspectorFindingsRole</code> as it&rsquo;s value</li>
+<li>In the <code>Properties</code> section, create <code>RoleName</code> and specify <code>AnalyzeInspectorFindingsRole</code> as its value.</li>
 </ul></li>
 </ul>
 
@@ -1705,7 +1705,7 @@ That being said, at any point in time you are stuck reach out to the lab support
 
 <p><details><summary><strong>Option 2 - CloudFormation template snippet</strong></summary></p>
 
-<p><strong>READ &gt;&gt;</strong> Below snippet must be specified within <code>Resources:</code> section of the cloudformation template.</p>
+<p><strong>NOTE</strong> The snippet below must be specified within the <code>Resources:</code> section of the CloudFormation template.</p>
 
 <pre><code>      AnalyzeInspectorFindingsLambdaRole: 
         Properties:
@@ -1745,15 +1745,17 @@ That being said, at any point in time you are stuck reach out to the lab support
 
 <p></details></p>
 
-<h3 id="deploys-the-cloudformation-template">Deploys the CloudFormation Template</h3>
+<h3 id="deploy-the-cloudformation-template">Deploy the CloudFormation template</h3>
 
-<p>Now that you&rsquo;ve construct the template, it&rsquo;s time to deploy the stack, do do that please follow the <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cfn-console-create-stack.html">Creating a Stack on the AWS CloudFormation Console</a> guide to create your stack.</p>
+<p>Now that you&rsquo;ve constructed the template, it&rsquo;s time to deploy the stack. Please follow the <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cfn-console-create-stack.html">Creating a Stack on the AWS CloudFormation Console</a> guide to create your stack.</p>
 
-<p>Specify Stack <code>GoldenAMIContinuousAssesment</code> as the stack name for simplicity.</p>
+<p>Specify <code>GoldenAMIContinuousAssesment</code> as the stack name.</p>
 
-<p>Once you&rsquo;ve launched your stack review the <code>Resources</code> Tab of the launch stack to identify the resouce it&rsquo;s created. You should see an entry with in Logical ID and in Physical ID. of the IAM role. You can click on it to go to the IAM console to see the resources created.</p>
+<p>Once you&rsquo;ve launched your stack, review the <code>Resources</code> tab of the launched stack to identify the resources it&rsquo;s created. You should see an entry with the Logical ID and the Physical ID of the IAM roles. You can click on it to go to the IAM console to see the resources created.</p>
 
-<p><strong>Well Done !</strong> you have packaged your IAM role in a repeatable fashion, think about the next time you have to build this on your next customer environment. Do you still want to build it manually through the console ? Hopefully not. Let us move on !</p>
+<p><strong>Well Done!!!</strong>
+You have packaged your IAM role in a repeatable fashion.
+Think about the next time you have to build a role for your next customer&rsquo;s environment. Do you still want to do it manually through the console? Hopefully not&hellip; Lets move on!</p>
 
 
 <footer class=" footline" >
@@ -2860,19 +2862,19 @@ That being said, at any point in time you are stuck reach out to the lab support
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1573355714"></script>
-    <script src="/js/perfect-scrollbar.min.js?1573355714"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1573355714"></script>
-    <script src="/js/jquery.sticky.js?1573355714"></script>
-    <script src="/js/featherlight.min.js?1573355714"></script>
-    <script src="/js/highlight.pack.js?1573355714"></script>
+    <script src="/js/clipboard.min.js?1573370684"></script>
+    <script src="/js/perfect-scrollbar.min.js?1573370684"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1573370684"></script>
+    <script src="/js/jquery.sticky.js?1573370684"></script>
+    <script src="/js/featherlight.min.js?1573370684"></script>
+    <script src="/js/highlight.pack.js?1573370684"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1573355714"></script>
-    <script src="/js/learn.js?1573355714"></script>
-    <script src="/js/hugo-learn.js?1573355714"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1573370684"></script>
+    <script src="/js/learn.js?1573370684"></script>
+    <script src="/js/hugo-learn.js?1573370684"></script>
 
-    <link href="/mermaid/mermaid.css?1573355714" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1573355714"></script>
+    <link href="/mermaid/mermaid.css?1573370684" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1573370684"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
