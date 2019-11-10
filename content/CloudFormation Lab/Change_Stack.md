@@ -328,10 +328,10 @@ Outputs:
         S3AppBucket:
             Type: "AWS::S3::Bucket"
             Properties:
-            AccessControl: PublicRead
-            WebsiteConfiguration:
-                ErrorDocument: index.html
-                IndexDocument: index.html
+              AccessControl: PublicRead
+              WebsiteConfiguration:
+                  ErrorDocument: index.html
+                  IndexDocument: index.html
         ```    
 
         After :
@@ -341,11 +341,17 @@ Outputs:
             DeletionPolicy: Retain
             Type: "AWS::S3::Bucket"
             Properties:
-            AccessControl: PublicRead
-            WebsiteConfiguration:
-                ErrorDocument: index.html
-                IndexDocument: index.html
+              AccessControl: PublicRead
+              WebsiteConfiguration:
+                  ErrorDocument: index.html
+                  IndexDocument: index.html
         ```
+
+        **Note**
+
+        In this section you should see a use case of `DeletionPolicy` for information about this, please refer to this link
+
+        https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-attribute-deletionpolicy.html
 
 3.  **Add an Outputs section, so that stack values are visible on the AWS CloudFormation Outputs tab:**
 
