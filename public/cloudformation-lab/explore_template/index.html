@@ -12,20 +12,20 @@
     <title>1. Exploring the template :: APN Equip Labs</title>
 
     
-    <link href="/css/nucleus.css?1573251041" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1573251041" rel="stylesheet">
-    <link href="/css/hybrid.css?1573251041" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1573251041" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1573251041" rel="stylesheet">
-    <link href="/css/auto-complete.css?1573251041" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1573251041" rel="stylesheet">
-    <link href="/css/theme.css?1573251041" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1573251041" rel="stylesheet">
+    <link href="/css/nucleus.css?1573354426" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1573354426" rel="stylesheet">
+    <link href="/css/hybrid.css?1573354426" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1573354426" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1573354426" rel="stylesheet">
+    <link href="/css/auto-complete.css?1573354426" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1573354426" rel="stylesheet">
+    <link href="/css/theme.css?1573354426" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1573354426" rel="stylesheet">
     
-      <link href="/css/theme-darkblue.css?1573251041" rel="stylesheet">
+      <link href="/css/theme-darkblue.css?1573354426" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1573251041"></script>
+    <script src="/js/jquery-3.3.1.min.js?1573354426"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -51,14 +51,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1573251041"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1573251041"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1573354426"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1573354426"></script>
 <script type="text/javascript">
     
         var baseurl = "http:\/\/example.org\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1573251041"></script>
+<script type="text/javascript" src="/js/search.js?1573354426"></script>
 
     
   </div>
@@ -1722,7 +1722,11 @@ VPC:
   Properties:
     CidrBlock: !Ref vpccidr
 ...
-</code></pre></li>
+</code></pre>
+
+<p><strong>Note:</strong></p>
+
+<p>Notice that the value of CidrBlock is a reference to <code>vpccidr</code>. This is essentially the Parameters that you specified under the <code>Parameters</code> section of the template. Parameters are specified under it&rsquo;s own section outside (same level of) Resources. Open up the source CloudFormation template, and take note of <code>vpccidr</code> under Parameters section. This reference are linked using <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-ref.html">!Ref intrinsic function</a></p></li>
 
 <li><p>Internet Gateway</p>
 
@@ -1738,7 +1742,11 @@ GatewayAttach:
     InternetGatewayId: !Ref IGW
     VpcId: !Ref VPC
 ...
-</code></pre></li>
+</code></pre>
+
+<p><strong>Note:</strong></p>
+
+<p>Other linking between Parameters and Resource values, <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-ref.html">!Ref intrinsic function</a> could also be used to Link the value of other resource you specified. In this section you will see, InternetGatewayId has a value of !Ref to IGW which is the InternetGateway resource. Every resource in cloudformation will have values you can reference, weather it&rsquo;s the name / arn (it varies from resource to resource). To find out what value the resource provides for !Ref refer to the <code>Return Values</code> <code>Ref</code> section of each resource documentation, e.g : <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-internetgateway.html">https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-internetgateway.html</a></p></li>
 
 <li><p>S3 bucket</p>
 
@@ -1746,10 +1754,10 @@ GatewayAttach:
   S3AppBucket:
     Type: &quot;AWS::S3::Bucket&quot;
     Properties:
-    AccessControl: PublicRead
-    WebsiteConfiguration:
-        ErrorDocument: index.html
-        IndexDocument: index.html
+      AccessControl: PublicRead
+      WebsiteConfiguration:
+          ErrorDocument: index.html
+          IndexDocument: index.html
 ...
 </code></pre></li>
 
@@ -1759,40 +1767,51 @@ GatewayAttach:
 SubnetPublicSharedA:
     Type: &quot;AWS::EC2::Subnet&quot;
     Properties:
-    AvailabilityZone: !Select [0, !GetAZs ]
-    CidrBlock: !Ref psharedacidr
-    MapPublicIpOnLaunch: true
-    VpcId: !Ref VPC
+      AvailabilityZone: !Select [0, !GetAZs ]
+      CidrBlock: !Ref psharedacidr
+      MapPublicIpOnLaunch: true
+      VpcId: !Ref VPC
 SubnetPublicSharedB:
     Type: &quot;AWS::EC2::Subnet&quot;
     Properties:
-    AvailabilityZone: !Select [1, !GetAZs ]
-    CidrBlock: !Ref psharedbcidr
-    MapPublicIpOnLaunch: true
-    VpcId: !Ref VPC
+      AvailabilityZone: !Select [1, !GetAZs ]
+      CidrBlock: !Ref psharedbcidr
+      MapPublicIpOnLaunch: true
+      VpcId: !Ref VPC
 ...
 
 ...
 SubnetRouteTableAssociatePublicA:
     Type: &quot;AWS::EC2::SubnetRouteTableAssociation&quot;
     Properties:
-    RouteTableId: !Ref RouteTablePublic
-    SubnetId: !Ref SubnetPublicSharedA
+      RouteTableId: !Ref RouteTablePublic
+      SubnetId: !Ref SubnetPublicSharedA
 SubnetRouteTableAssociatePublicB:
     Type: &quot;AWS::EC2::SubnetRouteTableAssociation&quot;
     Properties:
-    RouteTableId: !Ref RouteTablePublic
-    SubnetId: !Ref SubnetPublicSharedB
+      RouteTableId: !Ref RouteTablePublic
+      SubnetId: !Ref SubnetPublicSharedB
 RouteDefaultPublic:
     Type: &quot;AWS::EC2::Route&quot;
     DependsOn: GatewayAttach
     Properties:
-    DestinationCidrBlock: 0.0.0.0/0
-    GatewayId: !Ref IGW
-    RouteTableId: !Ref RouteTablePublic
+      DestinationCidrBlock: 0.0.0.0/0
+      GatewayId: !Ref IGW
+      RouteTableId: !Ref RouteTablePublic
 ...
 
-</code></pre></li>
+</code></pre>
+
+<p><strong>Note:</strong></p>
+
+<p>In this section we see the use of Intrinsic Function !Select !GetAZs in action <code>: !Select [0, !GetAZs ]</code>.
+!Select intrinsic functions, gives your the capability to select a value from a list that is placed as the input.
+In this example the input towards !Select is another intrinsic function called !GetAZs that returns a list of Avalability Zones names within the region of the stack e.g: ap-southeast-1a, ap-southeast-2b, ap-southeast2c. The !Select function then allows you to pick which values you want to use based on the index number you specified 0 is the first, and incremental from there.</p>
+
+<p>For more information about these functions, refer to link below :</p>
+
+<p><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-select.html">https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-select.html</a>
+<a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-getavailabilityzones.html">https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-getavailabilityzones.html</a></p></li>
 
 <li><p>Two private subnets with corresponding route tables</p>
 
@@ -1800,47 +1819,47 @@ RouteDefaultPublic:
 SubnetPrivateSharedA:
     Type: &quot;AWS::EC2::Subnet&quot;
     Properties:
-    AvailabilityZone: !Select [0, !GetAZs ]
-    CidrBlock: !Ref psharedacidr
-    MapPublicIpOnLaunch: false
-    VpcId: !Ref VPC
+      AvailabilityZone: !Select [0, !GetAZs ]
+      CidrBlock: !Ref psharedacidr
+      MapPublicIpOnLaunch: false
+      VpcId: !Ref VPC
 SubnetPrivateSharedB:
     Type: &quot;AWS::EC2::Subnet&quot;
     Properties:
-    AvailabilityZone: !Select [1, !GetAZs ]
-    CidrBlock: !Ref psharedbcidr
-    MapPublicIpOnLaunch: false
-    VpcId: !Ref VPC
+      AvailabilityZone: !Select [1, !GetAZs ]
+      CidrBlock: !Ref psharedbcidr
+      MapPublicIpOnLaunch: false
+      VpcId: !Ref VPC
 SubnetRouteTableAssociatePrivateA:
     Type: &quot;AWS::EC2::SubnetRouteTableAssociation&quot;
     Properties:
-    RouteTableId: !Ref RouteTablePrivateA
-    SubnetId: !Ref SubnetPrivateSharedA
+      RouteTableId: !Ref RouteTablePrivateA
+      SubnetId: !Ref SubnetPrivateSharedA
 SubnetRouteTableAssociatePrivateB:
     Type: &quot;AWS::EC2::SubnetRouteTableAssociation&quot;
     Properties:
-    RouteTableId: !Ref RouteTablePrivateB
-    SubnetId: !Ref SubnetPrivateSharedB
+      RouteTableId: !Ref RouteTablePrivateB
+      SubnetId: !Ref SubnetPrivateSharedB
 RouteTablePrivateA:
     Type: &quot;AWS::EC2::RouteTable&quot;
     Properties:
-    VpcId: !Ref VPC
+      VpcId: !Ref VPC
 RouteTablePrivateB:
     Type: &quot;AWS::EC2::RouteTable&quot;
     Properties:
-    VpcId: !Ref VPC
+      VpcId: !Ref VPC
 RouteDefaultPrivateA:
     Type: &quot;AWS::EC2::Route&quot;
     Properties:
-    DestinationCidrBlock: 0.0.0.0/0
-    NatGatewayId: !Ref NatGatewayA
-    RouteTableId: !Ref RouteTablePrivateA
+      DestinationCidrBlock: 0.0.0.0/0
+      NatGatewayId: !Ref NatGatewayA
+      RouteTableId: !Ref RouteTablePrivateA
 RouteDefaultPrivateB:
     Type: &quot;AWS::EC2::Route&quot;
     Properties:
-    DestinationCidrBlock: 0.0.0.0/0
-    NatGatewayId: !Ref NatGatewayB
-    RouteTableId: !Ref RouteTablePrivateB
+      DestinationCidrBlock: 0.0.0.0/0
+      NatGatewayId: !Ref NatGatewayB
+      RouteTableId: !Ref RouteTablePrivateB
 ...
 </code></pre></li>
 
@@ -1851,14 +1870,18 @@ EIPNatGWA:
     DependsOn: GatewayAttach
     Type: &quot;AWS::EC2::EIP&quot;
     Properties:
-    Domain: vpc
+      Domain: vpc
 EIPNatGWB:
     DependsOn: GatewayAttach
     Type: &quot;AWS::EC2::EIP&quot;
     Properties:
-    Domain: vpc
+      Domain: vpc
 ...
-</code></pre></li>
+</code></pre>
+
+<p><strong>Note:</strong></p>
+
+<p>In this section you should see the use of <code>DependsOn</code> under <code>EIPNatGWA</code> and <code>EIPNatGWB</code> resource. If you are creating relationship between resources using !GetAtt or !Ref, CloudFormation will handle the order of deployment orchestration for the resource. e.g: If you create and EC2 instance resource and it has security group value !Ref another Security Group resoruce, CloudFormation will create the Security Group first before creating EC2 instance. Now in the case where you don&rsquo;t have the !Ref values in the resource, but you would like to control the order of resources to be deployed, you can then use the <code>DependsOn</code> section under resource to define the order relationship. In this case <code>EIPNatGWA</code> and <code>EIPNatGWB</code> won&rsquo;t be created before <code>GatewayAttach</code> is successfully created.</p></li>
 
 <li><p>Two NAT Gateways</p>
 
@@ -1874,7 +1897,14 @@ NatGatewayB:
     AllocationId: !GetAtt EIPNatGWB.AllocationId
     SubnetId: !Ref SubnetPublicSharedB
 ...
-</code></pre></li>
+</code></pre>
+
+<p><strong>Note:</strong></p>
+
+<p>In this section you should see a use case of Intrinsic Function !GetAtt <code>!GetAtt EIPNatGWA.AllocationId</code>.
+!GetAtt function allows you reference additional attribute values of the resource that was launched. These are values outside what&rsquo;s been provided by !Ref. Every resource will have different attribute values available. Therefore to best use this, it&rsquo;s recommended to always refer to the documentation of the related resource type under <code>ReturnValues</code> <code>Fn::GetAtt</code>. In this example the !GetAtt function is referencing the Allocation Id value of Elastic IP resource called EIPNatGWA.</p>
+
+<p><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-eip.html">https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-eip.html</a></p></li>
 </ul>
 
 
@@ -2979,19 +3009,19 @@ NatGatewayB:
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1573251041"></script>
-    <script src="/js/perfect-scrollbar.min.js?1573251041"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1573251041"></script>
-    <script src="/js/jquery.sticky.js?1573251041"></script>
-    <script src="/js/featherlight.min.js?1573251041"></script>
-    <script src="/js/highlight.pack.js?1573251041"></script>
+    <script src="/js/clipboard.min.js?1573354426"></script>
+    <script src="/js/perfect-scrollbar.min.js?1573354426"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1573354426"></script>
+    <script src="/js/jquery.sticky.js?1573354426"></script>
+    <script src="/js/featherlight.min.js?1573354426"></script>
+    <script src="/js/highlight.pack.js?1573354426"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1573251041"></script>
-    <script src="/js/learn.js?1573251041"></script>
-    <script src="/js/hugo-learn.js?1573251041"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1573354426"></script>
+    <script src="/js/learn.js?1573354426"></script>
+    <script src="/js/hugo-learn.js?1573354426"></script>
 
-    <link href="/mermaid/mermaid.css?1573251041" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1573251041"></script>
+    <link href="/mermaid/mermaid.css?1573354426" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1573354426"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

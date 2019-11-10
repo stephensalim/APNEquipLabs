@@ -198,6 +198,10 @@ Template:
     ...
     ```
 
+    **Note:**
+
+    Notice that the value of CidrBlock is a reference to `vpccidr`. This is essentially the Parameters that you specified under the `Parameters` section of the template. Parameters are specified under it's own section outside (same level of) Resources. Open up the source CloudFormation template, and take note of `vpccidr` under Parameters section. This reference are linked using [!Ref intrinsic function](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-ref.html)
+
 
 -   Internet Gateway
 
@@ -217,6 +221,11 @@ Template:
     ```
 
 
+    **Note:**
+
+    Other linking between Parameters and Resource values, [!Ref intrinsic function](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-ref.html) could also be used to Link the value of other resource you specified. In this section you will see, InternetGatewayId has a value of !Ref to IGW which is the InternetGateway resource. Every resource in cloudformation will have values you can reference, weather it's the name / arn (it varies from resource to resource). To find out what value the resource provides for !Ref refer to the `Return Values` `Ref` section of each resource documentation, e.g : https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-internetgateway.html
+
+
 -   S3 bucket
 
     ```
@@ -224,10 +233,10 @@ Template:
       S3AppBucket:
         Type: "AWS::S3::Bucket"
         Properties:
-        AccessControl: PublicRead
-        WebsiteConfiguration:
-            ErrorDocument: index.html
-            IndexDocument: index.html
+          AccessControl: PublicRead
+          WebsiteConfiguration:
+              ErrorDocument: index.html
+              IndexDocument: index.html
     ...
     ```
 
@@ -237,40 +246,52 @@ Template:
     SubnetPublicSharedA:
         Type: "AWS::EC2::Subnet"
         Properties:
-        AvailabilityZone: !Select [0, !GetAZs ]
-        CidrBlock: !Ref psharedacidr
-        MapPublicIpOnLaunch: true
-        VpcId: !Ref VPC
+          AvailabilityZone: !Select [0, !GetAZs ]
+          CidrBlock: !Ref psharedacidr
+          MapPublicIpOnLaunch: true
+          VpcId: !Ref VPC
     SubnetPublicSharedB:
         Type: "AWS::EC2::Subnet"
         Properties:
-        AvailabilityZone: !Select [1, !GetAZs ]
-        CidrBlock: !Ref psharedbcidr
-        MapPublicIpOnLaunch: true
-        VpcId: !Ref VPC
+          AvailabilityZone: !Select [1, !GetAZs ]
+          CidrBlock: !Ref psharedbcidr
+          MapPublicIpOnLaunch: true
+          VpcId: !Ref VPC
     ...
 
     ...
     SubnetRouteTableAssociatePublicA:
         Type: "AWS::EC2::SubnetRouteTableAssociation"
         Properties:
-        RouteTableId: !Ref RouteTablePublic
-        SubnetId: !Ref SubnetPublicSharedA
+          RouteTableId: !Ref RouteTablePublic
+          SubnetId: !Ref SubnetPublicSharedA
     SubnetRouteTableAssociatePublicB:
         Type: "AWS::EC2::SubnetRouteTableAssociation"
         Properties:
-        RouteTableId: !Ref RouteTablePublic
-        SubnetId: !Ref SubnetPublicSharedB
+          RouteTableId: !Ref RouteTablePublic
+          SubnetId: !Ref SubnetPublicSharedB
     RouteDefaultPublic:
         Type: "AWS::EC2::Route"
         DependsOn: GatewayAttach
         Properties:
-        DestinationCidrBlock: 0.0.0.0/0
-        GatewayId: !Ref IGW
-        RouteTableId: !Ref RouteTablePublic
+          DestinationCidrBlock: 0.0.0.0/0
+          GatewayId: !Ref IGW
+          RouteTableId: !Ref RouteTablePublic
     ...
 
     ```
+
+    **Note:**
+
+    In this section we see the use of Intrinsic Function !Select !GetAZs in action `: !Select [0, !GetAZs ]`. 
+    !Select intrinsic functions, gives your the capability to select a value from a list that is placed as the input. 
+    In this example the input towards !Select is another intrinsic function called !GetAZs that returns a list of Avalability Zones names within the region of the stack e.g: ap-southeast-1a, ap-southeast-2b, ap-southeast2c. The !Select function then allows you to pick which values you want to use based on the index number you specified 0 is the first, and incremental from there.
+
+    For more information about these functions, refer to link below :
+
+    https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-select.html
+    https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-getavailabilityzones.html
+
 
 -   Two private subnets with corresponding route tables
 ```
@@ -278,47 +299,47 @@ Template:
     SubnetPrivateSharedA:
         Type: "AWS::EC2::Subnet"
         Properties:
-        AvailabilityZone: !Select [0, !GetAZs ]
-        CidrBlock: !Ref psharedacidr
-        MapPublicIpOnLaunch: false
-        VpcId: !Ref VPC
+          AvailabilityZone: !Select [0, !GetAZs ]
+          CidrBlock: !Ref psharedacidr
+          MapPublicIpOnLaunch: false
+          VpcId: !Ref VPC
     SubnetPrivateSharedB:
         Type: "AWS::EC2::Subnet"
         Properties:
-        AvailabilityZone: !Select [1, !GetAZs ]
-        CidrBlock: !Ref psharedbcidr
-        MapPublicIpOnLaunch: false
-        VpcId: !Ref VPC
+          AvailabilityZone: !Select [1, !GetAZs ]
+          CidrBlock: !Ref psharedbcidr
+          MapPublicIpOnLaunch: false
+          VpcId: !Ref VPC
     SubnetRouteTableAssociatePrivateA:
         Type: "AWS::EC2::SubnetRouteTableAssociation"
         Properties:
-        RouteTableId: !Ref RouteTablePrivateA
-        SubnetId: !Ref SubnetPrivateSharedA
+          RouteTableId: !Ref RouteTablePrivateA
+          SubnetId: !Ref SubnetPrivateSharedA
     SubnetRouteTableAssociatePrivateB:
         Type: "AWS::EC2::SubnetRouteTableAssociation"
         Properties:
-        RouteTableId: !Ref RouteTablePrivateB
-        SubnetId: !Ref SubnetPrivateSharedB
+          RouteTableId: !Ref RouteTablePrivateB
+          SubnetId: !Ref SubnetPrivateSharedB
     RouteTablePrivateA:
         Type: "AWS::EC2::RouteTable"
         Properties:
-        VpcId: !Ref VPC
+          VpcId: !Ref VPC
     RouteTablePrivateB:
         Type: "AWS::EC2::RouteTable"
         Properties:
-        VpcId: !Ref VPC
+          VpcId: !Ref VPC
     RouteDefaultPrivateA:
         Type: "AWS::EC2::Route"
         Properties:
-        DestinationCidrBlock: 0.0.0.0/0
-        NatGatewayId: !Ref NatGatewayA
-        RouteTableId: !Ref RouteTablePrivateA
+          DestinationCidrBlock: 0.0.0.0/0
+          NatGatewayId: !Ref NatGatewayA
+          RouteTableId: !Ref RouteTablePrivateA
     RouteDefaultPrivateB:
         Type: "AWS::EC2::Route"
         Properties:
-        DestinationCidrBlock: 0.0.0.0/0
-        NatGatewayId: !Ref NatGatewayB
-        RouteTableId: !Ref RouteTablePrivateB
+          DestinationCidrBlock: 0.0.0.0/0
+          NatGatewayId: !Ref NatGatewayB
+          RouteTableId: !Ref RouteTablePrivateB
     ...
 ```
 
@@ -330,14 +351,20 @@ Template:
         DependsOn: GatewayAttach
         Type: "AWS::EC2::EIP"
         Properties:
-        Domain: vpc
+          Domain: vpc
     EIPNatGWB:
         DependsOn: GatewayAttach
         Type: "AWS::EC2::EIP"
         Properties:
-        Domain: vpc
+          Domain: vpc
     ...
     ```
+
+    **Note:**
+
+    In this section you should see the use of `DependsOn` under `EIPNatGWA` and `EIPNatGWB` resource. If you are creating relationship between resources using !GetAtt or !Ref, CloudFormation will handle the order of deployment orchestration for the resource. e.g: If you create and EC2 instance resource and it has security group value !Ref another Security Group resoruce, CloudFormation will create the Security Group first before creating EC2 instance. Now in the case where you don't have the !Ref values in the resource, but you would like to control the order of resources to be deployed, you can then use the `DependsOn` section under resource to define the order relationship. In this case `EIPNatGWA` and `EIPNatGWB` won't be created before `GatewayAttach` is successfully created.
+
+
 -   Two NAT Gateways
     ```
     ...
@@ -353,3 +380,9 @@ Template:
         SubnetId: !Ref SubnetPublicSharedB
     ...
     ```
+    **Note:**
+
+    In this section you should see a use case of Intrinsic Function !GetAtt `!GetAtt EIPNatGWA.AllocationId`. 
+    !GetAtt function allows you reference additional attribute values of the resource that was launched. These are values outside what's been provided by !Ref. Every resource will have different attribute values available. Therefore to best use this, it's recommended to always refer to the documentation of the related resource type under `ReturnValues` `Fn::GetAtt`. In this example the !GetAtt function is referencing the Allocation Id value of Elastic IP resource called EIPNatGWA. 
+    
+    https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-eip.html

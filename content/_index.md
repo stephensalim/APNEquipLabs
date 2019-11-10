@@ -22,4 +22,3 @@ The labs are built independently of each other so you can pick and choose your m
 
 <h1>HAVE FUN !!</h1>
 
-
