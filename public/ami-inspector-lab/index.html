@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="generator" content="Hugo 0.57.2" />
+    <meta name="generator" content="Hugo 0.59.1" />
     <meta name="description" content="">
 
 
@@ -12,20 +12,20 @@
     <title>Golden AMI Assessment Lab :: APN Equip Labs</title>
 
     
-    <link href="/css/nucleus.css?1573355715" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1573355715" rel="stylesheet">
-    <link href="/css/hybrid.css?1573355715" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1573355715" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1573355715" rel="stylesheet">
-    <link href="/css/auto-complete.css?1573355715" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1573355715" rel="stylesheet">
-    <link href="/css/theme.css?1573355715" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1573355715" rel="stylesheet">
+    <link href="/css/nucleus.css?1573370684" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1573370684" rel="stylesheet">
+    <link href="/css/hybrid.css?1573370684" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1573370684" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1573370684" rel="stylesheet">
+    <link href="/css/auto-complete.css?1573370684" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1573370684" rel="stylesheet">
+    <link href="/css/theme.css?1573370684" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1573370684" rel="stylesheet">
     
-      <link href="/css/theme-darkblue.css?1573355715" rel="stylesheet">
+      <link href="/css/theme-darkblue.css?1573370684" rel="stylesheet">
     
 
-    <script src="/js/jquery-3.3.1.min.js?1573355715"></script>
+    <script src="/js/jquery-3.3.1.min.js?1573370684"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -51,14 +51,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1573355715"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1573355715"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1573370684"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1573370684"></script>
 <script type="text/javascript">
     
         var baseurl = "http:\/\/example.org\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1573355715"></script>
+<script type="text/javascript" src="/js/search.js?1573370684"></script>
 
     
   </div>
@@ -1266,9 +1266,9 @@
  
   
     
-      <li data-nav-id="/ami-inspector-lab/solutions_overview/" title="1. Solutions Overview" class="dd-item ">
+      <li data-nav-id="/ami-inspector-lab/solutions_overview/" title="1. Solution Overview" class="dd-item ">
         <a href="/ami-inspector-lab/solutions_overview/">
-        1. Solutions Overview
+        1. Solution Overview
         <i class="fas fa-check read-icon"></i>
         </a>
     </li>
@@ -1399,9 +1399,9 @@
  
   
     
-      <li data-nav-id="/ami-inspector-lab/test_assesment/" title="8. Test Assesment" class="dd-item ">
+      <li data-nav-id="/ami-inspector-lab/test_assesment/" title="8. Test Assessment" class="dd-item ">
         <a href="/ami-inspector-lab/test_assesment/">
-        8. Test Assesment
+        8. Test Assessment
         <i class="fas fa-check read-icon"></i>
         </a>
     </li>
@@ -1521,15 +1521,15 @@
 
 <p>As companies mature in their cloud journey, they implement layered security capabilities and practices in their cloud architectures. One such practice is to continually assess golden <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIs.html">Amazon Machine Images</a> (AMIs) for security vulnerabilities. AMIs provide the information required to launch an <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Instances.html">Amazon EC2 instance</a>, which is a virtual server in the AWS Cloud. A <em>golden AMI</em> is an AMI that contains the latest security patches, software, configuration, and software agents that you need to install for logging, security maintenance, and performance monitoring. You can build and deploy golden AMIs in your environment, but the AMIs quickly become dated as new vulnerabilities are discovered.</p>
 
-<p>A security best practice is to perform routine vulnerability assessments of your golden AMIs to identify if newly found vulnerabilities apply to them. If you identify a vulnerability, you can update your golden AMIs with the appropriate security patches, test the AMIs, and deploy the patched AMIs in your environment. In this Lab post, I you will learn how to use <a href="https://aws.amazon.com/inspector/">Amazon Inspector</a> to set up such continuous vulnerability assessments to scan your golden AMIs routinely.</p>
+<p>A security best practice is to perform routine vulnerability assessments of your golden AMIs to identify if any newly found vulnerabilities apply to them. If you identify a vulnerability, you can update your golden AMIs with the appropriate security patches, test the AMIs, and deploy the patched AMIs in your environment. In this Lab, you will learn how to use <a href="https://aws.amazon.com/inspector/">Amazon Inspector</a> to set up a continuous vulnerability assessments to scan your golden AMIs routinely.</p>
 
 <p>Amazon Inspector performs security assessments of <a href="https://aws.amazon.com/ec2/">Amazon EC2</a> instances by using AWS managed <a href="http://docs.aws.amazon.com/inspector/latest/userguide/inspector_rule-packages.html#InspectorRulePackages">rules packages</a> such as the <a href="http://docs.aws.amazon.com/inspector/latest/userguide/inspector_cves.html">Common Vulnerabilities and Exposures</a> (CVEs) package.</p>
 
-<p>In this lab you will create a serverless Golden AMI vunerability checker that will consolidate the assement result and advise you about the next steps.</p>
+<p>In this lab you will create a serverless Golden AMI vulnerability checker that will consolidate the assessment results and advise you of the next steps.</p>
 
-<p>Furthermore, with this solution you can schedule the assesment to run regularly using <a href="https://aws.amazon.com/cloudwatch/">Amazon CloudWatch Events</a>.</p>
+<p>Furthermore, with this solution you can schedule the assessment to run regularly using <a href="https://aws.amazon.com/cloudwatch/">Amazon CloudWatch Events</a>.</p>
 
-<p><strong>This Lab is Based below blog</strong></p>
+<p><strong>This Lab is based on the blog below:</strong></p>
 
 <p><a href="https://aws.amazon.com/blogs/security/how-to-set-up-continuous-golden-ami-vulnerability-assessments-with-amazon-inspector/">https://aws.amazon.com/blogs/security/how-to-set-up-continuous-golden-ami-vulnerability-assessments-with-amazon-inspector/</a></p>
 
@@ -2628,7 +2628,7 @@
 			<a class="nav nav-prev" href="/cloudformation-lab/update_stack/" title="4. Update the Stack"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/ami-inspector-lab/solutions_overview/" title="1. Solutions Overview" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/ami-inspector-lab/solutions_overview/" title="1. Solution Overview" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -2638,19 +2638,19 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1573355715"></script>
-    <script src="/js/perfect-scrollbar.min.js?1573355715"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1573355715"></script>
-    <script src="/js/jquery.sticky.js?1573355715"></script>
-    <script src="/js/featherlight.min.js?1573355715"></script>
-    <script src="/js/highlight.pack.js?1573355715"></script>
+    <script src="/js/clipboard.min.js?1573370684"></script>
+    <script src="/js/perfect-scrollbar.min.js?1573370684"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1573370684"></script>
+    <script src="/js/jquery.sticky.js?1573370684"></script>
+    <script src="/js/featherlight.min.js?1573370684"></script>
+    <script src="/js/highlight.pack.js?1573370684"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1573355715"></script>
-    <script src="/js/learn.js?1573355715"></script>
-    <script src="/js/hugo-learn.js?1573355715"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1573370684"></script>
+    <script src="/js/learn.js?1573370684"></script>
+    <script src="/js/hugo-learn.js?1573370684"></script>
 
-    <link href="/mermaid/mermaid.css?1573355715" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1573355715"></script>
+    <link href="/mermaid/mermaid.css?1573370684" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1573370684"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
