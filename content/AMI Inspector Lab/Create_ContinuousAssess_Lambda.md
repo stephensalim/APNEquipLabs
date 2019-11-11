@@ -4,8 +4,8 @@ weight: 6
 draft: false
 ---
 
-Alright, now for the meaty part !
-In this part of the lab, we will walk through how to construct / package [AWS Lambda](https://docs.aws.amazon.com/lambda/latest/dg/welcome.html) Function and attach it to the IAM roles we created in previous step. We will be creating 2 Lambda Functions `StartContinuousAssesment` & `AnalyzeInspectorFindings` Each of this Lambda Functions will also have a connection to SNS Topics we created in previous steps through a Lambda Environment variable we defined in the function.
+All right, now for the exciting part!
+In this section of the lab, we will walk through how to construct and package [AWS Lambda](https://docs.aws.amazon.com/lambda/latest/dg/welcome.html) Functions and attach them to the IAM roles we created in the previous step. We will be creating 2 Lambda Functions `StartContinuousAssesment` and `AnalyzeInspectorFindings`. We will be providing references to the SNS Topics you created in the previous steps to each of these Lambda functions through an environment variable.
 
 ![](/AMI Inspector Lab/images/ContinuousAssesmentLambdaFunction02.png)
 
@@ -14,30 +14,30 @@ In this part of the lab, we will walk through how to construct / package [AWS La
 **IMPORTANT NOTE:**
 
 In the following steps you will need to construct your CloudFormation template in YAML format.
-YAML format allows you to put comments in the template by placing in # in front of the line.
-YAML format is indent sensitive syntax, therefore make sure to specify the key and values at the right indent level in the template.
+YAML allows you to put comments in the template by placing a `#` in front of the comment line.
+YAML is an indentation sensitive syntax, therefore make sure to specify the key and values at the right indent level in the template.
 
-When building a cloudformation template, it is recommended to always refer back to the extensive CloudFormation documentation.
-In the folloing steps for smooth lab experience, we will be providing the template snippet for the specific resource.
-Alternatively, we will also be providing a high level instruction on how to construct the template if you coose to build them manually. We will also provide reference guide / example from public documentation to help you. 
+When building a CloudFormation template, it is always recommended to refer back to the extensive CloudFormation documentation.
+In the following steps we will be providing the template snippets for the specific resource for a smooth lab experience.
+Alternatively, we will also be providing high level instructions on how to construct the template if you choose to build them manually. We will also provide reference guides and examples from the documentation to help you. 
     
-The purpose of this is get acustomed towards exploring CloudFormation documentation and syntax.
-That being said, at any point in time you are stuck reach out to the lab support team.
+The purpose of this lab is get accustomed to exploring CloudFormation documentation and syntax.
+That being said, if at any point you get stuck, do reach out to the lab support team, or consult the reference template from the solution overview.
 
 ---
 
-### Creating the Lambda Function StartContinuousAssessment
+### Create the StartContinuousAssessment Lambda function 
 
-In this step we will be **creating a Lambda Function** with below criteria :
+In this step we will be **creating a Lambda Function** as follows:
     
-* FunctionName called `StartContinuousAssessment`
-* Handler to the function is `index.lambda_handler`.
-* MemorySize is 512, and timeout is 5 mins.
-* Create Environment variable named `AssesmentCompleteTopicArn` and reference the arn of `ContinuousAssessmentCompleteTopic` SNS Topic.
-* Specify Roles, and reference the ARN of IAM role called `StartContinuousAssessmentLambdaRole`.
-* Specify the code inline within the template, Code for this function is available below.
+* The FunctionName is `StartContinuousAssessment`
+* The function Handler is `index.lambda_handler`.
+* The MemorySize is 512, and Timeout is 5 minutes.
+* Create an Environment Variable named `AssesmentCompleteTopicArn` and reference the Arn of the `ContinuousAssessmentCompleteTopic` SNS Topic.
+* The function Roles must reference the Arn of IAM role called `StartContinuousAssessmentLambdaRole`.
+* Specify the code inline within the template. Code for this function is available below.
 
-You can refer here for properties reference: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-function.html
+You can refer here for the properties reference: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-function.html
 
 
 **Code**
@@ -50,7 +50,7 @@ You can refer here for properties reference: https://docs.aws.amazon.com/AWSClou
     import os
     def lambda_handler(event, context):
         AMIsParamName = event['AMIsParamName'];
-        region=os.environ['AWS_DEFAULT_REGION']
+        region = os.environ['AWS_DEFAULT_REGION']
         ec2 = boto3.client('ec2',region)
         ssm = boto3.client('ssm',region)
         inspector = boto3.client('inspector',region)
@@ -58,7 +58,7 @@ You can refer here for properties reference: https://docs.aws.amazon.com/AWSClou
         print(AmiJson)
         items = json.loads(AmiJson)
         for entry in items:
-            images= ec2.describe_images(ImageIds=[entry['ami-id']],DryRun=False)
+            images = ec2.describe_images(ImageIds=[entry['ami-id']],DryRun=False)
             tags = images['Images'][0]['Tags']
             tags.append({'Key': 'continuous-assessment-instance', 'Value': 'true'})
             ec2.run_instances(ImageId=entry['ami-id'],InstanceType=entry['instanceType'],UserData=entry['userData'],DryRun=False,MaxCount=1,MinCount=1,TagSpecifications=[{'ResourceType': 'instance','Tags': tags}])
@@ -84,30 +84,30 @@ You can refer here for properties reference: https://docs.aws.amazon.com/AWSClou
 
 
 
-Choose one of the option below on how you want to build the resource.
+Choose how you would like to build the resource from the options below:
 
-<details><summary>**Option 1 - Build the resouce manually with step by step instructions.**</summary>
+<details><summary> **Option 1 - Build the resource manually with step-by-step instructions.**</summary>
 <p>    
 
-* Open your notepad / text editor, edit the file named  `GoldenAMIContinuousAssesment.yml`.
-* Right under the previous resource, still inside the `Resources:` section do the following.
+* Open your text editor, and edit the file named  `GoldenAMIContinuousAssesment.yml`.
+* Add the following resource to the `Resources:` section:
 * Create a resource named `StartContinuousAssessmentLambdaFunction` of type `AWS::Lambda::Function`.
-* Under `Properties` section create `FunctionName` with `StartContinuousAssessment` as the value.
-* Under `Properties` create `Handler` with `index.lambda_handler` as the value.
-* Under `Properties` create `MemorySize` with `512` as the value.
-* Under `Properties` create `Runtime` with `python3.6` as the value.
-* Under `Properties` create `Timeout` with `300` as the value.
-* Under `Properties` create `Environment` under it, following after that, create `Variables` under `Environment`.
-    * Under `Variables` then create a key called `AssesmentCompleteTopicArn` and reference the value `ContinuousAssessmentCompleteTopic` using !Ref intrinsic function. Reference: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-ref.html
-* In the `Properties` section create a `Role` property and using the !GetAtt intrinsic function reference the IAM role Arn you created in previous step called `StartContinuousAssessmentLambdaRole` Reference: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-getatt.html
-* In the `Properties` section create a `Code` property and specify the lambda function code using in line code, copu & paste below. To place in multiple line, in yaml you can use the | sign then place the remaining code below it. Example : https://aws.amazon.com/blogs/infrastructure-and-automation/deploying-aws-lambda-functions-using-aws-cloudformation-the-portable-way/
+* Under `Properties` add `FunctionName` with `StartContinuousAssessment` as the value.
+* Under `Properties` add `Handler` with `index.lambda_handler` as the value.
+* Under `Properties` add `MemorySize` with `512` as the value.
+* Under `Properties` add `Runtime` with `python3.6` as the value.
+* Under `Properties` add `Timeout` with `300` as the value.
+* Under `Properties` add `Environment`, and nested under it, create `Variables`.
+    * Under `Variables`create a key called `AssesmentCompleteTopicArn` and reference the value `ContinuousAssessmentCompleteTopic` using the `!Ref` intrinsic function. [Reference](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-ref.html)
+* Back in the `Properties` section, create a `Role` property and using the `!GetAtt` intrinsic function, reference the IAM role Arn you created in the previous step called `StartContinuousAssessmentLambdaRole`. [Reference](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-getatt.html)
+* In the `Properties` section create a `Code` property and specify the Lambda function source code inline. Copy the function code provided. To specify multiple lines for a YAML value, you can use the `|` character to add in a multi-line value after the key name. [Example](https://aws.amazon.com/blogs/infrastructure-and-automation/deploying-aws-lambda-functions-using-aws-cloudformation-the-portable-way/)
 
 </p>
 </details>
 
 <details><summary>**Option 2 - CloudFormation template snippet**</summary>
 
-**READ >>** Below snippet must be specified within `Resources:` section of the cloudformation template.
+**NOTE** The snippet below must be specified within the `Resources:` section of the CloudFormation template.
 
 ```
   StartContinuousAssessmentLambdaFunction: 
@@ -121,7 +121,7 @@ Choose one of the option below on how you want to build the resource.
             import os
             def lambda_handler(event, context):
                 AMIsParamName = event['AMIsParamName'];
-                region=os.environ['AWS_DEFAULT_REGION']
+                region = os.environ['AWS_DEFAULT_REGION']
                 ec2 = boto3.client('ec2',region)
                 ssm = boto3.client('ssm',region)
                 inspector = boto3.client('inspector',region)
@@ -166,19 +166,19 @@ Choose one of the option below on how you want to build the resource.
 </details>
 
 
-### Create Lambda Function to AnalyzeInspectorFindings
+### Create the AnalyzeInspectorFindings Lambda function 
 
 
-In this step we will be **creating a Lambda Function** with below criteria :
+In this step we will be **creating a Lambda Function** as follows :
     
-* FunctionName called `AnalyzeInspectorFindings`
-* Handler to the function is `index.lambda_handler`.
-* MemorySize is 512, and timeout is 5 mins.
-* Create Environment variable named `ContinuousAssessmentResultsTopic` and reference the arn of `ContinuousAssessmentResultsTopic` SNS Topic.
-* Specify Roles, and reference the ARN of IAM role called `AnalyzeInspectorFindingsLambdaRole`.
-* Specify the code inline within the template, Code for this function is available below.
+* The FunctionName is `AnalyzeInspectorFindings`
+* The Handler of the function is `index.lambda_handler`.
+* The MemorySize is 512, and Timeout is 5 mins.
+* Create an Environment variable named `ContinuousAssessmentResultsTopic` and reference the Arn of the `ContinuousAssessmentResultsTopic` SNS Topic.
+* The function Role must reference the Arn of the IAM role called `AnalyzeInspectorFindingsLambdaRole`.
+* Specify the code inline within the template. Code for this function is available below.
 
-You can refer here for properties reference: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-function.html
+You can refer here for the properties reference: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-function.html
 
 
 **Code** 
@@ -193,8 +193,8 @@ You can refer here for properties reference: https://docs.aws.amazon.com/AWSClou
                     print(event)
                     message = event['Records'][0]['Sns']['Message'] 
                     jsonVal = json.loads(message);
-                    assessmentArn =jsonVal['run']  
-                    region=os.environ['AWS_DEFAULT_REGION']
+                    assessmentArn = jsonVal['run']  
+                    region = os.environ['AWS_DEFAULT_REGION']
                     ec2 = boto3.client('ec2',region) 
                     sns = boto3.client('sns',region) 
                     inspector = boto3.client('inspector',region) 
@@ -235,23 +235,23 @@ You can refer here for properties reference: https://docs.aws.amazon.com/AWSClou
                     return jsonVal['run']
 ```
 
-Choose one of the option below on how you want to build the resource.
+Choose how you would like to build the resource from the options below:
 
-<details><summary>**Option 1 - Build the resouce manually with step by step instructions.**</summary>
+<details><summary> **Option 1 - Build the resource manually with step-by-step instructions.**</summary>
 <p>    
 
-* Open your notepad / text editor, edit the file named  `GoldenAMIContinuousAssesment.yml`.
-* Right under the previous resource, still inside the `Resources:` section do the following.
+* Open your text editor, and edit the file named  `GoldenAMIContinuousAssesment.yml`.
+* Add the following to the `Resources:` section:
 * Create a resource named `AnalyzeInspectorFindingsLambdaFunction` of type `AWS::Lambda::Function`.
-* Under `Properties` section create `FunctionName` with `AnalyzeInspectorFindings` as the value.
-* Under `Properties` create `Handler` with `index.lambda_handler` as the value.
-* Under `Properties` create `MemorySize` with `512` as the value.
-* Under `Properties` create `Runtime` with `python3.6` as the value.
-* Under `Properties` create `Timeout` with `300` as the value.
-* Under `Properties` create `Environment` under it, following after that, create `Variables` under `Environment`.
-    * Under `Variables` then create a key called `ContinuousAssessmentResultsTopic` and reference the value `ContinuousAssessmentResultsTopic` using !Ref intrinsic function. Reference: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-ref.html
-* In the `Properties` section create a `Role` property and using the !GetAtt intrinsic function reference the IAM role Arn you created in previous step called `AnalyzeInspectorFindingsLambdaRole` Reference: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-getatt.html
-* In the `Properties` section create a `Code` property and specify the lambda function code using in line code, copu & paste below. To place in multiple line, in yaml you can use the | sign then place the remaining code below it. Example : https://aws.amazon.com/blogs/infrastructure-and-automation/deploying-aws-lambda-functions-using-aws-cloudformation-the-portable-way/
+* Under `Properties` add `FunctionName` with `AnalyzeInspectorFindings` as the value.
+* Under `Properties` add `Handler` with `index.lambda_handler` as the value.
+* Under `Properties` add `MemorySize` with `512` as the value.
+* Under `Properties` add `Runtime` with `python3.6` as the value.
+* Under `Properties` add `Timeout` with `300` as the value.
+* Under `Properties` add `Environment`, and nested under it, create `Variables`.
+    * Under `Variables`create a key called `ContinuousAssessmentResultsTopic` and reference the value `ContinuousAssessmentResultsTopic` using the `!Ref` intrinsic function. [Reference](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-ref.html)
+* Back in the `Properties` section, create a `Role` property and using the `!GetAtt` intrinsic function, reference the IAM role Arn you created in the previous step called `ContinuousAssessmentResultsTopic`. [Reference](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-getatt.html)
+* In the `Properties` section create a `Code` property and specify the Lambda function source code inline. Copy the function code provided. To specify multiple lines for a YAML value, you can use the `|` character to add in a multi-line value after the key name. [Example](https://aws.amazon.com/blogs/infrastructure-and-automation/deploying-aws-lambda-functions-using-aws-cloudformation-the-portable-way/)
 
 </p>
 </details>
@@ -259,7 +259,7 @@ Choose one of the option below on how you want to build the resource.
  
 <details><summary>**Option 2 - CloudFormation template snippet**</summary>
 
-**READ >>** Below snippet must be specified within `Resources:` section of the cloudformation template.
+**NOTE** The snippet below must be specified within the `Resources:` section of the CloudFormation template.
 
 
 ```
@@ -276,8 +276,8 @@ Choose one of the option below on how you want to build the resource.
                 print(event) 
                 message = event['Records'][0]['Sns']['Message'] 
                 jsonVal = json.loads(message);
-                assessmentArn =jsonVal['run']  
-                region=os.environ['AWS_DEFAULT_REGION']
+                assessmentArn = jsonVal['run']  
+                region = os.environ['AWS_DEFAULT_REGION']
                 ec2 = boto3.client('ec2',region) 
                 sns = boto3.client('sns',region) 
                 inspector = boto3.client('inspector',region) 
@@ -329,10 +329,12 @@ Choose one of the option below on how you want to build the resource.
 ```
 </details>
 
-### Deploys the CloudFormation Template
 
-Now that you've construct the template, it's time to update the stack, do do that please follow the [Update a Stack's Template (Console)](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-get-template.html#using-cfn-updating-stacks-get-stack.CON) guide to create your stack.
 
-Specify Stack `GoldenAMIContinuousAssesment` as the stack name for simplicity.
+### Deploy the CloudFormation template
 
-Once you've launched your stack review the `Resources` Tab of the launch stack to identify the resouce it's created. You should see an entry with in Logical ID and in Physical ID of the Lambda Functions, you can click on the corresponding link under Physical ID to go to the Lambda Functions console.
+Now that you've updated the template, it's time to update the stack as well. 
+    
+To do that please follow the [Update a Stack's Template (Console)](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-get-template.html#using-cfn-updating-stacks-get-stack.CON) guide.
+
+Once you've updated your stack review the `Resources` Tab of the stack to identify the new resources that have been created for you. You should see an entries for the Lambda functions, you can click on the corresponding link under Physical ID to go to the Lambda console.

@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="generator" content="Hugo 0.57.2" />
+    <meta name="generator" content="Hugo 0.59.1" />
     <meta name="description" content="">
 
 
@@ -12,6 +12,7 @@
     <title>5. Create SNS Topic  :: APN Equip Labs</title>
 
     
+<<<<<<< HEAD
     <link href="/css/nucleus.css?1573355777" rel="stylesheet">
     <link href="/css/fontawesome-all.min.css?1573355777" rel="stylesheet">
     <link href="/css/hybrid.css?1573355777" rel="stylesheet">
@@ -26,6 +27,22 @@
     
 
     <script src="/js/jquery-3.3.1.min.js?1573355777"></script>
+=======
+    <link href="/css/nucleus.css?1573370684" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1573370684" rel="stylesheet">
+    <link href="/css/hybrid.css?1573370684" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1573370684" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1573370684" rel="stylesheet">
+    <link href="/css/auto-complete.css?1573370684" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1573370684" rel="stylesheet">
+    <link href="/css/theme.css?1573370684" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1573370684" rel="stylesheet">
+    
+      <link href="/css/theme-darkblue.css?1573370684" rel="stylesheet">
+    
+
+    <script src="/js/jquery-3.3.1.min.js?1573370684"></script>
+>>>>>>> 0bfb4732744be30c49d2baf2b796b036fb52674d
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -51,14 +68,23 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
+<<<<<<< HEAD
 <script type="text/javascript" src="/js/lunr.min.js?1573355777"></script>
 <script type="text/javascript" src="/js/auto-complete.js?1573355777"></script>
+=======
+<script type="text/javascript" src="/js/lunr.min.js?1573370684"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1573370684"></script>
+>>>>>>> 0bfb4732744be30c49d2baf2b796b036fb52674d
 <script type="text/javascript">
     
         var baseurl = "http:\/\/example.org\/";
     
 </script>
+<<<<<<< HEAD
 <script type="text/javascript" src="/js/search.js?1573355777"></script>
+=======
+<script type="text/javascript" src="/js/search.js?1573370684"></script>
+>>>>>>> 0bfb4732744be30c49d2baf2b796b036fb52674d
 
     
   </div>
@@ -1266,9 +1292,9 @@
  
   
     
-      <li data-nav-id="/ami-inspector-lab/solutions_overview/" title="1. Solutions Overview" class="dd-item ">
+      <li data-nav-id="/ami-inspector-lab/solutions_overview/" title="1. Solution Overview" class="dd-item ">
         <a href="/ami-inspector-lab/solutions_overview/">
-        1. Solutions Overview
+        1. Solution Overview
         <i class="fas fa-check read-icon"></i>
         </a>
     </li>
@@ -1399,9 +1425,9 @@
  
   
     
-      <li data-nav-id="/ami-inspector-lab/test_assesment/" title="8. Test Assesment" class="dd-item ">
+      <li data-nav-id="/ami-inspector-lab/test_assesment/" title="8. Test Assessment" class="dd-item ">
         <a href="/ami-inspector-lab/test_assesment/">
-        8. Test Assesment
+        8. Test Assessment
         <i class="fas fa-check read-icon"></i>
         </a>
     </li>
@@ -1516,9 +1542,9 @@
 <ul>
 <li>
 <ul>
-<li><a href="#creating-the-sns-topic-for-startcontinousassesment-completion">Creating the SNS Topic for StartContinousAssesment Completion</a></li>
-<li><a href="#creating-the-sns-topic-for-analyzeinspectorfindings-result">Creating the SNS Topic for AnalyzeInspectorFindings Result.</a></li>
-<li><a href="#deploys-the-cloudformation-template">Deploys the CloudFormation Template</a></li>
+<li><a href="#creating-the-sns-topic-for-startcontinousassesment-completion">Creating the SNS Topic for StartContinousAssesment completion</a></li>
+<li><a href="#creating-the-sns-topic-for-analyzeinspectorfindings-results">Creating the SNS Topic for AnalyzeInspectorFindings results</a></li>
+<li><a href="#deploy-the-cloudformation-template">Deploy the CloudFormation template</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -1548,8 +1574,8 @@
 
 
 
-<p>Now that we have our IAM role defined in our Stack, we shall move on to our next resources.
-In this solutin we will be levaraging a number of <a href="https://docs.aws.amazon.com/sns/latest/dg/welcome.html">SNS</a> Topics. These topics will be used to notify our users about the state if the Golden AMI inspection, as well as act as a decoupling structure to connect our <code>StartContinousAssesment</code> function and <code>AnalyzeInspectorFindings</code> Function. With SNS Topic Policy, you can define which service on AWS is allowed to publish to the SNS topic.</p>
+<p>Now that we have our IAM role defined in our stack, we shall move on to the next resources.
+In this solution we will be using a number of <a href="https://docs.aws.amazon.com/sns/latest/dg/welcome.html">SNS Topics</a>. These topics will be used to notify our users about the state of the Golden AMI inspection. They will also be used to decouple the <code>StartContinousAssesment</code> and <code>AnalyzeInspectorFindings</code> AWS Lambda functions. With an SNS Topic IAM Policy, you can define which AWS service is allowed to publish to the SNS topic.</p>
 
 <p><img src="/AMI Inspector Lab/images/Role&amp;ContinuousAsssesmentSNSTopic_Full.png" alt="" /></p>
 
@@ -1558,52 +1584,52 @@ In this solutin we will be levaraging a number of <a href="https://docs.aws.amaz
 <p><strong>IMPORTANT NOTE:</strong></p>
 
 <p>In the following steps you will need to construct your CloudFormation template in YAML format.
-YAML format allows you to put comments in the template by placing in # in front of the line.
-YAML format is indent sensitive syntax, therefore make sure to specify the key and values at the right indent level in the template.</p>
+YAML allows you to put comments in the template by placing a <code>#</code> in front of the comment line.
+YAML is an indentation sensitive syntax, therefore make sure to specify the key and values at the right indent level in the template.</p>
 
-<p>When building a cloudformation template, it is recommended to always refer back to the extensive CloudFormation documentation.
-In the folloing steps for smooth lab experience, we will be providing the template snippet for the specific resource.
-Alternatively, we will also be providing a high level instruction on how to construct the template if you coose to build them manually. We will also provide reference guide / example from public documentation to help you.</p>
+<p>When building a CloudFormation template, it is always recommended to refer back to the extensive CloudFormation documentation.
+In the following steps we will be providing the template snippets for the specific resource for a smooth lab experience.
+Alternatively, we will also be providing high level instructions on how to construct the template if you choose to build them manually. We will also provide reference guides and examples from the documentation to help you.</p>
 
-<p>The purpose of this is get acustomed towards exploring CloudFormation documentation and syntax.
-That being said, at any point in time you are stuck reach out to the lab support team.</p>
+<p>The purpose of this lab is get accustomed to exploring CloudFormation documentation and syntax.
+That being said, if at any point you get stuck, do reach out to the lab support team, or consult the reference template from the solution overview.</p>
 
 <hr />
 
-<h3 id="creating-the-sns-topic-for-startcontinousassesment-completion">Creating the SNS Topic for StartContinousAssesment Completion</h3>
+<h3 id="creating-the-sns-topic-for-startcontinousassesment-completion">Creating the SNS Topic for StartContinousAssesment completion</h3>
 
-<p>In this step we will be <strong>creating SNS Topic &amp; Policy</strong> with below criteria :</p>
+<p>In this step we will be <strong>creating SNS an Topic and an IAM Policy</strong> as follows:</p>
 
 <ul>
-<li>Topic Name is <code>ContinuousAssessmentCompleteTopic</code>.</li>
-<li>The topic has an email Subscriber, with email address that you can input dynamically as part of the parameters in the template</li>
-<li>SNS Topic policy allows <code>inspector.amazonaws.com</code> to send message to SNS Topic.</li>
+<li>The SNS Topic name is <code>ContinuousAssessmentCompleteTopic</code></li>
+<li>The topic has an email Subscriber, with an email address that you can provide dynamically as a template parameter</li>
+<li>The SNS Topic policy allows <code>inspector.amazonaws.com</code> to send messages to SNS Topic</li>
 </ul>
 
-<p>You can refer here for properties reference:</p>
+<p>Refer to the relevant CloudFormation references here:</p>
 
 <p><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sns-topic.html">https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sns-topic.html</a>
 <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sns-policy.html">https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sns-policy.html</a></p>
 
-<p>Choose one of the option below on how you want to build the resource.</p>
+<p>Choose how you would like to build the resources from the options below:</p>
 
-<p><details><summary><strong>Option 1 - Build the resouce manually with step by step instructions.</strong></summary>
+<p><details><summary> <strong>Option 1 - Build the resources manually with step-by-step instructions.</strong></summary>
 <p></p>
 
 <ul>
-<li>Open your notepad / text editor, edit the file named  <code>GoldenAMIContinuousAssesment.yml</code>.</li>
+<li>Open your text editor, and edit the file named <code>GoldenAMIContinuousAssesment.yml</code>.</li>
 <li>Create a <code>Parameters</code> section, and under it create a new parameter named <code>Email</code> with type <code>String</code>.</li>
-<li>Right under the previous resource, still inside the <code>Resources:</code> section do the following.</li>
+<li>Inside the <code>Resources:</code> section add the following resources:</li>
 <li>Create a resource named <code>ContinuousAssessmentCompleteTopic</code> of type <code>AWS::SNS::Topic</code>.</li>
-<li>In the <code>Properties</code> section create a <code>TopicName</code> and put in <code>ContinuousAssessmentCompleteTopic</code> as it&rsquo;s value.</li>
-<li>In the <code>Properties</code> section create a <code>Subscription</code> and create a Item with key named <code>Protocol</code> and <code>email</code> as it&rsquo;s value.</li>
-<li>Under the same Item, create a new key called <code>Endpoint</code> and reference the <code>Email</code> Parameters you crated earlier in the step using !Ref intrinsic function. Reference : <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-ref.html">https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-ref.html</a></li>
+<li>In the <code>Properties</code> section create a <code>TopicName</code> with <code>ContinuousAssessmentCompleteTopic</code> as its value.</li>
+<li>In the <code>Properties</code> section create a <code>Subscription</code> and create an item with a key named <code>Protocol</code> and <code>email</code> as it&rsquo;s value.</li>
+<li>Under the same Item, create a new key called <code>Endpoint</code> and reference the <code>Email</code> Parameter you crated earlier in the step using <code>!Ref</code> intrinsic function. <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-ref.html">Reference</a></li>
 <li>Create another resource named <code>ContinuousAssessmentCompleteTopicPolicy</code> of type <code>AWS::SNS::TopicPolicy</code>.<br /></li>
-<li>In the <code>Properties</code> section create a <code>PolicyDocument</code> and allow service <code>inspector.amazonaws.com</code> to do action <code>sns:Publish</code> on all resource. Reference : <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sns-policy.html">https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sns-policy.html</a></li>
-<li>In the <code>Properties</code> section create a <code>Topics</code> and Reference the SNS Topic we just created in this step using !Ref intrinsic function. Reference : <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-ref.html">https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-ref.html</a></li>
+<li>In the <code>Properties</code> section create a <code>PolicyDocument</code> and allow service <code>inspector.amazonaws.com</code> to perform the <code>sns:Publish</code> action on all resources. <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sns-policy.html">Reference</a></li>
+<li>In the <code>Properties</code> section, add <code>Topics</code> and reference the SNS Topic we just created in this step using <code>!Ref</code> intrinsic function. <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-ref.html">Reference</a></li>
 </ul>
 
-<p>Notice that we are creating SNSTopic policy and allowing AWS Inspector service to publish message to the topic. This is an additional security construct that you can take advantage on to allow isolation between services.</p>
+<p>Notice that we are creating SNS Topic Policy and allowing AWS Inspector service to publish message to the topic. This is an additional security measure that you can take advantage of to enforce isolation between services.</p>
 
 <p></p>
 </details></p>
@@ -1615,7 +1641,7 @@ That being said, at any point in time you are stuck reach out to the lab support
         Type: String
 </code></pre>
 
-<p><strong>READ &gt;&gt;</strong> Below snippet must be specified within <code>Resources:</code> section of the cloudformation template</p>
+<p><strong>NOTE</strong> The snippet below must be specified the <code>Resources:</code> section of the CloudFormation template.</p>
 
 <pre><code>      ContinuousAssessmentCompleteTopic: 
         Type: &quot;AWS::SNS::Topic&quot;
@@ -1644,30 +1670,30 @@ That being said, at any point in time you are stuck reach out to the lab support
 
 <p></details></p>
 
-<h3 id="creating-the-sns-topic-for-analyzeinspectorfindings-result">Creating the SNS Topic for AnalyzeInspectorFindings Result.</h3>
+<h3 id="creating-the-sns-topic-for-analyzeinspectorfindings-results">Creating the SNS Topic for AnalyzeInspectorFindings results</h3>
 
-<p>In this step we will be <strong>creating SNS Topic</strong> with below criteria :</p>
+<p>In this step we will be <strong>creating an SNS Topic</strong> as follows:</p>
 
 <ul>
-<li>Topic Name is <code>ContinuousAssessmentResultsTopic</code>.</li>
-<li>The topic has an email Subscriber, with email address that you can input dynamically as part of the parameters in the template</li>
+<li>The SNS Topic Name is <code>ContinuousAssessmentResultsTopic</code></li>
+<li>The topic has an email Subscriber, with an email address that you can provide dynamically as a template parameter</li>
 </ul>
 
-<p>You can refer here for properties reference:
+<p>Refer to the relevant CloudFormation reference here:
 <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sns-topic.html">https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sns-topic.html</a></p>
 
-<p>Choose one of the option below on how you want to build the resource.</p>
+<p>Choose how you would like to build the resource from the options below:</p>
 
-<p><details><summary><strong>Option 1 - Build the resouce manually with step by step instructions.</strong></summary>
+<p><details><summary> <strong>Option 1 - Build the resource manually with step-by-step instructions.</strong></summary>
 <p></p>
 
 <ul>
-<li>Open your notepad / text editor, edit the file named  <code>GoldenAMIContinuousAssesment.yml</code>.</li>
-<li>Right under the previous resource, still inside the <code>Resources:</code> section do the following.</li>
+<li>Open your text editor, and edit the file named  <code>GoldenAMIContinuousAssesment.yml</code>.</li>
+<li>Add the following resources to the <code>Resources:</code> section:</li>
 <li>Create a resource named <code>ContinuousAssessmentResultsTopic</code> of type <code>AWS::SNS::Topic</code>.</li>
-<li>In the <code>Properties</code> section create a <code>TopicName</code> and put in <code>ContinuousAssessmentResultsTopic</code> as it&rsquo;s value</li>
-<li>In the <code>Properties</code> section create a <code>Subscription</code> and create a Item with key named <code>Protocol</code> and <code>email</code> as it&rsquo;s value.</li>
-<li>Under the same Item, create a new key called <code>Endpoint</code> and reference the <code>Email</code> Parameters you crated earlier in the previous step using !Ref intrinsic function. Reference : <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-ref.html">https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-ref.html</a></li>
+<li>In the <code>Properties</code> section create a <code>TopicName</code> with a value of <code>ContinuousAssessmentResultsTopic</code>.</li>
+<li>In the <code>Properties</code> section create a <code>Subscription</code> and create a item with a key named <code>Protocol</code> with a value of <code>email</code>.</li>
+<li>In the same item, create a new key called <code>Endpoint</code> and reference the <code>Email</code> Parameter you crated earlier in the previous step using the <code>!Ref</code> intrinsic function. <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-ref.html">Reference</a></li>
 </ul>
 
 <p></p>
@@ -1675,7 +1701,7 @@ That being said, at any point in time you are stuck reach out to the lab support
 
 <p><details><summary><strong>Option 2 - CloudFormation template snippet</strong></summary></p>
 
-<p><strong>READ &gt;&gt;</strong> Below snippet must be specified within <code>Resources:</code> section of the cloudformation template.</p>
+<p><strong>NOTE</strong> The snippet below must be specified within the <code>Resources:</code> section of the CloudFormation template.</p>
 
 <pre><code>      ContinuousAssessmentResultsTopic: 
         Type: &quot;AWS::SNS::Topic&quot;
@@ -1688,27 +1714,27 @@ That being said, at any point in time you are stuck reach out to the lab support
 
 <p></details></p>
 
-<h3 id="deploys-the-cloudformation-template">Deploys the CloudFormation Template</h3>
+<h3 id="deploy-the-cloudformation-template">Deploy the CloudFormation template</h3>
 
-<p>Now that you&rsquo;ve construct the template, it&rsquo;s time to update the stack.</p>
+<p>Now that you&rsquo;ve updated the template, it&rsquo;s time to update the stack as well.</p>
 
 <ul>
-<li>To do that please follow the <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-get-template.html#using-cfn-updating-stacks-get-stack.CON">Update a Stack&rsquo;s Template (Console)</a> guide to create your stack.</li>
-<li>Specify Stack <code>GoldenAMIContinuousAssesment</code> as the stack name for simplicity.</li>
+<li>To do that please follow the <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-get-template.html#using-cfn-updating-stacks-get-stack.CON">Update a Stack&rsquo;s Template (Console)</a> guide.</li>
+<li>Specify Stack <code>GoldenAMIContinuousAssesment</code> as the stack name.</li>
 <li>Specify your email address as the Email parameter in the wizard.
 <br /></li>
 </ul>
 
-<p>Once you&rsquo;ve launched your stack :</p>
+<p>Once you&rsquo;ve updated your stack:</p>
 
 <ul>
-<li>Review the <code>Resources</code> Tab of the launch stack to identify the resouce it&rsquo;s created.</li>
-<li>You should see an entry with in Logical ID and in Physical ID of the SNS Topic.</li>
-<li>Check your email address you specified before, you should see 2 email subscription confirmation request from the 2 SNS Topics.</li>
-<li>Click on the link to confirm them.</li>
+<li>Review the <code>Resources</code> Tab of the stack to identify the new resources that have been created.</li>
+<li>You should see entries for the SNS Topics you have created.</li>
+<li>Check your email address you specified as the stack parameter - you should see 2 email subscription confirmation requests from the 2 SNS Topics.</li>
+<li>Click on the link to confirm the subscriptions.</li>
 </ul>
 
-<p>Let&rsquo;s now move to creating our Lambda Function.</p>
+<p>Let&rsquo;s now move on to creating our Lambda function.</p>
 
 
 <footer class=" footline" >
@@ -2815,6 +2841,7 @@ That being said, at any point in time you are stuck reach out to the lab support
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
+<<<<<<< HEAD
     <script src="/js/clipboard.min.js?1573355777"></script>
     <script src="/js/perfect-scrollbar.min.js?1573355777"></script>
     <script src="/js/perfect-scrollbar.jquery.min.js?1573355777"></script>
@@ -2828,6 +2855,21 @@ That being said, at any point in time you are stuck reach out to the lab support
 
     <link href="/mermaid/mermaid.css?1573355777" rel="stylesheet" />
     <script src="/mermaid/mermaid.js?1573355777"></script>
+=======
+    <script src="/js/clipboard.min.js?1573370684"></script>
+    <script src="/js/perfect-scrollbar.min.js?1573370684"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1573370684"></script>
+    <script src="/js/jquery.sticky.js?1573370684"></script>
+    <script src="/js/featherlight.min.js?1573370684"></script>
+    <script src="/js/highlight.pack.js?1573370684"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="/js/modernizr.custom-3.6.0.js?1573370684"></script>
+    <script src="/js/learn.js?1573370684"></script>
+    <script src="/js/hugo-learn.js?1573370684"></script>
+
+    <link href="/mermaid/mermaid.css?1573370684" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1573370684"></script>
+>>>>>>> 0bfb4732744be30c49d2baf2b796b036fb52674d
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

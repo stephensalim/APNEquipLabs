@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="generator" content="Hugo 0.57.2" />
+    <meta name="generator" content="Hugo 0.59.1" />
     <meta name="description" content="">
 
 
@@ -12,6 +12,7 @@
     <title>2. Tagging the Golden AMI :: APN Equip Labs</title>
 
     
+<<<<<<< HEAD
     <link href="/css/nucleus.css?1573355777" rel="stylesheet">
     <link href="/css/fontawesome-all.min.css?1573355777" rel="stylesheet">
     <link href="/css/hybrid.css?1573355777" rel="stylesheet">
@@ -26,6 +27,22 @@
     
 
     <script src="/js/jquery-3.3.1.min.js?1573355777"></script>
+=======
+    <link href="/css/nucleus.css?1573370684" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1573370684" rel="stylesheet">
+    <link href="/css/hybrid.css?1573370684" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1573370684" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1573370684" rel="stylesheet">
+    <link href="/css/auto-complete.css?1573370684" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1573370684" rel="stylesheet">
+    <link href="/css/theme.css?1573370684" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1573370684" rel="stylesheet">
+    
+      <link href="/css/theme-darkblue.css?1573370684" rel="stylesheet">
+    
+
+    <script src="/js/jquery-3.3.1.min.js?1573370684"></script>
+>>>>>>> 0bfb4732744be30c49d2baf2b796b036fb52674d
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -51,14 +68,23 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
+<<<<<<< HEAD
 <script type="text/javascript" src="/js/lunr.min.js?1573355777"></script>
 <script type="text/javascript" src="/js/auto-complete.js?1573355777"></script>
+=======
+<script type="text/javascript" src="/js/lunr.min.js?1573370684"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1573370684"></script>
+>>>>>>> 0bfb4732744be30c49d2baf2b796b036fb52674d
 <script type="text/javascript">
     
         var baseurl = "http:\/\/example.org\/";
     
 </script>
+<<<<<<< HEAD
 <script type="text/javascript" src="/js/search.js?1573355777"></script>
+=======
+<script type="text/javascript" src="/js/search.js?1573370684"></script>
+>>>>>>> 0bfb4732744be30c49d2baf2b796b036fb52674d
 
     
   </div>
@@ -1266,9 +1292,9 @@
  
   
     
-      <li data-nav-id="/ami-inspector-lab/solutions_overview/" title="1. Solutions Overview" class="dd-item ">
+      <li data-nav-id="/ami-inspector-lab/solutions_overview/" title="1. Solution Overview" class="dd-item ">
         <a href="/ami-inspector-lab/solutions_overview/">
-        1. Solutions Overview
+        1. Solution Overview
         <i class="fas fa-check read-icon"></i>
         </a>
     </li>
@@ -1399,9 +1425,9 @@
  
   
     
-      <li data-nav-id="/ami-inspector-lab/test_assesment/" title="8. Test Assesment" class="dd-item ">
+      <li data-nav-id="/ami-inspector-lab/test_assesment/" title="8. Test Assessment" class="dd-item ">
         <a href="/ami-inspector-lab/test_assesment/">
-        8. Test Assesment
+        8. Test Assessment
         <i class="fas fa-check read-icon"></i>
         </a>
     </li>
@@ -1534,28 +1560,28 @@
 
 
 
-<p>Before we begin, the first thing we need have is a <strong>Golden AMI</strong>. the subject of our Continous Assessment solution.
-To do this, you can create your own Golden AMI from EC2 instance as discribed in this <a href="https://docs.aws.amazon.com/toolkit-for-visual-studio/latest/user-guide/tkv-create-ami-from-instance.html">Guide</a>. Alternatively, to keep it simple, you can choose to use Amazon Public AMI as your Golden AMI. But please note that AWS may retract access to the AMI in the future, and when this happen, you wont have access to it anymore. As a best practice, it is always recommended to use your created own AMI as your <strong>Golden AMI</strong>.
-But for the purpose of simplicity in this lab, we will be using Amazon Public AMI as your Golden AMI.</p>
+<p>Before we begin, the first thing we need to have is a <strong>Golden AMI</strong>, the subject of our continuous assessment solution.
+To do this, you can create your own Golden AMI from an EC2 instance as described in this <a href="https://docs.aws.amazon.com/toolkit-for-visual-studio/latest/user-guide/tkv-create-ami-from-instance.html">guide</a>. Alternatively, to keep it simple, you can choose to use an Amazon Public AMI as your Golden AMI. But please note, AWS may retract access to the public AMI in the future, and should this happen, it will no longer be accessible to you. Therefore, as a best practice, it is always recommended to use an AMI that you have created yourself as your <strong>Golden AMI</strong>.
+But, for simplicity, for this lab we will be using an Amazon Public AMI as a Golden AMI.</p>
 
-<p>In this part of the lab we will be <strong>Tagging our Golden AMI</strong> to put context around what application / version / environment the AMI is based on. These tag will later be transfered to the temporary EC2 instance during assesment and to the Amazon Inspector result, to provide AMI context around the findings.</p>
+<p>In this part of the lab we will be <strong>tagging our Golden AMI</strong> to put context around what application, version and environment the AMI is based on. These tags will later be transferred to the temporary EC2 instance during assessment, and to the Amazon Inspector results in order to provide context for the findings.</p>
 
 <p><img src="/AMI Inspector Lab/images/TagGoldAMI.png" alt="" /></p>
 
-<p>Follow below instructions to <strong>Tag the Golden AMI</strong> using the AWS Management Console:</p>
+<p>Follow the instructions below in order to <strong>tag your Golden AMI</strong> using the AWS Management Console:</p>
 
 <ol>
 <li>Sign in to the <a href="https://console.aws.amazon.com/console/home">AWS Management Console</a> and then navigate to the <a href="https://console.aws.amazon.com/ec2/v2/home">EC2 console</a>.</li>
 
-<li><p>In the navigation page, choose Instances then click <strong>Launch Instance</strong>.</p>
+<li><p>In the navigation pane, choose <strong>Instances</strong> then click <strong>Launch Instance</strong>.</p>
 
 <p><img src="/AMI Inspector Lab/images/img001.png" alt="" /></p></li>
 
-<li><p>Spot the <strong>Amazon Linux 2 AMI (HVM)</strong> and take note of the AMI ID.</p>
+<li><p>Find the <strong>Amazon Linux 2 AMI (HVM)</strong> and take note of the AMI ID.</p>
 
 <p><img src="/AMI Inspector Lab/images/img002.png" alt="" /></p></li>
 
-<li><p>Click <strong>Cancel and Exit</strong> (Ideally you could use your own golden image but for the purpose of this lab we will be using AWS public AMI as the golden AMI.)</p></li>
+<li><p>Click <strong>Cancel and Exit</strong>. <em>(Ideally you should use your own golden image, but for the purpose of this lab we will be using an AWS public AMI as the golden AMI.)</em></p></li>
 
 <li><p>In the navigation pane, choose <strong>AMIs</strong>.</p></li>
 
@@ -2668,7 +2694,7 @@ But for the purpose of simplicity in this lab, we will be using Amazon Public AM
 	 
 	 
 		
-			<a class="nav nav-prev" href="/ami-inspector-lab/solutions_overview/" title="1. Solutions Overview"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/ami-inspector-lab/solutions_overview/" title="1. Solution Overview"> <i class="fa fa-chevron-left"></i></a>
 		
 		
 			<a class="nav nav-next" href="/ami-inspector-lab/create_golden_ami_metadata/" title="3. Create Golden AMI metadata" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
@@ -2681,6 +2707,7 @@ But for the purpose of simplicity in this lab, we will be using Amazon Public AM
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
+<<<<<<< HEAD
     <script src="/js/clipboard.min.js?1573355777"></script>
     <script src="/js/perfect-scrollbar.min.js?1573355777"></script>
     <script src="/js/perfect-scrollbar.jquery.min.js?1573355777"></script>
@@ -2694,6 +2721,21 @@ But for the purpose of simplicity in this lab, we will be using Amazon Public AM
 
     <link href="/mermaid/mermaid.css?1573355777" rel="stylesheet" />
     <script src="/mermaid/mermaid.js?1573355777"></script>
+=======
+    <script src="/js/clipboard.min.js?1573370684"></script>
+    <script src="/js/perfect-scrollbar.min.js?1573370684"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1573370684"></script>
+    <script src="/js/jquery.sticky.js?1573370684"></script>
+    <script src="/js/featherlight.min.js?1573370684"></script>
+    <script src="/js/highlight.pack.js?1573370684"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="/js/modernizr.custom-3.6.0.js?1573370684"></script>
+    <script src="/js/learn.js?1573370684"></script>
+    <script src="/js/hugo-learn.js?1573370684"></script>
+
+    <link href="/mermaid/mermaid.css?1573370684" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1573370684"></script>
+>>>>>>> 0bfb4732744be30c49d2baf2b796b036fb52674d
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

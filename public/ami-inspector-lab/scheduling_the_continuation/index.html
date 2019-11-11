@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="generator" content="Hugo 0.57.2" />
+    <meta name="generator" content="Hugo 0.59.1" />
     <meta name="description" content="">
 
 
@@ -12,6 +12,7 @@
     <title>9. Configure CloudWatch Event Rule :: APN Equip Labs</title>
 
     
+<<<<<<< HEAD
     <link href="/css/nucleus.css?1573355777" rel="stylesheet">
     <link href="/css/fontawesome-all.min.css?1573355777" rel="stylesheet">
     <link href="/css/hybrid.css?1573355777" rel="stylesheet">
@@ -26,6 +27,22 @@
     
 
     <script src="/js/jquery-3.3.1.min.js?1573355777"></script>
+=======
+    <link href="/css/nucleus.css?1573370684" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1573370684" rel="stylesheet">
+    <link href="/css/hybrid.css?1573370684" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1573370684" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1573370684" rel="stylesheet">
+    <link href="/css/auto-complete.css?1573370684" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1573370684" rel="stylesheet">
+    <link href="/css/theme.css?1573370684" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1573370684" rel="stylesheet">
+    
+      <link href="/css/theme-darkblue.css?1573370684" rel="stylesheet">
+    
+
+    <script src="/js/jquery-3.3.1.min.js?1573370684"></script>
+>>>>>>> 0bfb4732744be30c49d2baf2b796b036fb52674d
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -51,14 +68,23 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
+<<<<<<< HEAD
 <script type="text/javascript" src="/js/lunr.min.js?1573355777"></script>
 <script type="text/javascript" src="/js/auto-complete.js?1573355777"></script>
+=======
+<script type="text/javascript" src="/js/lunr.min.js?1573370684"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1573370684"></script>
+>>>>>>> 0bfb4732744be30c49d2baf2b796b036fb52674d
 <script type="text/javascript">
     
         var baseurl = "http:\/\/example.org\/";
     
 </script>
+<<<<<<< HEAD
 <script type="text/javascript" src="/js/search.js?1573355777"></script>
+=======
+<script type="text/javascript" src="/js/search.js?1573370684"></script>
+>>>>>>> 0bfb4732744be30c49d2baf2b796b036fb52674d
 
     
   </div>
@@ -1266,9 +1292,9 @@
  
   
     
-      <li data-nav-id="/ami-inspector-lab/solutions_overview/" title="1. Solutions Overview" class="dd-item ">
+      <li data-nav-id="/ami-inspector-lab/solutions_overview/" title="1. Solution Overview" class="dd-item ">
         <a href="/ami-inspector-lab/solutions_overview/">
-        1. Solutions Overview
+        1. Solution Overview
         <i class="fas fa-check read-icon"></i>
         </a>
     </li>
@@ -1399,9 +1425,9 @@
  
   
     
-      <li data-nav-id="/ami-inspector-lab/test_assesment/" title="8. Test Assesment" class="dd-item ">
+      <li data-nav-id="/ami-inspector-lab/test_assesment/" title="8. Test Assessment" class="dd-item ">
         <a href="/ami-inspector-lab/test_assesment/">
-        8. Test Assesment
+        8. Test Assessment
         <i class="fas fa-check read-icon"></i>
         </a>
     </li>
@@ -1516,7 +1542,7 @@
 <ul>
 <li>
 <ul>
-<li><a href="#set-up-a-cloudwatch-events-rule">Set up a CloudWatch Events rule</a></li>
+<li><a href="#set-up-the-cloudwatch-events-rule">Set up the CloudWatch Events rule</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -1546,8 +1572,8 @@
 
 
 
-<p>This will be the last piece of the puzzle !
-In this part of the Lab we will be extending our CloudFormation template to add a CloudWatch Events scheduler allowing our Lambda Functions to regularly asses Golden AMIs.</p>
+<p>This will be the last piece of the puzzle!
+In this section of the Lab we will be extending our CloudFormation template to add a CloudWatch Events scheduler, which will allow Lambda functions to regularly assess Golden AMIs.</p>
 
 <p><img src="/AMI Inspector Lab/images/CloudWatchRule.png" alt="" /></p>
 
@@ -1556,45 +1582,45 @@ In this part of the Lab we will be extending our CloudFormation template to add 
 <p><strong>IMPORTANT NOTE:</strong></p>
 
 <p>In the following steps you will need to construct your CloudFormation template in YAML format.
-YAML format allows you to put comments in the template by placing in # in front of the line.
-YAML format is indent sensitive syntax, therefore make sure to specify the key and values at the right indent level in the template.</p>
+YAML allows you to put comments in the template by placing a <code>#</code> in front of the comment line.
+YAML is an indentation sensitive syntax, therefore make sure to specify the key and values at the right indent level in the template.</p>
 
-<p>When building a cloudformation template, it is recommended to always refer back to the extensive CloudFormation documentation.
-In the folloing steps for smooth lab experience, we will be providing the template snippet for the specific resource.
-Alternatively, we will also be providing a high level instruction on how to construct the template if you coose to build them manually. We will also provide reference guide / example from public documentation to help you.</p>
+<p>When building a CloudFormation template, it is always recommended to refer back to the extensive CloudFormation documentation.
+In the following steps we will be providing the template snippets for the specific resource for a smooth lab experience.
+Alternatively, we will also be providing high level instructions on how to construct the template if you choose to build them manually. We will also provide reference guides and examples from the documentation to help you.</p>
 
-<p>The purpose of this is get acustomed towards exploring CloudFormation documentation and syntax.
-That being said, at any point in time you are stuck reach out to the lab support team.</p>
+<p>The purpose of this lab is get accustomed to exploring CloudFormation documentation and syntax.
+That being said, if at any point you get stuck, do reach out to the lab support team, or consult the reference template from the solution overview.</p>
 
 <hr />
 
-<h3 id="set-up-a-cloudwatch-events-rule">Set up a CloudWatch Events rule</h3>
+<h3 id="set-up-the-cloudwatch-events-rule">Set up the CloudWatch Events rule</h3>
 
-<p>In this step we will be <strong>creating cloudwatch rule</strong> with below criteria :</p>
+<p>In this step we will be <strong>creating CloudWatch Events Rule</strong> with the following characteristics:</p>
 
 <ul>
 <li>Executes 6 AM daily.</li>
-<li>Target is the ARN of StartContinuousAssessment Lambda Function.</li>
-<li>Inject input value of <code>'{&quot;AMIsParamName&quot;: &quot;ContinuousAssessmentInput&quot;}'</code> into the Lambda Function to kick off the process.</li>
+<li>The Target is the Arn of <code>StartContinuousAssessment</code> Lambda function.</li>
+<li>Injects the input value of <code>'{&quot;AMIsParamName&quot;: &quot;ContinuousAssessmentInput&quot;}'</code> into the Lambda function to kick off the process.</li>
 </ul>
 
-<p>You can refer here for properties reference: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-events-rule.html">https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-events-rule.html</a></p>
+<p>You can refer here for the properties reference: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-events-rule.html">https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-events-rule.html</a></p>
 
-<p>Choose one of the option below on how you want to build the resource.</p>
+<p>Choose how you would like to build the resource from the options below:</p>
 
-<p><details><summary><strong>Option 1 - Build the resouce manually with step by step instructions.</strong></summary>
+<p><details><summary> <strong>Option 1 - Build the resource manually with step-by-step instructions.</strong></summary>
 <p></p>
 
 <ul>
-<li>Open your notepad / text editor, create a file named <code>GoldenAMIContinuousAssesment.yml</code>.</li>
-<li>Create a <code>Resource:</code> template section <a href="https://docs.aws.amazon.com/en_pv/AWSCloudFormation/latest/UserGuide/template-anatomy.html">Reference</a></li>
+<li>Open your text editor, and create a file named <code>GoldenAMIContinuousAssesment.yml</code>.</li>
+<li>Create a <code>Resource:</code> template section. <a href="https://docs.aws.amazon.com/en_pv/AWSCloudFormation/latest/UserGuide/template-anatomy.html">Reference</a></li>
 <li>Create a resource named <code>ContinuousGoldenAMIAssessmentTrigger</code> of type <code>AWS::Events::Rule</code>.</li>
-<li>In the <code>Properties</code> section add <code>Name</code> property and specify <code>ContinuousGoldenAMIAssessmentTrigger</code> as it&rsquo;s value.</li>
-<li>In the <code>Properties</code> section add <code>ScheduleExpression</code> property and specify <code>&quot;cron(0 6 * * ? *)&quot;</code> as it&rsquo;s value.</li>
-<li>In the <code>Properties</code> secion add an <code>State</code> and specify <code>ENABLED</code> as it&rsquo;s value.</li>
-<li>In the <code>Properties</code> secion add an <code>Targets</code> property and using the !GetAtt intrinsic function reference the <code>StartContinuousAssessment</code> Arn you created in previous step Reference : <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-getatt.html">https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-getatt.html</a></li>
-<li>In same section as your <code>Targets</code> entries and specify <code>Inputs</code> and specify <code>'{&quot;AMIsParamName&quot;: &quot;ContinuousAssessmentInput&quot;}'</code> as it&rsquo;s value.</li>
-<li>In same section as your <code>Targets</code> entries and specify <code>Id</code> and specify <code>ContinuousGoldenAMIAssessmentTrigger</code> as it&rsquo;s value.</li>
+<li>In the <code>Properties</code> section add a <code>Name</code> property and specify <code>ContinuousGoldenAMIAssessmentTrigger</code> as its value.</li>
+<li>In the <code>Properties</code> section add a <code>ScheduleExpression</code> property and specify <code>&quot;cron(0 6 * * ? *)&quot;</code> as its value.</li>
+<li>In the <code>Properties</code> section add a <code>State</code> property and specify <code>ENABLED</code> as its value.</li>
+<li>In the <code>Properties</code> section add a <code>Targets</code> property and using the <code>!GetAtt</code> intrinsic function, reference the <code>StartContinuousAssessment</code> Arn you created in the previous step. <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-getatt.html">Reference</a></li>
+<li>In same section as your <code>Targets</code> entries, add <code>Inputs</code> and specify <code>'{&quot;AMIsParamName&quot;: &quot;ContinuousAssessmentInput&quot;}'</code> as its value.</li>
+<li>In same section as your <code>Targets</code> entries, add <code>Id</code> and specify <code>ContinuousGoldenAMIAssessmentTrigger</code> as its value.</li>
 </ul>
 
 <p><p>
@@ -1602,7 +1628,7 @@ That being said, at any point in time you are stuck reach out to the lab support
 
 <p><details><summary><strong>Option 2 - CloudFormation template snippet</strong></summary></p>
 
-<p><strong>READ &gt;&gt;</strong> Below snippet must be specified within <code>Resources:</code> section of the cloudformation template.</p>
+<p><strong>NOTE</strong> The snippet below must be specified within the <code>Resources:</code> section of the CloudFormation template.</p>
 
 <pre><code>  ContinuousGoldenAMIAssessmentTrigger:
     Type: AWS::Events::Rule
@@ -1622,9 +1648,9 @@ That being said, at any point in time you are stuck reach out to the lab support
 
 <p></details></p>
 
-<p><strong>CONGRATS !</strong> <strong>~~~ [^0^]/ ~~~</strong></p>
+<p><strong>CONGRATULATIONS!!!!</strong> <strong>~~~ \[^0^]/ ~~~</strong></p>
 
-<p>You have completed the Lab. Hopefully by now you have caputred some insights on how to package your solutions and make it repeatable.</p>
+<p>You have completed the Lab. Hopefully by now you have captured some insights on how to package your solutions and make them repeatable. Good luck!</p>
 
 
 <footer class=" footline" >
@@ -2715,10 +2741,10 @@ That being said, at any point in time you are stuck reach out to the lab support
 	 
 	 
 		
-			<a class="nav nav-prev" href="/ami-inspector-lab/test_assesment/" title="8. Test Assesment"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/ami-inspector-lab/test_assesment/" title="8. Test Assessment"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/ami-inspector-lab/solutions_overview/" title="1. Solutions Overview" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/ami-inspector-lab/solutions_overview/" title="1. Solution Overview" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -2728,6 +2754,7 @@ That being said, at any point in time you are stuck reach out to the lab support
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
+<<<<<<< HEAD
     <script src="/js/clipboard.min.js?1573355777"></script>
     <script src="/js/perfect-scrollbar.min.js?1573355777"></script>
     <script src="/js/perfect-scrollbar.jquery.min.js?1573355777"></script>
@@ -2741,6 +2768,21 @@ That being said, at any point in time you are stuck reach out to the lab support
 
     <link href="/mermaid/mermaid.css?1573355777" rel="stylesheet" />
     <script src="/mermaid/mermaid.js?1573355777"></script>
+=======
+    <script src="/js/clipboard.min.js?1573370684"></script>
+    <script src="/js/perfect-scrollbar.min.js?1573370684"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1573370684"></script>
+    <script src="/js/jquery.sticky.js?1573370684"></script>
+    <script src="/js/featherlight.min.js?1573370684"></script>
+    <script src="/js/highlight.pack.js?1573370684"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="/js/modernizr.custom-3.6.0.js?1573370684"></script>
+    <script src="/js/learn.js?1573370684"></script>
+    <script src="/js/hugo-learn.js?1573370684"></script>
+
+    <link href="/mermaid/mermaid.css?1573370684" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1573370684"></script>
+>>>>>>> 0bfb4732744be30c49d2baf2b796b036fb52674d
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
