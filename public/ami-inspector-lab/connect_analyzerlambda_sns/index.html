@@ -12,6 +12,7 @@
     <title>7. Subscribe Lambda to SNS Topic :: APN Equip Labs</title>
 
     
+<<<<<<< HEAD
     <link href="/css/nucleus.css?1573375468" rel="stylesheet">
     <link href="/css/fontawesome-all.min.css?1573375468" rel="stylesheet">
     <link href="/css/hybrid.css?1573375468" rel="stylesheet">
@@ -26,6 +27,22 @@
     
 
     <script src="/js/jquery-3.3.1.min.js?1573375468"></script>
+=======
+    <link href="/css/nucleus.css?1573444008" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1573444008" rel="stylesheet">
+    <link href="/css/hybrid.css?1573444008" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1573444008" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1573444008" rel="stylesheet">
+    <link href="/css/auto-complete.css?1573444008" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1573444008" rel="stylesheet">
+    <link href="/css/theme.css?1573444008" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1573444008" rel="stylesheet">
+    
+      <link href="/css/theme-darkblue.css?1573444008" rel="stylesheet">
+    
+
+    <script src="/js/jquery-3.3.1.min.js?1573444008"></script>
+>>>>>>> staging
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -51,14 +68,23 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
+<<<<<<< HEAD
 <script type="text/javascript" src="/js/lunr.min.js?1573375468"></script>
 <script type="text/javascript" src="/js/auto-complete.js?1573375468"></script>
+=======
+<script type="text/javascript" src="/js/lunr.min.js?1573444008"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1573444008"></script>
+>>>>>>> staging
 <script type="text/javascript">
     
         var baseurl = "http:\/\/example.org\/";
     
 </script>
+<<<<<<< HEAD
 <script type="text/javascript" src="/js/search.js?1573375468"></script>
+=======
+<script type="text/javascript" src="/js/search.js?1573444008"></script>
+>>>>>>> staging
 
     
   </div>
@@ -1266,9 +1292,9 @@
  
   
     
-      <li data-nav-id="/ami-inspector-lab/solutions_overview/" title="1. Solutions Overview" class="dd-item ">
+      <li data-nav-id="/ami-inspector-lab/solutions_overview/" title="1. Solution Overview" class="dd-item ">
         <a href="/ami-inspector-lab/solutions_overview/">
-        1. Solutions Overview
+        1. Solution Overview
         <i class="fas fa-check read-icon"></i>
         </a>
     </li>
@@ -1399,9 +1425,9 @@
  
   
     
-      <li data-nav-id="/ami-inspector-lab/test_assesment/" title="8. Test Assesment" class="dd-item ">
+      <li data-nav-id="/ami-inspector-lab/test_assesment/" title="8. Test Assessment" class="dd-item ">
         <a href="/ami-inspector-lab/test_assesment/">
-        8. Test Assesment
+        8. Test Assessment
         <i class="fas fa-check read-icon"></i>
         </a>
     </li>
@@ -1516,9 +1542,9 @@
 <ul>
 <li>
 <ul>
-<li><a href="#create-lambda-permission-to-allow-sns-service-to-invoke">Create Lambda Permission to allow SNS service to invoke.</a></li>
-<li><a href="#configure-sns-topic-lambda-function-subscriber">Configure SNS Topic Lambda Function Subscriber</a></li>
-<li><a href="#deploys-the-cloudformation-template">Deploys the CloudFormation Template</a></li>
+<li><a href="#create-a-lambda-invoke-permission-for-the-sns-service">Create a Lambda Invoke Permission for the SNS service</a></li>
+<li><a href="#configure-an-sns-topic-lambda-function-subscription">Configure an SNS Topic Lambda function Subscription</a></li>
+<li><a href="#deploy-the-cloudformation-template">Deploy the CloudFormation template</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -1548,7 +1574,7 @@
 
 
 
-<p>Now that we have created our Lambda Functions the next thing to do is to connect the <code>ContinuousAssesmentCompleteTopic</code> SNS Topic to the <code>AnalyzeInspectorFindings</code> Lambda function, levaraging the subscribtion mechanism. This is to basically allow <code>AnalyzeInspectorFindings</code> to be triggered once Amazon Inspector completes the inspection and send the message notification to users.</p>
+<p>Now that we have created our Lambda functions the next thing to do is to connect the <code>ContinuousAssesmentCompleteTopic</code> SNS Topic to the <code>AnalyzeInspectorFindings</code> Lambda function, leveraging the subscription mechanism. This is to allow <code>AnalyzeInspectorFindings</code> to be triggered once Amazon Inspector completes the inspection and to send the notification message to users.</p>
 
 <p><img src="/AMI Inspector Lab/images/ContinuousAssesmentLambdaFunction05.png" alt="" /></p>
 
@@ -1557,42 +1583,43 @@
 <p><strong>IMPORTANT NOTE:</strong></p>
 
 <p>In the following steps you will need to construct your CloudFormation template in YAML format.
-YAML format allows you to put comments in the template by placing in # in front of the line.
-YAML format is indent sensitive syntax, therefore make sure to specify the key and values at the right indent level in the template.</p>
+YAML allows you to put comments in the template by placing a <code>#</code> in front of the comment line.
+YAML is an indentation sensitive syntax, therefore make sure to specify the key and values at the right indent level in the template.</p>
 
-<p>When building a cloudformation template, it is recommended to always refer back to the extensive CloudFormation documentation.
-In the folloing steps for smooth lab experience, we will be providing the template snippet for the specific resource.
-Alternatively, we will also be providing a high level instruction on how to construct the template if you coose to build them manually. We will also provide reference guide / example from public documentation to help you.</p>
+<p>When building a CloudFormation template, it is always recommended to refer back to the extensive CloudFormation documentation.
+In the following steps we will be providing the template snippets for the specific resource for a smooth lab experience.
+Alternatively, we will also be providing high level instructions on how to construct the template if you choose to build them manually. We will also provide reference guides and examples from the documentation to help you.</p>
 
-<p>The purpose of this is get acustomed towards exploring CloudFormation documentation and syntax.
-That being said, at any point in time you are stuck reach out to the lab support team.</p>
+<p>The purpose of this lab is get accustomed to exploring CloudFormation documentation and syntax.
+That being said, if at any point you get stuck, do reach out to the lab support team, or consult the reference template from the solution overview.</p>
 
 <hr />
 
-<h3 id="create-lambda-permission-to-allow-sns-service-to-invoke">Create Lambda Permission to allow SNS service to invoke.</h3>
+<h3 id="create-a-lambda-invoke-permission-for-the-sns-service">Create a Lambda Invoke Permission for the SNS service</h3>
 
-<p>In this step we will be <strong>creating a Lambda Permission</strong> with below criteria :</p>
+<p>In this step we will be <strong>creating a Lambda Invoke Permission</strong> to allow the SNS service to invoke the Lambda function as follows:</p>
 
 <ul>
-<li>Allows the Lambda Function to be triggered via SNS service <code>sns.amazonaws.com</code></li>
-<li>Attach this permission to the <code>AnalyzeInspectorFindings</code> Lambda Function you created before.</li>
+<li>Allow the Lambda function to be triggered by the SNS service, <code>sns.amazonaws.com</code></li>
+<li>Attach this permission to the <code>AnalyzeInspectorFindings</code> Lambda function you created before</li>
 </ul>
 
-<p>You can refer here for properties reference: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-permission.html">https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-permission.html</a></p>
+<p>You can refer here for the properties reference: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-permission.html">https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-permission.html</a></p>
 
-<p>Choose one of the option below on how you want to build the resource.</p>
+<p>Choose how you would like to build the resource from the options below:</p>
 
-<p><details><summary><strong>Option 1 - Build the resouce manually with step by step instructions.</strong></summary>
+<p><details><summary> <strong>Option 1 - Build the resource manually with step-by-step instructions.</strong></summary>
 <p></p>
 
-<pre><code>* Open your notepad / text editor, edit the file named  `GoldenAMIContinuousAssesment.yml`.
-* Right under the previous resource, still inside the `Resources:` section do the following.
-* Create a resource named `LambdaInvokePermission` of type `AWS::Lambda::Permission`.
-* In the `Properties` section create a `FunctionName` property and using the !GetAtt intrinsic function reference the `AnalyzeInspectorFindingsLambdaFunction` Arn you created before Reference : https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-getatt.html
-* In the `Properties` section create a `Action` property and specify `lambda:InvokeFunction`
-* In the `Properties` section create a `Principal` property and specify `sns.amazonaws.com`
-* In the `Properties` section create a `SourceArn` property and specify a reference to the `ContinuousAssessmentCompleteTopic` using !Ref intrinsic function
-</code></pre>
+<ul>
+<li>Open your text editor and edit the file named  <code>GoldenAMIContinuousAssesment.yml</code>.</li>
+<li>In the <code>Resources:</code> section, add the following:</li>
+<li>Create a resource named <code>LambdaInvokePermission</code> of type <code>AWS::Lambda::Permission</code>.</li>
+<li>In the <code>Properties</code> section create a <code>FunctionName</code> property and using the <code>!GetAtt</code> intrinsic function, reference the <code>AnalyzeInspectorFindingsLambdaFunction</code> Arn you created before. <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-getatt.html">Reference</a></li>
+<li>In the <code>Properties</code> section create an <code>Action</code> property and specify <code>lambda:InvokeFunction</code></li>
+<li>In the <code>Properties</code> section create a <code>Principal</code> property and specify <code>sns.amazonaws.com</code></li>
+<li>In the <code>Properties</code> section create a <code>SourceArn</code> property and specify a reference to the <code>ContinuousAssessmentCompleteTopic</code> using the <code>!Ref</code> intrinsic function</li>
+</ul>
 
 <p></p>
 </details></p>
@@ -1610,29 +1637,29 @@ That being said, at any point in time you are stuck reach out to the lab support
 
 <p></details></p>
 
-<h3 id="configure-sns-topic-lambda-function-subscriber">Configure SNS Topic Lambda Function Subscriber</h3>
+<h3 id="configure-an-sns-topic-lambda-function-subscription">Configure an SNS Topic Lambda function Subscription</h3>
 
-<p>In this step we will be <strong>a SNS Subscriber resource</strong> with below criteria :</p>
+<p>In this step we will be <strong>creating an SNS Subscription resource for a Lambda function</strong> as follows:</p>
 
 <ul>
-<li>The Subscriber is Lambda function <code>AnalyzeInspectorFindings</code> we created before.</li>
-<li>Set the SourceArn as the <code>ContinuousAssessmentCompleteTopic</code></li>
+<li>The subscriber must be the Lambda function <code>AnalyzeInspectorFindings</code> we created before.</li>
+<li>The SourceArn must be the <code>ContinuousAssessmentCompleteTopic</code></li>
 </ul>
 
-<p>You can refer here for properties reference: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sns-subscription.html">https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sns-subscription.html</a></p>
+<p>You can refer here for the properties reference: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-permission.html">https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-permission.html</a></p>
 
-<p>Choose one of the option below on how you want to build the resource.</p>
+<p>Choose how you would like to build the resource from the options below:</p>
 
-<p><details><summary><strong>Option 1 - Build the resouce manually with step by step instructions.</strong></summary>
+<p><details><summary> <strong>Option 1 - Build the resource manually with step-by-step instructions.</strong></summary>
 <p></p>
 
 <ul>
-<li>Open your notepad / text editor, edit the file named  <code>GoldenAMIContinuousAssesment.yml</code>.</li>
-<li>Right under the previous resource, still inside the <code>Resources:</code> section do the following.</li>
+<li>Open your text editor, and edit the file named  <code>GoldenAMIContinuousAssesment.yml</code>.</li>
+<li>Add the following resource to the <code>Resources:</code> section:</li>
 <li>Create a resource named <code>ContinuousAssessmentCompleteTopicSubscription</code> of type <code>AWS::SNS::Subscription</code>.</li>
-<li>In the <code>Properties</code> section create a <code>Endpoint</code> property and using the !GetAtt intrinsic function reference the <code>AnalyzeInspectorFindingsLambdaFunction</code> Arn you created before. Reference : <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-getatt.html">https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-getatt.html</a></li>
+<li>In the <code>Properties</code> section, create an <code>Endpoint</code> property and using the <code>!GetAtt</code> intrinsic function, reference the <code>AnalyzeInspectorFindingsLambdaFunction</code> Arn you created before. <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-getatt.html">Reference</a></li>
 <li>In the <code>Properties</code> section create a <code>Protocol</code> property and specify <code>lambda</code>.</li>
-<li>In the <code>Properties</code> section create a <code>SourceArn</code> property and specify a reference to the <code>ContinuousAssessmentCompleteTopic</code> using !Ref intrinsic function.</li>
+<li>In the <code>Properties</code> section create a <code>SourceArn</code> property and specify a reference to the <code>ContinuousAssessmentCompleteTopic</code> using the <code>!Ref</code> intrinsic function.</li>
 </ul>
 
 <p><p>
@@ -1640,7 +1667,7 @@ That being said, at any point in time you are stuck reach out to the lab support
 
 <p><details><summary><strong>Option 2 - CloudFormation template snippet</strong></summary></p>
 
-<p><strong>READ &gt;&gt;</strong> Below snippet must be specified within <code>Resources:</code> section of the cloudformation template.</p>
+<p><strong>NOTE</strong> The snippet below must be specified within the <code>Resources:</code> section of the CloudFormation template.</p>
 
 <pre><code>      ContinuousAssessmentCompleteTopicSubscription: 
         Properties: 
@@ -1652,17 +1679,17 @@ That being said, at any point in time you are stuck reach out to the lab support
 
 <p></details></p>
 
-<h3 id="deploys-the-cloudformation-template">Deploys the CloudFormation Template</h3>
+<h3 id="deploy-the-cloudformation-template">Deploy the CloudFormation template</h3>
 
-<p>Now that you&rsquo;ve construct the template, it&rsquo;s time to update the stack, do do that please follow the <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-get-template.html#using-cfn-updating-stacks-get-stack.CON">Update a Stack&rsquo;s Template (Console)</a> guide to create your stack.</p>
+<p>Now that you&rsquo;ve updated the template, it&rsquo;s time to update the stack as well.</p>
 
-<p>Specify Stack <code>GoldenAMIContinuousAssesment</code> as the stack name for simplicity.</p>
+<p>To do that please follow the <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-get-template.html#using-cfn-updating-stacks-get-stack.CON">Update a Stack&rsquo;s Template (Console)</a> guide.</p>
 
-<p>Once you&rsquo;ve launched your stack review the <code>Resources</code> Tab of the launch stack to identify the resouce it&rsquo;s created.</p>
+<p>Once you&rsquo;ve launched your stack review the <code>Resources</code> Tab of the launch stack to identify the resources that have been created for you.</p>
 
-<p><strong>Hey Hey ! Well done !</strong> We have created all of the main resources for our solution. on top of that you&rsquo;ve packaged this inside CloudFormation. Next time you need to deploy this solution, it will just take you minutes.</p>
+<p><strong>Hey, Hey! Well done!</strong> We have created all of the main resources for our solution. Also, you&rsquo;ve packaged this inside a CloudFormation template. Next time you need to deploy this solution, it will take you minutes, rather than the time you have spent so far in building it.</p>
 
-<p>Let&rsquo;s move to next page to Test our solutions</p>
+<p>Let&rsquo;s move to next page to test our solution.</p>
 
 
 <footer class=" footline" >
@@ -2759,7 +2786,7 @@ That being said, at any point in time you are stuck reach out to the lab support
 			<a class="nav nav-prev" href="/ami-inspector-lab/create_continuousassess_lambda/" title="6. Create Lambda Functions"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/ami-inspector-lab/test_assesment/" title="8. Test Assesment" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/ami-inspector-lab/test_assesment/" title="8. Test Assessment" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -2769,6 +2796,7 @@ That being said, at any point in time you are stuck reach out to the lab support
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
+<<<<<<< HEAD
     <script src="/js/clipboard.min.js?1573375468"></script>
     <script src="/js/perfect-scrollbar.min.js?1573375468"></script>
     <script src="/js/perfect-scrollbar.jquery.min.js?1573375468"></script>
@@ -2782,6 +2810,21 @@ That being said, at any point in time you are stuck reach out to the lab support
 
     <link href="/mermaid/mermaid.css?1573375468" rel="stylesheet" />
     <script src="/mermaid/mermaid.js?1573375468"></script>
+=======
+    <script src="/js/clipboard.min.js?1573444008"></script>
+    <script src="/js/perfect-scrollbar.min.js?1573444008"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1573444008"></script>
+    <script src="/js/jquery.sticky.js?1573444008"></script>
+    <script src="/js/featherlight.min.js?1573444008"></script>
+    <script src="/js/highlight.pack.js?1573444008"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="/js/modernizr.custom-3.6.0.js?1573444008"></script>
+    <script src="/js/learn.js?1573444008"></script>
+    <script src="/js/hugo-learn.js?1573444008"></script>
+
+    <link href="/mermaid/mermaid.css?1573444008" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1573444008"></script>
+>>>>>>> staging
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

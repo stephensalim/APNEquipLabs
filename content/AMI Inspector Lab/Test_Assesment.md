@@ -1,43 +1,42 @@
 ---
-title: "8. Test Assesment"
+title: "8. Test Assessment"
 weight: 8
 draft: false
 ---
 
-The main part of our solution is done ! In this section we will test the execution of our solution by passing in manual invocation to the `StartContinuousAssessment` Lambda Function. This will then kick off the GoldenAMI assessment process on the AMI ID we specified in our metadata, and you should see the solutions in full effect.
+The main part of our solution is now complete! In this section we will test the execution by manually invoking the `StartContinuousAssessment` Lambda function. This will then kick off the Golden AMI assessment process on the AMI ID we specified in our metadata, and you should see the solution in full effect.
 
 
-### Manually Start golden AMI vulnerability assessments
+### Manually Start Golden AMI vulnerability assessment
 
 1.  Sign in to the [AWS Management Console](https://console.aws.amazon.com/console/home) and choose **Lambda** in the **Services **menu.
 2.  Choose **Functions**. In the **Functions** pane, choose the **StartContinuousAssessment** function.
 3.  Choose the **Select a test event** drop-down, and choose **Configure test events**.
-4.  On the **Configure test event** page, choose **Create new test event** and specify the event name as test.
-5.  Paste the following JSON in the editor box.
-
-    <div class="hide-language">
-        {
+4.  On the **Configure test event** page, choose **Create new test event** and specify the event name as **Test**.
+5.  Paste the following JSON in the editor box:
+```
+    {
         "AMIsParamName": "ContinuousAssessmentInput"
-        }
-    </div>
-
-6.  Choose **Create**. Choose **Test**.
+    }
+```
+6.  Choose **Create**. 
+7.  Choose **Test**.
 
 The `StartContinuousAssessment` function runs for approximately five minutes. 
     
-While you wait, here's the explanation on what occurs in the background.
+While you wait, here's the explanation of what occurs in the background.
 
 ![](/AMI Inspector Lab/images/Testing01.png)
 
-1. What's happening is `StartContinuousAssessment` Lambda function will pull down the metadata information you created in this Lab. This metadata will contain the `InstanceType`, `Ami-Id`, and `UserData` information that the function needs to execute the next activity.
+1. First the `StartContinuousAssessment` Lambda function will pull down the metadata information you created in this Lab. This metadata will contain the `InstanceType`, `Ami-Id`, and `UserData` information that the function needs to execute the next activity.
 
-2. Next, it will use the `Ami-Id` to launch an EC2 Instance with the `Instance Type` you specified, and put in the `UserData` information. It reads the JSON parameter stored in the [AWS Systems Manager](http://docs.aws.amazon.com/systems-manager/latest/userguide/what-is-systems-manager.html) (Systems Manager) Parameter Store. As you know, this JSON parameter contains the following metadata for each golden AMI:
+2. Next, it will use the `Ami-Id` to launch an EC2 Instance with the `InstanceType` you specified, with the `UserData` information you provided. It reads the JSON parameter stored in the [AWS Systems Manager](http://docs.aws.amazon.com/systems-manager/latest/userguide/what-is-systems-manager.html) Parameter Store. As you know, this JSON parameter contains the following metadata for each golden AMI:
             
     * `InstanceType` – A valid instance-type for launching an EC2 instance of the golden AMI.
     * `Ami-Id` – The ID of the golden AMI.
     * `UserData` – An operating system–compatible [user-data script](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html) for installing the [Amazon Inspector agent](http://docs.aws.amazon.com/inspector/latest/userguide/inspector_agents.html).
 
-3. When each instance starts, it installs the Amazon Inspector agent by using the user-data script provided in the JSON. The Lambda function then copies each golden AMI’s [tags](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html) (you will assign custom metadata in the form of tags to each golden AMI when you set up the solution) to the corresponding EC2 instance. 
+3. When each instance starts, it installs the Amazon Inspector agent by using the user-data script provided in the JSON. The Lambda function then copies each golden AMI’s [tags](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html) to the corresponding EC2 instance. _(You will assign custom metadata in the form of tags to each golden AMI when you set up the solution)_
     
     The function also adds a tag with the `key` of `continuous-assessment-instance` and `value` as `true`. This tag identifies EC2 instances that require the security assessments. 
     
@@ -46,10 +45,10 @@ While you wait, here's the explanation on what occurs in the background.
 4. The Function will wait for the instance to launch and execute Amazon Inspector to inspect the EC2 instance. The first time the `StartContinuousAssessment` function runs, it creates:
     * An [Amazon Inspector assessment target](http://docs.aws.amazon.com/inspector/latest/userguide/inspector_applications.html): The target identifies EC2 instances to assess by using the `continuous-assessment-instance` tag.
     * An [Amazon Inspector assessment template](http://docs.aws.amazon.com/inspector/latest/userguide/inspector_assessments.html#inspector-assessment-templates): The template contains a reference to the Amazon Inspector assessment target created in the preceding step and the following AWS managed rules packages to evaluate:
-    *   [Common Vulnerabilities and Exposures](http://docs.aws.amazon.com/inspector/latest/userguide/inspector_cves.html) (CVEs)
-    *   [Center for Internet Security (CIS) Benchmarks](http://docs.aws.amazon.com/inspector/latest/userguide/inspector_cis.html)
-    *   [AWS Security Best Practices](http://docs.aws.amazon.com/inspector/latest/userguide/inspector_security-best-practices.html)
-    *   [Runtime Behavior Analysis](http://docs.aws.amazon.com/inspector/latest/userguide/inspector_runtime-behavior-analysis.html)
+        *   [Common Vulnerabilities and Exposures](http://docs.aws.amazon.com/inspector/latest/userguide/inspector_cves.html) (CVEs)
+        *   [Center for Internet Security (CIS) Benchmarks](http://docs.aws.amazon.com/inspector/latest/userguide/inspector_cis.html)
+        *   [AWS Security Best Practices](http://docs.aws.amazon.com/inspector/latest/userguide/inspector_security-best-practices.html)
+        *   [Runtime Behavior Analysis](http://docs.aws.amazon.com/inspector/latest/userguide/inspector_runtime-behavior-analysis.html)
 
     For subsequent assessments, the `StartContinuousAssessment` function reuses the target and the template created during the first run of `StartContinuousAssessment` function.
 
@@ -61,11 +60,11 @@ While you wait, here's the explanation on what occurs in the background.
 
     ---
 
-    Once the EC2 instance is successfully launched you should see below message in your Lambda execution indicating that the process is complete.
+    Once the EC2 instance is successfully launched you should see the following message from your Lambda execution indicating that the process is complete.
 
     ![Message showing the function has run successfully](https://d2908q01vomqb2.cloudfront.net/22d200f8670dbdb3e253a90eee5098477c95c23d/2017/12/15/KW_1_1217.png "Message showing the function has run successfully")
 
-    The next thing that will happen are below :
+    The next steps appear below:
 
     ![](/AMI Inspector Lab/images/Testing02.png)
 
@@ -73,7 +72,7 @@ While you wait, here's the explanation on what occurs in the background.
 
     Amazon Inspector agents collect behavior and configuration data, and pass it to Amazon Inspector. Amazon Inspector analyzes the data and generates [Amazon Inspector findings](http://docs.aws.amazon.com/inspector/latest/userguide/inspector_findings.html), which are possible security findings you may need to address.
 
-    You can open Amazon Inspector and monitor the progress of the assessment you can do below :
+    You can open Amazon Inspector and monitor the progress of the assessment as follows:
 
     * Sign in to the [AWS Management Console](https://console.aws.amazon.com/console/home) and navigate to the [Amazon Inspector console](https://console.aws.amazon.com/inspector/).
     * On **Dashboard** under **Recent Assessment Runs**, you will see an entry with the status, **Collecting Data**. This status indicates that Amazon Inspector agents are collecting data from instances running your golden AMIs. The agents collect data for an hour and then Amazon Inspector analyzes the collected data.
@@ -85,7 +84,7 @@ While you wait, here's the explanation on what occurs in the background.
     * To see the findings in Amazon Inspector’s **Findings** section:
 
         * Sign in to the [AWS Management Console](https://console.aws.amazon.com/console/home) and navigate to the [Amazon Inspector console](https://console.aws.amazon.com/inspector/home).
-        * In the navigation pane, choose **Assessment Runs**. In the table on the **Amazon Inspector – Assessment Runs** page**,** choose the findings of the latest assessment run.
+        * In the navigation pane, choose **Assessment Runs**. In the table on the **Amazon Inspector – Assessment Runs** page, choose the findings of the latest assessment run.
         * Choose the settings icon and choose the appropriate tags to see the details of findings, as shown in the following screenshot. The findings also contain information about how you can address each underlying vulnerability. 
 
         ![Screenshot showing details of findings](https://d2908q01vomqb2.cloudfront.net/22d200f8670dbdb3e253a90eee5098477c95c23d/2017/12/15/KW_2_1217.png "Screenshot showing details of findings")
@@ -96,4 +95,4 @@ While you wait, here's the explanation on what occurs in the background.
     * Terminates all instances associated with the `continuous-assessment-instance=true` tag.
     * Aggregates the number of findings found for each EC2 instance by severity and then publishes a consolidated result to an SNS topic called `ContinuousAssessmentResultsTopic`.
 
-Now that We have succesfully Test our Solution, we are ready to create the schedule Task for our stack
+Now that we have successfully tested our solution, we are ready to create the scheduled task for our stack with a **CloudWatch Event Rule**.
